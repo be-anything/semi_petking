@@ -24,10 +24,12 @@ CREATE TABLE users (
 	 email varchar2(200),
 	 phone char(11) NOT NULL,
 	 result_point number DEFAULT 0,
+     role char(1) default U,
 	 reg_date Date DEFAULT sysdate,
-     constraints pk_user_id primary key(id),
-     constraints uq_user_email unique(email),
-     constraints fk_user_grade_id foreign key(grade_id) references user_grade(id) on delete set null
+     constraints pk_users_id primary key(id),
+     constraints fk_users_grade_id foreign key(grade_id) references user_grade(id) on delete set null,
+     constraints uq_users_email unique(email),
+     constraints ch_users_role check(role in (U, A))
 );
 -- drop table users;
 -- drop sequence seq_users_nickname;
@@ -358,22 +360,22 @@ commit;
 
 -- users table
 INSERT INTO USERS (ID, GRADE_ID, CLUB_ID, NAME, PASSWORD, ORIGIN_PROFILE_NAME, RENAMED_PROFILE_NAME, EMAIL, PHONE, RESULT_POINT, NICKNAME, REG_DATE) 
-VALUES ('goyoung12', 'g01', 1, '공지영', 'B4uukJ@XR5qq', NULL, NULL, 'goyoung12@naver.com', '01023541234', 500, '얕은 풍산개' || seq_users_nickname.nextval, to_date('10/08/2023', 'MM/DD/RRRR'));
+VALUES ('goyoung12', 'g01', 1, '공지영', 'B4uukJ@XR5qq', NULL, NULL, 'goyoung12@naver.com', '01023541234', 500, '얕은 풍산개' || seq_users_nickname.nextval, default, to_date('10/08/2023', 'MM/DD/RRRR'));
 
 INSERT INTO USERS (ID, GRADE_ID, CLUB_ID, NAME, PASSWORD, ORIGIN_PROFILE_NAME, RENAMED_PROFILE_NAME, EMAIL, PHONE, RESULT_POINT, NICKNAME, REG_DATE) 
-VALUES ('jun345', 'g02', 2, '공현준', 'GxQ98sDdW7!$', NULL, NULL, 'jun345@gmail.com', '01025484587', 1100, '엄청난 사슴' || seq_users_nickname.nextval, to_date('06/13/2022', 'MM/DD/RRRR'));
+VALUES ('jun345', 'g02', 2, '공현준', 'GxQ98sDdW7!$', NULL, NULL, 'jun345@gmail.com', '01025484587', 1100, '엄청난 사슴' || seq_users_nickname.nextval, default, to_date('06/13/2022', 'MM/DD/RRRR'));
 
 INSERT INTO USERS (ID, GRADE_ID, CLUB_ID, NAME, PASSWORD, ORIGIN_PROFILE_NAME, RENAMED_PROFILE_NAME, EMAIL, PHONE, RESULT_POINT, NICKNAME, REG_DATE) 
-VALUES ('parkpark00', 'g03', 3, '박혜경', 'w@CaMdMdsad', NULL, NULL, 'parkpark00@naver.com', '01055483875', 5024, '적은 늑대' || seq_users_nickname.nextval, to_date('09/21/2021', 'MM/DD/RRRR'));
+VALUES ('parkpark00', 'g03', 3, '박혜경', 'w@CaMdMdsad', NULL, NULL, 'parkpark00@naver.com', '01055483875', 5024, '적은 늑대' || seq_users_nickname.nextval, default, to_date('09/21/2021', 'MM/DD/RRRR'));
 
 INSERT INTO USERS (ID, GRADE_ID, CLUB_ID, NAME, PASSWORD, ORIGIN_PROFILE_NAME, RENAMED_PROFILE_NAME, EMAIL, PHONE, RESULT_POINT, NICKNAME, REG_DATE) 
-VALUES ('heeee12', 'g04', 2, '곽혜리', 'dfsd?IJoN', NULL, NULL, 'heeee12@gmail.com', '01058439987', 25125, '빨간 칠면조' || seq_users_nickname.nextval, to_date('09/25/2021', 'MM/DD/RRRR'));
+VALUES ('heeee12', 'g04', 2, '곽혜리', 'dfsd?IJoN', NULL, NULL, 'heeee12@gmail.com', '01058439987', 25125, '빨간 칠면조' || seq_users_nickname.nextval, default, to_date('09/25/2021', 'MM/DD/RRRR'));
 
 INSERT INTO USERS (ID, GRADE_ID, CLUB_ID, NAME, PASSWORD, ORIGIN_PROFILE_NAME, RENAMED_PROFILE_NAME, EMAIL, PHONE, RESULT_POINT, NICKNAME, REG_DATE) 
-VALUES ('ronn11', 'g05', 1, '권새롬', '?0tym0dm?KcB', NULL, NULL, 'ronn11@naver.com', '01098565896', 40351, '구석진 붉은메기' || seq_users_nickname.nextval, to_date('10/21/2022', 'MM/DD/RRRR'));
+VALUES ('ronn11', 'g05', 1, '권새롬', '?0tym0dm?KcB', NULL, NULL, 'ronn11@naver.com', '01098565896', 40351, '구석진 붉은메기' || seq_users_nickname.nextval, default, to_date('10/21/2022', 'MM/DD/RRRR'));
 
 INSERT INTO USERS (ID, GRADE_ID, CLUB_ID, NAME, PASSWORD, ORIGIN_PROFILE_NAME, RENAMED_PROFILE_NAME, EMAIL, PHONE, RESULT_POINT, NICKNAME, REG_DATE) 
-VALUES ('youusang', 'g01', 3, '권유상', '57CPW02dsaf', NULL, NULL, 'youusang@gmail.com', '01068562698', 0, '나쁜 고라니' || seq_users_nickname.nextval, to_date('05/02/2022', 'MM/DD/RRRR'));
+VALUES ('youusang', 'g01', 3, '권유상', '57CPW02dsaf', NULL, NULL, 'youusang@gmail.com', '01068562698', 0, '나쁜 고라니' || seq_users_nickname.nextval, 'A', to_date('05/02/2022', 'MM/DD/RRRR'));
 
 select * from users;
 commit;
