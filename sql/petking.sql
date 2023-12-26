@@ -183,8 +183,6 @@ create sequence seq_camp_id;
 ----------------------------------------------------------------- camp_approve_msg 영역 정효
 
 
------------------------------------------------------------------ camp_room 영역 혜진
-
 
 ----------------------------------------------------------------- promotion 영역
 create table promotion(
@@ -217,7 +215,12 @@ select * from camp_promotion;
 --drop table camp_promotion;
 
 ----------------------------------------------------------------- camp_type 영역 혜진
-
+CREATE TABLE camp_type(
+    id number not null,
+    name char(1) not null,
+    constraints pk_camp_type_id primary key(id),
+    constraints ck_camp_type_name check(room_type in('O','G','C','R'))
+);
 
 ----------------------------------------------------------------- camp_with_type 영역
 
@@ -244,7 +247,18 @@ create table camp_with_tag(
 select * from camp_with_tag;
 
 ----------------------------------------------------------------- room 영역 혜진
-
+CREATE TABLE room(
+    id number not null,
+    camp_id number not null,
+    room_name varchar2(100) not null,
+    room_type number not null,
+    room_intro varchar2(2000),
+    room_default_person number not null,
+    room_maximum_person number not null,
+    constraints pk_room_id primary key(id),
+    constraints fk_room_camp_id foreign key(camp_id) references camp(id) on delete set null,
+    constraints fk_room_room_type foreign key(room_type) references camp_type(id) on delete set null--캠핑타입의 아이디를 외래키로 삼는다.
+);
 
 ----------------------------------------------------------------- room_attach 영역
 create table room_attach (
@@ -272,11 +286,34 @@ create sequence seq_camp_attach_id;
 
 
 ----------------------------------------------------------------- reservation 영역 혜진
-
+CREATE TABLE reservation(
+    id number not null,
+    camp_id number not null,--fk
+    room_id number not null,--fk
+    user_id number not null,--fk
+    start_date date not null,
+    end_date date not null,
+    nop number,
+    status boolean not null,
+    constraints pk_reservation_id primary key(id),
+    constraints fk_reservation_camp_id foreign key(camp_id) references camp(id) on delete set null,--fk 캠핑장아이디
+    constraints fk_reservation_room_id foreign key(room_id) references room(id) on delete set null,--fk 객실아이디
+    constraints fk_reservation_user_id foreign key(user_id) references users(id) on delete set null--fk 유저아이디 
+);
+create sequence seq_reservation_id;
 
 ----------------------------------------------------------------- reservation_pay 영역 혜진
 
-
+CREATE TABLE reservation_pay(
+    id number not null, --pk
+    reserv_ex number,
+    reserv_usepoint number,
+    reserv_date date default sysdate,
+    reserv_id number not null, --fk
+    constraints pk_reservation_pay_id primary key(id), --pk
+    constraints fk_reservation_reserv_id foreign key(reserv_id) references reservation(id) on delete set null --fk reservation테이블의 id
+);
+create sequence seq_reservation_pay_id;
 
 -----------------------------------------------------------------------------
 -- 데이터 삽입 insert ~ 
