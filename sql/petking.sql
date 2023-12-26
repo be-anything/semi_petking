@@ -36,50 +36,176 @@ CREATE TABLE users (
 create sequence seq_users_nickname;
 
 ----------------------------------------------------------------- del_user 영역
-
+create table del_users(
+      id number not null,
+      user_id varchar2(30) not null,
+      name varchar2(20) not null,
+      role char(1) not null,
+      del_date date default sysdate,
+      del_reason varchar2(1000) not null,
+      reg_date date default sysdate,
+      constraints pk_del_users_id primary key(id)
+);
+create sequence seq_del_users_id;
+select * from del_users;
 
 ----------------------------------------------------------------- pet 영역
-
-
+create table pet(
+      user_id varchar2(20) not null,
+      pet_name varchar2(100),
+      pet_age number,
+      pet_gender char(1) not null,
+      neutered char(1),
+      reg_date date default sysdate,
+      constraints pk_fk_pet_user_id foreign key(user_id) references users(id) on delete cascade,
+      constraints uq_fk_pet_user_id unique(user_id),
+      constraints ck_pet_pet_gender check(pet_gender in ('M', 'F')),
+      constraints ck_pet_neutered check(neutered in ('Y', 'N'))
+);
+-- drop table pet;
 ----------------------------------------------------------------- user_grade 영역
 CREATE TABLE user_grade (
-	id varchar2(10) NOT NULL,
+	id varchar2(30) NOT NULL,
 	name varchar2(300) NOT NULL,
 	min_point number,
 	max_point number,
     constraints pk_user_grade_id primary key(id)
 );
+select * from pet;
 -- drop table user_grade;
 
 ----------------------------------------------------------------- point 영역
-
+create table point (
+    id number not null,
+    user_id varchar2(30) not null,
+    point number not null,
+    point_log varchar2(2000) not null,
+    reg_date timestamp default systimestamp,
+    constraints pk_point_id primary key(id),
+    constraints fk_point_user_id foreign key(user_id) references users(id) on delete cascade
+);
+select * from point;
 
 ----------------------------------------------------------------- wish 영역
-
+create table wish(
+    id number not null,
+    user_id varchar2(30) not null,
+    camp_id number not null,
+    reg_date date default sysdate,
+    constraints pk_wish_id primary key(id),
+    constraints fk_wish_user_id foreign key(user_id) references users(id) on delete cascade,
+    constraints fk_wish_camp_id foreign key(camp_id) references camp(id) on delete cascade
+);
+select * from wish;
+create sequence seq_wish_id;
 
 ----------------------------------------------------------------- board 영역
-
+create table board (
+       id number NOT NULL,
+       user_id varchar2(30) NOT NULL,
+       board_type varchar2(21) NOT NULL, -- 질문, 자유, 동아리
+       board_title varchar2(1000) NOT NULL,
+       board_content varchar2(4000) not null,
+       reg_date timestamp default systimestamp,
+       board_attr number default 1,
+       view_count number default 0,
+       constraints pk_board_id primary key(id),
+       constraints fk_board_user_id foreign key(user_id) references users(id) on delete cascade,
+       constraints ck_board_board_type check(board_type in(-1, 0, 1))
+);
+create sequence seq_board_id;
+-- board_type의 -1은 질문, 0은 자유, 1은 동아리를 의미합니다.
+-- 이거는 그냥 질문, 자유, 동아리 문자열 자체로 입력하면 db에서 볼때도 작업할 때도 더 직관적일 것 같습니다.
 
 ----------------------------------------------------------------- board_comment 영역
-
+create table board_comment (
+       id number not null,
+       board_id number not null,
+       user_id varchar2(30) not null,
+       content varchar2(2000) not null,
+       reg_date timestamp default systimestamp not null,
+       constraints pk_board_comment_id primary key(id),
+       constraints fk_board_comment_board_id foreign key(board_id) references board(id) on delete cascade,
+       constraints fk_board_comment_user_id foreign key(user_id) references users(id) on delete cascade
+);
+create sequence seq_board_comment_id;
 
 ----------------------------------------------------------------- review 영역
-
+create table review (
+       id number NOT NULL,
+       user_id varchar2(30) NOT NULL,
+       camp_id number not null,
+       board_attr number default 2,
+       review_tag varchar2(1000),
+       review_title varchar2(1000) not null,
+       reveiw_content varchar2(4000) not null,
+       view_count number default 0,
+       like_count number default 0,
+        reg_date timestamp default systimestamp,
+       constraints pk_review_id primary key(id),
+       constraints fk_review_user_id foreign key(user_id) references users(id) on delete cascade,
+       constraints fk_review_camp_id foreign key(camp_id) references camp(id) on delete cascade
+);
+create sequence seq_review_id;
 
 ----------------------------------------------------------------- review_comment 영역
-
+create table review_comment (
+    id number not null,
+    user_id varchar2(30) not null,
+    review_id number not null,
+    content varchar2(2000) not null,
+    reg_date timestamp default systimestamp not null,
+    constraints pk_review_comment_id primary key(id),
+    constraints fk_review_comment_review_id foreign key(review_id) references review(id) on delete cascade
+);
+create sequence seq_review_comment_id;
 
 ----------------------------------------------------------------- attachement 영역
-
+create table attachment (
+    id number not null,
+    original_name varchar2(255) not null,
+    renamed_name varchar2(255) not null, -- uuid
+    constraints pk_attachment_id primary key(id)
+);
+create sequence seq_attachment_id;
 
 ----------------------------------------------------------------- board_attach 영역
-
+create table board_attach(
+    id number not null, -- 의미없는 pk
+    attach_id number not null, -- 첨부파일 id
+    board_id number not null,  -- 게시글 id
+    board_attr number not null, -- 게시판 종류(1:통합, 2:리뷰)
+    constraints pk_board_attach_id primary key(id)
+);
+-- 두 게시판을 대상으로 foreign key를 설정할 수 없음
+-- attach insert 시 board_attach에도 insert하도록 service 코드 작성
+create sequence seq_board_attach_id;
 
 ----------------------------------------------------------------- club 영역
-
+create table club(
+     id number not null,
+     club_name varchar2(100) not null,
+     club_intro_title varchar2(1000) not null,
+     club_intro_content varchar2(4000) not null,
+     max_user number not null,
+     reg_date date default sysdate,
+     constraints pk_club_id primary key(id),
+     constraints ck_club_max_user check(max_user <=100)
+);
+create sequence club_id;
+select * from club;
 
 ----------------------------------------------------------------- club_user 영역
-
+create table club_users(
+       club_id number not null,
+       user_id varchar2(30) not null,
+       join_state number default 0 not null,
+       reg_date date default sysdate,
+       constraints fk_club_users_club_id foreign key(club_id) references club(id) on delete set null,
+       constraints fk_club_users_user_id foreign key(user_id) references users(id) on delete set null,
+       constraints ck_club_users_join_state check(join_state in (-1, 0, 1))
+);
+select * from club_users;
 
 ----------------------------------------------------------------- camp 영역
 CREATE TABLE camp (
@@ -109,44 +235,147 @@ CREATE TABLE camp (
 create sequence seq_camp_id;
 -- drop sequence seq_camp_id;
 ----------------------------------------------------------------- camp_approve_msg 영역
-
-
------------------------------------------------------------------ camp_room 영역
-
+create table camp_approve_msg (
+    id number not null,
+    camp_id number not null,
+    camp_msg varchar2(1000) not null,
+    constraints pk_camp_approve_msg_id primary key(id),
+    constraints fk_camp_approve_camp_id foreign key(camp_id) references camp(id) on delete cascade
+);
+create sequence seq_camp_approve_msg_id;
 
 ----------------------------------------------------------------- promotion 영역
-
+create table promotion(
+      id number not null,
+      start_date date not null,
+      end_date date null,
+      constraints pk_promotion_id primary key(id)
+);
+create sequence promotion_id;
+select * from promotion;
 
 ----------------------------------------------------------------- camp_promotion 영역
+create table camp_promotion(
+       promo_id number not null,
+       camp_id number not null,
+       img_original_name varchar2(300) not null,
+       img_renamed_name varchar2(300) not null,
+       promo_state number default 0 not null,
+       reg_date date default sysdate,
+       constraints fk_camp_promotion_promo_id foreign key(promo_id) references promotion(id) on delete set null,
+       constraints fk_camp_promotion_camp_id foreign key(camp_id) references camp(id) on delete set null,
+       constraints ck_camp_promotion_promo_state check(promo_state in (-1, 0, 1))
+);
+create sequence camp_promotion_promo_id;
 
+select * from camp_promotion;
+--drop table camp_promotion;
 
 ----------------------------------------------------------------- camp_type 영역
-
-
+CREATE TABLE camp_type(
+    id number not null,
+    name char(1) not null,
+    constraints pk_camp_type_id primary key(id),
+    constraints ck_camp_type_name check(name in('O','G','C','R'))
+);
+create sequence seq_camp_type_id;
 ----------------------------------------------------------------- camp_with_type 영역
-
+create table camp_with_type(
+      id number not null,
+      type_id number not null,
+      camp_id number not null,
+      constraints pk_camp_with_type_id primary key(id),
+      constraints fk_camp_with_type_type_id foreign key(type_id) references camp_type(id) on delete set null,
+      constraints fk_camp_with_type_camp_id foreign key(camp_id) references camp(id) on delete set null
+);
+select * from camp_with_type;
+create sequence seq_camp_with_type;
 
 ----------------------------------------------------------------- camp_tag 영역
-
+create table camp_tag(
+     id number not null,
+     name varchar2(100) not null,
+     constraints pk_camp_tag_id primary key(id)
+);
+select * from camp_tag;
 
 ----------------------------------------------------------------- camp_with_tag 영역
-
+create table camp_with_tag(
+      id number not null,
+      tag_id number not null,
+      camp_id number not null,
+      constraints pk_camp_with_tag_id primary key(id),
+      constraints fk_camp_with_tag_tag_id foreign key(tag_id) references camp_tag(id) on delete set null,
+      constraints fk_camp_with_tag_camp_id foreign key(camp_id) references camp(id) on delete set null
+);
+select * from camp_with_tag;
+create sequence seq_camp_with_tag;
 
 ----------------------------------------------------------------- camp_room 영역
-
-
------------------------------------------------------------------ camp_room_attach 영역
+CREATE TABLE room(
+    id number not null,
+    camp_id number not null,
+    room_name varchar2(100) not null,
+    room_type number not null,
+    room_intro varchar2(2000),
+    room_default_person number not null,
+    room_maximum_person number not null,
+    constraints pk_room_id primary key(id),
+    constraints fk_room_camp_id foreign key(camp_id) references camp(id) on delete set null,
+    constraints fk_room_room_type foreign key(room_type) references camp_type(id) on delete set null--캠핑타입의 아이디를 외래키로 삼는다.
+);
+select * from room;
+create sequence seq_room_id;
+----------------------------------------------------------------- room_attach 영역
+create table room_attach (
+     id number not null,
+     room_id number not null,
+     room_attach_original_name varchar2(255) not null,
+     room_attach_renamed_name varchar2(255) not null, -- uuid
+     constraints pk_room_attach_id primary key(id),
+     constraints fk_room_attach_room_id foreign key(room_id) references room(id) on delete cascade
+);
+create sequence seq_room_attach_id;
 ----------------------------------------------------------------- camp_attach 영역
--- 이 두개도 board처럼 브릿지로 관리하신다고 하셨는데, 우선 영역은 나누어놨습니다~
--- 변경하시면 이 안에서 부탁드리겠습니다!
-
-
+create table camp_attach (
+     id number not null,
+     camp_id number not null,
+     camp_attach_original_name varchar2(255) not null,
+     camp_attach_renamed_name varchar2(255) not null, -- uuid
+     constraints pk_camp_attach_id primary key(id),
+     constraints fk_camp_attach_camp_id foreign key(camp_id) references camp(id) on delete cascade
+);
+create sequence seq_camp_attach_id;
 
 ----------------------------------------------------------------- reservation 영역
-
+CREATE TABLE reservation(
+    id number not null,
+    camp_id number not null,--fk
+    room_id number not null,--fk
+    user_id varchar2(30) not null,--fk
+    start_date date not null,
+    end_date date not null,
+    nop number,
+    status char(1) not null, -- boolean X -> 0(boolean), 1(true)
+    constraints pk_reservation_id primary key(id),
+    constraints fk_reservation_camp_id foreign key(camp_id) references camp(id) on delete set null,--fk 캠핑장아이디
+    constraints fk_reservation_room_id foreign key(room_id) references room(id) on delete set null,--fk 객실아이디
+    constraints fk_reservation_user_id foreign key(user_id) references users(id) on delete set null,--fk 유저아이디 
+    constraints ck_reservation_status check(status in ('0', '1'))
+);
+create sequence seq_reservation_id;
 
 ----------------------------------------------------------------- reservation_pay 영역
-
+CREATE TABLE reservation_pay(
+    id number not null, --pk
+    reserv_ex number,
+    reserv_usepoint number,
+    reserv_date date default sysdate,
+    reserv_id number not null, --fk
+    constraints pk_reservation_pay_id primary key(id), --pk
+    constraints fk_reservation_reserv_id foreign key(reserv_id) references reservation(id) on delete set null --fk reservation테이블의 id
+);
+create sequence seq_reservation_pay_id;
 
 
 -----------------------------------------------------------------------------
