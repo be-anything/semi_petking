@@ -35,9 +35,19 @@ CREATE TABLE users (
 -- drop sequence seq_users_nickname;
 create sequence seq_users_nickname;
 
------------------------------------------------------------------ del_user 영역
-
-
+----------------------------------------------------------------- del_users 영역
+create table del_users(
+                          id number not null,
+                          user_id varchar2(30) not null,
+                          name varchar2(20) not null,
+                          role char(1) not null,
+                          del_date date default sysdate,
+                          del_reason varchar2(1000) not null,
+                          reg_date date default sysdate,
+                          constraints pk_del_users_id primary key(id)
+);
+create sequence seq_del_users_id;
+select * from del_users;
 ----------------------------------------------------------------- pet 영역
 
 
@@ -119,11 +129,30 @@ from
                   on b.id = a.board_id;
 
 ----------------------------------------------------------------- club 영역
+create table club(
+                     id number not null,
+                     club_name varchar2(100) not null,
+                     club_intro_title varchar2(1000) not null,
+                     club_intro_content varchar2(4000) not null,
+                     max_user number not null,
+                     reg_date date default sysdate,
+                     constraints pk_club_id primary key(id),
+                     constraints ck_club_max_user check(max_user <=100)
+);
+create sequence club_id;
+select * from club;
 
-
------------------------------------------------------------------ club_user 영역
-
-
+----------------------------------------------------------------- club_users 영역
+create table club_users(
+                           club_id number not null,
+                           user_id varchar2(30) not null,
+                           join_state number default 0 not null,
+                           reg_date date default sysdate,
+                           constraints fk_club_users_club_id foreign key(club_id) references club(id) on delete set null,
+                           constraints fk_club_users_user_id foreign key(user_id) references users(id) on delete set null,
+                           constraints ck_club_users_join_state check(join_state in (-1,0,1))
+);
+select * from club_users;
 ----------------------------------------------------------------- camp 영역
 CREATE TABLE camp (
                       id number NOT NULL,
@@ -157,11 +186,35 @@ create sequence seq_camp_id;
 ----------------------------------------------------------------- camp_room 영역 혜진
 
 
+----------------------------------------------------------------- promotion 영역
+create table promotion(
+                          id number not null,
+                          start_date date not null,
+                          end_date date null,
+                          constraints pk_promotion_id primary key(id)
+);
+create sequence promotion_id;
+select * from promotion;
+----------------------------------------------------------------- camp_promotion 영역
+create table camp_promotion(
+                               promo_id number not null,
+                               camp_id number not null,
+                               img_original_name varchar2(300) not null,
+                               img_renamed_name varchar2(300) not null,
+                               promo_state number default 0 not null,
+                               reg_date date default sysdate,
+                               constraints fk_camp_promotion_promo_id foreign key(promo_id) references promotion(id) on delete set null,
+                               constraints fk_camp_promotion_camp_id foreign key(camp_id) references camp(id) on delete set null,
+                               constraints ck_camp_promotion_promo_state check(promo_state in (-1, 0, 1))
+);
+create sequence camp_promotion_promo_id;
 ----------------------------------------------------------------- promotion 영역 민준
 
 
 ----------------------------------------------------------------- camp_promotion 영역 민준
 
+select * from camp_promotion;
+--drop table camp_promotion;
 
 ----------------------------------------------------------------- camp_type 영역 혜진
 
@@ -169,11 +222,26 @@ create sequence seq_camp_id;
 ----------------------------------------------------------------- camp_with_type 영역
 
 
+----------------------------------------------------------------- camp_tag 영역
+create table camp_tag(
+                         id number not null,
+                         name varchar2(100) not null,
+                         constraints pk_camp_tag_id primary key(id)
+);
+select * from camp_tag;
 ----------------------------------------------------------------- camp_tag 영역 민준
 
 
 ----------------------------------------------------------------- camp_with_tag 영역
-
+create table camp_with_tag(
+                              id number not null,
+                              tag_id number not null,
+                              camp_id number not null,
+                              constraints pk_camp_with_tag_id primary key(id),
+                              constraints fk_camp_with_tag_tag_id foreign key(tag_id) references camp_tag(id) on delete set null,
+                              constraints fk_camp_with_tag_camp_id foreign key(camp_id) references camp(id) on delete set null
+);
+select * from camp_with_tag;
 
 ----------------------------------------------------------------- room 영역 혜진
 
