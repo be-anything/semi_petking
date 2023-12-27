@@ -2,19 +2,15 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                // primary: {
-                //     "50": "#eff6ff",
-                //     "100": "#dbeafe",
-                //     "200": "#bfdbfe",
-                //     "300": "#93c5fd",
-                //     "400": "#60a5fa",
-                //     "500": "#3b82f6",
-                //     "600": "#2563eb",
-                //     "700": "#1d4ed8",
-                //     "800": "#1e40af",
-                //     "900": "#1e3a8a",
-                //     "950": "#172554"
-                // }
+                "salmon" : "#FFEBD8",
+                "light-pink" : "#FFC5C5",
+                "pink" : "#FF9E9E",
+                "green" : "#89B9AD",
+                "black" : "#444B54",
+                "gray1" : "#FBFBFB",
+                "gary2" : "#E6E6E6",
+                "gary3" : "#757575",
+                "red" : "#F24822",
             }
         },
         container: {
