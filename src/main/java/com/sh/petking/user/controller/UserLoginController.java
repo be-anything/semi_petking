@@ -16,7 +16,6 @@ import java.io.IOException;
 public class UserLoginController extends HttpServlet {
     private UserService userService = new UserService();
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String save = req.getHeader("Save"); // 페이지를 세션에 저장
