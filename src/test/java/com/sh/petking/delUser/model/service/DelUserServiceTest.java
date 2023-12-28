@@ -1,4 +1,4 @@
-package com.sh.petking.delUser;
+package com.sh.petking.delUser.model.service;
 
 import com.sh.petking.delUser.model.entity.DelUser;
 import com.sh.petking.delUser.model.service.DelUserService;
@@ -30,6 +30,7 @@ public class DelUserServiceTest {
         assertThat(delUsers)
                 .isNotNull()
                 .isNotEmpty();
+        System.out.println(delUsers);
         delUsers.forEach((admin) -> {
             assertThat(admin.getId()).isNotNull();
             assertThat(admin.getUserId()).isNotNull();

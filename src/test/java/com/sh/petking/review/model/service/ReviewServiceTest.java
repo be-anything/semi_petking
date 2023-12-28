@@ -1,4 +1,4 @@
-package com.sh.petking.review;
+package com.sh.petking.review.model.service;
 
 import com.sh.petking.review.model.entity.Review;
 import com.sh.petking.review.model.service.ReviewService;
