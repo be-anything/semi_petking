@@ -35,6 +35,8 @@ public class DelUserServiceTest {
             assertThat(admin.getUserId()).isNotNull();
             assertThat(admin.getName()).isNotNull();
             assertThat(admin.getRole()).isNotNull();
+            assertThat(admin.getDelDate()).isNotNull();
+            assertThat(admin.getDelReason()).isNotNull();
             assertThat(admin.getRegDate()).isNotNull();
         });
     }
