@@ -306,6 +306,7 @@ CREATE TABLE camp_type(
 );
 create sequence seq_camp_type_id;
 select * from camp_type;
+
 ----------------------------------------------------------------- camp_with_type 영역
 create table camp_with_type(
       id number not null,
