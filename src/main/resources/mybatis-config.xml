@@ -31,5 +31,6 @@
     <mappers>
         <mapper resource="mapper/delUser/delUser-mapper.xml"></mapper>
         <mapper resource="mapper/review/review-mapper.xml"></mapper>
+        <mapper resource="mapper/camp/camp-mapper.xml"></mapper>
     </mappers>
 </configuration>
