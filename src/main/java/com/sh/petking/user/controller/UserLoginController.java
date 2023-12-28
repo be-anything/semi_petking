@@ -12,10 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("user/userLogin")
-public class UserLogin extends HttpServlet {
+@WebServlet("/user/userLogin")
+public class UserLoginController extends HttpServlet {
     private UserService userService = new UserService();
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

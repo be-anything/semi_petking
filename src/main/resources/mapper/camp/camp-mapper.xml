@@ -8,6 +8,8 @@
             *
         from
             camp
+        order by
+            reg_date desc
     </select>
     <select id="findById" resultType="camp">
         select
@@ -19,7 +21,7 @@
     </select>
     <insert id="insertCamp">
         insert into
-            camp (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_IMG, CAMP_STATE, REG_DATE)
+            camp
         values (
             seq_camp_id.nextval,
             #{businessId},
@@ -30,8 +32,8 @@
             #{campIntro},
             #{campPhone},
             #{campAddr},
-            #{lcla},
-            #{lclo},
+            #{campLcLa},
+            #{campLcLo},
             #{campImg},
             default,
             default
@@ -43,4 +45,32 @@
                 dual
         </selectKey>
     </insert>
+    <update id="updateCamp">
+        update
+            camp
+        set
+            business_password = #{businessPassword},
+            business_number = #{businessNumber},
+            business_name = #{businessName},
+            camp_name = #{campName},
+            camp_intro = #{campIntro},
+            camp_phone = #{campPhone},
+            camp_addr = #{campAddr},
+            camp_img = #{campImg},
+            camp_state = #{campState}
+        where
+            id = #{id}
+    </update>
+    <delete id="deleteCamp">
+        delete from
+            camp
+        where
+            id = #{id}
+    </delete>
+    <select id="getTotalCount" resultType="_int">
+        select
+            count(*)
+        from
+            camp
+    </select>
 </mapper>
