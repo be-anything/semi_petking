@@ -82,6 +82,7 @@ create table pet(
 );
 select * from pet;
 -- drop table pet;
+select * from pet;
 ----------------------------------------------------------------- user_grade 영역
 CREATE TABLE user_grade (
 	id varchar2(30) NOT NULL,
@@ -135,7 +136,7 @@ create table board (
 create sequence seq_board_id;
 -- board_type의 -1은 질문, 0은 자유, 1은 동아리를 의미합니다.
 -- 이거는 그냥 질문, 자유, 동아리 문자열 자체로 입력하면 db에서 볼때도 작업할 때도 더 직관적일 것 같습니다.
-
+select * from board;
 ----------------------------------------------------------------- board_comment 영역
 create table board_comment (
        id number not null,
@@ -148,7 +149,7 @@ create table board_comment (
        constraints fk_board_comment_user_id foreign key(user_id) references users(id) on delete cascade
 );
 create sequence seq_board_comment_id;
-
+select * from board_comment;
 ----------------------------------------------------------------- review 영역
 create table review (
        id number NOT NULL,
@@ -166,7 +167,8 @@ create table review (
        constraints fk_review_camp_id foreign key(camp_id) references camp(id) on delete cascade
 );
 create sequence seq_review_id;
-
+select * from review;
+insert into review values(seq_review_id.nextval, 'goyoung12', 1, default,'캠핑장이 깨끗해요,캠핑장이 좋아요,캠핑장이 아름다워요','캠핑장리뷰','캠핑장이오지고지리고렛잇고',default,default,sysdate);
 ----------------------------------------------------------------- review_comment 영역
 create table review_comment (
     id number not null,
@@ -178,7 +180,7 @@ create table review_comment (
     constraints fk_review_comment_review_id foreign key(review_id) references review(id) on delete cascade
 );
 create sequence seq_review_comment_id;
-
+select * from review_comment;
 ----------------------------------------------------------------- attachement 영역
 create table attachment (
     id number not null,
@@ -199,7 +201,7 @@ create table board_attach(
 -- 두 게시판을 대상으로 foreign key를 설정할 수 없음
 -- attach insert 시 board_attach에도 insert하도록 service 코드 작성
 create sequence seq_board_attach_id;
-
+select * from board_attach;
 ----------------------------------------------------------------- club 영역
 create table club(
      id number not null,
@@ -254,10 +256,9 @@ CREATE TABLE camp (
 create sequence seq_camp_id;
 -- drop sequence seq_camp_id;
 
+select * from camp;
 commit;
-
 select * from camp where id = 1 ;
-
 
 ----------------------------------------------------------------- camp_approve_msg 영역
 create table camp_approve_msg (
@@ -317,6 +318,7 @@ create table camp_with_type(
 select * from camp_with_type;
 create sequence seq_camp_with_type;
 -- drop table camp_with_type;
+select * from camp_with_type;
 ----------------------------------------------------------------- camp_tag 영역
 create table camp_tag(
      id number not null,
@@ -403,6 +405,8 @@ CREATE TABLE reservation_pay(
     constraints fk_reservation_reserv_id foreign key(reserv_id) references reservation(id) on delete set null --fk reservation테이블의 id
 );
 create sequence seq_reservation_pay_id;
+
+select * from reservation_pay;
 select * from reservation;
 -----------------------------------------------------------------------------
 -- 데이터 삽입 insert ~

@@ -1,8 +1,8 @@
-package com.sh.petking.admin.model.entity;
+package com.sh.petking.delUser.model.entity;
 
 import java.time.LocalDate;
 
-public class Admin {
+public class DelUser {
     private Long id;
     private String userId;
     private String name;
@@ -11,10 +11,10 @@ public class Admin {
     private String delReason;
     private LocalDate regDate;
 
-    public Admin() {
+    public DelUser() {
     }
 
-    public Admin(Long id, String userId, String name, Role role, LocalDate delDate, String delReason, LocalDate regDate) {
+    public DelUser(Long id, String userId, String name, Role role, LocalDate delDate, String delReason, LocalDate regDate) {
         this.id = id;
         this.userId = userId;
         this.name = name;
