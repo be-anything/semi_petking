@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+    <select id="findById" resultType="user">
+        select
+            *
+        from
+            user
+        where
+            id = #{id}
+    </select>
+
+    <insert id="insertUser">
+        insert into
+            user
+        values (
+            #{id}, #{gradeId}, #{clubId}, #{nickname}, #{name}, #{password}, #{originProfileName}, #{renamedProfileName},
+            #{email}, #{phone}, default, default, default
+        )
+    </insert>
+
+
+
+</mapper>
