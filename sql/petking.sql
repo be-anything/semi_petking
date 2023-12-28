@@ -34,7 +34,7 @@ CREATE TABLE users (
 -- drop table users;
 -- drop sequence seq_users_nickname;
 create sequence seq_users_nickname;
-
+select * from users;
 ----------------------------------------------------------------- del_user 영역
 create table del_users(
       id number not null,
@@ -48,6 +48,24 @@ create table del_users(
 );
 create sequence seq_del_users_id;
 select * from del_users;
+commit;
+insert into del_users values(seq_del_users_id.nextval, 'go123123', '고혜진', 'U',sysdate,'맘에 드는 캠핑장이 없어요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'kim456456', '김명준', 'U',sysdate,'맘에 드는 캠핑장이 없어요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'hyo789789', '김정효', 'U',sysdate,'집에가고 싶어요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'seoung14325', '성민준', 'U',sysdate,'자주 사용하지 않아요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'oh46521', '오승현', 'U',sysdate,'개인정보를 삭제하고 싶어요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'woo546521', '오우진', 'U',sysdate,'홍보성 정보가 너무 많아요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'you789413', '유정호', 'U',sysdate,'자주 사용하지 않아요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'lee54127', '이민정', 'U',sysdate,'자주 사용하지 않아요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'jae8741', '이재준', 'U',sysdate,'자주 사용하지 않아요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'rim58753', '임초임', 'U',sysdate,'자주 사용하지 않아요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'jeoung541279', '정승범', 'U',sysdate,'할인 혜택이 없어요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'yoong789421', '정용준', 'U',sysdate,'할인 혜택이 없어요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'jin54841', '정진우', 'U',sysdate,'할인 혜택이 없어요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'chen87151', '천무진', 'U',sysdate,'할인 혜택이 없어요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'han8753', '한보경', 'U',sysdate,'맘에 드는 캠핑장이 없어요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'hoon1231245', '한승훈', 'U',sysdate,'맘에 드는 캠핑장이 없어요',sysdate);
+insert into del_users values(seq_del_users_id.nextval, 'hee124105', '한준희', 'U',sysdate,'맘에 드는 캠핑장이 없어요',sysdate);
 
 ----------------------------------------------------------------- pet 영역
 create table pet(
