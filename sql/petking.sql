@@ -304,8 +304,15 @@ CREATE TABLE camp_type(
     constraints pk_camp_type_id primary key(id),
     constraints ck_camp_type_name check(name in('O','G','C','R'))
 );
+
+drop sequence seq_camp_type_id;
 create sequence seq_camp_type_id;
 select * from camp_type;
+update camp_type set name='C' where id=3; 
+insert into camp_type values (seq_camp_type_id.nextval,'O');
+insert into camp_type values (seq_camp_type_id.nextval,'G');
+insert into camp_type values (seq_camp_type_id.nextval,'C');
+insert into camp_type values (seq_camp_type_id.nextval,'R');
 
 ----------------------------------------------------------------- camp_with_type 영역
 create table camp_with_type(

@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="room">
+
     <insert id="insertRoom">
         insert into
             room
@@ -10,5 +11,18 @@
             #{id}, #{campId}, #{roomName}, #{roomType}, #{roomIntro}, #{roomDefaultPerson}, #{roomMaximumPerson}
         )
     </insert>
+
+    <select id="findAll" resultType="room">
+        select
+            *
+        from
+            room
+        where
+            camp_id =#{campId}
+        order by
+            id
+    </select>
+
+
 
 </mapper>
