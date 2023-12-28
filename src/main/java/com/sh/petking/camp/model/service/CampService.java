@@ -5,6 +5,7 @@ import com.sh.petking.camp.model.entity.Camp;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.sh.petking.common.SqlSessionTemplate.getSqlSession;
 
@@ -69,5 +70,19 @@ public class CampService {
             session.close();
         }
         return result;
+    }
+
+    public int getTotalCount() {
+        SqlSession session = getSqlSession();
+        int totalCount = campDao.getTotalCount(session);
+        session.close();
+        return totalCount;
+    }
+
+    public List<Camp> findAll(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<Camp> camps = campDao.findAll(session, param);
+        session.close();
+        return camps;
     }
 }

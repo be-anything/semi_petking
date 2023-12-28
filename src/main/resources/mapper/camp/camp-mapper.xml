@@ -8,6 +8,8 @@
             *
         from
             camp
+        order by
+            reg_date desc
     </select>
     <select id="findById" resultType="camp">
         select
@@ -65,4 +67,10 @@
         where
             id = #{id}
     </delete>
+    <select id="getTotalCount" resultType="_int">
+        select
+            count(*)
+        from
+            camp
+    </select>
 </mapper>
