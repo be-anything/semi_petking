@@ -2,7 +2,7 @@
 alter session set "_oracle_script" = true;
 
 create user petking
-identified by petking
+identified by "testOracleDB352"
 default tablespace users;
 
 grant connect, resource, create view to petking;
@@ -80,6 +80,7 @@ create table pet(
       constraints ck_pet_pet_gender check(pet_gender in ('M', 'F')),
       constraints ck_pet_neutered check(neutered in ('Y', 'N'))
 );
+select * from pet;
 -- drop table pet;
 ----------------------------------------------------------------- user_grade 영역
 CREATE TABLE user_grade (
@@ -89,7 +90,7 @@ CREATE TABLE user_grade (
 	max_point number,
     constraints pk_user_grade_id primary key(id)
 );
-select * from pet;
+select * from user_grade;
 -- drop table user_grade;
 
 ----------------------------------------------------------------- point 영역
@@ -186,7 +187,7 @@ create table attachment (
     constraints pk_attachment_id primary key(id)
 );
 create sequence seq_attachment_id;
-
+select * from attachment;
 ----------------------------------------------------------------- board_attach 영역
 create table board_attach(
     id number not null, -- 의미없는 pk
@@ -238,7 +239,7 @@ CREATE TABLE camp (
                       camp_addr varchar2(200)	NOT NULL,
                       camp_lc_la number NOT NULL,
                       camp_lc_lo number NOT NULL,
-                      camp_img varchar2(200),
+                      camp_img varchar2(255),
                       camp_state number default 0 not null,
                       reg_date date DEFAULT sysdate not null,
                       constraints pk_camp_id primary key(id),
@@ -252,6 +253,12 @@ CREATE TABLE camp (
 -- drop table camp;
 create sequence seq_camp_id;
 -- drop sequence seq_camp_id;
+
+commit;
+
+select * from camp where id = 1 ;
+
+
 ----------------------------------------------------------------- camp_approve_msg 영역
 create table camp_approve_msg (
     id number not null,
@@ -261,7 +268,7 @@ create table camp_approve_msg (
     constraints fk_camp_approve_camp_id foreign key(camp_id) references camp(id) on delete cascade
 );
 create sequence seq_camp_approve_msg_id;
-
+select * from camp_approve_msg;
 ----------------------------------------------------------------- promotion 영역
 create table promotion(
       id number not null,
@@ -297,6 +304,7 @@ CREATE TABLE camp_type(
     constraints ck_camp_type_name check(name in('O','G','C','R'))
 );
 create sequence seq_camp_type_id;
+select * from camp_type;
 ----------------------------------------------------------------- camp_with_type 영역
 create table camp_with_type(
       id number not null,
@@ -308,13 +316,6 @@ create table camp_with_type(
 );
 select * from camp_with_type;
 create sequence seq_camp_with_type;
------------------------------------------------------------------ camp_with_type 영역
-create table camp_with_type (
-        type_id number not null,
-        camp_id number not null,
-        constraints fk_camp_with_type_type_id foreign key (type_id) references camp_type(id) on delete set null,
-        constraints fk_camp_with_type_camp_id foreign key (camp_id) references camp(id) on delete set null
-);
 -- drop table camp_with_type;
 ----------------------------------------------------------------- camp_tag 영역
 create table camp_tag(
@@ -359,6 +360,7 @@ create table room_attach (
      constraints fk_room_attach_room_id foreign key(room_id) references room(id) on delete cascade
 );
 create sequence seq_room_attach_id;
+select * from room_attach;
 ----------------------------------------------------------------- camp_attach 영역
 create table camp_attach (
      id number not null,
@@ -369,7 +371,7 @@ create table camp_attach (
      constraints fk_camp_attach_camp_id foreign key(camp_id) references camp(id) on delete cascade
 );
 create sequence seq_camp_attach_id;
-
+select * from camp_attach;
 ----------------------------------------------------------------- reservation 영역
 
 CREATE TABLE reservation(
@@ -388,7 +390,7 @@ CREATE TABLE reservation(
     constraints ck_reservation_status check(status in ('0', '1'))
 );
 create sequence seq_reservation_id;
-
+select * from reservation;
 ----------------------------------------------------------------- reservation_pay 영역
 
 CREATE TABLE reservation_pay(
@@ -401,10 +403,11 @@ CREATE TABLE reservation_pay(
     constraints fk_reservation_reserv_id foreign key(reserv_id) references reservation(id) on delete set null --fk reservation테이블의 id
 );
 create sequence seq_reservation_pay_id;
-
+select * from reservation;
 -----------------------------------------------------------------------------
 -- 데이터 삽입 insert ~
 -- camp data 총 61행
+select * from camp;
 
 INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_IMG, CAMP_STATE, REG_DATE)
 VALUES (seq_camp_id.nextval, 'rfg10q', '3493kdkfs*@', '635-87-02125', '이광석', '(유)금강 두승산 글램핑', '대형 수영장과 어린이 풀이 있는 글램핑장', 635364441, '전라북도 정읍시 고부면 영원로 222-15', 35.59371447, 126.7957776, NULL, 0, to_date('10/01/2023', 'MM/DD/RRRR'));
