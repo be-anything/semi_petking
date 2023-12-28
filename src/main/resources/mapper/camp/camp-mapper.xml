@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="camp">
+    <select id="findAll" resultType="camp">
+        select
+            *
+        from
+            camp
+    </select>
+    <select id="findById" resultType="camp">
+        select
+            *
+        from
+            camp
+        where
+            id = #{id}
+    </select>
+    <insert id="insertCamp">
+        insert into
+            camp (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_IMG, CAMP_STATE, REG_DATE)
+        values (
+            seq_camp_id.nextval,
+            #{businessId},
+            #{businessPassword},
+            #{businessNumber},
+            #{businessName},
+            #{campName},
+            #{campIntro},
+            #{campPhone},
+            #{campAddr},
+            #{lcla},
+            #{lclo},
+            #{campImg},
+            default,
+            default
+        )
+        <selectKey order="AFTER" resultType="_long" keyProperty="id">
+            select
+                seq_camp_id.currval
+            from
+                dual
+        </selectKey>
+    </insert>
+</mapper>
