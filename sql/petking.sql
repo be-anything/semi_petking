@@ -260,6 +260,16 @@ select * from camp;
 commit;
 select * from camp where id = 1 ;
 
+update
+    camp
+set
+    business_password = #{},
+    business_number = #{},
+    camp_name = #{},
+    camp_intro = #{},
+    camp_phone = #{},
+    camp_addr = #{},
+
 ----------------------------------------------------------------- camp_approve_msg 영역
 create table camp_approve_msg (
     id number not null,

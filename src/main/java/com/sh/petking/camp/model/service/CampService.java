@@ -34,10 +34,40 @@ public class CampService {
             session.commit();
         } catch (Exception e){
             session.rollback();
+            throw e;
         } finally {
             session.close();
         }
-        System.out.println(result);
+        return result;
+    }
+
+    public int updateCamp(Camp camp) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = campDao.updateCamp(session, camp);
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public int deleteCamp(Long id) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = campDao.deleteCamp(session, id);
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
         return result;
     }
 }

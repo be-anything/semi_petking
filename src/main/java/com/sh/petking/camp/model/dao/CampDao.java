@@ -15,7 +15,14 @@ public class CampDao {
     }
 
     public int insertCamp(SqlSession session, Camp camp) {
-        System.out.println(camp);
         return session.insert("camp.insertCamp", camp);
+    }
+
+    public int updateCamp(SqlSession session, Camp camp) {
+        return session.update("camp.updateCamp", camp);
+    }
+
+    public int deleteCamp(SqlSession session, Long id) {
+        return session.delete("camp.deleteCamp", id);
     }
 }
