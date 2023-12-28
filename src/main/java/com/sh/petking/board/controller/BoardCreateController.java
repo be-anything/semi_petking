@@ -4,6 +4,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 @WebServlet("/board/boardCreate")
-public class BoardCreateServlet extends HttpServlet {
+public class BoardCreateController extends HttpServlet {
 
 }
