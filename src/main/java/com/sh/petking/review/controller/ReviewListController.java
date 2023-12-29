@@ -3,6 +3,7 @@ package com.sh.petking.review.controller;
 import com.sh.petking.common.PetkingUtils;
 import com.sh.petking.review.model.entity.Review;
 import com.sh.petking.review.model.service.ReviewService;
+import com.sh.petking.review.model.vo.ReviewVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +30,7 @@ public class ReviewListController extends HttpServlet {
         param.put("page", page);
         param.put("limit", limit);
 
-        List<Review> reviews = reviewService.findAll(param);
+        List<ReviewVo> reviews = reviewService.findAll(param);
         req.setAttribute("reviews", reviews);
 
         int totalCount = reviewService.getTotalCount();

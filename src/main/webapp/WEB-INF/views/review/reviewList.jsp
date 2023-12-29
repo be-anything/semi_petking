@@ -41,6 +41,9 @@
                 리뷰 태그
             </th>
             <th scope="col" class="px-6 py-3">
+                캠핑장
+            </th>
+            <th scope="col" class="px-6 py-3">
                 리뷰 제목
             </th>
             <th scope="col" class="px-6 py-3">
@@ -65,6 +68,9 @@
             </td>
             <td class="px-6 py-4">
                 ${review.reviewTag}
+            </td>
+            <td class="px-6 py-4">
+                    ${review.camp.campName}
             </td>
             <td class="px-6 py-4">
                 ${review.reviewTitle}
