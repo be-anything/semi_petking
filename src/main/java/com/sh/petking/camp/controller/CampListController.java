@@ -2,6 +2,7 @@ package com.sh.petking.camp.controller;
 
 import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.service.CampService;
+import com.sh.petking.camp.model.vo.CampVo;
 import com.sh.petking.common.PetkingUtils;
 
 import javax.servlet.ServletException;
@@ -33,7 +34,7 @@ public class CampListController extends HttpServlet {
         param.put("limit", limit);
 
         // 값 가져오기
-        List<Camp> camps = campService.findAll(param);
+        List<CampVo> camps = campService.findAll(param);
         req.setAttribute("camps", camps);
 
         // 페이지바
