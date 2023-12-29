@@ -3,14 +3,45 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="camp">
-    <select id="findAll" resultType="camp">
+    <select id="findAll" resultMap="campVoMap">
         select
-            *
+            c.*,
+            ct.id tag_id,
+            ct.name tag_name,
+            cwt.camp_id camp_id,
+            (select count(*) from review where camp_id = c.id) review_count,
+            (select count(*) from wish where camp_id = c.id) wish_count
         from
-            camp
+            camp_tag ct
+                left join camp_with_tag cwt
+                    on ct.id = cwt.tag_id
+                right join camp c
+                    on c.id = cwt.camp_id
         order by
-            reg_date desc
+            c.id desc
     </select>
+    <resultMap id="campVoMap" type="campVo">
+        <id column="id" property="id"/>
+        <result column="business_id" property="businessId" />
+        <result column="business_password" property="businessPassword" />
+        <result column="business_number" property="businessNumber" />
+        <result column="business_name" property="businessName" />
+        <result column="camp_name" property="campName" />
+        <result column="camp_intro" property="campIntro" />
+        <result column="camp_phone" property="campPhone" />
+        <result column="camp_addr" property="campAddr" />
+        <result column="camp_lc_la" property="campLcLa" />
+        <result column="camp_lc_lo" property="campLcLo" />
+        <result column="camp_img" property="campImg" />
+        <result column="camp_state" property="campState" />
+        <result column="reg_date" property="regDate" />
+
+        <collection property="campWithTags" ofType="CampWithTagVo">
+            <id column="tag_id" property="tagId"/>
+            <result column="camp_id" property="campId"/>
+            <result column="tag_name" property="tagName"/>
+        </collection>
+    </resultMap>
     <select id="findById" resultType="camp">
         select
             *
