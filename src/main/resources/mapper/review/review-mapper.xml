@@ -9,5 +9,59 @@
             *
         from
             review
+        order by
+            reg_date desc
+    </select>
+    <select id="findById" resultType="review">
+        select
+            *
+        from
+            review
+        where
+            id = #{id}
+    </select>
+    <insert id="insertReview">
+        insert into
+            review
+        values(
+            seq_review_id.nextval,
+            #{userId},
+            #{campId},
+            #{boardAttr},
+            #{reviewTag},
+            #{reviewTitle},
+            #{reviewContent},
+            default,
+            default,
+            default
+        )
+    <selectKey order="AFTER" resultType="_long" keyProperty="id">
+        select
+            seq_review_id.currval
+        from
+            dual
+    </selectKey>
+    </insert>
+    <update id="updateReview">
+        update
+            review
+        set
+            review_tag = #{reviewTag},
+            review_title = #{reviewTitle},
+            review_content = #{reviewContent}
+        where
+            id = #{id}
+    </update>
+    <delete id="deleteReview">
+        delete from
+            review
+        where
+            id = #{id}
+    </delete>
+    <select id="getTotalCount" resultType="_int">
+        select
+            count(*)
+        from
+            review
     </select>
 </mapper>
