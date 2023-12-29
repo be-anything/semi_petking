@@ -75,6 +75,7 @@ class  CampServiceTest {
         assertThat(camp.getRegDate()).isNotNull();
     }
 
+    @Disabled
     @DisplayName("한개의 캠핑장을 등록할 수 있습니다.")
     @ParameterizedTest
     @CsvSource({"sample,djfkl*d23213,000-00-00000,홍길동,샘플캠핑장,대형 반려견이 뛰놀 수 있는 넓은 운동장,07012341234,강원도 홍천군 서면 밤벌길19번길 111,37.70151912, 127.5967171"})
@@ -92,11 +93,75 @@ class  CampServiceTest {
         camp.setCampLcLo(lclo);
 
         int result = campService.insertCamp(camp);
-        System.out.println(camp);
-        System.out.println(result);
-        System.out.println(camp.getId());
+        assertThat(result).isGreaterThan(0);
 
+        Camp camp2 = campService.findById(camp.getId());
+
+        assertThat(camp2).isNotNull();
+        assertThat(camp2.getId()).isEqualTo(camp.getId());
+        assertThat(camp2.getBusinessId()).isEqualTo(businessId);
+        assertThat(camp2.getBusinessPassword()).isEqualTo(businessPassword);
+        assertThat(camp2.getBusinessNumber()).isEqualTo(businessNumber);
+        assertThat(camp2.getBusinessName()).isEqualTo(businessName);
+        assertThat(camp2.getCampName()).isEqualTo(campName);
+        assertThat(camp2.getCampPhone()).isEqualTo(campPhone);
+        assertThat(camp2.getCampAddr()).isEqualTo(campAddr);
+        assertThat(camp2.getCampLcLa()).isEqualTo(lcla);
+        assertThat(camp2.getCampLcLo()).isEqualTo(lclo);
     }
+
+    @Disabled
+    @DisplayName("존재하는 캠핑장 정보를 수정할 수 있습니다.")
+    @ParameterizedTest
+    @CsvSource({"sample,djfkl*d23213,000-99-00000,홍길동동동,샘플캠핑장수정,소형반려견이 뛰놀 수 있는 넓은 운동장,07045671234,강원도 홍천군 서면 밤벌길19번길 900,default.png,1"})
+    void test4(String businessId, String businessPassword, String businessNumber, String businessName, String campName, String campIntro, Long campPhone, String campAddr, String campImg, int campState) {
+        Long id = (long) 62;
+        Camp camp = campService.findById(id);
+        assertThat(camp).isNotNull();
+
+        camp.setBusinessPassword(businessPassword);
+        camp.setBusinessNumber(businessNumber);
+        camp.setBusinessName(businessName);
+        camp.setCampName(campName);
+        camp.setCampIntro(campIntro);
+        camp.setCampPhone(campPhone);
+        camp.setCampAddr(campAddr);
+        camp.setCampImg(campImg);
+        camp.setCampState(campState);
+
+        int result = campService.updateCamp(camp);
+        assertThat(result).isGreaterThan(0);
+
+        Camp camp2 = campService.findById(camp.getId());
+        assertThat(camp2).isNotNull();
+        assertThat(camp2.getId()).isEqualTo(id);
+        assertThat(camp2.getBusinessPassword()).isEqualTo(businessPassword);
+        assertThat(camp2.getBusinessNumber()).isEqualTo(businessNumber);
+        assertThat(camp2.getBusinessName()).isEqualTo(businessName);
+        assertThat(camp2.getCampName()).isEqualTo(campName);
+        assertThat(camp2.getCampIntro()).isEqualTo(campIntro);
+        assertThat(camp2.getCampPhone()).isEqualTo(campPhone);
+        assertThat(camp2.getCampAddr()).isEqualTo(campAddr);
+        assertThat(camp2.getCampImg()).isEqualTo(campImg);
+        assertThat(camp2.getCampState()).isEqualTo(campState);
+        System.out.println(camp2);
+    }
+
+    @Disabled
+    @DisplayName("캠핑장을 삭제할 수 있습니다.")
+    @Test
+    void test5() {
+        Long id = (long) 62;
+        Camp camp = campService.findById(id);
+        assertThat(camp).isNotNull();
+
+        int result = campService.deleteCamp(id);
+        assertThat(result).isGreaterThan(0);
+
+        Camp camp2 = campService.findById(id);
+        assertThat(camp2).isNull();
+    }
+
 
     public static Stream<Arguments> campIdProvider(){
         CampService campService = new CampService();

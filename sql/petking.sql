@@ -261,6 +261,16 @@ select * from camp;
 commit;
 select * from camp where id = 1 ;
 
+update
+    camp
+set
+    business_password = #{},
+    business_number = #{},
+    camp_name = #{},
+    camp_intro = #{},
+    camp_phone = #{},
+    camp_addr = #{},
+
 ----------------------------------------------------------------- camp_approve_msg 영역
 create table camp_approve_msg (
     id number not null,
@@ -305,8 +315,16 @@ CREATE TABLE camp_type(
     constraints pk_camp_type_id primary key(id),
     constraints ck_camp_type_name check(name in('O','G','C','R'))
 );
+
+drop sequence seq_camp_type_id;
 create sequence seq_camp_type_id;
 select * from camp_type;
+update camp_type set name='C' where id=3; 
+insert into camp_type values (seq_camp_type_id.nextval,'O');
+insert into camp_type values (seq_camp_type_id.nextval,'G');
+insert into camp_type values (seq_camp_type_id.nextval,'C');
+insert into camp_type values (seq_camp_type_id.nextval,'R');
+
 ----------------------------------------------------------------- camp_with_type 영역
 create table camp_with_type(
       id number not null,
