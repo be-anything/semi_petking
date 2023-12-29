@@ -21,8 +21,8 @@ public class UserLoginController extends HttpServlet {
         String save = req.getHeader("Save"); // 페이지를 세션에 저장
         System.out.println("save = " + save); // 저장된정보 확인
 
-        if (!save.contains("/user/userLogin"))
-            req.getSession().setAttribute("next", save);
+//        if (!save.contains("/user/userLogin"))
+//            req.getSession().setAttribute("next", save);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/user/userLogin.jsp");
         requestDispatcher.forward(req, resp);
