@@ -1,6 +1,7 @@
 package com.sh.petking.camp.model.dao;
 
 import com.sh.petking.camp.model.entity.Camp;
+import com.sh.petking.camp.model.vo.CampVo;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
@@ -32,7 +33,7 @@ public class CampDao {
         return session.selectOne("camp.getTotalCount");
     }
 
-    public List<Camp> findAll(SqlSession session, Map<String, Object> param) {
+    public List<CampVo> findAll(SqlSession session, Map<String, Object> param) {
         int page = (int) param.get("page");
         int limit = (int) param.get("limit");
         int offset = (page - 1) * limit;

@@ -26,7 +26,7 @@ public class PetkingUtils {
         </li>""";
     static String currentPageNo = """
         <li>
-            <a href="%s" aria-current="page" class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">%d</a>
+            <a href="%s" aria-current="page" class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-white border border-green bg-green hover:bg-gray3 hover:text-white">%d</a>
         </li>""";
     static String notCurrentPageNo = """
         <li>   
