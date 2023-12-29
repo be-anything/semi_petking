@@ -657,3 +657,18 @@ VALUES ('youusang', 'g01', 3, '권유상', '57CPW02dsaf', NULL, NULL, 'youusang@
 
 select * from users;
 commit;
+
+-- board table
+INSERT INTO BOARD (ID, USER_ID, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, REG_DATE, BOARD_ATTR, VIEW_COUNT)
+VALUES (seq_board_id.nextval, 'goyoung12', 0, '일빠다', '내가 바로 일빠', to_date('12/01/2023', 'MM/DD/RRRR'), 1, 0);
+INSERT INTO BOARD (ID, USER_ID, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, REG_DATE, BOARD_ATTR, VIEW_COUNT)
+VALUES (seq_board_id.nextval, 'jun345', 0, '이빠다', '내가 바로 이빠', to_date('12/02/2023', 'MM/DD/RRRR'), 1, 0);
+INSERT INTO BOARD (ID, USER_ID, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, REG_DATE, BOARD_ATTR, VIEW_COUNT)
+VALUES (seq_board_id.nextval, 'parkpark00', 0, '삼빠다', '내가 바로 삼빠', to_date('12/03/2023', 'MM/DD/RRRR'), 1, 0);
+INSERT INTO BOARD (ID, USER_ID, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, REG_DATE, BOARD_ATTR, VIEW_COUNT)
+VALUES (seq_board_id.nextval, 'heeee12', 0, '사빠다', '내가 바로 사빠', to_date('12/04/2023', 'MM/DD/RRRR'), 1, 0);
+INSERT INTO BOARD (ID, USER_ID, BOARD_TYPE, BOARD_TITLE, BOARD_CONTENT, REG_DATE, BOARD_ATTR, VIEW_COUNT)
+VALUES (seq_board_id.nextval, 'ronn11', 0, '오빠다', '내가 바로 오빠?', to_date('12/05/2023', 'MM/DD/RRRR'), 1, 0);
+
+select * from board;
+commit;
