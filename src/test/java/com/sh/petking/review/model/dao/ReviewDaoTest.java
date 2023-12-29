@@ -1,33 +1,42 @@
-package com.sh.petking.review.model.service;
+package com.sh.petking.review.model.dao;
 
 import com.sh.petking.review.model.entity.Review;
-import com.sh.petking.review.model.service.ReviewService;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static com.sh.petking.common.SqlSessionTemplate.getSqlSession;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ReviewServiceTest {
-    ReviewService reviewService;
-
+public class ReviewDaoTest {
+    ReviewDao reviewDao;
+    private SqlSession session;
     @BeforeEach
-    public void beforeEach(){
-        this.reviewService = new ReviewService();
+    public void setUp(){
+        this.reviewDao = new ReviewDao();
+        this.session = getSqlSession();
+    }
+    @AfterEach
+    public void tearDown(){
+        this.session.rollback();
+        this.session.close();
     }
 
-    @DisplayName("ReviewService객체는 null이 아니다.")
+    @DisplayName("ReviewDao객체는 null이 아니다.")
     @Test
     public void test1(){
-        assertThat(reviewService).isNotNull();
+        assertThat(reviewDao).isNotNull();
+        assertThat(session).isNotNull();
     }
 
     @DisplayName("리뷰 전체 조회")
     @Test
     public void test2(){
-        List<Review> reviews = reviewService.findAll();
+        List<Review> reviews = reviewDao.findAll(session);
         assertThat(reviews)
                 .isNotNull();
         System.out.println(reviews);
@@ -44,4 +53,6 @@ public class ReviewServiceTest {
             assertThat(review.getRegDate()).isNotNull();
         });
     }
+
+
 }
