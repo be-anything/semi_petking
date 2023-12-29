@@ -170,6 +170,7 @@ create table review (
 create sequence seq_review_id;
 select * from review;
 insert into review values(seq_review_id.nextval, 'goyoung12', 1, default,'캠핑장이 깨끗해요,캠핑장이 좋아요,캠핑장이 아름다워요','캠핑장리뷰','캠핑장이오지고지리고렛잇고',default,default,sysdate);
+commit;
 ----------------------------------------------------------------- review_comment 영역
 create table review_comment (
     id number not null,
