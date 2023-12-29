@@ -3,6 +3,7 @@ package com.sh.petking.room.model.service;
 import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.room.model.dao.RoomDao;
+import com.sh.petking.room.model.dto.RoomDto;
 import com.sh.petking.room.model.entity.Room;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.*;
@@ -78,6 +79,7 @@ class RoomServiceTest {
 
 
 
+    @Disabled //이미 추가한거라 disabled로 실행 막아둘게요
     @DisplayName("캠핑장id가 4번인 캠핑장에 객실 하나를 추가 할 수 있습니다.")
     @ParameterizedTest
     @CsvSource({"100,4,오토캠핑B,1,시원한 자리라 여름에 인기 만점,10,10"})
@@ -118,7 +120,59 @@ class RoomServiceTest {
         });
     }
 
-    //특정 객실 하나를 수정하거나 삭제하려면 캠핑장번호and객실번호로 찾아야 한다.(only one)
+
+    @Disabled
+    /**
+     * 특정 캠핑장의 특정 객실 [하나]만 조회
+     */
+    @DisplayName("캠핑장 아이디가 4이면서 객실 아이디가 100인 객실 1개를 조회할 수 있습니다..")
+    @Test
+    public void test5()
+    {
+        //given 캠핑장 4번 안에 객실 100번이 존재한다고 가정
+        RoomDto roomDto = new RoomDto();
+        long id = 100;
+        long campId = 4;
+        roomDto.setId(id);
+        roomDto.setCampId(campId);
+
+        //when
+        Room room = roomService.findRoom(roomDto); //sql처리된 새 값을 변수에 대입
+
+        //then
+        assertThat(room).isNotNull();
+        System.out.println(room);
+    }
+
+
+    @Disabled
+    /**
+     * 객실 아이디(pk)가 시퀀스로 발급받는거라 겹치는게 없겠지만 ..
+     * 특정 캠핑장의 아이디도 where and 조건에 걸어야 할 것 같아서 그렇게 진행해보겠습니다..
+     */
+    @DisplayName("캠핑장 아이디가 4이면서 객실 아이디가 100인 객실을 삭제할 수 있습니다.")
+    @Test
+    public void test6()
+    {
+        //given 캠핑장 4번 안에 객실 100번이 존재한다고 가정
+        RoomDto roomDto = new RoomDto();
+        long id = 100;
+        long campId = 4;
+        roomDto.setId(id);
+        roomDto.setCampId(campId);
+
+        //when 삭제하면
+        int result = roomService.deleteRoom(roomDto);
+        assertThat(result).isGreaterThan(0);
+
+        //then
+        Room room = roomService.findRoom(roomDto);
+        assertThat(room).isNull();
+
+
+}
+
+//특정 객실 하나를 수정하거나 삭제하려면 캠핑장번호and객실번호로 찾아야 한다.(only one)
 //    @DisplayName("캠핑장 번호가 4이면서 객실 번호가 777인 객실의 정보를 수정 할 수 있다.")
 //    @Test
 //    void test5(Room room)
@@ -144,6 +198,5 @@ class RoomServiceTest {
 //        }
 //        return result;
 //    }
-
 
 }

@@ -1,5 +1,6 @@
 package com.sh.petking.room.model.dao;
 
+import com.sh.petking.room.model.dto.RoomDto;
 import com.sh.petking.room.model.entity.Room;
 import org.apache.ibatis.session.SqlSession;
 
@@ -24,8 +25,13 @@ public class RoomDao
     }
 
 
-    public int deleteRoom(SqlSession session, Room room)
+    public int deleteRoom(SqlSession session, RoomDto roomDto)
     {
-        return session.delete("room.deleteRoom",room);
+        return session.delete("room.deleteRoom",roomDto);
+    }
+
+    public Room findRoom(SqlSession session, RoomDto roomDto)
+    {
+        return session.selectOne("room.findRoom",roomDto);
     }
 }

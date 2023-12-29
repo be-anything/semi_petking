@@ -23,6 +23,30 @@
             id
     </select>
 
+    <!-- 특정 캠핑장의 특정 객실 "1개"만 조회하는 쿼리 -->
+    <select id="findRoom" resultType="room">
+        select
+        *
+        from
+            room
+        where
+            id = #{id}
+        and
+            camp_id = #{campId}
+    </select>
+
+    <!--    -->
+    <!-- 1229 특정 캠핑장 특정 객실 삭제 sql    -->
+    <delete id="deleteRoom">
+        delete
+        from
+            room
+        where
+            id = #{id}
+        and
+            camp_id = #{campId}
+    </delete>
+
 
 
 </mapper>

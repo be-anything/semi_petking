@@ -23,6 +23,7 @@
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campList">캠핑장 찾기</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="#">커뮤니티</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="#">이벤트</a></div>
+                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/room/roomList">객실목록(임시)</a></div>
                 <div class="text-black text-right font-normal mr-10 absolute right-0 hover:font-bold"><a href="#">로그인</a></div>
                 <i class="fa-regular fa-clock ml-10 absolute right-0 text-black hover:text-green hover:font-bold"></i>
             </nav>

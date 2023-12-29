@@ -1,6 +1,7 @@
 package com.sh.petking.room.model.service;
 
 import com.sh.petking.room.model.dao.RoomDao;
+import com.sh.petking.room.model.dto.RoomDto;
 import com.sh.petking.room.model.entity.Room;
 import org.apache.ibatis.session.SqlSession;
 
@@ -45,13 +46,13 @@ public class RoomService
     }
 
 
-    public int deleteRoom(Room room)//특정 룸 하나
+    public int deleteRoom(RoomDto roomDto)//특정 룸 하나
     {
         int result=0;
         SqlSession session = getSqlSession();
         try
         {
-            result = roomDao.deleteRoom(session,room);
+            result = roomDao.deleteRoom(session,roomDto);
             session.commit();
         }
         catch(Exception e)
@@ -66,5 +67,15 @@ public class RoomService
         }
 
         return result;
+    }
+
+    public Room findRoom(RoomDto roomDto)
+    {
+        SqlSession session = getSqlSession();
+        Room room = roomDao.findRoom(session,roomDto);
+        session.close();
+
+        return room;
+
     }
 }

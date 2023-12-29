@@ -1,3 +1,4 @@
+--jin
 -- petking 계정 생성 및 권한 부여
 alter session set "_oracle_script" = true;
 
@@ -368,7 +369,11 @@ CREATE TABLE room(
     constraints fk_room_camp_id foreign key(camp_id) references camp(id) on delete set null,
     constraints fk_room_room_type foreign key(room_type) references camp_type(id) on delete set null--캠핑타입의 아이디를 외래키로 삼는다.
 );
+select * from users;
 select * from room;
+select * from room where id = 100 and camp_id=4;
+
+
 create sequence seq_room_id;
 ----------------------------------------------------------------- room_attach 영역
 create table room_attach (
@@ -410,7 +415,10 @@ CREATE TABLE reservation(
     constraints ck_reservation_status check(status in ('0', '1'))
 );
 create sequence seq_reservation_id;
+
 select * from reservation;
+select * from users;
+select * from room;
 ----------------------------------------------------------------- reservation_pay 영역
 
 CREATE TABLE reservation_pay(
