@@ -1,4 +1,4 @@
-package com.sh.petking.delUser.model.service;
+package com.sh.petking.delUser.model.dao;
 
 import com.sh.petking.delUser.model.dao.DelUserDao;
 import com.sh.petking.delUser.model.entity.DelUser;
