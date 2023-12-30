@@ -18,7 +18,7 @@
                 right join camp c
                     on c.id = cwt.camp_id
         order by
-            c.id desc
+            c.reg_date desc
     </select>
     <resultMap id="campVoMap" type="campVo">
         <id column="id" property="id"/>

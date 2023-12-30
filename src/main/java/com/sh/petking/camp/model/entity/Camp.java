@@ -10,7 +10,7 @@ public class Camp {
     private String businessName;
     private String campName;
     private String campIntro;
-    private Long campPhone;
+    private String campPhone;
     private String campAddr;
     private double campLcLa;
     private double campLcLo;
@@ -21,7 +21,7 @@ public class Camp {
     public Camp() {
     }
 
-    public Camp(Long id, String businessId, String businessPassword, String businessNumber, String businessName, String campName, String campIntro, Long campPhone, String campAddr, double campLcLa, double campLcLo, String campImg, int campState, LocalDate regDate) {
+    public Camp(Long id, String businessId, String businessPassword, String businessNumber, String businessName, String campName, String campIntro, String campPhone, String campAddr, double campLcLa, double campLcLo, String campImg, int campState, LocalDate regDate) {
         this.id = id;
         this.businessId = businessId;
         this.businessPassword = businessPassword;
@@ -86,7 +86,7 @@ public class Camp {
         this.campIntro = campIntro;
     }
 
-    public void setCampPhone(Long campPhone) {
+    public void setCampPhone(String campPhone) {
         this.campPhone = campPhone;
     }
 
@@ -142,7 +142,7 @@ public class Camp {
         return campIntro;
     }
 
-    public Long getCampPhone() {
+    public String getCampPhone() {
         return campPhone;
     }
 

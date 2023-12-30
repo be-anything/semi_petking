@@ -31,7 +31,7 @@
 
 
 <c:forEach items="${camps}" var="camp" varStatus="vs">
-    <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mt-10 mb-10 hover:drop-shadow">
+    <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mt-5 mb-5 hover:drop-shadow">
         <div class="w-full flex items-center m-8">
             <img class="w-80" src="${pageContext.request.contextPath}/images/camp/${camp.campImg}" />
             <div class="w-full ml-10">
@@ -52,8 +52,7 @@
                 </div>
                 <div class="text-black text-base font-normal mt-5">
                     <i class="pt-1 pb-1 pl-1.5 pr-1.5 fa-solid fa-phone bg-gray3 text-xs text-white rounded-full mr-2"></i>
-                    <fmt:formatNumber pattern="000-000-000" value="${camp.campPhone}" var="campPhone" />
-                    ${campPhone}
+                    <span class="pt-2 pb-1">${camp.campPhone}</span>
                 </div>
                 <div class="flex flex-wrap items-center tag-section w-full h-10 mt-5">
                     <c:forEach items="${camp.campWithTags}" var="campTag">
