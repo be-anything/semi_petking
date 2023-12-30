@@ -35,6 +35,8 @@
         <result column="camp_img" property="campImg" />
         <result column="camp_state" property="campState" />
         <result column="reg_date" property="regDate" />
+        <result column="review_count" property="reviewCount" />
+        <result column="wish_count" property="wishCount" />
 
         <collection property="campWithTags" ofType="CampWithTagVo">
             <id column="tag_id" property="tagId"/>

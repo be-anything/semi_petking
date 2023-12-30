@@ -1,9 +1,8 @@
 package com.sh.petking.user.controller;
 
 import com.sh.petking.common.PetkingUtils;
-import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.service.UserService;
-import com.sh.petking.user.vo.UserVo;
+import com.sh.petking.user.model.vo.UserVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

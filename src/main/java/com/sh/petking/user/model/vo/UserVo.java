@@ -1,4 +1,4 @@
-package com.sh.petking.user.vo;
+package com.sh.petking.user.model.vo;
 
 import com.sh.petking.grade.model.entity.UserGrade;
 import com.sh.petking.user.model.entity.User;
