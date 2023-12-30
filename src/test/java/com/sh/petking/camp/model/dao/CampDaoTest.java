@@ -138,7 +138,7 @@ class CampDaoTest {
         int result = campDao.updateCamp(session, camp);
         assertThat(result).isGreaterThan(0);
 
-        Camp camp2 = campDao.findById(session, camp.getId());
+        Camp camp2 = campDao.findById(session, id);
         assertThat(camp2).isNotNull();
         assertThat(camp2.getId()).isEqualTo(id);
         assertThat(camp2.getBusinessPassword()).isEqualTo(businessPassword);

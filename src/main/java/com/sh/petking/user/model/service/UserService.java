@@ -2,7 +2,7 @@ package com.sh.petking.user.model.service;
 
 import com.sh.petking.user.model.dao.UserDao;
 import com.sh.petking.user.model.entity.User;
-import com.sh.petking.user.vo.UserVo;
+import com.sh.petking.user.model.vo.UserVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -31,6 +31,6 @@ public class UserService {
         SqlSession session = getSqlSession();
         int totalCount = userDao.getTotalCount(session);
         session.close();
-        return getTotalCount();
+        return totalCount;
     }
 }
