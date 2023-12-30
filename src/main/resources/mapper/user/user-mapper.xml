@@ -47,6 +47,7 @@
             <result column="grade_name" property="name"/>
         </association>
     </resultMap>
+
     <select id="getTotalCount" resultType="_int">
         select
             count(*)

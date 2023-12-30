@@ -1,7 +1,7 @@
 package com.sh.petking.user.model.dao;
 
 import com.sh.petking.user.model.entity.User;
-import com.sh.petking.user.vo.UserVo;
+import com.sh.petking.user.model.vo.UserVo;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
@@ -24,6 +24,6 @@ public class UserDao extends HttpServlet {
     }
 
     public int getTotalCount(SqlSession session) {
-        return session.selectOne("user,getTotalCount");
+        return session.selectOne("user.getTotalCount");
     }
 }

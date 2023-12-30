@@ -1,11 +1,13 @@
 package com.sh.petking.user.model.entity;
 
+import com.sh.petking.delUser.model.entity.Role;
+
 import java.util.Date;
 
 public class User {
-    private Long id;
+    private String id;
     private String gradeId;
-    private int clubId;
+    private Long clubId;
     private String nickname;
     private String name;
     private String password;
@@ -13,34 +15,37 @@ public class User {
     private String renamedProfileName;
     private String email;
     private String phone;
-    private int resultPoint;
-    private String role;
+    private Long resultPoint;
+    private Role role;
     private Date regDate;
 
     public User() {
     }
 
-    public User(Long id, String gradeId, int clubId, String nickname, String name, String password, String originProfileName, String renamedProfileName, String email, String phone, int resultPoint, String role, Date regDate) {
-        this.id = id;
-        this.gradeId = gradeId;
-        this.clubId = clubId;
-        this.nickname = nickname;
-        this.name = name;
-        this.password = password;
-        this.originProfileName = originProfileName;
-        this.renamedProfileName = renamedProfileName;
-        this.email = email;
-        this.phone = phone;
-        this.resultPoint = resultPoint;
-        this.role = role;
-        this.regDate = regDate;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", gradeId='" + gradeId + '\'' +
+                ", clubId=" + clubId +
+                ", nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", originProfileName='" + originProfileName + '\'' +
+                ", renamedProfileName='" + renamedProfileName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", resultPoint=" + resultPoint +
+                ", role=" + role +
+                ", regDate=" + regDate +
+                '}';
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,11 +57,11 @@ public class User {
         this.gradeId = gradeId;
     }
 
-    public int getClubId() {
+    public Long getClubId() {
         return clubId;
     }
 
-    public void setClubId(int clubId) {
+    public void setClubId(Long clubId) {
         this.clubId = clubId;
     }
 
@@ -116,19 +121,19 @@ public class User {
         this.phone = phone;
     }
 
-    public int getResultPoint() {
+    public Long getResultPoint() {
         return resultPoint;
     }
 
-    public void setResultPoint(int resultPoint) {
+    public void setResultPoint(Long resultPoint) {
         this.resultPoint = resultPoint;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -140,22 +145,19 @@ public class User {
         this.regDate = regDate;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", gradeId='" + gradeId + '\'' +
-                ", clubId=" + clubId +
-                ", nickname='" + nickname + '\'' +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", originProfileName='" + originProfileName + '\'' +
-                ", renamedProfileName='" + renamedProfileName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", resultPoint=" + resultPoint +
-                ", role='" + role + '\'' +
-                ", regDate=" + regDate +
-                '}';
+    public User(String id, String gradeId, Long clubId, String nickname, String name, String password, String originProfileName, String renamedProfileName, String email, String phone, Long resultPoint, Role role, Date regDate) {
+        this.id = id;
+        this.gradeId = gradeId;
+        this.clubId = clubId;
+        this.nickname = nickname;
+        this.name = name;
+        this.password = password;
+        this.originProfileName = originProfileName;
+        this.renamedProfileName = renamedProfileName;
+        this.email = email;
+        this.phone = phone;
+        this.resultPoint = resultPoint;
+        this.role = role;
+        this.regDate = regDate;
     }
 }
