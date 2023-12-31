@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wish">
+    <select id="findAll" resultType="wish">
+        select
+            *
+        from
+            wish
+    </select>
+    <select id="findByUserId" resultType="wish">
+        select
+            *
+        from
+            wish
+        where
+            user_id = #{userId}
+    </select>
+    <select id="findByCampId" resultType="wish">
+        select
+            *
+        from
+            wish
+        where
+            camp_id = #{campId}
+    </select>
+    <insert id="insertWish">
+        insert into
+            wish
+        values(
+            seq_wish_id.nextval, #{userId}, #{campId}, default
+        )
+        <selectKey order="AFTER" keyProperty="id" resultType="_long">
+            select
+                seq_wish_id.currval
+            from
+                dual
+        </selectKey>
+    </insert>
+    <select id="findById" resultType="wish">
+        select
+            *
+        from
+            wish
+        where
+            id = #{id}
+    </select>
+    <delete id="deleteWish">
+        delete from
+            wish
+        where
+            id = #{id}
+    </delete>
+    <delete id="deleteWishByUserId">
+        delete from
+            wish
+        where
+            user_id = #{userId}
+    </delete>
+</mapper>
