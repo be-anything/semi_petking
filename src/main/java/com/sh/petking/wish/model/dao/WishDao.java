@@ -33,4 +33,8 @@ public class WishDao {
     public int deleteWishByUserId(SqlSession session, String userId) {
         return session.delete("wish.deleteWishByUserId", userId);
     }
+
+    public int deleteWish(SqlSession session, Wish wish) {
+        return session.delete("wish.deleteWishByWish", wish);
+    }
 }

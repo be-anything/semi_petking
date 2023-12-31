@@ -58,4 +58,12 @@
         where
             user_id = #{userId}
     </delete>
+    <delete id="deleteWishByWish">
+        delete from
+            wish
+        where
+            user_id = #{userId}
+            and
+            camp_id = #{campId}
+    </delete>
 </mapper>

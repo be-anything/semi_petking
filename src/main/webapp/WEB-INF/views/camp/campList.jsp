@@ -43,9 +43,12 @@
                 <span class="inline-flex items-center rounded-full bg-pink px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-gray-500/10">찜 ${camp.wishCount}</span>
                 <div class="w- text-black font-semibold text-2xl mt-5 flex items-center place-content-between relative">
                         <span>${camp.campName}</span>
-<%--                        <i class="fa-solid fa-heart text-right"></i>--%>
-                        <i class="fa-regular fa-heart absolute top-0 right-10 font-[90px]"></i>
+
+                        <%--<i class="fa-solid fa-heart text-right"></i>--%>
+                        <%-- ajax wish insert/delete -> loginUser 기능 완성되면 data-user-id 하드코딩 부분 수정 필요 --%>
+                        <i data-camp-id="${camp.id}" data-user-id="goyoung12" class="fa-regular fa-heart absolute bottom-full right-10 text-5xl text-gray2 cursor-pointer"></i>
                 </div>
+
                 <div class="text-black text-base font-normal mt-5">
                     <span class="py-2 px-4 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200">캠핑장 소개</span>
                     <span>${camp.campIntro}</span>
@@ -76,5 +79,6 @@
         </ul>
     </nav>
 </div>
+<script src="${pageContext.request.contextPath}/js/camp/campList.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

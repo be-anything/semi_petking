@@ -12,6 +12,13 @@
     <script src="https://kit.fontawesome.com/10d89693f5.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="${pageContext.request.contextPath}/js/tailwind.config.js"></script>
+    <script>
+        const contextPath = "${pageContext.request.contextPath}";
+    </script>
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="3xl:container">
