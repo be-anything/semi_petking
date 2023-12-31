@@ -12,6 +12,10 @@
     <script src="https://kit.fontawesome.com/10d89693f5.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="${pageContext.request.contextPath}/js/tailwind.config.js"></script>
+
+    <script>
+        const contextPath = '${pageContext.request.contextPath}';
+    </script>
 </head>
 <body>
 <div class="3xl:container">
@@ -24,8 +28,8 @@
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="#">커뮤니티</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="#">이벤트</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/room/roomList">객실목록(임시)</a></div>
-                <div class="text-black text-right font-normal mr-10 absolute right-0 hover:font-bold"><a href="#">로그인</a></div>
-                <div class="text-black text-right font-normal mr-10 absolute right-0 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></div>
+                <div class="text-black text-right font-normal mr-10 absolute right-20 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></div>
+                <div class="text-black text-right font-normal mr-10 absolute right-0 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userRegister">회원가입</a></div>
                 <i class="fa-regular fa-clock ml-10 absolute right-0 text-black hover:text-green hover:font-bold"></i>
             </nav>
         </header>

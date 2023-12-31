@@ -3,22 +3,40 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
+
     <select id="findById" resultType="user">
         select
             *
         from
-            user
+            users
         where
             id = #{id}
     </select>
 
+    <select id="findAll" resultType="user">
+        select
+            *
+        from
+            users
+    </select>
+
     <insert id="insertUser">
         insert into
-            user
+        users
         values (
-            #{id}, #{gradeId}, #{clubId}, #{nickname}, #{name}, #{password}, #{originProfileName}, #{renamedProfileName},
-            #{email}, #{phone}, default, default, default
-        )
+        #{id},
+        #{gradeId},
+        #{clubId},
+        seq_users_nickname.nextval,
+        #{name},
+        #{password},
+        #{originProfileName},
+        #{renamedProfileName},
+        #{email},
+        #{phone},
+        #{resultPoint},
+        #{role},
+        #{regDate})
     </insert>
 
 
