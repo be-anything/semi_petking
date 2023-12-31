@@ -30,6 +30,13 @@ public class CampListController extends HttpServlet {
             page = Integer.parseInt(req.getParameter("page"));
         } catch (NumberFormatException ignore){};
         Map<String, Object> param = new HashMap<>();
+
+        // 검색어 입력
+        String searchType = req.getParameter("search-type");
+        String searchKeyword = req.getParameter("search-keyword");
+        param.put("searchType", searchType);
+        param.put("searchKeyword", searchKeyword);
+
         param.put("page", page);
         param.put("limit", limit);
 
@@ -38,10 +45,17 @@ public class CampListController extends HttpServlet {
         req.setAttribute("camps", camps);
 
         // 페이지바
-        int totalCount = campService.getTotalCount();
+        int totalCount = campService.getTotalCount(param);
+        req.setAttribute("totalCount", totalCount);
         String url = req.getRequestURI();
+
+        // 검색어 입력시의 주소 처리
+        if(searchType != null && searchKeyword != null){
+            url += "?search-type=" + searchType + "&search-keyword=" + searchKeyword;
+        }
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);
+        System.out.println(totalCount);
 
         // 3. 포워딩
         req.getRequestDispatcher("/WEB-INF/views/camp/campList.jsp").forward(req, resp);

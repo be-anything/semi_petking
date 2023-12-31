@@ -73,9 +73,9 @@ public class CampService {
         return result;
     }
 
-    public int getTotalCount() {
+    public int getTotalCount(Map<String, Object> param) {
         SqlSession session = getSqlSession();
-        int totalCount = campDao.getTotalCount(session);
+        int totalCount = campDao.getTotalCount(session, param);
         session.close();
         return totalCount;
     }

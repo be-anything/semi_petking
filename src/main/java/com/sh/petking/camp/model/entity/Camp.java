@@ -14,28 +14,12 @@ public class Camp {
     private String campAddr;
     private double campLcLa;
     private double campLcLo;
-    private String campImg;
+    private String campOriginalImg;
+    private String campRenamedImg;
     private int campState;
     private LocalDate regDate;
 
     public Camp() {
-    }
-
-    public Camp(Long id, String businessId, String businessPassword, String businessNumber, String businessName, String campName, String campIntro, String campPhone, String campAddr, double campLcLa, double campLcLo, String campImg, int campState, LocalDate regDate) {
-        this.id = id;
-        this.businessId = businessId;
-        this.businessPassword = businessPassword;
-        this.businessNumber = businessNumber;
-        this.businessName = businessName;
-        this.campName = campName;
-        this.campIntro = campIntro;
-        this.campPhone = campPhone;
-        this.campAddr = campAddr;
-        this.campLcLa = campLcLa;
-        this.campLcLo = campLcLo;
-        this.campImg = campImg;
-        this.campState = campState;
-        this.regDate = regDate;
     }
 
     @Override
@@ -48,125 +32,152 @@ public class Camp {
                 ", businessName='" + businessName + '\'' +
                 ", campName='" + campName + '\'' +
                 ", campIntro='" + campIntro + '\'' +
-                ", campPhone=" + campPhone +
+                ", campPhone='" + campPhone + '\'' +
                 ", campAddr='" + campAddr + '\'' +
                 ", campLcLa=" + campLcLa +
                 ", campLcLo=" + campLcLo +
-                ", campImg='" + campImg + '\'' +
+                ", campOriginalImg='" + campOriginalImg + '\'' +
+                ", campRenamedImg='" + campRenamedImg + '\'' +
                 ", campState=" + campState +
                 ", regDate=" + regDate +
                 '}';
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setBusinessId(String businessId) {
-        this.businessId = businessId;
-    }
-
-    public void setBusinessPassword(String businessPassword) {
-        this.businessPassword = businessPassword;
-    }
-
-    public void setBusinessNumber(String businessNumber) {
-        this.businessNumber = businessNumber;
-    }
-
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
-
-    public void setCampName(String campName) {
-        this.campName = campName;
-    }
-
-    public void setCampIntro(String campIntro) {
-        this.campIntro = campIntro;
-    }
-
-    public void setCampPhone(String campPhone) {
-        this.campPhone = campPhone;
-    }
-
-    public void setCampAddr(String campAddr) {
-        this.campAddr = campAddr;
-    }
-
-    public void setCampLcLa(double campLcLa) {
-        this.campLcLa = campLcLa;
-    }
-
-    public void setCampLcLo(double campLcLo) {
-        this.campLcLo = campLcLo;
-    }
-
-    public void setCampImg(String campImg) {
-        this.campImg = campImg;
-    }
-
-    public void setCampState(int campState) {
-        this.campState = campState;
-    }
-
-    public void setRegDate(LocalDate regDate) {
-        this.regDate = regDate;
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getBusinessId() {
         return businessId;
+    }
+
+    public void setBusinessId(String businessId) {
+        this.businessId = businessId;
     }
 
     public String getBusinessPassword() {
         return businessPassword;
     }
 
+    public void setBusinessPassword(String businessPassword) {
+        this.businessPassword = businessPassword;
+    }
+
     public String getBusinessNumber() {
         return businessNumber;
+    }
+
+    public void setBusinessNumber(String businessNumber) {
+        this.businessNumber = businessNumber;
     }
 
     public String getBusinessName() {
         return businessName;
     }
 
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
     public String getCampName() {
         return campName;
+    }
+
+    public void setCampName(String campName) {
+        this.campName = campName;
     }
 
     public String getCampIntro() {
         return campIntro;
     }
 
+    public void setCampIntro(String campIntro) {
+        this.campIntro = campIntro;
+    }
+
     public String getCampPhone() {
         return campPhone;
+    }
+
+    public void setCampPhone(String campPhone) {
+        this.campPhone = campPhone;
     }
 
     public String getCampAddr() {
         return campAddr;
     }
 
+    public void setCampAddr(String campAddr) {
+        this.campAddr = campAddr;
+    }
+
     public double getCampLcLa() {
         return campLcLa;
+    }
+
+    public void setCampLcLa(double campLcLa) {
+        this.campLcLa = campLcLa;
     }
 
     public double getCampLcLo() {
         return campLcLo;
     }
 
-    public String getCampImg() {
-        return campImg;
+    public void setCampLcLo(double campLcLo) {
+        this.campLcLo = campLcLo;
+    }
+
+    public String getCampOriginalImg() {
+        return campOriginalImg;
+    }
+
+    public void setCampOriginalImg(String campOriginalImg) {
+        this.campOriginalImg = campOriginalImg;
+    }
+
+    public String getCampRenamedImg() {
+        return campRenamedImg;
+    }
+
+    public void setCampRenamedImg(String campRenamedImg) {
+        this.campRenamedImg = campRenamedImg;
     }
 
     public int getCampState() {
         return campState;
     }
 
+    public void setCampState(int campState) {
+        this.campState = campState;
+    }
+
     public LocalDate getRegDate() {
         return regDate;
+    }
+
+    public void setRegDate(LocalDate regDate) {
+        this.regDate = regDate;
+    }
+
+    public Camp(Long id, String businessId, String businessPassword, String businessNumber, String businessName, String campName, String campIntro, String campPhone, String campAddr, double campLcLa, double campLcLo, String campOriginalImg, String campRenamedImg, int campState, LocalDate regDate) {
+        this.id = id;
+        this.businessId = businessId;
+        this.businessPassword = businessPassword;
+        this.businessNumber = businessNumber;
+        this.businessName = businessName;
+        this.campName = campName;
+        this.campIntro = campIntro;
+        this.campPhone = campPhone;
+        this.campAddr = campAddr;
+        this.campLcLa = campLcLa;
+        this.campLcLo = campLcLo;
+        this.campOriginalImg = campOriginalImg;
+        this.campRenamedImg = campRenamedImg;
+        this.campState = campState;
+        this.regDate = regDate;
     }
 }

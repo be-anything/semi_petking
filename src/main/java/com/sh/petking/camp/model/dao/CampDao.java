@@ -29,8 +29,8 @@ public class CampDao {
         return session.delete("camp.deleteCamp", id);
     }
 
-    public int getTotalCount(SqlSession session) {
-        return session.selectOne("camp.getTotalCount");
+    public int getTotalCount(SqlSession session, Map<String, Object> param) {
+        return session.selectOne("camp.getTotalCount", param);
     }
 
     public List<CampVo> findAll(SqlSession session, Map<String, Object> param) {

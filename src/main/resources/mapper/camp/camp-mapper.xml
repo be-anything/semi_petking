@@ -17,6 +17,10 @@
                     on ct.id = cwt.tag_id
                 right join camp c
                     on c.id = cwt.camp_id
+        <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+        where
+            c.${searchType} like '%' || #{searchKeyword} || '%'
+        </if>
         order by
             c.reg_date desc
     </select>
@@ -32,7 +36,8 @@
         <result column="camp_addr" property="campAddr" />
         <result column="camp_lc_la" property="campLcLa" />
         <result column="camp_lc_lo" property="campLcLo" />
-        <result column="camp_img" property="campImg" />
+        <result column="camp_original_img" property="campOriginalImg" />
+        <result column="camp_renamed_img" property="campRenamedImg" />
         <result column="camp_state" property="campState" />
         <result column="reg_date" property="regDate" />
         <result column="review_count" property="reviewCount" />
@@ -67,9 +72,10 @@
             #{campAddr},
             #{campLcLa},
             #{campLcLo},
-            #{campImg},
+            #{campOriginalImg},
             default,
-            default
+            default,
+            #{campRenamedImg}
         )
         <selectKey order="AFTER" resultType="_long" keyProperty="id">
             select
@@ -89,7 +95,8 @@
             camp_intro = #{campIntro},
             camp_phone = #{campPhone},
             camp_addr = #{campAddr},
-            camp_img = #{campImg},
+            camp_original_img = #{campOriginalImg},
+            camp_renamed_img = #{campRenamedImg},
             camp_state = #{campState}
         where
             id = #{id}
@@ -105,5 +112,9 @@
             count(*)
         from
             camp
+        <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+            where
+                ${searchType} like '%' || #{searchKeyword} || '%'
+        </if>
     </select>
 </mapper>
