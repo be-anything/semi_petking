@@ -6,19 +6,50 @@
     <select id="findAll" resultMap="campVoMap">
         select
             c.*,
+            r.id room_id,
+            r.room_name room_name,
+            r.room_type room_type,
             ct.id tag_id,
             ct.name tag_name,
             cwt.camp_id camp_id,
             (select count(*) from review where camp_id = c.id) review_count,
             (select count(*) from wish where camp_id = c.id) wish_count
         from
-            camp_tag ct
+            camp c
                 left join camp_with_tag cwt
-                    on ct.id = cwt.tag_id
-                right join camp c
                     on c.id = cwt.camp_id
+                left join camp_tag ct
+                    on cwt.tag_id = ct.id
+                left join room r
+                    on c.id = r.camp_id
+        <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+        where
+            c.${searchType} like '%' || #{searchKeyword} || '%'
+        </if>
         order by
-            c.id desc
+            c.reg_date desc
+    </select>
+    <select id="findById" resultMap="campVoMap">
+        select
+            c.*,
+            r.id room_id,
+            r.room_name room_name,
+            r.room_type room_type,
+            ct.id tag_id,
+            ct.name tag_name,
+            cwt.camp_id camp_id,
+            (select count(*) from review where camp_id = c.id) review_count,
+            (select count(*) from wish where camp_id = c.id) wish_count
+        from
+            camp c
+                left join camp_with_tag cwt
+                    on c.id = cwt.camp_id
+                left join camp_tag ct
+                    on cwt.tag_id = ct.id
+                left join room r
+                    on c.id = r.camp_id
+        where
+            c.id = #{id}
     </select>
     <resultMap id="campVoMap" type="campVo">
         <id column="id" property="id"/>
@@ -32,24 +63,25 @@
         <result column="camp_addr" property="campAddr" />
         <result column="camp_lc_la" property="campLcLa" />
         <result column="camp_lc_lo" property="campLcLo" />
-        <result column="camp_img" property="campImg" />
+        <result column="camp_original_img" property="campOriginalImg" />
+        <result column="camp_renamed_img" property="campRenamedImg" />
         <result column="camp_state" property="campState" />
         <result column="reg_date" property="regDate" />
+        <result column="review_count" property="reviewCount" />
+        <result column="wish_count" property="wishCount" />
 
-        <collection property="campWithTags" ofType="CampWithTagVo">
+        <collection property="campWithTags" ofType="campWithTagVo">
             <id column="tag_id" property="tagId"/>
             <result column="camp_id" property="campId"/>
             <result column="tag_name" property="tagName"/>
         </collection>
+        <collection property="rooms" ofType="room">
+            <id column="room_id" property="id"/>
+            <result column="room_name" property="roomName"/>
+            <result column="room_type" property="roomType"/>
+        </collection>
     </resultMap>
-    <select id="findById" resultType="camp">
-        select
-            *
-        from
-            camp
-        where
-            id = #{id}
-    </select>
+
     <insert id="insertCamp">
         insert into
             camp
@@ -65,9 +97,10 @@
             #{campAddr},
             #{campLcLa},
             #{campLcLo},
-            #{campImg},
+            #{campOriginalImg},
             default,
-            default
+            default,
+            #{campRenamedImg}
         )
         <selectKey order="AFTER" resultType="_long" keyProperty="id">
             select
@@ -76,19 +109,16 @@
                 dual
         </selectKey>
     </insert>
-    <update id="updateCamp">
+    <update id="updateCampInfo">
         update
             camp
         set
-            business_password = #{businessPassword},
-            business_number = #{businessNumber},
-            business_name = #{businessName},
             camp_name = #{campName},
             camp_intro = #{campIntro},
             camp_phone = #{campPhone},
             camp_addr = #{campAddr},
-            camp_img = #{campImg},
-            camp_state = #{campState}
+            camp_original_img = #{campOriginalImg},
+            camp_renamed_img = #{campRenamedImg}
         where
             id = #{id}
     </update>
@@ -103,5 +133,9 @@
             count(*)
         from
             camp
+        <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+            where
+                ${searchType} like '%' || #{searchKeyword} || '%'
+        </if>
     </select>
 </mapper>

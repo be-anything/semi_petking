@@ -10,4 +10,10 @@
         from
             del_users
     </select>
+    <select id="getTotalCount" resultType="_int">
+        select
+            count(*)
+        from
+            del_users
+    </select>
 </mapper>
