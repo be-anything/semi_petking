@@ -22,21 +22,22 @@
 
     <insert id="insertUser">
         insert into
-        users
+            users
         values (
-        #{id},
-        #{gradeId},
-        #{clubId},
-        seq_users_nickname.nextval,
-        #{name},
-        #{password},
-        #{originProfileName},
-        #{renamedProfileName},
-        #{email},
-        #{phone},
-        #{resultPoint},
-        #{role},
-        #{regDate})
+            #{id},
+            #{gradeId},
+            #{clubId},
+            seq_users_nickname.nextval,
+            #{name},
+            #{password},
+            #{originProfileName},
+            #{renamedProfileName},
+            #{email},
+            #{phone},
+            #{resultPoint},
+            #{role},
+            #{regDate}
+        )
     </insert>
 
 

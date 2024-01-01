@@ -45,7 +45,7 @@ document.userRegisterFrm.addEventListener('submit', (e) => {
         }
 
     ];
-    for(let i = 0; i < regExps.length; i++) {
+    for (let i = 0; i < regExps.length; i++) {
         const {re, msg} = regExps[i];
         if(!re.test(password.value)) {
             alert(msg);
@@ -53,29 +53,29 @@ document.userRegisterFrm.addEventListener('submit', (e) => {
             return;
         }
     }
-    if(!/^\w{4,}/.test(password.value)) {
-        alert('패스워드는 영 대/소문자, 숫자, 특수문자 4글자이상 포함해야 합니다.')
+    if (!/^\w{4,}/.test(password.value)) {
+        alert('비밀번호는 영대/소문자, 숫자, 특수문자가 4글자이상 포함되어야 합니다.')
         e.preventDefault()
     }
 
 
     // 비밀번호 확인
-    if(password.value !== confirmPassword.value) {
+    if (password.value !== confirmPassword.value) {
         alert('두 비밀번호가 다릅니다.');
         e.preventDefault();
         return;
     }
 
     // 이름 - 한글 2글자 이상
-    if(!/^[가-힣]{2,}$/.test(name.value)) {
-        alert('이름은 한글 2글자 이상 작성하세요.');
+    if (!/^[가-힣]{2,}$/.test(name.value)) {
+        alert('이름은 한글 2글자 이상 작성해주세요.');
         e.preventDefault();
         return;
     }
 
     // 이메일
-    if(!/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/.test(email.value)) {
-        alert('유효한 이메일을 작성하세요.');
+    if (!/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/.test(email.value)) {
+        alert('사용가능한 이메일을 작성해주세요.');
         e.preventDefault();
         return;
     }

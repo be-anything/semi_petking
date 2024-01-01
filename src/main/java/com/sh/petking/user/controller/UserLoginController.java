@@ -16,6 +16,7 @@ import java.io.IOException;
 public class UserLoginController extends HttpServlet {
     private UserService userService = new UserService();
 
+    // 로그인 폼 페이지
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 사용자가 머무를 페이지 세션에 저장
@@ -29,6 +30,7 @@ public class UserLoginController extends HttpServlet {
         requestDispatcher.forward(req, resp);
     }
 
+    // 로그인 처리
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 사용자 입력값 인코딩 처리

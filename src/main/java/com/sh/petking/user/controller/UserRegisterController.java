@@ -40,6 +40,7 @@ public class UserRegisterController extends HttpServlet {
 
         User user = new User(id, gradeId, 0, nickname, name, password, originProfileName,
                     null, email, phone, 0, Role.U, null);
+        System.out.println(user);
 
         // 업무로직
         int result = userService.insertUser(user);
