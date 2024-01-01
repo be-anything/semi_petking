@@ -94,7 +94,6 @@ CREATE TABLE user_grade (
 );
 select * from user_grade;
 -- drop table user_grade;
-
 ----------------------------------------------------------------- point 영역
 create table point (
     id number not null,
