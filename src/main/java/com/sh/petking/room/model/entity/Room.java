@@ -18,6 +18,7 @@ public class Room {
     }
 
     public Room(Long id, Long campId, String roomName, int roomType, String roomIntro, int roomDefaultPerson, int roomMaximumPerson) {
+        System.out.println("room 매개변수 있는 생성자.");
         this.id = id;
         this.campId = campId;
         this.roomName = roomName;
@@ -85,7 +86,7 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{" +
+        return "ToString test - Room{" +
                 "id=" + id +
                 ", campId=" + campId +
                 ", roomName='" + roomName + '\'' +
