@@ -19,6 +19,12 @@ public class UserService {
         session.close();
         return user;
     }
+    public List<User> findAll() {
+        SqlSession session = getSqlSession();
+        List<User> users = userDao.findAll(session);
+        session.close();
+        return users;
+    }
 
     public List<UserVo> findAll(Map<String, Object> param) {
         SqlSession session = getSqlSession();
@@ -33,4 +39,6 @@ public class UserService {
         session.close();
         return totalCount;
     }
+
+
 }
