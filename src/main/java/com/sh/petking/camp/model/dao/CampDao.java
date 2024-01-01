@@ -13,7 +13,7 @@ public class CampDao {
         return session.selectList("camp.findAll");
     }
 
-    public Camp findById(SqlSession session, long id) {
+    public CampVo findById(SqlSession session, long id) {
         return session.selectOne("camp.findById", id);
     }
 
@@ -22,7 +22,7 @@ public class CampDao {
     }
 
     public int updateCamp(SqlSession session, Camp camp) {
-        return session.update("camp.updateCamp", camp);
+        return session.update("camp.updateCampInfo", camp);
     }
 
     public int deleteCamp(SqlSession session, Long id) {

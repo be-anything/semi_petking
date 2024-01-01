@@ -1,10 +1,22 @@
+document.querySelectorAll("#campBtn").forEach((camp) => {
+    camp.addEventListener('click',(e) => {
+        const btn = e.target;
+        const frm = document.campDetailFrm;
+        const {id} = btn.dataset;
+
+        console.log(id)
+        frm.id.value = id;
+        frm.submit();
+    });
+})
+
 document.querySelectorAll(".fa-heart").forEach((heart) => {
     heart.addEventListener('click', (e) => {
         const wish = e.target;
         const {campId, userId} = wish.dataset;
         // console.log(campId, userId);
 
-        console.log(wish)
+        // console.log(wish)
         if(wish.classList.contains("fa-regular")) {
             if(confirm("나의 캠핑장 찜 목록에 추가합니다.")){
                 $.ajax({

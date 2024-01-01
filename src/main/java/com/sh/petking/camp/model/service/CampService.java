@@ -21,9 +21,9 @@ public class CampService {
         return camps;
     }
     // 캠핑장 1개 조회 - id
-    public Camp findById(long id) {
+    public CampVo findById(long id) {
         SqlSession session = getSqlSession();
-        Camp camp = campDao.findById(session, id);
+        CampVo camp = campDao.findById(session, id);
         session.close();
         return camp;
     }

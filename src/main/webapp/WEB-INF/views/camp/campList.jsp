@@ -37,12 +37,12 @@
 <c:forEach items="${camps}" var="camp" varStatus="vs">
     <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mt-5 mb-5 hover:drop-shadow">
         <div class="w-full flex items-center m-8">
-            <img class="w-80" src="${pageContext.request.contextPath}/images/camp/${camp.campOriginalImg}" />
+            <img class="w-80" src="${pageContext.request.contextPath}/upload/camp/${camp.campRenamedImg}" />
             <div class="w-full ml-10">
                 <span class="inline-flex items-center rounded-full bg-pink px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-gray-500/10">리뷰 ${camp.reviewCount}</span>
                 <span class="inline-flex items-center rounded-full bg-pink px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-gray-500/10">찜 ${camp.wishCount}</span>
                 <div class="w- text-black font-semibold text-2xl mt-5 flex items-center place-content-between relative">
-                        <span>${camp.campName}</span>
+                        <span id="campBtn" data-id="${camp.id}" class="hover:underline cursor-pointer">${camp.campName}</span>
 
                         <%--<i class="fa-solid fa-heart text-right"></i>--%>
                         <%-- ajax wish insert/delete -> loginUser 기능 완성되면 data-user-id 하드코딩 부분 수정 필요 --%>
@@ -71,6 +71,10 @@
         </div>
     </div>
 </c:forEach>
+<%-- campDetail로 이동하기 위한 form --%>
+<form name="campDetailFrm" action="${pageContext.request.contextPath}/camp/campDetail">
+    <input type="hidden" name="id">
+</form>
 
 <div class="flex justify-center mt-6 mb-20">
     <nav aria-label="Page navigation example">
