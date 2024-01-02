@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.sh.petking."
+<%@ page import="com.sh.petking.common.Role"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -103,19 +103,16 @@
                     </select>
                 </td>
                 <td class="px-6 py-4">
-                    <fmt:formatDate value="${user.regDate}" pattern="yy/MM/dd" var="formattedRegDate"/>
-                        ${formattedRegDate}
-                </td>
-                <td class="px-6 py-4">
-                    <button data-id="${user.id}" data-role="${user.role}" type="button" class="roleUpdateBtn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">저장</button>
+                    <fmt:parseDate value="${user.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
+                    <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
     <form name="userRoleUpdateFrm" action="${pageContext.request.contextPath}/admin/updateUserRole" method="post">
-        <input type="hidden" name="id" value="${user.id}">
-        <input type="hidden" name="role" value="${user.role}">
+        <input type="hidden" name="id">
+        <input type="hidden" name="role">
     </form>
 
     <div class="flex justify-center mt-6">
@@ -126,5 +123,5 @@
         </nav>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/admin/adminCreate.js"></script>
+<script src="${pageContext.request.contextPath}/js/admin/adminUpdate.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>    

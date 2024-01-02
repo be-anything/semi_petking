@@ -1,6 +1,6 @@
 package com.sh.petking.admin.controller;
 
-import com.sh.petking.delUser.model.entity.Role;
+import com.sh.petking.common.Role;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.service.UserService;
 
@@ -19,7 +19,7 @@ public class AdminUpdateUserRole extends HttpServlet {
         String id = req.getParameter("id");
         String _role = req.getParameter("role");
         Role role = Role.valueOf(_role);
-
+        System.out.println(role);
         User user = new User();
         user.setId(id);
         user.setRole(role);
