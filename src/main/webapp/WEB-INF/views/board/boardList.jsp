@@ -30,6 +30,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3">번호</th>
+                <th scope="col" class="px-6 py-3">속성</th>
                 <th scope="col" class="px-6 py-3">제목</th>
                 <th scope="col" class="px-6 py-3">작성자</th>
                 <th scope="col" class="px-6 py-3">작성일</th>
@@ -42,13 +43,17 @@
                 <tr class="odd:bg-white even:bg-gray-50 border-b ">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
                     <td class="px-6 py-4">
-<%--                        <a href="${pageContext.request.contextPath}/board/boardDetail?id=${board.id}" class="hover:underline">${fn:escapeXml(board.boardTitle)}</a>--%>
-                        <c:if test="${board.commentCount ge 10}"> <!-- greater than equals 이상 -->
-                            <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">${board.commentCount}</span>
-                        </c:if>
-                        <c:if test="${board.commentCount gt 0 && board.commentCount lt 10}"> <!-- 초과 미만 -->
-                            <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/10">${board.commentCount}</span>
-                        </c:if>
+                        <p>${board.boardType == 'Q' ? '지식인' : board.boardType == 'F' ? '자유게시판' : '동아리'}
+                        </p>
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="${pageContext.request.contextPath}/board/boardDetail?id=${board.id}" class="hover:underline">${fn:escapeXml(board.boardTitle)}</a>
+<%--                        <c:if test="${board.commentCount ge 10}"> <!-- greater than equals 이상 -->--%>
+<%--                            <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">${board.commentCount}</span>--%>
+<%--                        </c:if>--%>
+<%--                        <c:if test="${board.commentCount gt 0 && board.commentCount lt 10}"> <!-- 초과 미만 -->--%>
+<%--                            <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/10">${board.commentCount}</span>--%>
+<%--                        </c:if>--%>
                     </td>
                     <td class="px-6 py-4">${board.userId}</td>
                     <td class="px-6 py-4">
@@ -56,9 +61,9 @@
                         <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
                     </td>
                     <td class="px-6 py-4">
-                        <c:if test="${board.attachCount gt 0}">
+<%--                        <c:if test="${board.attachCount gt 0}">--%>
 <%--                            <img class="w-[16px]" src="../images/file.png" alt="">--%>
-                        </c:if>
+<%--                        </c:if>--%>
                     </td>
                     <td class="px-6 py-4">${board.viewCount}</td>
                 </tr>

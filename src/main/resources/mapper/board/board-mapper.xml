@@ -9,6 +9,8 @@
             *
         from
             board
+        order by
+            id
     </select>
     <select id="findById" resultType="board">
         select
@@ -31,6 +33,12 @@
             default,
             default
         )
+        <selectKey order="AFTER" resultType="_int" keyProperty="id">
+            select
+                seq_board_id.nextval
+            from
+                dual
+        </selectKey>
     </insert>
     <update id="updateBoard">
         update
@@ -47,4 +55,10 @@
         where
             id = #{id}
     </delete>
+    <select id="getTotalCount" resultType="_int">
+        select
+            count(*)
+        from
+            board
+    </select>
 </mapper>

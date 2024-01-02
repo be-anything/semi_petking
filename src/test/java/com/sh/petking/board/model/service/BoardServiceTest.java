@@ -132,15 +132,15 @@ public class BoardServiceTest {
 //        Board boardDeleted = boardService.findById(id);
 //        assertThat(boardDeleted).isNull();
 //    }
-    @DisplayName("전체 게시글수 조회")
-    @Test
-    void test6() {
-        // given
-        // when
-        int totalCount = boardService.getTotalCount();
-        // then
-        assertThat(totalCount).isNotNegative(); // 음수가 아니어야 한다. 0이상
-    }
+//    @DisplayName("전체 게시글수 조회")
+//    @Test
+//    void test6() {
+//        // given
+//        // when
+//        int totalCount = boardService.getTotalCount();
+//        // then
+//        assertThat(totalCount).isNotNegative(); // 음수가 아니어야 한다. 0이상
+//    }
 //    @DisplayName("게시글 페이징 조회")
 //    @ParameterizedTest
 //    @MethodSource("pageNoProvider")

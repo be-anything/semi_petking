@@ -98,6 +98,7 @@ public class BoardDaoTest {
         int result = boardDao.insertBoard(session, board);
 
         assertThat(result).isGreaterThan(0);
+        assertThat(board.getId()).isNotZero();
     }
 
     @DisplayName("게시글 수정")
@@ -152,13 +153,13 @@ public class BoardDaoTest {
 //                .size().isLessThanOrEqualTo(limit);
 //    }
 
-    public static Stream<Integer> pageNoProvider() {
-        BoardService boardService = new BoardService();
-        SqlSession session = getSqlSession();
-        int totalCount = boardService.getTotalCount();
-        int totalPage = (int) Math.ceil((double) totalCount / limit);
-        return IntStream.range(1, totalPage).boxed(); // 1 부터 total페이지까지를 요소로 하는 Stream생성
-    }
+//    public static Stream<Integer> pageNoProvider() {
+//        BoardService boardService = new BoardService();
+//        SqlSession session = getSqlSession();
+//        int totalCount = boardService.getTotalCount();
+//        int totalPage = (int) Math.ceil((double) totalCount / limit);
+//        return IntStream.range(1, totalPage).boxed(); // 1 부터 total페이지까지를 요소로 하는 Stream생성
+//    }
     public static Stream<Arguments> boardIdProvider() {
         BoardService boardService = new BoardService(); // non-static fixture를 사용할 수 없다.
         List<Board> boards = boardService.findAll();

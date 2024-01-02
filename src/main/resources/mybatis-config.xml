@@ -32,13 +32,11 @@
         <mapper resource="mapper/delUser/delUser-mapper.xml"></mapper>
         <mapper resource="mapper/review/review-mapper.xml"></mapper>
         <mapper resource="mapper/camp/camp-mapper.xml"></mapper>
-<<<<<<< HEAD
+
         <mapper resource="mapper/board/board-mapper.xml"></mapper>
-=======
         <mapper resource="mapper/room/room-mapper.xml"></mapper>
         <mapper resource="mapper/reservation/reservation-mapper.xml"></mapper>
         <mapper resource="mapper/user/user-mapper.xml"></mapper>
         <mapper resource="mapper/wish/wish-mapper.xml"></mapper>
->>>>>>> 4ba20b556764434e02813b23c25f3d09ab7072f4
     </mappers>
 </configuration>

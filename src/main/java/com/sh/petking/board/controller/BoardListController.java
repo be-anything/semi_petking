@@ -1,5 +1,6 @@
 package com.sh.petking.board.controller;
 
+import com.sh.petking.board.model.entity.Board;
 import com.sh.petking.board.model.service.BoardService;
 import com.sh.petking.board.model.vo.BoardVo;
 import com.sh.petking.common.PetkingUtils;
@@ -29,7 +30,7 @@ public class BoardListController extends HttpServlet {
         System.out.println(param);
 
         // 2. 업무로직
-        List<BoardVo> boards = boardService.findAll(param);
+        List<Board> boards = boardService.findAll(param);
         req.setAttribute("boards", boards);
         System.out.println(boards);
 
