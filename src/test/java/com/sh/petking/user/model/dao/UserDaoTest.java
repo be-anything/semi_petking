@@ -72,8 +72,8 @@ public class UserDaoTest {
         String name = "김모과";
 
         User user =
-                new User(id, "g01", 1, nickname, name, password, null, null,
-                        "qlqla1@naver.com", "01022223343", 0, Role.U,null);
+                new User(id, "g01", 1L, nickname, name, password, null, null,
+                        "qlqla1@naver.com", "01022223343", 0L, Role.U,null);
         int result = userDao.insertUser(session, user);
         assertThat(result).isEqualTo(1);
 

@@ -2,12 +2,13 @@ package com.sh.petking.user.model.entity;
 
 import com.sh.petking.common.Role;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class User {
     private String id;
     private String gradeId;
-    private int clubId;
+    private Long clubId;
     private String nickname;
     private String name;
     private String password;
@@ -15,14 +16,14 @@ public class User {
     private String renamedProfileName;
     private String email;
     private String phone;
-    private int resultPoint;
+    private Long resultPoint;
     private Role role;
-    private Date regDate;
+    private LocalDateTime regDate;
 
     public User() {
     }
 
-    public User(String id, String gradeId, int clubId, String nickname, String name, String password, String originProfileName, String renamedProfileName, String email, String phone, int resultPoint, Role role, Date regDate) {
+    public User(String id, String gradeId, Long clubId, String nickname, String name, String password, String originProfileName, String renamedProfileName, String email, String phone, Long resultPoint, Role role, LocalDateTime regDate) {
         this.id = id;
         this.gradeId = gradeId;
         this.clubId = clubId;
@@ -54,11 +55,11 @@ public class User {
         this.gradeId = gradeId;
     }
 
-    public int getClubId() {
+    public Long getClubId() {
         return clubId;
     }
 
-    public void setClubId(int clubId) {
+    public void setClubId(Long clubId) {
         this.clubId = clubId;
     }
 
@@ -118,11 +119,11 @@ public class User {
         this.phone = phone;
     }
 
-    public int getResultPoint() {
+    public Long getResultPoint() {
         return resultPoint;
     }
 
-    public void setResultPoint(int resultPoint) {
+    public void setResultPoint(Long resultPoint) {
         this.resultPoint = resultPoint;
     }
 
@@ -134,11 +135,11 @@ public class User {
         this.role = role;
     }
 
-    public Date getRegDate() {
+    public LocalDateTime getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(LocalDateTime regDate) {
         this.regDate = regDate;
     }
 

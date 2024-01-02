@@ -12,6 +12,7 @@
         where
             id = #{id}
     </select>
+
     <insert id="insertUser">
         insert into
             users
