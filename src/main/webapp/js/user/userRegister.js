@@ -50,12 +50,13 @@ document.userRegisterFrm.addEventListener('submit', (e) => {
         if(!re.test(password.value)) {
             alert(msg);
             e.preventDefault();
+            console.log('비밀번호 가능');
             return;
         }
     }
     if (!/^\w{4,}/.test(password.value)) {
         alert('비밀번호는 영대/소문자, 숫자, 특수문자가 4글자이상 포함되어야 합니다.')
-        e.preventDefault()
+        e.preventDefault();
     }
 
 
@@ -70,6 +71,7 @@ document.userRegisterFrm.addEventListener('submit', (e) => {
     if (!/^[가-힣]{2,}$/.test(name.value)) {
         alert('이름은 한글 2글자 이상 작성해주세요.');
         e.preventDefault();
+        console.log('이름 가능');
         return;
     }
 
@@ -77,6 +79,7 @@ document.userRegisterFrm.addEventListener('submit', (e) => {
     if (!/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/.test(email.value)) {
         alert('사용가능한 이메일을 작성해주세요.');
         e.preventDefault();
+        console.log('이메일 가능');
         return;
     }
 });

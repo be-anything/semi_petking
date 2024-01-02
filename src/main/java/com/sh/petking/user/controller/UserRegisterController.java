@@ -27,7 +27,6 @@ public class UserRegisterController extends HttpServlet {
 
         // 사용자 입력값 가져오기
         String id = req.getParameter("id");
-        String gradeId = req.getParameter("gradeId");
         String nickname = req.getParameter("nickname");
         String name = req.getParameter("name");
         String password = req.getParameter("password");
@@ -37,7 +36,7 @@ public class UserRegisterController extends HttpServlet {
 
 
 
-        User user = new User(id, gradeId, 0L, nickname, name, password, originProfileName,
+        User user = new User(id, null, 0L, nickname, name, password, originProfileName,
                     null, email, phone, 0L, Role.U, null);
         System.out.println(user);
 
