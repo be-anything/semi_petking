@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @WebServlet("/user/userRegister")
 public class UserRegisterController extends HttpServlet {
@@ -38,8 +35,10 @@ public class UserRegisterController extends HttpServlet {
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
 
-        User user = new User(id, gradeId, 0, nickname, name, password, originProfileName,
-                    null, email, phone, 0, Role.U, null);
+
+
+        User user = new User(id, gradeId, 0L, nickname, name, password, originProfileName,
+                    null, email, phone, 0L, Role.U, null);
         System.out.println(user);
 
         // 업무로직
