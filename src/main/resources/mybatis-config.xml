@@ -32,6 +32,8 @@
         <mapper resource="mapper/delUser/delUser-mapper.xml"></mapper>
         <mapper resource="mapper/review/review-mapper.xml"></mapper>
         <mapper resource="mapper/camp/camp-mapper.xml"></mapper>
+
+        <mapper resource="mapper/board/board-mapper.xml"></mapper>
         <mapper resource="mapper/room/room-mapper.xml"></mapper>
         <mapper resource="mapper/reservation/reservation-mapper.xml"></mapper>
         <mapper resource="mapper/user/user-mapper.xml"></mapper>

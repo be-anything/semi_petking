@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class Board {
     private long id;
     private String userId;
-    private String boardType;
+    private BoardType boardType;
     private String boardTitle;
     private String boardContent;
     private LocalDateTime regDate;
@@ -16,7 +16,7 @@ public class Board {
     public Board() {
     }
 
-    public Board(long id, String userId, String boardType, String boardTitle, String boardContent, LocalDateTime regDate, int boardAttr, int viewCount) {
+    public Board(long id, String userId, BoardType boardType, String boardTitle, String boardContent, LocalDateTime regDate, int boardAttr, int viewCount) {
         this.id = id;
         this.userId = userId;
         this.boardType = boardType;
@@ -43,11 +43,11 @@ public class Board {
         this.userId = userId;
     }
 
-    public String getBoardType() {
+    public BoardType getBoardType() {
         return boardType;
     }
 
-    public void setBoardType(String boardType) {
+    public void setBoardType(BoardType boardType) {
         this.boardType = boardType;
     }
 
@@ -96,7 +96,7 @@ public class Board {
         return "Board{" +
                 "id=" + id +
                 ", userId='" + userId + '\'' +
-                ", boardType='" + boardType + '\'' +
+                ", boardType=" + boardType +
                 ", boardTitle='" + boardTitle + '\'' +
                 ", boardContent='" + boardContent + '\'' +
                 ", regDate=" + regDate +
