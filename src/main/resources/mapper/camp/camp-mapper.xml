@@ -12,6 +12,9 @@
             ct.id tag_id,
             ct.name tag_name,
             cwt.camp_id camp_id,
+            cs.id service_id,
+            cs.name service_name,
+            cs.service_img service_img,
             (select count(*) from review where camp_id = c.id) review_count,
             (select count(*) from wish where camp_id = c.id) wish_count
         from
@@ -22,10 +25,18 @@
                     on cwt.tag_id = ct.id
                 left join room r
                     on c.id = r.camp_id
-        <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
-        where
-            c.${searchType} like '%' || #{searchKeyword} || '%'
-        </if>
+                left join camp_with_service cws
+                    on c.id = cws.camp_id
+                left join camp_service cs
+                    on cws.service_id = cs.id
+        <where>
+            <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+                c.${searchType} like '%' || #{searchKeyword} || '%'
+            </if>
+            <if test="true">
+                c.camp_state = 1
+            </if>
+        </where>
         order by
             c.reg_date desc
     </select>
@@ -38,6 +49,9 @@
             ct.id tag_id,
             ct.name tag_name,
             cwt.camp_id camp_id,
+            cs.id service_id,
+            cs.name service_name,
+            cs.service_img service_img,
             (select count(*) from review where camp_id = c.id) review_count,
             (select count(*) from wish where camp_id = c.id) wish_count
         from
@@ -48,6 +62,10 @@
                     on cwt.tag_id = ct.id
                 left join room r
                     on c.id = r.camp_id
+                left join camp_with_service cws
+                    on c.id = cws.camp_id
+                left join camp_service cs
+                    on cws.service_id = cs.id
         where
             c.id = #{id}
     </select>
@@ -79,6 +97,11 @@
             <id column="room_id" property="id"/>
             <result column="room_name" property="roomName"/>
             <result column="room_type" property="roomType"/>
+        </collection>
+        <collection property="campWithServices" ofType="campWithServiceVo">
+            <id column="service_id" property="id"/>
+            <result column="service_name" property="serviceName"/>
+            <result column="service_img" property="serviceImg"/>
         </collection>
     </resultMap>
 
@@ -133,9 +156,13 @@
             count(*)
         from
             camp
-        <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
-            where
+        <where>
+            <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
                 ${searchType} like '%' || #{searchKeyword} || '%'
-        </if>
+            </if>
+            <if test="true">
+                camp_state = 1
+            </if>
+        </where>
     </select>
 </mapper>

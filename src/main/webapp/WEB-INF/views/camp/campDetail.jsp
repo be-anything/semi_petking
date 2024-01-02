@@ -38,12 +38,8 @@
                                 </c:if>
                             </dd>
                         </div>
-                        <div class="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
-                            <dt class="text-sm font-medium leading-6 text-gray-900">부가서비스</dt>
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">부가서비스 있었나..?</dd>
-                        </div>
                         <div class="px-4 py-6 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-0">
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1 sm:mt-0">
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1 sm:mt-0 flex flex-wrap">
                                 <c:forEach items="${camp.campWithTags}" var="campTag">
                                     <span class="bg-green text-white text-m me-1 px-2.5 py-0.5 rounded mb-1"> #${campTag.tagName}</span>
                                 </c:forEach>
@@ -66,14 +62,35 @@
                         </div>
                     </dl>
                 </div>
+                <div class="h-[300px] font-medium leading-6 text-gray-900 mt-20 my-4 text-center">
+                    <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900"><span class="underline underline-offset-3 decoration-8 decoration-green">캠핑장 소개</span></h1>
+                    <p class="text-lg font-normal text-gray3 lg:text-xl mt-10">${camp.campIntro}</p>
+                </div>
 
+                <div class="text-xl font-medium leading-6 text-gray-900 mt-20 my-4 text-center">
+                    <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900"><span class="underline underline-offset-3 decoration-8 decoration-green">캠핑장 부가서비스 안내</span></h1>
+                </div>
+                <c:if test="${empty camp.campWithServices}">
+                    <div class="max-w-ful grid grid-cols-1 relative items-center justify-items-center">
+                        <p class="text-lg font-normal text-gray3 lg:text-xl mt-10">등록된 부가서비스가 없습니다.</p>
+                    </div>
+                </c:if>
+                <div class="mt-10 grid grid-cols-2 md:grid-cols-${camp.campWithServices.size()} gap-4 justify-items-center">
+                    <c:forEach items="${camp.campWithServices}" var="service">
+                        <div class="w-[100px] h-[100px] max-w-full rounded-full bg-light-pink grid grid-cols-1 relative items-center justify-items-center">
+                        <img class="w-[60px]" src="${pageContext.request.contextPath}/images/camp/${service.serviceImg}" alt="">
+                        <div class="text-center absolute top-full my-3">${service.serviceName}</div>
+                    </div>
+                    </c:forEach>
+                </div>
             </div>
         </div>
 
 
 
 
-        <%--img slider--%>
+
+    <%--img slider--%>
         <div id="gallery" class="relative w-full" data-carousel="slide">
             <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
@@ -100,12 +117,14 @@
             </button>
         </div>
 
-        <%-- 카카오지도 --%>
-        <div id="map" class="h-[500px] mx-4 my-4">
-            <input type="hidden" value="${camp.campLcLa}" name="campLcLa" id="campLcLa">
-            <input type="hidden" value="${camp.campLcLo}" name="campLcLo" id="campLcLo">
+    <%-- 카카오지도 --%>
+        <h1 class="text-xl font-medium leading-6 text-gray-900 mx-4 my-4 text-center">찾아오는 길</h1>
+        <div id="map" class="h-[500px]">
+                <div class="mx-4 my-6">
+                    <input type="hidden" value="${camp.campLcLa}" name="campLcLa" id="campLcLa">
+                <input type="hidden" value="${camp.campLcLo}" name="campLcLo" id="campLcLo">
+            </div>
         </div>
-
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/camp/campDetail.js"></script>

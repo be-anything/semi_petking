@@ -99,7 +99,7 @@
                         ${user.role}
                 </td>
                 <td class="px-6 py-4">
-                        ${user.regDate}
+
                 </td>
             </tr>
         </c:forEach>
