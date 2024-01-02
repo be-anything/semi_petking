@@ -45,7 +45,6 @@
     </select>
     <resultMap id="userVoMap" type="userVo">
         <id column="id" property="id"/>
-        <result column="grade_id" property="gradeId"/>
         <result column="club_id" property="clubId"/>
         <result column="nickname" property="nickname"/>
         <result column="name" property="name"/>

@@ -38,5 +38,6 @@
         <mapper resource="mapper/reservation/reservation-mapper.xml"></mapper>
         <mapper resource="mapper/user/user-mapper.xml"></mapper>
         <mapper resource="mapper/wish/wish-mapper.xml"></mapper>
+        <mapper resource="mapper/admin/admin-mapper.xml"></mapper>
     </mappers>
 </configuration>
