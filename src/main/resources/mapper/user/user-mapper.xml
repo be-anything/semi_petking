@@ -13,13 +13,6 @@
             id = #{id}
     </select>
 
-    <select id="findAll" resultType="user">
-        select
-            *
-        from
-            users
-    </select>
-
     <insert id="insertUser">
         insert into
             users
