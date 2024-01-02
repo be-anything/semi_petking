@@ -86,4 +86,11 @@ public class CampService {
         session.close();
         return camps;
     }
+
+    public List<CampService> findAllCampService() {
+        SqlSession session = getSqlSession();
+        List<CampService> campServices = campDao.findAllCampService(session);
+        session.close();
+        return campServices;
+    }
 }
