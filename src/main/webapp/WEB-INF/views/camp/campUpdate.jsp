@@ -97,10 +97,11 @@
         <div class="bg-pink w-full h-[100px]"></div>
         <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-10 sm:px-0 items-start">
             <dl class="divide-y divide-gray-100">
-                    <button id="updateBtn" type="submit" class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">수정하기</button>
+                <button id="updateBtn" type="submit" class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">수정하기</button>
             </dl>
         </div>
     </form>
+
     <form name="campRoomUpdateFrm" class="forms">
         캠핑존(객실) 수정
     </form>
