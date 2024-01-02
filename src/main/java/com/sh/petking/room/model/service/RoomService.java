@@ -3,10 +3,12 @@ package com.sh.petking.room.model.service;
 import com.sh.petking.room.model.dao.RoomDao;
 import com.sh.petking.room.model.dto.RoomDto;
 import com.sh.petking.room.model.entity.Room;
+import com.sh.petking.room.model.entity.RoomAttach;
 import com.sh.petking.room.model.vo.RoomVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.sh.petking.common.SqlSessionTemplate.getSqlSession;
 
@@ -14,31 +16,60 @@ public class RoomService
 {
     private RoomDao roomDao = new RoomDao();
 
-    public int insertRoom(Room room) {
+
+    public int insertRoom(RoomVo room)
+    {
         int result = 0;
         SqlSession session = getSqlSession();
-        try {
-            result = roomDao.insertRoom(session, room);
+
+        try
+        {
+            //board + attach 둘 다 insert하고 commit or rollback 처리 해야함
+            result = roomDao.insertRoom(session,room);
+
+            System.out.println("room get id())" + room.getId());
+            //attach 테이블에 등록
+            List<RoomAttach> attachments = room.getRoomAttachs();
+            if(!attachments.isEmpty())
+            {
+                for(RoomAttach attach : attachments)
+                {
+                    attach.setRoomId(room.getId()); //fk로 사용할 객실 id
+                    result = roomDao.insertAttachment(session,attach);
+
+                    //attachment 테이블삭제
+                    List<Long> delFiles = room.getDelFiles();
+                    if(!delFiles.isEmpty())
+                    {
+                        System.out.println("지울 첨부파일이 있다........");
+                        for(Long id : delFiles)
+                            result = roomDao.deleteAttachment(session,id);
+                    }
+                }
+            }
+
+
             session.commit();
         }
-        catch (Exception e)
+        catch(Exception e)
         {
+            //에러가 발생할 경우 롤백하기
             session.rollback();
-            throw e; //예외던지기
+            throw  e;
         }
         finally
         {
             session.close();
         }
-        System.out.println(result);
         return result;
     }
 
 
-    public List<RoomVo> findAll()
+    //페이징 추가한 findAll
+    public List<RoomVo> findAll(Map<String, Object> param)
     {
         SqlSession session = getSqlSession();
-        List<RoomVo> rooms = roomDao.findAll(session);
+        List<RoomVo> rooms = roomDao.findAll(session,param);
         session.close();
         return rooms; //결과값을 리턴
     }
@@ -74,6 +105,21 @@ public class RoomService
         session.close();
 
         return room;
-
     }
+    public int getTotalCount()
+    {
+        SqlSession session = getSqlSession();
+        int totalCount = roomDao.getToTalCount(session);
+        session.close();
+        return totalCount;
+    }
+
+    public RoomVo findById(long id) {
+        SqlSession session = getSqlSession();
+        RoomVo room = roomDao.findById(session,id);
+        session.close();
+
+        return room;
+    }
+
 }

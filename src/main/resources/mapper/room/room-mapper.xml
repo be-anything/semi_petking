@@ -8,8 +8,14 @@
         insert into
             room
         values (
-            #{id}, #{campId}, #{roomName}, #{roomType}, #{roomIntro}, #{roomDefaultPerson}, #{roomMaximumPerson}
+        seq_room_id.nextval, #{campId}, #{roomName}, #{roomType}, #{roomIntro}, #{roomDefaultPerson}, #{roomMaximumPerson},#{roomDefaultFee},#{roomOverFee}
         )
+        <selectKey order="AFTER" resultType="_long" keyProperty="id">
+            select
+            seq_room_id.currval
+            from
+            dual
+        </selectKey>
     </insert>
 
 <!--    <select id="findAll" resultType="roomVo">-->
@@ -38,7 +44,7 @@
     <!-- 객실 정보에 첨부사진도 추가 조인쿼리로 변경해봄.
          room 테이블과 room_attach 테이블을 조인한다.
          이슈: 쿼리는 정상 작동하는데 불러올 때 값을 set하지못함. -->
-    <select id="findAll" resultMap="RoomVoMap">
+    <select id="findAll" resultMap="RoomVoMap1">
         select
             r.*,
             a.id attach_id,
@@ -48,9 +54,11 @@
         from
             room r left join room_attach a
             on r.id = a.room_id
+        order by
+            r.id
     </select>
     <!-- RoomVoMap -->
-    <resultMap id="RoomVoMap" type="RoomVo">
+    <resultMap id="RoomVoMap1" type="RoomVo">
         <id column = "id" property="id"/>
         <result column="camp_id" property="campId"/>
         <result column="room_name" property="roomName"/>
@@ -58,6 +66,8 @@
         <result column="room_intro" property="roomIntro"/>
         <result column="room_default_person" property="roomDefaultPerson"/>
         <result column="room_maximum_person" property="roomMaximumPerson"/>
+        <result column="room_default_fee" property="roomDefaultFee"/>
+        <result column="room_over_fee" property="roomOverFee"/>
     <!--
                 여러개인 경우 여러번 실행
                 property:필드명
@@ -82,6 +92,74 @@
             id = #{id}
         and
             camp_id = #{campId}
+    </delete>
+
+
+    <select id="getTotalCount" resultType="_int">
+        select
+            count(*)
+        from
+            room
+    </select>
+
+
+    <select id="findById" resultMap="RoomVoMap">
+        select
+        r.*,
+        a.id attach_id,
+        a.room_id,
+        a.room_attach_original_name,
+        a.room_attach_renamed_name
+        from
+        room r left join room_attach a
+        on r.id = a.room_id
+        where
+            r.id = #{id}
+    </select>
+    <!-- RoomVoMap -->
+    <resultMap id="RoomVoMap" type="RoomVo">
+        <id column = "id" property="id"/>
+        <result column="camp_id" property="campId"/>
+        <result column="room_name" property="roomName"/>
+        <result column="room_type" property="roomType"/>
+        <result column="room_intro" property="roomIntro"/>
+        <result column="room_default_person" property="roomDefaultPerson"/>
+        <result column="room_maximum_person" property="roomMaximumPerson"/>
+        <result column="room_default_fee" property="roomDefaultFee"/>
+        <result column="room_over_fee" property="roomOverFee"/>
+        <!--
+                    여러개인 경우 여러번 실행
+                    property:필드명
+                    ofTpye:속성(클래스명)
+                    roomAttach에 대한 속성. 테이블 컬럼 그대로 갖고옴.
+                 -->
+        <collection property="roomAttachs" ofType="RoomAttach">
+            <id column="attach_id" property="id"/>
+            <result column ="room_id" property="roomId"/>
+            <result column ="room_attach_original_name" property="roomAttachOriginalName"/>
+            <result column ="room_attach_renamed_name" property="roomAttachRenamedName"/>
+        </collection>
+    </resultMap>
+
+    <!--RoomAttach insert 쿼리-->
+    <insert id="insertRoomAttach">
+        insert into
+        room_attach(id,room_id,room_attach_original_name,room_attach_renamed_name)
+        values(
+        seq_room_attach_id.nextval,
+        #{roomId},
+        #{roomAttachOriginalName},
+        #{roomAttachRenamedName}
+        )
+    </insert>
+
+    <!-- RoomAttach delete 쿼리   -->
+    <delete id="deleteRoomAttach">
+        delete
+        from
+            room_attach
+        where
+            id = #{id}
     </delete>
 
 

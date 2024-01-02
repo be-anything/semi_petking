@@ -374,8 +374,14 @@ select * from users;
 select * from room;
 select * from room where id = 100 and camp_id=4;
 
-
 create sequence seq_room_id;
+
+--0102 room_type 외래키 설정 삭제, 고유 컬럼으로 변경.
+alter table room drop constraints fk_room_room_type;
+--0102 요금 컬럼 추가 (기본요금,인당 추가요금)
+alter table room add room_default_fee number;
+alter table room add room_over_fee number;
+
 ----------------------------------------------------------------- room_attach 영역
 create table room_attach (
      id number not null,
