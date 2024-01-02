@@ -3,6 +3,7 @@ package com.sh.petking.room.model.service;
 import com.sh.petking.room.model.dao.RoomDao;
 import com.sh.petking.room.model.dto.RoomDto;
 import com.sh.petking.room.model.entity.Room;
+import com.sh.petking.room.model.vo.RoomVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -34,13 +35,10 @@ public class RoomService
     }
 
 
-    public List<Room> findAll(long campId)
+    public List<RoomVo> findAll()
     {
-
         SqlSession session = getSqlSession();
-        //session을 줄테니 db 결과값좀..ㅎ
-        List<Room> rooms = roomDao.findAll(session,campId);
-        //다썼으면 닫기
+        List<RoomVo> rooms = roomDao.findAll(session);
         session.close();
         return rooms; //결과값을 리턴
     }
