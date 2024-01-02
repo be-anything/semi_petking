@@ -34,12 +34,16 @@ public class UserDao extends HttpServlet {
         return session.selectOne("user.getTotalCount");
     }
 
-
     public List<User> findByName(SqlSession session, String keyword) {
         return session.selectList("user.findByName", keyword);
     }
 
     public int updateUser(SqlSession session, User user) {
         return session.update("User.updateUser", user);
+    }
+    public int updateUserRole(SqlSession session, User user) {
+        System.out.println(user);
+        return session.update("admin.updateUserRole", user);
+
     }
 }

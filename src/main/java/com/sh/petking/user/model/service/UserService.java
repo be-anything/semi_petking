@@ -34,6 +34,7 @@ public class UserService {
         }
         return result;
     }
+
     public List<User> findAll() {
         SqlSession session = getSqlSession();
         List<User> users = userDao.findAll(session);
