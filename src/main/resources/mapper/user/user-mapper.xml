@@ -32,7 +32,6 @@
             #{regDate}
         )
     </insert>
-
     <select id="findAll" resultMap="userVoMap">
         select
             u.*,
@@ -60,14 +59,10 @@
             <result column="grade_name" property="name"/>
         </association>
     </resultMap>
-
     <select id="getTotalCount" resultType="_int">
         select
             count(*)
         from
             users
     </select>
-
-
-
 </mapper>
