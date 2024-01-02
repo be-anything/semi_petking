@@ -12,9 +12,17 @@ public class CampVo extends Camp {
     private int reviewCount;
     private int wishCount;
     private List<CampWithTagVo> campWithTags = new ArrayList<>();
+    private List<CampWithServiceVo> campWithServices = new ArrayList<>();
     private List<Room> rooms = new ArrayList<>();
-
     private String campTagName;
+
+    public List<CampWithServiceVo> getCampWithServices() {
+        return campWithServices;
+    }
+
+    public void setCampWithServices(List<CampWithServiceVo> campWithServices) {
+        this.campWithServices = campWithServices;
+    }
 
     public List<Room> getRooms() {
         return rooms;
