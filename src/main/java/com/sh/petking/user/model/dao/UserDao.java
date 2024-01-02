@@ -35,4 +35,8 @@ public class UserDao extends HttpServlet {
     }
 
 
+    public int updateUserRole(SqlSession session, User user) {
+        System.out.println(user);
+        return session.update("admin.updateUserRole", user);
+    }
 }

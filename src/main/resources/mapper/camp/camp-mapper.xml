@@ -165,7 +165,7 @@
             </if>
         </where>
     </select>
-    <select id="findAllCampService" resultType="campService">
+    <select id="findAllCampService" resultType="campWithService">
         select
             *
         from
