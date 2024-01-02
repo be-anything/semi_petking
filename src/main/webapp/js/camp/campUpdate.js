@@ -25,7 +25,7 @@ tabBtns.forEach((tab, index) => {
 });
 
 
-// 이미지 미리보기
+// 메인 이미지 미리보기
 document.querySelector("#campImg").addEventListener('change', (e) => {
     const btn = e.target;
     const img = btn.files[0];
@@ -44,6 +44,30 @@ document.querySelector("#campImg").addEventListener('change', (e) => {
     }
     loadImg(img);
 });
+// 추가 이미지 미리보기 및 업로드 메세지 제거하기
+document.querySelectorAll(".campImg").forEach((img) => {
+    img.addEventListener('change', (e) => {
+        const btn = e.target;
+        const img = btn.files[0];
+        const imgView = btn.parentElement;
+        const text = btn.previousElementSibling;
+
+        console.dir(e.target);
+        console.dir(img);
+        console.dir(imgView);
+
+        const loadImg = (img) => {
+            const imgReader = new FileReader();
+            imgReader.onload = (e) => {
+                imgView.style["backgroundImage"] =  "url('" + e.target.result + "')";
+                console.log(imgView.style["backgroundImage"]);
+            };
+            imgReader.readAsDataURL(img);
+            text.style.display = 'none';
+        }
+        loadImg(img);
+    });
+})
 
 // 내용 수정 비동기처리
 document.campUpdateFrm.addEventListener('submit', (e) => {
