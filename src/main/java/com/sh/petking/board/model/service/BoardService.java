@@ -21,12 +21,12 @@ public class BoardService {
         return boards;
     }
 
-//    public Board findById(long id) {
-//        SqlSession session = getSqlSession();
-//        Board board = boardDao.findById(session, id);
-//        session.close();
-//        return board;
-//    }
+    public Board findById(long id) {
+        SqlSession session = getSqlSession();
+        Board board = boardDao.findById(session, id);
+        session.close();
+        return board;
+    }
 //    public BoardVo findById(long id, boolean hasRead) {
 //        SqlSession session = getSqlSession();
 //        BoardVo board = null;
