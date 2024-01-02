@@ -78,11 +78,27 @@
         <input type="hidden" name="id" value="${camp.id}">
         <div class="px-5">
             <div class="">
+                <dl class="divide-y divide-gray-100 mt-10">
+                    <h1 class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">부가서비스</h1>
+                    <div class="px-4 py-4 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-0">
+                        <c:forEach items="${campServices}" var="service">
+                            <div class="grid w-full gap-6">
+                                <input type="checkbox" id="react-option" value="" class="hidden peer" required="">
+                                <label for="react-option" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-pink peer-checked:text-white peer-checked:bg-pink ">
+                                    <div class="block">
+                                        <div class="w-full text-lg font-semibold">${service.serviceName}</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </dl>
                 <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-10 sm:px-0 items-start">
                     <dl class="divide-y divide-gray-100">
                             <button id="updateBtn" type="submit" class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">수정하기</button>
                     </dl>
                 </div>
+
             </div>
         </div>
     </form>

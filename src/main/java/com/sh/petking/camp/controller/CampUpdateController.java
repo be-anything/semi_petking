@@ -30,8 +30,14 @@ public class CampUpdateController extends HttpServlet {
         // 1. 사용자 입력값 처리
         Long id = Long.parseLong(req.getParameter("id"));
         CampVo camp = campService.findById(id);
+
         // 2. 업무로직
         req.setAttribute("camp", camp);
+        // - 부가서비스 종류 가져오기
+        List<CampService> campServices = campService.findAllCampService();
+        req.setAttribute("campServices", campServices);
+        System.out.println(campServices);
+
         // 3. 포워딩
         req.getRequestDispatcher("/WEB-INF/views/camp/campUpdate.jsp").forward(req, resp);
     }
