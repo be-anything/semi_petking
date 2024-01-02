@@ -27,23 +27,21 @@ public class BoardDetailController extends HttpServlet {
             long id = Long.parseLong(req.getParameter("id"));
             System.out.println(id);
 
-
             // 2. 업무로직
             // 조회수 관련처리
             Cookie[] cookies = req.getCookies();
             List<String> boardCookieValues = getBoardCookieValues(cookies);
             boolean hasRead = boardCookieValues.contains(String.valueOf(id)); // 현재 게시글 읽음여부
             System.out.println(hasRead); // true 이미 읽었음, false 처음 읽음
-
             // 조회
-//            BoardVo board = boardService.findById(id, hasRead);
-//            System.out.println(board);
-//
-//            // xss공격대비 escapeHtml처리
-//            String safeHtml = PetkingUtils.escapeHtml(board.getBoardContent());
-//            // 개행문자 (\n) -> <br>
-//            board.setBoardContent(PetkingUtils.convertLineFeedToBr(safeHtml));
-//            req.setAttribute("board", board);
+            BoardVo board = boardService.findById(id, hasRead);
+            System.out.println(board);
+
+            // xss공격대비 escapeHtml처리
+            String safeHtml = PetkingUtils.escapeHtml(board.getBoardContent());
+            // 개행문자 (\n) -> <br>
+            board.setBoardContent(PetkingUtils.convertLineFeedToBr(safeHtml));
+            req.setAttribute("board", board);
 
             // 응답 쿠키 생성
             // 만료시간 쿠키종류
@@ -61,7 +59,7 @@ public class BoardDetailController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp").forward(req, resp);
         } catch (Exception e) {
             // 예외 전환해서 던지기 : 사용자친화적 메세지, 원인예외 wrapping
-//            throw new BoardException("게시글 상세보기 오류", e);
+            throw new BoardException("게시글 상세보기 오류", e);
         }
     }
 

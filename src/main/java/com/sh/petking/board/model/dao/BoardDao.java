@@ -22,6 +22,7 @@ public class BoardDao {
     }
 
     public Board findById(SqlSession session, long id) {
+        System.out.println(id);
         return session.selectOne("board.findById", id);
     }
 
@@ -41,11 +42,11 @@ public class BoardDao {
         return session.selectOne("board.getTotalCount");
     }
 
-//    public List<BoardComment> findCommentByBoardId(SqlSession session, long boardId) {
-//        return session.selectList("board.findCommentByBoardId", boardId);
-//    }
+    public List<BoardComment> findCommentByBoardId(SqlSession session, long boardId) {
+        return session.selectList("board.findCommentByBoardId", boardId);
+    }
 
-    public int updateBoardReadCount(SqlSession session, long id) {
-        return session.update("board.updateBoardReadCount", id);
+    public int updateBoardViewCount(SqlSession session, long id) {
+        return session.update("board.updateBoardViewCount", id);
     }
 }

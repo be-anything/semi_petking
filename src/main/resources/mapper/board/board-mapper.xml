@@ -61,4 +61,12 @@
         from
             board
     </select>
+    <update id="updateBoardViewCount">
+        update
+            board
+        set
+            view_count = view_count + 1
+        where
+            id = #{id}
+    </update>
 </mapper>

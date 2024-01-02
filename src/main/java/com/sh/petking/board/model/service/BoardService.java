@@ -27,28 +27,28 @@ public class BoardService {
         session.close();
         return board;
     }
-//    public BoardVo findById(long id, boolean hasRead) {
-//        SqlSession session = getSqlSession();
-//        BoardVo board = null;
-//        int result = 0;
-//        try {
-//            // 조회수 증가처리
-//            if (!hasRead)
-//                result = boardDao.updateBoardReadCount(session, id);
-//
-//            // 조회
-//            board = (BoardVo) boardDao.findById(session, id);
-//            List<BoardComment> comments = boardDao.findCommentByBoardId(session, id);
-//            board.setComments(comments);
-//            session.commit();
-//        } catch (Exception e) {
-//            session.rollback();
-//            throw e;
-//        } finally {
-//            session.close();
-//        }
-//        return board;
-//    }
+    public BoardVo findById(long id, boolean hasRead) {
+        SqlSession session = getSqlSession();
+        BoardVo board = null;
+        int result = 0;
+        try {
+            // 조회수 증가처리
+            if (!hasRead)
+                result = boardDao.updateBoardViewCount(session, id);
+
+            // 조회
+            board = (BoardVo) boardDao.findById(session, id);
+            List<BoardComment> comments = boardDao.findCommentByBoardId(session, id);
+            board.setComments(comments);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return board;
+    }
 
     public int insertBoard(Board board){
         int result = 0;

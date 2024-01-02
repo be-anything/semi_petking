@@ -13,16 +13,18 @@
 
 <div class="xl:container p-8">
     <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
-        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${fn:escapeXml(board.boardTitle)}</h5>
-        <p class="mb-3 font-normal text-gray-500">${board.user.name} (${board.userId})</p>
+<%--        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${fn:escapeXml(board.boardTitle)}</h5>--%>
+        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${board.boardTitle}</h5>
+<%--        <p class="mb-3 font-normal text-gray-500">${board.user.name} (${board.userId})</p>--%>
+        <p class="mb-3 font-normal text-gray-500">${board.userId}</p>
         <p class="mb-3 font-normal text-gray-700">${board.boardContent}</p>
-        <c:forEach items="${board.attachments}" var="attach">
-            <a href="${pageContext.request.contextPath}/upload/board/${boardAttach.renamedFilename}"
-               download="${boardAttach.originalFilename}" class="flex items-center text-blue-600 hover:underline">
-                <img src="../images/file.png" class="w-[16px] mr-1">
-                    ${boardAttach.originalFilename}
-            </a>
-        </c:forEach>
+<%--        <c:forEach items="${board.attachments}" var="attach">--%>
+<%--            <a href="${pageContext.request.contextPath}/upload/board/${boardAttach.renamedFilename}"--%>
+<%--               download="${boardAttach.originalFilename}" class="flex items-center text-blue-600 hover:underline">--%>
+<%--                <img src="../images/file.png" class="w-[16px] mr-1">--%>
+<%--                    ${boardAttach.originalFilename}--%>
+<%--            </a>--%>
+<%--        </c:forEach>--%>
         <div class="text-sm mt-2 font-medium text-gray-400">
             조회수 <span>${board.viewCount}</span>
         </div>
@@ -34,28 +36,28 @@
         </span>
         </div>
         <%-- 작성자 본인과 관리자에게만 노출 --%>
-        <c:if test="${loginUser.id eq board.userId}">
-            <div class="flex justify-end">
-                <button
-                        type="button"
-                        onclick="location.href = '${pageContext.request.contextPath}/board/boardUpdate?id=${board.id}';"
-                        class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
-                    수정
-                </button>
-                <button type="button"
-                        onclick="confirm('정말 삭제하시겠습니까? 😯') && document.boardDeleteFrm.submit()"
-                        class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">
-                    삭제
-                </button>
-            </div>
-            <form
-                    action="${pageContext.request.contextPath}/board/boardDelete"
-                    method="post"
-                    name="boardDeleteFrm">
-                <input type="hidden" name="id" value="${board.id}">
-            </form>
-        </c:if>
-    </div>
+<%--        <c:if test="${loginUser.id eq board.userId}">--%>
+<%--            <div class="flex justify-end">--%>
+<%--                <button--%>
+<%--                        type="button"--%>
+<%--                        onclick="location.href = '${pageContext.request.contextPath}/board/boardUpdate?id=${board.id}';"--%>
+<%--                        class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">--%>
+<%--                    수정--%>
+<%--                </button>--%>
+<%--                <button type="button"--%>
+<%--                        onclick="confirm('정말 삭제하시겠습니까? 😯') && document.boardDeleteFrm.submit()"--%>
+<%--                        class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">--%>
+<%--                    삭제--%>
+<%--                </button>--%>
+<%--            </div>--%>
+<%--            <form--%>
+<%--&lt;%&ndash;                    action="${pageContext.request.contextPath}/board/boardDelete"&ndash;%&gt;--%>
+<%--                    method="post"--%>
+<%--                    name="boardDeleteFrm">--%>
+<%--                <input type="hidden" name="id" value="${board.id}">--%>
+<%--            </form>--%>
+<%--        </c:if>--%>
+<%--    </div>--%>
 
     <!-- 댓글 폼 -->
     <div class="w-full my-2">
@@ -104,7 +106,7 @@
                             </p>
                         </td>
                         <td class="px-6 py-4">
-                            <c:if test="${loginMember.id eq boardComment.userId}">
+                            <c:if test="${loginUser.id eq boardComment.userId}">
                                 <div class="flex">
                                     <a href="javascript:confirm('정말 삭제하시겠습니까? 😲') && document.boardCommentDeleteFrm${comment.id}.submit();" class="font-medium text-red-600 hover:underline ms-3">Remove</a>
                                 </div>
