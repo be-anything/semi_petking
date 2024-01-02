@@ -33,6 +33,11 @@
                 <label for="saveId" class="ms-2 text-sm font-medium text-gray-700">아이디 저장</label>
             </div>
 
+            <p class="text-sm font-light text-gray-500">
+                <a href="#" class="font-medium text-primary-600 hover:underline">아이디 찾기 |</a>
+                <a href="#" class="font-medium text-primary-600 hover:underline"> 비밀번호 찾기</a>
+            </p>
+
             <div>
                 <button type="submit" class="flex w-full justify-center rounded-md bg-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">로그인</button>
             </div>

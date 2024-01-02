@@ -7,7 +7,7 @@ if(saveId) {
 
 // 로그인폼 제출시 아이디저장
 document.userLoginFrm.addEventListener('submit', (e) => {
-    // console.log('submit');
+    console.log('submit');
     const saveId = e.target.saveId;
     const id = e.target.id;
     if(saveId.checked) {

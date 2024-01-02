@@ -19,9 +19,9 @@ public class UserLoginController extends HttpServlet {
     // 로그인 폼 페이지
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 사용자가 머무를 페이지 세션에 저장
+        // 사용자가 머물렀던 페이지를 세션에 저장
         String referer = req.getHeader("Referer");
-//        System.out.println("referer = " + referer); // 저장된정보 확인
+        System.out.println("referer = " + referer); // 저장된정보 확인
 
         if (!referer.contains("/user/userlogin"))
             req.getSession().setAttribute("next", referer);
@@ -43,7 +43,7 @@ public class UserLoginController extends HttpServlet {
 
         // 업무 로직
         User user = userService.findById(id);
-//        System.out.println(user);
+        System.out.println(user);
 
         // 세션생성 / 가져오기
         HttpSession session = req.getSession();
