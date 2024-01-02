@@ -1,6 +1,7 @@
 package com.sh.petking.camp.model.dao;
 
 import com.sh.petking.camp.model.entity.Camp;
+import com.sh.petking.camp.model.vo.CampVo;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
@@ -12,7 +13,7 @@ public class CampDao {
         return session.selectList("camp.findAll");
     }
 
-    public Camp findById(SqlSession session, long id) {
+    public CampVo findById(SqlSession session, long id) {
         return session.selectOne("camp.findById", id);
     }
 
@@ -21,18 +22,18 @@ public class CampDao {
     }
 
     public int updateCamp(SqlSession session, Camp camp) {
-        return session.update("camp.updateCamp", camp);
+        return session.update("camp.updateCampInfo", camp);
     }
 
     public int deleteCamp(SqlSession session, Long id) {
         return session.delete("camp.deleteCamp", id);
     }
 
-    public int getTotalCount(SqlSession session) {
-        return session.selectOne("camp.getTotalCount");
+    public int getTotalCount(SqlSession session, Map<String, Object> param) {
+        return session.selectOne("camp.getTotalCount", param);
     }
 
-    public List<Camp> findAll(SqlSession session, Map<String, Object> param) {
+    public List<CampVo> findAll(SqlSession session, Map<String, Object> param) {
         int page = (int) param.get("page");
         int limit = (int) param.get("limit");
         int offset = (page - 1) * limit;

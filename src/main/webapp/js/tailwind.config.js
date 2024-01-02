@@ -8,8 +8,8 @@ tailwind.config = {
                 "green" : "#89B9AD",
                 "black" : "#444B54",
                 "gray1" : "#FBFBFB",
-                "gary2" : "#E6E6E6",
-                "gary3" : "#757575",
+                "gray2" : "#E6E6E6",
+                "gray3" : "#757575",
                 "red" : "#F24822",
             }
         },

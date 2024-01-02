@@ -1,9 +1,11 @@
 package com.sh.petking.user.model.entity;
 
+import com.sh.petking.common.Role;
+
 import java.util.Date;
 
 public class User {
-    private Long id;
+    private String id;
     private String gradeId;
     private int clubId;
     private String nickname;
@@ -14,13 +16,13 @@ public class User {
     private String email;
     private String phone;
     private int resultPoint;
-    private String role;
+    private Role role;
     private Date regDate;
 
     public User() {
     }
 
-    public User(Long id, String gradeId, int clubId, String nickname, String name, String password, String originProfileName, String renamedProfileName, String email, String phone, int resultPoint, String role, Date regDate) {
+    public User(String id, String gradeId, int clubId, String nickname, String name, String password, String originProfileName, String renamedProfileName, String email, String phone, int resultPoint, Role role, Date regDate) {
         this.id = id;
         this.gradeId = gradeId;
         this.clubId = clubId;
@@ -36,11 +38,11 @@ public class User {
         this.regDate = regDate;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -124,11 +126,11 @@ public class User {
         this.resultPoint = resultPoint;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -143,7 +145,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", gradeId='" + gradeId + '\'' +
                 ", clubId=" + clubId +
                 ", nickname='" + nickname + '\'' +
@@ -154,7 +156,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", resultPoint=" + resultPoint +
-                ", role='" + role + '\'' +
+                ", role=" + role +
                 ", regDate=" + regDate +
                 '}';
     }

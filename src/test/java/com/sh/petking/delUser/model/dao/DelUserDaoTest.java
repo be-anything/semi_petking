@@ -1,32 +1,41 @@
-package com.sh.petking.delUser.model.service;
+package com.sh.petking.delUser.model.dao;
 
+import com.sh.petking.delUser.model.dao.DelUserDao;
 import com.sh.petking.delUser.model.entity.DelUser;
-import com.sh.petking.delUser.model.service.DelUserService;
+import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
 
+import static com.sh.petking.common.SqlSessionTemplate.getSqlSession;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class DelUserServiceTest {
-    DelUserService delUserService;
-
+public class DelUserDaoTest {
+    private DelUserDao delUserDao;
+    private SqlSession session;
     @BeforeEach
-    public void beforeEach(){
-        this.delUserService = new DelUserService();
+    public void setUp(){
+        this.delUserDao = new DelUserDao();
+        this.session = getSqlSession();
+    }
+    @AfterEach
+    public void tearDown(){
+        this.session.rollback();
+        this.session.close();
     }
 
-    @DisplayName("DelUsersService 객체는 null이 아니다.")
+    @DisplayName("DelUsersDao 객체는 null이 아니다.")
     @Test
     public void test1() {
-        assertThat(delUserService).isNotNull();
+        assertThat(delUserDao).isNotNull();
+        assertThat(session).isNotNull();
     }
 
     @DisplayName("탈퇴회원 전체 조회")
     @Test
     public void test2() {
-        List<DelUser> delUsers = delUserService.findAll();
+        List<DelUser> delUsers = delUserDao.findAll(session);
         assertThat(delUsers)
                 .isNotNull()
                 .isNotEmpty();

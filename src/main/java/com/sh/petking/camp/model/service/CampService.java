@@ -2,6 +2,7 @@ package com.sh.petking.camp.model.service;
 
 import com.sh.petking.camp.model.dao.CampDao;
 import com.sh.petking.camp.model.entity.Camp;
+import com.sh.petking.camp.model.vo.CampVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -20,9 +21,9 @@ public class CampService {
         return camps;
     }
     // 캠핑장 1개 조회 - id
-    public Camp findById(long id) {
+    public CampVo findById(long id) {
         SqlSession session = getSqlSession();
-        Camp camp = campDao.findById(session, id);
+        CampVo camp = campDao.findById(session, id);
         session.close();
         return camp;
     }
@@ -72,16 +73,16 @@ public class CampService {
         return result;
     }
 
-    public int getTotalCount() {
+    public int getTotalCount(Map<String, Object> param) {
         SqlSession session = getSqlSession();
-        int totalCount = campDao.getTotalCount(session);
+        int totalCount = campDao.getTotalCount(session, param);
         session.close();
         return totalCount;
     }
 
-    public List<Camp> findAll(Map<String, Object> param) {
+    public List<CampVo> findAll(Map<String, Object> param) {
         SqlSession session = getSqlSession();
-        List<Camp> camps = campDao.findAll(session, param);
+        List<CampVo> camps = campDao.findAll(session, param);
         session.close();
         return camps;
     }

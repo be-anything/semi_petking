@@ -13,7 +13,7 @@
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form name="memberLoginFrm" class="space-y-6" method="POST">
+        <form name="userLoginFrm" class="space-y-6" method="POST">
             <div>
                 <label for="id" class="block text-sm font-medium leading-6 text-gray-900">아이디</label>
                 <div class="mt-2">
@@ -34,7 +34,7 @@
             </div>
 
             <div>
-                <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">로그인</button>
+                <button type="submit" class="flex w-full justify-center rounded-md bg-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">로그인</button>
             </div>
         </form>
     </div>

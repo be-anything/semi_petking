@@ -1,3 +1,4 @@
+--jin
 -- petking 계정 생성 및 권한 부여
 alter session set "_oracle_script" = true;
 
@@ -169,6 +170,7 @@ create table review (
 create sequence seq_review_id;
 select * from review;
 insert into review values(seq_review_id.nextval, 'goyoung12', 1, default,'캠핑장이 깨끗해요,캠핑장이 좋아요,캠핑장이 아름다워요','캠핑장리뷰','캠핑장이오지고지리고렛잇고',default,default,sysdate);
+commit;
 ----------------------------------------------------------------- review_comment 영역
 create table review_comment (
     id number not null,
@@ -368,7 +370,11 @@ CREATE TABLE room(
     constraints fk_room_camp_id foreign key(camp_id) references camp(id) on delete set null,
     constraints fk_room_room_type foreign key(room_type) references camp_type(id) on delete set null--캠핑타입의 아이디를 외래키로 삼는다.
 );
+select * from users;
 select * from room;
+select * from room where id = 100 and camp_id=4;
+
+
 create sequence seq_room_id;
 ----------------------------------------------------------------- room_attach 영역
 create table room_attach (
@@ -381,6 +387,19 @@ create table room_attach (
 );
 create sequence seq_room_attach_id;
 select * from room_attach;
+
+ select
+            r.*,
+            a.id attach_id,
+            a.room_id,
+            a.room_attach_original_name,
+            a.room_attach_renamed_name
+        from
+            room r left join room_attach a
+            on r.id = a.room_id;
+
+insert into room_attach (id,room_id,room_attach_original_name,room_attach_renamed_name) VALUES (seq_camp_attach_id.nextval,100,'origin_name','renamed_name');
+insert into room_attach (id,room_id,room_attach_original_name,room_attach_renamed_name) VALUES (seq_camp_attach_id.nextval,100,'origin_name','renamed_name');
 ----------------------------------------------------------------- camp_attach 영역
 create table camp_attach (
      id number not null,
@@ -392,6 +411,7 @@ create table camp_attach (
 );
 create sequence seq_camp_attach_id;
 select * from camp_attach;
+select * from room;
 ----------------------------------------------------------------- reservation 영역
 
 CREATE TABLE reservation(
@@ -410,7 +430,10 @@ CREATE TABLE reservation(
     constraints ck_reservation_status check(status in ('0', '1'))
 );
 create sequence seq_reservation_id;
+
 select * from reservation;
+select * from users;
+select * from room;
 ----------------------------------------------------------------- reservation_pay 영역
 
 CREATE TABLE reservation_pay(
