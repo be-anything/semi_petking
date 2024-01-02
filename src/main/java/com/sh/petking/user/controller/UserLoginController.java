@@ -16,18 +16,21 @@ import java.io.IOException;
 public class UserLoginController extends HttpServlet {
     private UserService userService = new UserService();
 
+    // 로그인 폼 페이지
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String save = req.getHeader("Save"); // 페이지를 세션에 저장
-        System.out.println("save = " + save); // 저장된정보 확인
+        // 사용자가 머무를 페이지 세션에 저장
+        String referer = req.getHeader("Referer");
+//        System.out.println("referer = " + referer); // 저장된정보 확인
 
-//        if (!save.contains("/user/userLogin"))
-//            req.getSession().setAttribute("next", save);
+        if (!referer.contains("/user/userlogin"))
+            req.getSession().setAttribute("next", referer);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/user/userLogin.jsp");
         requestDispatcher.forward(req, resp);
     }
 
+    // 로그인 처리
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 사용자 입력값 인코딩 처리
@@ -36,11 +39,11 @@ public class UserLoginController extends HttpServlet {
         // 사용자 입력값 가져오기
         String id = req.getParameter("id");
         String pw = req.getParameter("password");
-        System.out.println(id + pw);
+//        System.out.println(id + pw);
 
         // 업무 로직
         User user = userService.findById(id);
-        System.out.println(user);
+//        System.out.println(user);
 
         // 세션생성 / 가져오기
         HttpSession session = req.getSession();
