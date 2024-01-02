@@ -21,7 +21,7 @@
         <div class="flex justify-end">
             <button
                     type="button"
-                    onclick="location.href = '${pageContext.request.contextPath}/board/boardCreate';"
+<%--                    onclick="location.href = '${pageContext.request.contextPath}/board/boardCreate';"--%>
                     class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">글쓰기</button>
         </div>
     </c:if>
@@ -42,7 +42,7 @@
                 <tr class="odd:bg-white even:bg-gray-50 border-b ">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
                     <td class="px-6 py-4">
-                        <a href="${pageContext.request.contextPath}/board/boardDetail?id=${board.id}" class="hover:underline">${fn:escapeXml(board.boardTitle)}</a>
+<%--                        <a href="${pageContext.request.contextPath}/board/boardDetail?id=${board.id}" class="hover:underline">${fn:escapeXml(board.boardTitle)}</a>--%>
                         <c:if test="${board.commentCount ge 10}"> <!-- greater than equals 이상 -->
                             <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">${board.commentCount}</span>
                         </c:if>
@@ -57,7 +57,7 @@
                     </td>
                     <td class="px-6 py-4">
                         <c:if test="${board.attachCount gt 0}">
-                            <img class="w-[16px]" src="../images/file.png" alt="">
+<%--                            <img class="w-[16px]" src="../images/file.png" alt="">--%>
                         </c:if>
                     </td>
                     <td class="px-6 py-4">${board.viewCount}</td>

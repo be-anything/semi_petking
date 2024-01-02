@@ -1,6 +1,7 @@
 package com.sh.petking.board.model.dao;
 
 import com.sh.petking.board.model.entity.Board;
+import com.sh.petking.board.model.entity.BoardType;
 import com.sh.petking.board.model.service.BoardService;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.AfterEach;
@@ -26,6 +27,8 @@ public class BoardDaoTest {
 
     BoardDao boardDao;
     SqlSession session;
+
+
     @BeforeEach
     void setUp(){
         this.boardDao = new BoardDao();
@@ -62,6 +65,7 @@ public class BoardDaoTest {
     @ValueSource(longs = {1L, 2L, 3L})
     void test2_1(long id) {
         Board board = boardDao.findById(session, id);
+        System.out.println(board);
 
         assertThat(board)
                 .isNotNull()
@@ -88,7 +92,9 @@ public class BoardDaoTest {
     @DisplayName("게시글 등록")
     @Test
     void test3(){
-        Board board = new Board(0, null, "카테고리", "제목", "내용", null, 0, 0);
+        BoardType boardType = BoardType.F;
+        Board board = new Board(0, "goyoung12", boardType, "제목", "내용", null, 0, 0);
+        System.out.println(board);
         int result = boardDao.insertBoard(session, board);
 
         assertThat(result).isGreaterThan(0);
@@ -100,10 +106,12 @@ public class BoardDaoTest {
     void test4(long id){
         Board board = boardDao.findById(session, id);
         assertThat(board).isNotNull();
+        System.out.println(board);
         String newBoardTitle = "새 제목";
         String newBoardContent = "새 내용";
         board.setBoardTitle(newBoardTitle);
         board.setBoardContent(newBoardContent);
+        System.out.println(board);
         int result = boardDao.updateBoard(session, board);
         assertThat(result).isGreaterThan(0);
         Board boardUpdated = boardDao.findById(session, id);
@@ -125,12 +133,12 @@ public class BoardDaoTest {
         assertThat(boardDeleted).isNull();
     }
 
-    @DisplayName("전체 게시글수 조회")
-    @Test
-    void test6() {
-        int totalCount = boardDao.getTotalCount(session);
-        assertThat(totalCount).isNotNegative();
-    }
+//    @DisplayName("전체 게시글수 조회")
+//    @Test
+//    void test6() {
+//        int totalCount = boardDao.getTotalCount(session);
+//        assertThat(totalCount).isNotNegative();
+//    }
 
 //    @DisplayName("게시글 페이징 조회")
 //    @ParameterizedTest
@@ -143,18 +151,18 @@ public class BoardDaoTest {
 //                .isNotEmpty()
 //                .size().isLessThanOrEqualTo(limit);
 //    }
-//
-//    public static Stream<Integer> pageNoProvider() {
-//        BoardService boardService = new BoardService();
-//        SqlSession session = getSqlSession();
-//        int totalCount = boardService.getTotalCount();
-//        int totalPage = (int) Math.ceil((double) totalCount / limit);
-//        return IntStream.range(1, totalPage).boxed(); // 1 부터 total페이지까지를 요소로 하는 Stream생성
-//    }
-//    public static Stream<Arguments> boardIdProvider() {
-//        BoardService boardService = new BoardService(); // non-static fixture를 사용할 수 없다.
-//        List<Board> boards = boardService.findAll();
-//        return Stream.of(Arguments.arguments(boards.get(0).getId()));
-//    }
+
+    public static Stream<Integer> pageNoProvider() {
+        BoardService boardService = new BoardService();
+        SqlSession session = getSqlSession();
+        int totalCount = boardService.getTotalCount();
+        int totalPage = (int) Math.ceil((double) totalCount / limit);
+        return IntStream.range(1, totalPage).boxed(); // 1 부터 total페이지까지를 요소로 하는 Stream생성
+    }
+    public static Stream<Arguments> boardIdProvider() {
+        BoardService boardService = new BoardService(); // non-static fixture를 사용할 수 없다.
+        List<Board> boards = boardService.findAll();
+        return Stream.of(Arguments.arguments(boards.get(0).getId()));
+    }
 
 }

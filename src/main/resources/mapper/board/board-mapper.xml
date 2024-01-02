@@ -20,20 +20,31 @@
     </select>
     <insert id="insertBoard">
         insert into
-            board(id, userId, boardType, boardTitle, boardContent, regDate, boardAttr, viewCount)
+            board
         values(
             seq_board_id.nextval,
-            #{uesrId},
+            #{userId},
             #{boardType},
             #{boardTitle},
             #{boardContent},
-            #{regDate},
+            default,
             default,
             default
-            )
         )
     </insert>
+    <update id="updateBoard">
+        update
+            board
+        set
+            board_title = #{boardTitle},
+            board_content= #{boardContent}
+        where
+            id = #{id}
+    </update>
     <delete id="deleteBoard">
-
+        delete from
+            board
+        where
+            id = #{id}
     </delete>
 </mapper>
