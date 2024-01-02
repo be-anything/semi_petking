@@ -35,4 +35,11 @@ public class UserDao extends HttpServlet {
     }
 
 
+    public List<User> findByName(SqlSession session, String keyword) {
+        return session.selectList("user.findByName", keyword);
+    }
+
+    public int updateUser(SqlSession session, User user) {
+        return session.update("User.updateUser", user);
+    }
 }

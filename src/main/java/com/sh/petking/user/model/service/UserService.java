@@ -56,4 +56,18 @@ public class UserService {
     }
 
 
+    public int updateUser(User user) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = userDao.updateUser(session, user);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }

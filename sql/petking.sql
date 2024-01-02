@@ -19,8 +19,8 @@ CREATE TABLE users (
                        nickname varchar2(100) NOT NULL,
                        name varchar2(20) NOT NULL,
                        password varchar2(1000) NOT NULL,
-                       origin_profile_name varchar2(300),
-                       renamed_profile_name VARCHAR(300),
+                       origin_profile_name varchar2(300), -- default.png
+                       renamed_profile_name VARCHAR(300), -- default.png
                        email varchar2(200),
                        phone char(11) NOT NULL,
                        result_point number DEFAULT 0,
