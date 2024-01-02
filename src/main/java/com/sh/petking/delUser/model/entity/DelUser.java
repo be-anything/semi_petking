@@ -1,5 +1,7 @@
 package com.sh.petking.delUser.model.entity;
 
+import com.sh.petking.common.Role;
+
 import java.time.LocalDate;
 
 public class DelUser {

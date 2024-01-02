@@ -386,6 +386,19 @@ create table room_attach (
 );
 create sequence seq_room_attach_id;
 select * from room_attach;
+
+ select
+            r.*,
+            a.id attach_id,
+            a.room_id,
+            a.room_attach_original_name,
+            a.room_attach_renamed_name
+        from
+            room r left join room_attach a
+            on r.id = a.room_id;
+
+insert into room_attach (id,room_id,room_attach_original_name,room_attach_renamed_name) VALUES (seq_camp_attach_id.nextval,100,'origin_name','renamed_name');
+insert into room_attach (id,room_id,room_attach_original_name,room_attach_renamed_name) VALUES (seq_camp_attach_id.nextval,100,'origin_name','renamed_name');
 ----------------------------------------------------------------- camp_attach 영역
 create table camp_attach (
      id number not null,
@@ -397,6 +410,7 @@ create table camp_attach (
 );
 create sequence seq_camp_attach_id;
 select * from camp_attach;
+select * from room;
 ----------------------------------------------------------------- reservation 영역
 
 CREATE TABLE reservation(

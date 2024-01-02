@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=378fbb0293da7feaa0ce71d64debff24"></script>
 
 <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mt-10 mb-10">
     <div>
@@ -68,7 +69,7 @@
 
             </div>
         </div>
-        
+
 
 
 
@@ -97,6 +98,12 @@
             <span class="sr-only">Next</span>
         </span>
             </button>
+        </div>
+
+        <%-- 카카오지도 --%>
+        <div id="map" class="h-[500px] mx-4 my-4">
+            <input type="hidden" value="${camp.campLcLa}" name="campLcLa" id="campLcLa">
+            <input type="hidden" value="${camp.campLcLo}" name="campLcLo" id="campLcLo">
         </div>
 
     </div>
