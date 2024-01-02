@@ -1,12 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: cksgm
-  Date: 2023-12-30
-  Time: PM 8:31
+  Date: 2024-01-02
+  Time: AM 10:41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.sh.petking."
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -32,34 +31,34 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
             <th scope="col" class="px-6 py-3">
-                no
+                번호
             </th>
             <th scope="col" class="px-6 py-3">
-                회원아이디
+                사업자 아이디
             </th>
             <th scope="col" class="px-6 py-3">
-                등급
+                사업자 이름
             </th>
             <th scope="col" class="px-6 py-3">
-                클럽아이디
+                캠핑장 이름
             </th>
             <th scope="col" class="px-6 py-3">
-                닉네임
+                캠핑장 정보
             </th>
             <th scope="col" class="px-6 py-3">
-                이름
+                캠핑장 전화번호
             </th>
             <th scope="col" class="px-6 py-3">
-                이메일
+                캠핑장 주소
             </th>
             <th scope="col" class="px-6 py-3">
-                핸드폰번호
+                사업자번호
             </th>
             <th scope="col" class="px-6 py-3">
-                포인트
+                리뷰수
             </th>
             <th scope="col" class="px-6 py-3">
-                권한
+                좋아요수
             </th>
             <th scope="col" class="px-6 py-3">
                 가입일
@@ -67,57 +66,49 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${users}" var="user" varStatus="vs">
+        <c:forEach items="${campVos}" var="camp" varStatus="vs">
+
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         ${vs.index + 1}
                 </th>
                 <td class="px-6 py-4">
-                        ${user.id}
+                        ${camp.businessId}
                 </td>
                 <td class="px-6 py-4">
-                        ${user.userGrade.name}
+                        ${camp.businessName}
                 </td>
                 <td class="px-6 py-4">
-                        ${user.clubId}
+                    <a href="${pageContext.request.contextPath}/camp/campDetail?id=${camp.id}">
+                        ${camp.campName}
+                    </a>
                 </td>
                 <td class="px-6 py-4">
-                        ${user.nickname}
+                        ${camp.campIntro}
                 </td>
                 <td class="px-6 py-4">
-                        ${user.name}
+                        ${camp.campPhone}
                 </td>
                 <td class="px-6 py-4">
-                        ${user.email}
+                        ${camp.campAddr}
                 </td>
                 <td class="px-6 py-4">
-                        ${user.phone}
+                        ${camp.businessNumber}
                 </td>
                 <td class="px-6 py-4">
-                        ${user.resultPoint}
+                        ${camp.reviewCount}
                 </td>
                 <td class="px-6 py-4">
-                    <select data-id="${user.id}" data-reg-date="${user.regDate}" class="user-role bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <option value="U" ${user.role == Role.U ? "selected" : ""}>일반</option>
-                        <option value="A" ${user.role == Role.A ? "selected" : ""}>관리자</option>
-                    </select>
+                        ${camp.wishCount}
                 </td>
                 <td class="px-6 py-4">
-                    <fmt:formatDate value="${user.regDate}" pattern="yy/MM/dd" var="formattedRegDate"/>
-                        ${formattedRegDate}
-                </td>
-                <td class="px-6 py-4">
-                    <button data-id="${user.id}" data-role="${user.role}" type="button" class="roleUpdateBtn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">저장</button>
+                    <fmt:parseDate value="${camp.regDate}" pattern="yyyy-MM-dd" var="regDate"/>
+                    <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <form name="userRoleUpdateFrm" action="${pageContext.request.contextPath}/admin/updateUserRole" method="post">
-        <input type="hidden" name="id" value="${user.id}">
-        <input type="hidden" name="role" value="${user.role}">
-    </form>
-
     <div class="flex justify-center mt-6">
         <nav aria-label="Page navigation example">
             <ul class="flex items-center -space-x-px h-8 text-sm">
@@ -126,5 +117,4 @@
         </nav>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/admin/adminCreate.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>    
