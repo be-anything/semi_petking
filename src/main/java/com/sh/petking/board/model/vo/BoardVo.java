@@ -18,19 +18,6 @@ public class BoardVo extends Board {
     private List<BoardComment> comments;
     private int commentCount;
 
-    public BoardVo() {
-    }
-
-    public BoardVo(long id, String userId, BoardType boardType, String boardTitle, String boardContent, LocalDateTime regDate, int boardAttr, int viewCount, User user, int attachCount, List<Attachment> attachments, List<Long> delFiles, List<BoardComment> comments, int commentCount) {
-        super(id, userId, boardType, boardTitle, boardContent, regDate, boardAttr, viewCount);
-        this.user = user;
-        this.attachCount = attachCount;
-        this.attachments = attachments;
-        this.delFiles = delFiles;
-        this.comments = comments;
-        this.commentCount = commentCount;
-    }
-
     public User getUser() {
         return user;
     }
@@ -47,16 +34,16 @@ public class BoardVo extends Board {
         this.attachCount = attachCount;
     }
 
+    public void addAttachment(Attachment attachment) {
+        this.attachments.add(attachment);
+    }
+
     public List<Attachment> getAttachments() {
         return attachments;
     }
 
     public void setAttachments(List<Attachment> attachments) {
         this.attachments = attachments;
-    }
-
-    public void addAttachment(Attachment attachment) {
-        this.attachments.add(attachment);
     }
 
     public List<Long> getDelFiles() {
@@ -98,6 +85,7 @@ public class BoardVo extends Board {
     public void setValue(String name, String value) {
         switch (name) {
             case "id" : setId(Long.parseLong(value)); break;
+            case "boardType" : setBoardType(BoardType.valueOf(value)); break;
             case "title" : setBoardTitle(value); break;
             case "userId" : setUserId(value); break;
             case "content" : setBoardContent(value); break;

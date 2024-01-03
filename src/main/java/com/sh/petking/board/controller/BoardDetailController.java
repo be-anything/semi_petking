@@ -1,7 +1,7 @@
 package com.sh.petking.board.controller;
 
-import com.sh.petking.board.model.exception.BoardException;
 import com.sh.petking.board.model.service.BoardService;
+import com.sh.petking.board.model.vo.BoardVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +17,15 @@ public class BoardDetailController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1. 사용자입력값 처리
+        Long id = Long.parseLong(req.getParameter("id"));
+        BoardVo board =  boardService.findById(id);
 
+        // 2. 업무로직
+        req.setAttribute("board", board);
+        System.out.println(board);
 
+        // 3. 포워딩
+        req.getRequestDispatcher("/WEB-INF/views/board/boardDetail.jsp").forward(req, resp);
     }
 }
