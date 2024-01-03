@@ -20,4 +20,12 @@ public class AdminCampListDao {
     public int getTotalCount(SqlSession session) {
         return session.selectOne("admin.getTotalCount");
     }
+
+    public List<CampVo> findRegistAll(SqlSession session, Map<String, Object> param) {
+        int page = (int) param.get("page");
+        int limit = (int) param.get("limit");
+        int offset = (page - 1) * limit;
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return session.selectList("camp.findRegistAll", param, rowBounds);
+    }
 }

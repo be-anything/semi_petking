@@ -19,9 +19,6 @@ public class ReviewDao {
     public List<Review> findAll(SqlSession session){
         return session.selectList("review.findAll");
     }
-    public Review findById(SqlSession session, Long id) {
-        return session.selectOne("review.findById", id);
-    }
 
     public int insertReview(SqlSession session, Review review) {
         return session.insert("review.insertReview", review);
@@ -31,11 +28,26 @@ public class ReviewDao {
         return session.update("review.updateReview", review);
     }
 
+    public int deleteReview(SqlSession session, String userId) {
+        System.out.println(userId);
+        return session.delete("review.deleteReview", userId);
+    }
     public int deleteReview(SqlSession session, long id) {
         return session.delete("review.deleteReview", id);
     }
-
     public int getTotalCount(SqlSession session) {
         return session.selectOne("review.getTotalCount");
+    }
+
+    public ReviewVo findById(SqlSession session, Long id) {
+        return session.selectOne("review.findById", id);
+    }
+
+    public int updateReviewReadCount(SqlSession session, Long id) {
+        return session.update("review.updateReviewReadCount", id);
+    }
+
+    public List<ReviewVo> findVoByReviewId(SqlSession session, Long id) {
+        return session.selectList("review.findVoByReviewId", id);
     }
 }

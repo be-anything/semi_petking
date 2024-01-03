@@ -26,4 +26,42 @@ public class ReviewService {
         session.close();
         return totalCount;
     }
+
+    public int deleteReview(long id) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = reviewDao.deleteReview(session, id);
+            System.out.println(id);
+            session.commit();
+        } catch (Exception e){
+            session.close();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public ReviewVo findById(Long id, boolean hasRead) {
+        SqlSession session = getSqlSession();
+        ReviewVo review = new ReviewVo();
+        int result = 0;
+        try {
+            if(!hasRead)
+            result = reviewDao.updateReviewReadCount(session, id);
+
+            review = reviewDao.findById(session, id);
+            List<ReviewVo> reviewVos = reviewDao.findVoByReviewId(session, id);
+            review.setReviewContent(review.getReviewContent());
+
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return review;
+    }
 }

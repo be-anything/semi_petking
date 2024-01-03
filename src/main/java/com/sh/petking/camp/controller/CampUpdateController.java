@@ -1,11 +1,9 @@
 package com.sh.petking.camp.controller;
 
 import com.google.gson.Gson;
-import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.net.Proxy;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;

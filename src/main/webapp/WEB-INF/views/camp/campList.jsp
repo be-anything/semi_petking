@@ -46,7 +46,22 @@
 
                         <%--<i class="fa-solid fa-heart text-right"></i>--%>
                         <%-- ajax wish insert/delete -> loginUser 기능 완성되면 data-user-id 하드코딩 부분 수정 필요 --%>
-                        <i data-camp-id="${camp.id}" data-user-id="goyoung12" class="fa-regular fa-heart absolute bottom-full right-10 text-5xl text-gray2 cursor-pointer"></i>
+                        <c:if test="${loginUser != null}">
+                            <c:forEach items="${wishes}" var="wish">
+                                <c:if test="${wish.campId == camp.id}">
+                                    <i data-camp-id="${camp.id}" data-user-id="${loginUser.id}" class="z-50 wish-btn fa-solid fa-heart absolute bottom-full right-10 text-5xl text-red cursor-pointer"></i>
+                                </c:if>
+                                <c:if test="${wish.campId != camp.id}">
+                                    <i data-camp-id="${camp.id}" data-user-id="${loginUser.id}" class="wish-btn fa-regular fa-heart absolute bottom-full right-10 text-5xl text-gray2 cursor-pointer"></i>
+                                </c:if>
+                            </c:forEach>
+                        </c:if>
+                    <c:if test="${wishes == null}">
+                        <i data-camp-id="${camp.id}" data-user-id="${loginUser.id}" class="wish-btn fa-regular fa-heart absolute bottom-full right-10 text-5xl text-gray2 cursor-pointer"></i>
+                    </c:if>
+                    <c:if test="${loginUser == null}">
+                        <i class="fa-regular cursor-not-allowed fa-heart absolute bottom-full right-10 text-5xl text-gray2"></i>
+                    </c:if>
                 </div>
 
                 <div class="text-black text-base font-normal mt-5">

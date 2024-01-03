@@ -1,5 +1,6 @@
 package com.sh.petking.user.controller;
 
+import com.sh.petking.common.RandomNicknameGenerator;
 import com.sh.petking.common.Role;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.service.UserService;
@@ -27,16 +28,13 @@ public class UserRegisterController extends HttpServlet {
 
         // 사용자 입력값 가져오기
         String id = req.getParameter("id");
-        String nickname = req.getParameter("nickname");
         String name = req.getParameter("name");
         String password = req.getParameter("password");
         String originProfileName = req.getParameter("originProfileName");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
 
-
-
-        User user = new User(id, null, 0L, nickname, name, password, originProfileName,
+        User user = new User(id, null, 0L, RandomNicknameGenerator.createNickname(), name, password, null,
                     null, email, phone, 0L, Role.U, null);
         System.out.println(user);
 

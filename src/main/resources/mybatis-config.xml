@@ -29,6 +29,26 @@
     </environments>
 
     <mappers>
+        <!-- 혜진 -->
+
+
+
+        <!-- 승범 -->
+
+
+
+        <!-- 민정 -->
+
+
+
+        <!-- 민준 -->
+
+
+
+        <!-- 정효 -->
+
+
+
         <mapper resource="mapper/delUser/delUser-mapper.xml"></mapper>
         <mapper resource="mapper/review/review-mapper.xml"></mapper>
         <mapper resource="mapper/camp/camp-mapper.xml"></mapper>
