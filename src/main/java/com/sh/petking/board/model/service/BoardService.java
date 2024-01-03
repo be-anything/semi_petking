@@ -21,9 +21,9 @@ public class BoardService {
         return boards;
     }
 
-    public Board findById(long id) {
+    public BoardVo findById(long id) {
         SqlSession session = getSqlSession();
-        Board board = boardDao.findById(session, id);
+        BoardVo board = boardDao.findById(session, id);
         session.close();
         return board;
     }
@@ -34,7 +34,7 @@ public class BoardService {
 //        try {
 //            // 조회수 증가처리
 //            if (!hasRead)
-//                result = boardDao.updateBoardReadCount(session, id);
+//                result = boardDao.updateBoardViewCount(session, id);
 //
 //            // 조회
 //            board = (BoardVo) boardDao.findById(session, id);

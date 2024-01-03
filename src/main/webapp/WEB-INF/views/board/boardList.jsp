@@ -62,7 +62,7 @@
                     </td>
                     <td class="px-6 py-4">
 <%--                        <c:if test="${board.attachCount gt 0}">--%>
-<%--                            <img class="w-[16px]" src="../images/file.png" alt="">--%>
+                            <img class="w-[16px]" src="../images/file.png" alt="">
 <%--                        </c:if>--%>
                     </td>
                     <td class="px-6 py-4">${board.viewCount}</td>
