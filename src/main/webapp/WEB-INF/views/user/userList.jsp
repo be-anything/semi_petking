@@ -41,9 +41,6 @@
                 등급
             </th>
             <th scope="col" class="px-6 py-3">
-                클럽아이디
-            </th>
-            <th scope="col" class="px-6 py-3">
                 닉네임
             </th>
             <th scope="col" class="px-6 py-3">
@@ -77,9 +74,6 @@
                 </td>
                 <td class="px-6 py-4">
                         ${user.userGrade.name}
-                </td>
-                <td class="px-6 py-4">
-                        ${user.clubId}
                 </td>
                 <td class="px-6 py-4">
                         ${user.nickname}
