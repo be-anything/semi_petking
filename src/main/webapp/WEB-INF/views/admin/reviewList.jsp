@@ -64,6 +64,7 @@
                 ${vs.index + 1}
             </th>
             <td class="px-6 py-4">
+                <a href="${pageContext.request.contextPath}/admin/reviewDetail?id=${review.id}">
                 ${review.userId}
             </td>
             <td class="px-6 py-4">
@@ -90,7 +91,7 @@
                     class="del-btn bg-red text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red hover:bg-red-600">
                 삭제
             </button>
-                <form name="reviewDeleteFrm" action="${pageContext.request.contextPath}/review/reviewDelete" method="post">
+                <form name="reviewDeleteFrm" action="${pageContext.request.contextPath}/admin/reviewDelete" method="post">
                     <input type="hidden" name="id" value="${review.id}">
                 </form>
             </td>

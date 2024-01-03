@@ -42,4 +42,11 @@ public class ReviewService {
         }
         return result;
     }
+
+    public ReviewVo findById(Long id) {
+        SqlSession session = getSqlSession();
+        ReviewVo review = reviewDao.findById(session, id);
+        session.close();
+        return review;
+    }
 }

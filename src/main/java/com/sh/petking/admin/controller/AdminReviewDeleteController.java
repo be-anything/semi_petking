@@ -1,4 +1,4 @@
-package com.sh.petking.review.controller;
+package com.sh.petking.admin.controller;
 
 import com.sh.petking.review.model.service.ReviewService;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/review/reviewDelete")
-public class ReviewDeleteController extends HttpServlet {
+@WebServlet("/admin/reviewDelete")
+public class AdminReviewDeleteController extends HttpServlet {
     private ReviewService reviewService = new ReviewService();
 
     @Override

@@ -20,6 +20,7 @@
         <result column="user_id" property="userId"/>
         <result column="review_tag" property="reviewTag"/>
         <result column="review_title" property="reviewTitle"/>
+        <result column="review_content" property="reviewContent"/>
         <result column="view_count" property="viewCount"/>
         <result column="like_count" property="likeCount"/>
         <result column="reg_date" property="regDate"/>
@@ -28,13 +29,16 @@
             <result column="camp_name" property="campName"/>
         </association>
     </resultMap>
-    <select id="findById" resultType="review">
+    <select id="findById" resultMap="reviewVoMap">
         select
-            *
+            r.*,
+            c.id camp_id2,
+            c.camp_name camp_name
         from
-            review
+            review r left join camp c
+                on r.camp_id = c.id
         where
-            id = #{id}
+            r.id = #{id}
     </select>
     <insert id="insertReview">
         insert into

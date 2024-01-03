@@ -1,7 +1,6 @@
-package com.sh.petking.review.controller;
+package com.sh.petking.admin.controller;
 
 import com.sh.petking.common.PetkingUtils;
-import com.sh.petking.review.model.entity.Review;
 import com.sh.petking.review.model.service.ReviewService;
 import com.sh.petking.review.model.vo.ReviewVo;
 
@@ -15,8 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/review/reviewList")
-public class ReviewListController extends HttpServlet {
+@WebServlet("/admin/reviewList")
+public class AdminReviewListController extends HttpServlet {
     private ReviewService reviewService = new ReviewService();
 
     @Override
@@ -38,7 +37,7 @@ public class ReviewListController extends HttpServlet {
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);
 
-        req.getRequestDispatcher("/WEB-INF/views/review/reviewList.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/admin/reviewList.jsp").forward(req, resp);
 
     }
 }
