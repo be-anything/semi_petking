@@ -10,8 +10,9 @@
             wish
     </select>
     <select id="findByUserId" resultType="wish">
-        select
-            *
+        select distinct
+            user_id,
+            camp_id
         from
             wish
         where
@@ -66,4 +67,15 @@
             and
             camp_id = #{campId}
     </delete>
+    <select id="findByUserIdCampId" resultType="wish">
+        select distinct
+            user_id,
+            camp_id
+        from
+            wish
+        where
+            user_id = #{userId}
+            and
+            camp_id = #{campId}
+    </select>
 </mapper>

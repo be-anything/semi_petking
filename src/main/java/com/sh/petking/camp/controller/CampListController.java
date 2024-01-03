@@ -4,6 +4,9 @@ import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
 import com.sh.petking.common.PetkingUtils;
+import com.sh.petking.user.model.entity.User;
+import com.sh.petking.wish.model.entity.Wish;
+import com.sh.petking.wish.model.service.WishService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +23,7 @@ import static com.sh.petking.common.PetkingUtils.getPagebar;
 @WebServlet("/camp/campList")
 public class CampListController extends HttpServlet {
     private CampService campService = new CampService();
+    private WishService wishService = new WishService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 사용자 입력값 처리 - X
@@ -40,9 +44,21 @@ public class CampListController extends HttpServlet {
         param.put("page", page);
         param.put("limit", limit);
 
-        // 값 가져오기
+        // 값 가져오기 - campList
         List<CampVo> camps = campService.findAll(param);
         req.setAttribute("camps", camps);
+
+        // wishList - 사용자 id로 찾기
+
+        User loginUser = (User) req.getSession().getAttribute("loginUser");
+        System.out.println(loginUser);
+        if(loginUser != null) {
+            List<Wish> wishes = wishService.findByUserId(loginUser.getId());
+            if(wishes.size() > 0) {
+                req.setAttribute("wishes", wishes);
+                System.out.println(wishes);
+            }
+        }
 
         // 페이지바
         int totalCount = campService.getTotalCount(param);
