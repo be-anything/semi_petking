@@ -40,6 +40,16 @@
         order by
             c.reg_date desc
     </select>
+    <select id="findRegistAll" resultType="campVo">
+        select
+            *
+        from
+            camp
+        where
+            camp_state = 0
+        order by
+            reg_date desc
+    </select>
     <select id="findById" resultMap="campVoMap">
         select
             c.*,
@@ -226,4 +236,12 @@
             seq_camp_attach_id.nextval, #{campId}, #{campAttachOriginalName}, #{campAttachRenamedName}
         )
     </insert>
+    <update id="updateCampConfirm">
+        update
+            camp
+        set
+            camp_state = 1
+        where
+            id = #{id}
+    </update>
 </mapper>

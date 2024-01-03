@@ -78,4 +78,8 @@ public class CampDao {
 
         return session.insert("camp.insertCampAttach", campAttach);
     }
+
+    public int updateCampConfirm(SqlSession session, Long id) {
+        return session.update("camp.updateCampConfirm", id);
+    }
 }

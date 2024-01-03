@@ -25,4 +25,11 @@ public class AdminCampListService {
         session.close();
         return totalCount;
     }
+
+    public List<CampVo> findRegistAll(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<CampVo> campVos = adminCampListDao.findRegistAll(session, param);
+        session.close();
+        return campVos;
+    }
 }

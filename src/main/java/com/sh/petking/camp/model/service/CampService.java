@@ -135,8 +135,8 @@ public class CampService {
                 }
             }
 
-            if(campAttaches != null && !campAttaches.isEmpty()){
-                for(int i = 0; i < campAttaches.size(); i++){
+            if (campAttaches != null && !campAttaches.isEmpty()) {
+                for (int i = 0; i < campAttaches.size(); i++) {
                     System.out.println("================ service attach ============");
                     System.out.println(campAttaches.get(i).getCampId());
                     System.out.println(campAttaches.get(i).getCampAttachRenamedName());
@@ -144,15 +144,27 @@ public class CampService {
                     result = campDao.insertCampAttach(session, campAttaches.get(i));
                 }
             }
-
             session.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             session.rollback();
             throw e;
         } finally {
             session.close();
         }
         return result;
+    }
+
+    public int updateCampConfirm(Long id) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try{
+        result = campDao.updateCampConfirm(session, id);
+        session.commit();
+        } catch (Exception e){
+        }finally {
+            session.close();
+        }
+    return result;
     }
 }
