@@ -43,10 +43,25 @@ public class ReviewService {
         return result;
     }
 
-    public ReviewVo findById(Long id) {
+    public ReviewVo findById(Long id, boolean hasRead) {
         SqlSession session = getSqlSession();
-        ReviewVo review = reviewDao.findById(session, id);
-        session.close();
+        ReviewVo review = new ReviewVo();
+        int result = 0;
+        try {
+            if(!hasRead)
+            result = reviewDao.updateReviewReadCount(session, id);
+
+            review = reviewDao.findById(session, id);
+            List<ReviewVo> reviewVos = reviewDao.findVoByReviewId(session, id);
+            review.setReviewContent(review.getReviewContent());
+
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
         return review;
     }
 }

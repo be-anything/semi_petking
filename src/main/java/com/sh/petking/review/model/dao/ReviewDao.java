@@ -42,4 +42,12 @@ public class ReviewDao {
     public ReviewVo findById(SqlSession session, Long id) {
         return session.selectOne("review.findById", id);
     }
+
+    public int updateReviewReadCount(SqlSession session, Long id) {
+        return session.update("review.updateReviewReadCount", id);
+    }
+
+    public List<ReviewVo> findVoByReviewId(SqlSession session, Long id) {
+        return session.selectList("review.findVoByReviewId", id);
+    }
 }
