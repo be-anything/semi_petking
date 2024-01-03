@@ -93,4 +93,19 @@ public class CampService {
         session.close();
         return campServices;
     }
+
+    public int updateCampConfirm(Long id) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try{
+            result = campDao.updateCampConfirm(session, id);
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }
