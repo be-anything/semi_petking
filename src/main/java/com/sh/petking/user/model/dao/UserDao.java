@@ -46,4 +46,35 @@ public class UserDao extends HttpServlet {
         return session.update("admin.updateUserRole", user);
 
     }
+
+    /**
+     * 민준씨
+     *
+     *
+     */
+
+
+
+
+
+
+
+
+
+    /**
+     * 정효씨
+     *
+     *
+     */
+
+
+
+
+
+
+
+
+
+
+
 }

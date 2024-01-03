@@ -4,6 +4,7 @@ import com.sh.petking.wish.model.entity.Wish;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 public class WishDao {
     public List<Wish> findAll(SqlSession session) {
@@ -36,5 +37,9 @@ public class WishDao {
 
     public int deleteWish(SqlSession session, Wish wish) {
         return session.delete("wish.deleteWishByWish", wish);
+    }
+
+    public List<Wish> findByUserIdCampId(SqlSession session, Map<String, Object> param) {
+        return session.selectList("wish.findByUserIdCampId", param);
     }
 }

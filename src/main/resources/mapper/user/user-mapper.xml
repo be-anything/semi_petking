@@ -65,6 +65,7 @@
             users
     </select>
 
+
     <select id="findByName" resultType="user">
         select
             *
@@ -84,5 +85,34 @@
         where
             id = #{id}
     </update>
+
+    <!--
+    * 민준씨
+    -->
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
+    * 정효씨
+    -->
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

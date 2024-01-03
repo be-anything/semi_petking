@@ -1,6 +1,7 @@
 package com.sh.petking.camp.model.dao;
 
 import com.sh.petking.camp.model.entity.Camp;
+import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -39,5 +40,9 @@ public class CampDao {
         int offset = (page - 1) * limit;
         RowBounds rowBounds = new RowBounds(offset, limit);
         return session.selectList("camp.findAll", param, rowBounds);
+    }
+
+    public List<CampService> findAllCampService(SqlSession session) {
+        return session.selectList("camp.findAllCampService");
     }
 }
