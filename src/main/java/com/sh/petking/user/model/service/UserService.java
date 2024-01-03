@@ -71,6 +71,24 @@ public class UserService {
         }
         return result;
     }
+
+    public int updateUserRole(User user) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = userDao.updateUserRole(session, user);
+            System.out.println(user);
+            System.out.println(result);
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
     /**
      * 민준씨
      * 
