@@ -13,7 +13,7 @@
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form name="memberLoginFrm" class="space-y-6" method="POST">
+        <form name="userLoginFrm" class="space-y-6" method="POST">
             <div>
                 <label for="id" class="block text-sm font-medium leading-6 text-gray-900">아이디</label>
                 <div class="mt-2">
@@ -32,6 +32,11 @@
                 <input id="saveId" name="saveId" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                 <label for="saveId" class="ms-2 text-sm font-medium text-gray-700">아이디 저장</label>
             </div>
+
+            <p class="text-sm font-light text-gray-500">
+                <a href="#" class="font-medium text-primary-600 hover:underline">아이디 찾기 |</a>
+                <a href="#" class="font-medium text-primary-600 hover:underline"> 비밀번호 찾기</a>
+            </p>
 
             <div>
                 <button type="submit" class="flex w-full justify-center rounded-md bg-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">로그인</button>

@@ -14,10 +14,14 @@ public class UserDao extends HttpServlet {
     public User findById(SqlSession session, String id) {
         return session.selectOne("user.findById", id);
     }
+
     public List<User> findAll(SqlSession session) {
         return session.selectList("user.findAll");
     }
 
+    public int insertUser(SqlSession session, User user) {
+        return session.insert("user.insertUser", user);
+    }
     public List<UserVo> findAll(SqlSession session, Map<String, Object> param) {
         int page = (int) param.get("page");
         int limit = (int) param.get("limit");
@@ -29,6 +33,41 @@ public class UserDao extends HttpServlet {
     public int getTotalCount(SqlSession session) {
         return session.selectOne("user.getTotalCount");
     }
+
+
+    public int updateUserRole(SqlSession session, User user) {
+        System.out.println(user);
+        return session.update("admin.updateUserRole", user);
+    }
+
+    /**
+     * 민준씨
+     *
+     *
+     */
+
+
+
+
+
+
+
+
+
+    /**
+     * 정효씨
+     *
+     *
+     */
+
+
+
+
+
+
+
+
+
 
 
 }

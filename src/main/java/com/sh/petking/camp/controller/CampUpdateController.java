@@ -1,5 +1,6 @@
 package com.sh.petking.camp.controller;
 
+import com.google.gson.Gson;
 import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
@@ -15,11 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.net.Proxy;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @WebServlet("/camp/campUpdate")
-public class CampUpdate extends HttpServlet {
+public class CampUpdateController extends HttpServlet {
     private CampService campService = new CampService();
 
     @Override
@@ -27,9 +30,14 @@ public class CampUpdate extends HttpServlet {
         // 1. 사용자 입력값 처리
         Long id = Long.parseLong(req.getParameter("id"));
         CampVo camp = campService.findById(id);
+
         // 2. 업무로직
         req.setAttribute("camp", camp);
-        System.out.println(camp);
+        // - 부가서비스 종류 가져오기
+        List<CampService> campServices = campService.findAllCampService();
+        req.setAttribute("campServices", campServices);
+        System.out.println(campServices);
+
         // 3. 포워딩
         req.getRequestDispatcher("/WEB-INF/views/camp/campUpdate.jsp").forward(req, resp);
     }
@@ -44,7 +52,7 @@ public class CampUpdate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 0. 셋팅
-        File repository = new File("C:\\Users\\min_j\\Dropbox\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\camp");
+        File repository = new File("C:\\Users\\min_j\\Dropbox\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\camp");
         int sizeThreshold = 10 * 1024 * 1024;
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(repository);
@@ -56,39 +64,37 @@ public class CampUpdate extends HttpServlet {
         
         try {
             // 1. 사용자 입력값 처리 및 파일 업로드
-            List<FileItem> fileItems = servletFileUpload.parseRequest(req);
-            for(FileItem item: fileItems) {
-                String name = item.getFieldName();
-                if(item.isFormField()){
-                    // form안의 일반 field - id(findById), campIntro | campPhone | campName | campAddr
-                    String value = item.getString("utf-8");
-                    camp.setValue(name, value);
-                }
-                else {
-                    // form안의 메인 이미지 업로드
-                    if(item.getSize() > 0){
-                        String originalImgName = item.getName();
-                        System.out.println(originalImgName);
-                        int dotIndex = originalImgName.lastIndexOf(".");
-                        String ext = dotIndex > -1 ? originalImgName.substring(dotIndex) : "";
+            // 비동기적 처리
+            Map<String, List<FileItem>> fileItemMap = servletFileUpload.parseParameterMap(req);
+            Long id = Long.parseLong(fileItemMap.get("id").get(0).getString("utf-8"));
+            String campIntro = fileItemMap.get("campIntro").get(0).getString("utf-8");
+            String campName = fileItemMap.get("campName").get(0).getString("utf-8");
+            String campPhone = fileItemMap.get("campPhone").get(0).getString("utf-8");
+            String campAddr = fileItemMap.get("campAddr").get(0).getString("utf-8");
+            camp.setId(id);
+            camp.setCampName(campName);
+            camp.setCampAddr(campAddr);
+            camp.setCampPhone(campPhone);
+            camp.setCampIntro(campIntro);
 
-                        UUID uuid = UUID.randomUUID();
-                        String renamedImgName = uuid + ext;
+            FileItem mainImgFileItem = fileItemMap.get("campImg").get(0);
+            if(mainImgFileItem.getSize() > 0){
+                String originalImgName = mainImgFileItem.getName();
+                camp.setCampOriginalImg(originalImgName);
 
-                        // 파일 저장
-                        File upFile = new File(repository, renamedImgName);
-                        item.write(upFile);
-                        System.out.println(item);
+                int dotIndex = originalImgName.lastIndexOf(".");
+                String ext = dotIndex > -1 ? originalImgName.substring(dotIndex) : "";
 
-                        camp.setCampOriginalImg(originalImgName);
-                        camp.setCampRenamedImg(renamedImgName);
-                    }
-                    else {
-                        camp.setCampOriginalImg(campService.findById(camp.getId()).getCampOriginalImg());
-                        camp.setCampRenamedImg(campService.findById(camp.getId()).getCampRenamedImg());
-                    }
-                }
+                UUID uuid = UUID.randomUUID();
+                String renamedImgName = uuid + ext;
+                camp.setCampRenamedImg(renamedImgName);
+                mainImgFileItem.write(new File(repository, renamedImgName));
             }
+            else {
+                camp.setCampOriginalImg(campService.findById(camp.getId()).getCampOriginalImg());
+                camp.setCampRenamedImg(campService.findById(camp.getId()).getCampRenamedImg());
+            }
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -97,15 +103,12 @@ public class CampUpdate extends HttpServlet {
 
         // 2. 업무 로직
         int result = campService.updateCamp(camp);
-        Camp camp2 = campService.findById(camp.getId());
-        req.setAttribute("camp", camp2);
-        if(result > 0) {
-            req.getSession().setAttribute("msg", "캠핑장 정보수정이 완료되었습니다. 😀");
-        }
-        else {
-            req.getSession().setAttribute("msg", "캠핑장 정보수정에 실패했습니다. 😀");
-        }
+
+        // 사용자 메시지
+        Map<String, Object> resultMap = Map.of("msg", "캠핑장 정보가 수정되었습니다.");
+
         // 3. redirect
-        resp.sendRedirect(req.getContextPath() + "/camp/campDetail?id=" + camp.getId());
+        resp.setContentType("application/json; charset=utf-8");
+        new Gson().toJson(resultMap, resp.getWriter());
     }
 }

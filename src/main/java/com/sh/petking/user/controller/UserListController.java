@@ -38,7 +38,6 @@ public class UserListController extends HttpServlet {
         String url = req.getRequestURI();
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);
-        System.out.println(users);
 
         req.getRequestDispatcher("/WEB-INF/views/user/userList.jsp").forward(req, resp);
     }

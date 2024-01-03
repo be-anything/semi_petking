@@ -1,7 +1,8 @@
 package com.sh.petking.user.model.entity;
 
-import com.sh.petking.delUser.model.entity.Role;
+import com.sh.petking.common.Role;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class User {
@@ -17,28 +18,25 @@ public class User {
     private String phone;
     private Long resultPoint;
     private Role role;
-    private Date regDate;
+    private LocalDateTime regDate;
 
     public User() {
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", gradeId='" + gradeId + '\'' +
-                ", clubId=" + clubId +
-                ", nickname='" + nickname + '\'' +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", originProfileName='" + originProfileName + '\'' +
-                ", renamedProfileName='" + renamedProfileName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", resultPoint=" + resultPoint +
-                ", role=" + role +
-                ", regDate=" + regDate +
-                '}';
+    public User(String id, String gradeId, Long clubId, String nickname, String name, String password, String originProfileName, String renamedProfileName, String email, String phone, Long resultPoint, Role role, LocalDateTime regDate) {
+        this.id = id;
+        this.gradeId = gradeId;
+        this.clubId = clubId;
+        this.nickname = nickname;
+        this.name = name;
+        this.password = password;
+        this.originProfileName = originProfileName;
+        this.renamedProfileName = renamedProfileName;
+        this.email = email;
+        this.phone = phone;
+        this.resultPoint = resultPoint;
+        this.role = role;
+        this.regDate = regDate;
     }
 
     public String getId() {
@@ -137,27 +135,30 @@ public class User {
         this.role = role;
     }
 
-    public Date getRegDate() {
+    public LocalDateTime getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(LocalDateTime regDate) {
         this.regDate = regDate;
     }
 
-    public User(String id, String gradeId, Long clubId, String nickname, String name, String password, String originProfileName, String renamedProfileName, String email, String phone, Long resultPoint, Role role, Date regDate) {
-        this.id = id;
-        this.gradeId = gradeId;
-        this.clubId = clubId;
-        this.nickname = nickname;
-        this.name = name;
-        this.password = password;
-        this.originProfileName = originProfileName;
-        this.renamedProfileName = renamedProfileName;
-        this.email = email;
-        this.phone = phone;
-        this.resultPoint = resultPoint;
-        this.role = role;
-        this.regDate = regDate;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", gradeId='" + gradeId + '\'' +
+                ", clubId=" + clubId +
+                ", nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", originProfileName='" + originProfileName + '\'' +
+                ", renamedProfileName='" + renamedProfileName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", resultPoint=" + resultPoint +
+                ", role=" + role +
+                ", regDate=" + regDate +
+                '}';
     }
 }
