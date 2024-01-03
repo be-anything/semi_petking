@@ -64,6 +64,7 @@
                 ${vs.index + 1}
             </th>
             <td class="px-6 py-4">
+                <a href="${pageContext.request.contextPath}/admin/reviewDetail?id=${review.id}">
                 ${review.userId}
             </td>
             <td class="px-6 py-4">
@@ -83,12 +84,24 @@
             </td>
             <td class="px-6 py-4">
                 <fmt:parseDate value="${review.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
-                <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm:ss"/>
+                <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
+            </td>
+            <td>
+            <button
+                    class="del-btn bg-red text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red hover:bg-red-600">
+                삭제
+            </button>
+                <form name="reviewDeleteFrm" action="${pageContext.request.contextPath}/admin/reviewDelete" method="post">
+                    <input type="hidden" name="id" value="${review.id}">
+                </form>
             </td>
         </tr>
+
         </c:forEach>
         </tbody>
     </table>
+
+
     <div class="flex justify-center mt-6">
         <nav aria-label="Page navigation example">
             <ul class="flex items-center -space-x-px h-8 text-sm">
@@ -98,5 +111,5 @@
     </div>
 </div>
 
-
+<script src="${pageContext.request.contextPath}/js/review/reviewDelete.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>    
