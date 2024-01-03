@@ -45,4 +45,8 @@ public class CampDao {
     public List<CampService> findAllCampService(SqlSession session) {
         return session.selectList("camp.findAllCampService");
     }
+
+    public int updateCampConfirm(SqlSession session, Long id) {
+        return session.update("camp.updateCampConfirm", id);
+    }
 }
