@@ -84,4 +84,20 @@
         from
             review
     </select>
+    <update id="updateReviewReadCount">
+        update
+            review
+        set
+            view_count = view_count + 1
+        where
+            id = #{id}
+    </update>
+    <select id="findVoByReviewId" resultType="reviewVo">
+        select
+            *
+        from
+            review
+        where
+            id = #{id}
+    </select>
 </mapper>

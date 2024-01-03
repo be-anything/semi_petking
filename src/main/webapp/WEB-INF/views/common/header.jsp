@@ -31,7 +31,10 @@
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/board/boardList">커뮤니티</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="#">이벤트</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/room/roomList">객실목록(임시)</a></div>
+                <c:if test="${loginUser.role eq 'A' }">
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userList">전체회원목록(임시)</a></div>
+                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/admin/reviewList">전체리뷰보기</a></div>
+                </c:if>
                 <c:if test="${loginUser == null}">
                     <div class="text-black text-right font-normal mr-20 absolute right-0 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userRegister">회원가입</a></div>
                     <div class="text-black text-right font-normal mr-7 absolute right-0 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></div>
