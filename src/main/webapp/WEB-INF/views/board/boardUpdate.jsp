@@ -45,6 +45,6 @@
         </button>
     </form>
 </div>
-<%--<script src="${pageContext.request.contextPath}/js/board/boardUpdate.js"></script>--%>
+<script src="${pageContext.request.contextPath}/js/board/boardUpdate.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
