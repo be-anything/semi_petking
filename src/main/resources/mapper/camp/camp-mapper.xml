@@ -31,10 +31,10 @@
                     on cws.service_id = cs.id
         <where>
             <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
-                c.${searchType} like '%' || #{searchKeyword} || '%'
+                AND c.${searchType} like '%' || #{searchKeyword} || '%'
             </if>
             <if test="true">
-                c.camp_state = 1
+                AND c.camp_state = 1
             </if>
         </where>
         order by
@@ -158,10 +158,10 @@
             camp
         <where>
             <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
-                ${searchType} like '%' || #{searchKeyword} || '%'
+                AND ${searchType} like '%' || #{searchKeyword} || '%'
             </if>
             <if test="true">
-                camp_state = 1
+                AND camp_state = 1
             </if>
         </where>
     </select>

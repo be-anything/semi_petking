@@ -47,14 +47,29 @@
                         </div>
                         <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1 sm:mt-0 mx-auto relative">
-                                <button type="button"
-                                        class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
-                                    찜하기
-                                </button>
+
                                 <%--<i class="fa-solid fa-heart text-right"></i>--%>
                                 <%-- ajax wish insert/delete -> loginUser 기능 완성되면 data-user-id 하드코딩 부분 수정 필요 --%>
-                                <i data-camp-id="${camp.id}" data-user-id="goyoung12"
-                                   class="fa-regular fa-heart absolute text-xl top-[7px] right-12 text-gray2 cursor-pointer"></i>
+                                <c:if test="${loginUser != null}">
+                                    <button type="button"
+                                            class="wish-btn hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
+                                        찜하기
+                                    </button>
+                                    <c:if test="${wishes != null}">
+                                        <i data-camp-id="${camp.id}" data-user-id="${loginUser.id}"
+                                           class="fa-solid fa-heart absolute z-50 text-xl top-[7px] right-12 text-red cursor-pointer"></i>
+                                    </c:if>
+                                    <c:if test="${wishes == null}">
+                                        <i data-camp-id="${camp.id}" data-user-id="${loginUser.id}"
+                                           class="fa-regular fa-heart absolute text-xl top-[7px] right-12 text-gray2 cursor-pointer"></i>
+                                    </c:if>
+                                </c:if>
+                                <c:if test="${loginUser == null}">
+                                    <button type="button"
+                                            class="cursor-not-allowed bg-gray2 text-gray3 border border-gray2 font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
+                                        찜하기
+                                    </button>
+                                </c:if>
                             </dd>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1 sm:mt-0 mx-auto">
                                 <button id="updateBtn" type="button"

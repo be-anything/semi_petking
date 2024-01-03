@@ -34,6 +34,7 @@ public class UserService {
         }
         return result;
     }
+
     public List<User> findAll() {
         SqlSession session = getSqlSession();
         List<User> users = userDao.findAll(session);
@@ -56,6 +57,21 @@ public class UserService {
     }
 
 
+    public int updateUser(User user) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = userDao.updateUser(session, user);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
     public int updateUserRole(User user) {
         int result = 0;
         SqlSession session = getSqlSession();
@@ -72,6 +88,7 @@ public class UserService {
         }
         return result;
     }
+
     /**
      * 민준씨
      * 

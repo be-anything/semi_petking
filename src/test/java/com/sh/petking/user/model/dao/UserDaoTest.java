@@ -11,8 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static com.sh.petking.common.SqlSessionTemplate.getSqlSession;
-import static org.assertj.core.api.Assertions.as;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class UserDaoTest {
 
@@ -63,9 +62,19 @@ public class UserDaoTest {
                 }));
     }
 
-    @DisplayName("회원가입")
+    @DisplayName("회원 이름으로 검색")
     @Test
     public void test4() {
+        String keyword = "권유상";
+        List<User> users = userDao.findByName(session, keyword);
+        assertThat(users)
+                .isNotNull()
+                .isNotEmpty();
+        users.forEach((user) -> assertThat(user.getName()).contains(keyword));
+    }
+    @DisplayName("회원가입")
+    @Test
+    public void test5() {
         String id = "qlqlaqkq1";
         String password = "qwas112!";
         String nickname = "비빔밥1";
@@ -83,6 +92,42 @@ public class UserDaoTest {
         assertThat(user1.getPassword()).isEqualTo(password);
         assertThat(user1.getName()).isEqualTo(name);
 
+    }
+
+    @DisplayName("회원가입시 오류 체크")
+    @Test
+    public void test6() {
+        User user = new User("alal11", "g01", 1L, "오리는 꽥", "김오리",
+                    "1234ㅂㅂ!", null, null, "dhfl12@naver.com", "01099222837", 0L, Role.U, null);
+        Throwable throwable = catchThrowable(() -> {
+            int result = userDao.insertUser(session, user);
+        });
+        assertThat(throwable).isInstanceOf(Exception.class);
+    }
+
+    @DisplayName("회원 정보 수정")
+    @Test
+    public void test7() {
+        String id = "ronn11";
+        User user = userDao.findById(session, id);
+        String newName = user.getName() + "론";
+        String newEmail = "dhflek12@naver.com";
+        String newPhone = "010992283784";
+        String newNickname = "고라니화났다";
+
+        user.setName(newName);
+        user.setEmail(newEmail);
+        user.setPhone(newPhone);
+        user.setNickname(newNickname);
+
+        int result = userDao.updateUser(session, user);
+        assertThat(result).isGreaterThan(0);
+
+        User user1 = userDao.findById(session, id);
+        assertThat(user1.getName()).isEqualTo(newName);
+        assertThat(user1.getPhone()).isEqualTo(newPhone);
+        assertThat(user1.getEmail()).isEqualTo(newEmail);
+        assertThat(user1.getNickname()).isEqualTo(newNickname);
     }
 
 }
