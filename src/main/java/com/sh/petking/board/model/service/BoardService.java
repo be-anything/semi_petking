@@ -29,28 +29,29 @@ public class BoardService {
         session.close();
         return board;
     }
-//    public BoardVo findById(long id, boolean hasRead) {
-//        SqlSession session = getSqlSession();
-//        BoardVo board = null;
-//        int result = 0;
-//        try {
-//            // 조회수 증가처리
-//            if (!hasRead)
-//                result = boardDao.updateBoardViewCount(session, id);
-//
-//            // 조회
-//            board = (BoardVo) boardDao.findById(session, id);
-//            List<BoardComment> comments = boardDao.findCommentByBoardId(session, id);
-//            board.setComments(comments);
-//            session.commit();
-//        } catch (Exception e) {
-//            session.rollback();
-//            throw e;
-//        } finally {
-//            session.close();
-//        }
-//        return board;
-//    }
+    public BoardVo findById(long id, boolean hasRead) {
+        SqlSession session = getSqlSession();
+        BoardVo board = null;
+        int result = 0;
+        try {
+            // 조회수 증가처리
+            if (!hasRead)
+                result = boardDao.updateBoardViewCount(session, id);
+
+            // 조회
+            board = boardDao.findById(session, id);
+            List<BoardComment> comments = boardDao.findCommentByBoardId(session, id);
+            board.setComments(comments);
+
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return board;
+    }
 
     public int insertBoard(Board board){
         int result = 0;
@@ -125,10 +126,40 @@ public class BoardService {
         return totalCount;
     }
 
-    public List<Board> findAll(Map<String, Object> param) {
+    public List<BoardVo> findAll(Map<String, Object> param) {
         SqlSession session = getSqlSession();
-        List<Board> boards = boardDao.findAll(session, param);
+        List<BoardVo> boards = boardDao.findAll(session, param);
         session.close();
         return boards;
+    }
+
+    public int insertBoardComment(BoardComment comment) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = boardDao.insertBoardComment(session, comment);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public int deleteBoardComment(long id) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = boardDao.deleteBoardComment(session, id);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
     }
 }

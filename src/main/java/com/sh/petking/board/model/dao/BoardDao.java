@@ -15,7 +15,7 @@ public class BoardDao {
         return session.selectList("board.findAll");
     }
 
-    public List<Board> findAll(SqlSession session, Map<String, Object> param) {
+    public List<BoardVo> findAll(SqlSession session, Map<String, Object> param) {
         int page = (int) param.get("page");
         int limit = (int) param.get("limit");
         int offset = (page - 1) * limit;
@@ -46,6 +46,10 @@ public class BoardDao {
         return session.selectList("board.findCommentByBoardId", boardId);
     }
 
+    public BoardComment findCommentById(SqlSession session, Long id){
+        return session.selectOne("board.findCommentById", id);
+    }
+
     public int updateBoardViewCount(SqlSession session, long id) {
         return session.update("board.updateBoardViewCount", id);
     }
@@ -56,5 +60,13 @@ public class BoardDao {
 
     public int insertAttachment(SqlSession session, BoardAttach attach) {
         return session.insert("board.insertAttachment", attach);
+    }
+
+    public int insertBoardComment(SqlSession session, BoardComment comment) {
+        return session.insert("board.insertBoardComment", comment);
+    }
+
+    public int deleteBoardComment(SqlSession session, long id) {
+        return session.delete("board.deleteBoardComment", id);
     }
 }
