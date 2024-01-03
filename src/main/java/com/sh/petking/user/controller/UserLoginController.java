@@ -48,6 +48,7 @@ public class UserLoginController extends HttpServlet {
         // 세션생성 / 가져오기
         HttpSession session = req.getSession();
         if (user != null && pw.equals(user.getPassword())) {
+            // 로그인 성공
             session.setAttribute("loginUser", user);
             String location = req.getContextPath() + "/";
             String  next = (String) req.getSession().getAttribute("next");

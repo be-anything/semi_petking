@@ -12,14 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/user/userRegister")
-public class UserRegisterController extends HttpServlet {
+@WebServlet("/user/userUpdate")
+public class UserUpdateController extends HttpServlet {
     private UserService userService = new UserService();
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/user/userRegister.jsp").forward(req, resp);
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,25 +22,28 @@ public class UserRegisterController extends HttpServlet {
         req.setCharacterEncoding("utf-8");
 
         // 사용자 입력값 가져오기
+        User loginUser = (User) req.getSession().getAttribute("loginUser");
         String id = req.getParameter("id");
         String name = req.getParameter("name");
         String password = req.getParameter("password");
-        String originProfileName = req.getParameter("originProfileName");
+        String nickname = req.getParameter("nickname");
+        String originalProfileName = req.getParameter("originalProfileName");
+        String renamedProfileName = req.getParameter("renamedProfileName");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
 
-        User user = new User(id, null, 0L, RandomNicknameGenerator.createNickname(), name, password, null,
-                    null, email, phone, 0L, Role.U, null);
+    User user = new User(id, null, 0L, nickname, name, password, originalProfileName, renamedProfileName, email,
+            phone, 0L, Role.U, null);
         System.out.println(user);
 
         // 업무로직
-        int result = userService.insertUser(user);
+        int result = userService.updateUser(user);
 
-        // 회원가입성공 메세지
-        req.getSession().setAttribute("msg", "회원가입완료. 로그인해주세요.");
+        // db수정 성공하면 session속성의 loginUser도 업데이트
+        User userUpdated = userService.findById(id);
+        req.getSession().setAttribute("loginUser", userUpdated);
 
-        // view단
-        resp.sendRedirect(req.getContextPath() + "/");
-
+        // redirect
+        resp.sendRedirect(req.getContextPath() + "/user/userDetail");
     }
 }

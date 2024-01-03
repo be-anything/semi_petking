@@ -34,6 +34,7 @@ public class UserService {
         }
         return result;
     }
+
     public List<User> findAll() {
         SqlSession session = getSqlSession();
         List<User> users = userDao.findAll(session);
@@ -56,15 +57,13 @@ public class UserService {
     }
 
 
-    public int updateUserRole(User user) {
+    public int updateUser(User user) {
         int result = 0;
         SqlSession session = getSqlSession();
         try {
-            result = userDao.updateUserRole(session, user);
-            System.out.println(user);
-            System.out.println(result);
+            result = userDao.updateUser(session, user);
             session.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             session.rollback();
             throw e;
         } finally {
