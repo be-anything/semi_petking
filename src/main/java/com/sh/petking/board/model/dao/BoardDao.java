@@ -1,6 +1,7 @@
 package com.sh.petking.board.model.dao;
 
 import com.sh.petking.board.model.entity.Board;
+import com.sh.petking.board.model.entity.BoardAttach;
 import com.sh.petking.board.model.entity.BoardComment;
 import com.sh.petking.board.model.vo.BoardVo;
 import org.apache.ibatis.session.RowBounds;
@@ -47,5 +48,13 @@ public class BoardDao {
 
     public int updateBoardViewCount(SqlSession session, long id) {
         return session.update("board.updateBoardViewCount", id);
+    }
+
+    public int deleteAttachment(SqlSession session, Long id) {
+        return session.delete("board.deleteAttachment", id);
+    }
+
+    public int insertAttachment(SqlSession session, BoardAttach attach) {
+        return session.insert("board.insertAttachment", attach);
     }
 }

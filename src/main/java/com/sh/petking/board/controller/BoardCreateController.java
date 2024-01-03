@@ -1,6 +1,7 @@
 package com.sh.petking.board.controller;
 
 import com.sh.petking.board.model.entity.Attachment;
+import com.sh.petking.board.model.entity.BoardAttach;
 import com.sh.petking.board.model.service.BoardService;
 import com.sh.petking.board.model.vo.BoardVo;
 import org.apache.commons.fileupload.FileItem;
@@ -79,7 +80,7 @@ public class BoardCreateController extends HttpServlet {
                         item.write(upFile); // throw Exception
 
                         // Attachment 객체생성
-                        Attachment attach = new Attachment();
+                        BoardAttach attach = new BoardAttach();
                         attach.setOriginalName(originalName);
                         attach.setRenamedName(renamedName);
                         board.addAttachment(attach);

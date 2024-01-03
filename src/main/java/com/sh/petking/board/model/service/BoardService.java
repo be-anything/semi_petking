@@ -1,7 +1,9 @@
 package com.sh.petking.board.model.service;
 
 import com.sh.petking.board.model.dao.BoardDao;
+import com.sh.petking.board.model.entity.Attachment;
 import com.sh.petking.board.model.entity.Board;
+import com.sh.petking.board.model.entity.BoardAttach;
 import com.sh.petking.board.model.entity.BoardComment;
 import com.sh.petking.board.model.vo.BoardVo;
 import org.apache.ibatis.session.SqlSession;
@@ -62,6 +64,38 @@ public class BoardService {
             throw e;
         }
         finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public int updateBoard(BoardVo board) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            // board테이블 수정
+            result = boardDao.updateBoard(session, board);
+
+            // attachment테이블 삭제
+            List<Long> delFiles = board.getDelFiles();
+            if (!delFiles.isEmpty()) {
+                for (Long id : delFiles) {
+                    result = boardDao.deleteAttachment(session, id);
+                }
+            }
+            // attachment테이블 등록
+            List<BoardAttach> attachments = board.getAttachments();
+            if (!attachments.isEmpty()) {
+                for (BoardAttach attach : attachments) {
+                    attach.setBoardId(board.getId()); // fk 등록
+                    result = boardDao.insertAttachment(session, attach);
+                }
+            }
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
             session.close();
         }
         return result;
