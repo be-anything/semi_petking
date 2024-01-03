@@ -18,18 +18,18 @@
             users
         values (
             #{id},
-            #{gradeId},
-            #{clubId},
-            seq_users_nickname.nextval,
+            default,
+            null,
+            #{nickname} || seq_users_nickname.nextval,
             #{name},
             #{password},
-            #{originProfileName},
-            #{renamedProfileName},
+            null,
+            null,
             #{email},
             #{phone},
-            #{resultPoint},
-            #{role},
-            #{regDate}
+            default,
+            default,
+            default
         )
     </insert>
     <select id="findAll" resultMap="userVoMap">
@@ -64,6 +64,28 @@
         from
             users
     </select>
+
+
+    <select id="findByName" resultType="user">
+        select
+            *
+        from
+            users
+        where
+            name like '%' || #{name} || '%'
+    </select>
+
+    <update id="updateUser">
+        update
+            users
+        set
+            name = #{name},
+            nickname = #{nickname},
+            phone = #{phone}
+        where
+            id = #{id}
+    </update>
+
     <!--
     * 민준씨
     -->
@@ -82,7 +104,6 @@
     <!--
     * 정효씨
     -->
-
 
 
 

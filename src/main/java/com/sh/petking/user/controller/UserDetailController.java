@@ -16,11 +16,11 @@ public class UserDetailController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User loginUser = (User) req.getSession().getAttribute("loginUser");
-        if (loginUser == null) {
-            session.setAttribute("msg", "로그인 후 사용가능합니다.");
-            resp.sendRedirect(req.getContextPath() + "/");
-            return;
-        }
-        req.getRequestDispatcher("WEB-INF/views/user/userDetail.jsp").forward(req, resp);
+//        if (loginUser == null) {
+//            session.setAttribute("msg", "로그인 후 사용가능합니다.");
+//            resp.sendRedirect(req.getContextPath() + "/");
+//            return;
+//        }
+        req.getRequestDispatcher("/WEB-INF/views/user/userDetail.jsp").forward(req, resp);
     }
 }

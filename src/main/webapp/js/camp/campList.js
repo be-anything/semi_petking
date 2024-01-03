@@ -10,7 +10,7 @@ document.querySelectorAll("#campBtn").forEach((camp) => {
     });
 })
 
-document.querySelectorAll(".fa-heart").forEach((heart) => {
+document.querySelectorAll(".wish-btn").forEach((heart) => {
     heart.addEventListener('click', (e) => {
         const wish = e.target;
         const {campId, userId} = wish.dataset;

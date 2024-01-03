@@ -1,3 +1,54 @@
+
+document.querySelector("#updateBtn").addEventListener('click', (e) => {
+    const btn = e.target;
+    console.log(btn);
+    const frm = document.campUpdateFrm;
+    frm.submit();
+})
+document.querySelector(".wish-btn").addEventListener('click', (e) =>{
+    const wish = e.target.nextElementSibling;
+    const {campId, userId} = wish.dataset;
+    // console.log(campId, userId);
+
+    // console.log(wish)
+    if(wish.classList.contains("fa-regular")) {
+        if(confirm("나의 캠핑장 찜 목록에 추가합니다.")){
+            $.ajax({
+                    url: `${contextPath}/wish/wishInsert`,
+                    method : 'post',
+                    data : {
+                        campId, userId
+                    },
+                    success(result) {
+                        wish.classList.remove("fa-regular");
+                        wish.classList.remove("text-gray2");
+                        wish.classList.add("fa-solid");
+                        wish.classList.add("text-red");
+                    }
+                }
+            )
+        }
+    }
+    else {
+        if(confirm("나의 캠핑장 찜 목록에서 제거합니다.")) {
+            $.ajax({
+                    url: `${contextPath}/wish/wishDelete`,
+                    method : 'post',
+                    data : {
+                        campId, userId
+                    },
+                    success(result) {
+                        wish.classList.remove("fa-solid");
+                        wish.classList.remove("text-red");
+                        wish.classList.add("fa-regular");
+                        wish.classList.add("text-gray2");
+                    }
+                }
+            )
+        }
+    }
+});
+
 (() => {
     const container  = document.querySelector("#map");
     const campLcLa = document.querySelector("#campLcLa");
@@ -19,10 +70,3 @@
     // 마커가 지도 위에 표시되도록 설정합니다
     marker.setMap(map);
 })();
-
-document.querySelector("#updateBtn").addEventListener('click', (e) => {
-    const btn = e.target;
-    console.log(btn);
-    const frm = document.campUpdateFrm;
-    frm.submit();
-})
