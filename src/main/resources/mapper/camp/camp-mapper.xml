@@ -165,10 +165,42 @@
             </if>
         </where>
     </select>
-    <select id="findAllCampService" resultType="campWithService">
+    <select id="findAllCampService" resultType="_campService">
         select
             *
         from
             camp_service
     </select>
+    <select id="findAllCampTag" resultType="campTag">
+        select
+        *
+        from
+        camp_tag
+    </select>
+    <delete id="deleteCampTag">
+        delete
+            camp_with_tag
+        from
+            camp_id = #{campId}
+    </delete>
+    <insert id="insertCampWithTag">
+        insert into
+            camp_with_tag
+        values(
+            camp_with_tag.nextval, #{tagId}, #{campId}
+        )
+    </insert>
+    <delete id="deleteCampService">
+        delete
+            camp_with_service
+        from
+            camp_id = #{campId}
+    </delete>
+    <insert id="insertCampWithService">
+        insert into
+            camp_with_service
+        values(
+            camp_with_service.nextval, #{serviceId}, #{campId}
+        )
+    </insert>
 </mapper>

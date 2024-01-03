@@ -1,3 +1,23 @@
+// options 버튼 클릭 이벤트
+document.querySelectorAll(".options").forEach((option) => {
+    option.addEventListener('click', (e) => {
+        const selected = e.target;
+        console.log(selected)
+        selected.classList.toggle("bg-light-pink");
+        selected.classList.toggle("text-white");
+        selected.classList.toggle("selected");
+
+        const input = selected.children[0];
+        console.dir(input.checked);
+        if(selected.classList.contains("selected")){
+            input.checked = true;
+        }
+        else {
+            input.checked = false;
+        }
+    });
+});
+
 // 탭 메뉴 이동
 const tabBtns =  document.querySelectorAll(".tabBtn");
 tabBtns.forEach((tab, index) => {
@@ -69,6 +89,61 @@ document.querySelectorAll(".campImg").forEach((img) => {
     });
 })
 
+// 부가정보 수정 비동기처리
+document.querySelector("#updateDetailBtn").addEventListener('click', (e) => {
+    const btn = e.target;
+    console.log(btn);
+    const frm = document.campDetailUpdateFrm;
+    const frmData = new FormData(frm);
+
+    // const service = frm.querySelectorAll("input[name=serviceId]");
+    // const serviceList = [];
+    // service.forEach((checkbox) => {
+    //     if(checkbox.checked){
+    //         serviceList.push(checkbox);
+    //     }
+    // });
+    // const tag = frm.querySelectorAll("input[name=tagId]");
+    // const tagList = [];
+    // tag.forEach((checkbox) => {
+    //     if(checkbox.checked){
+    //         tagList.push(checkbox);
+    //     }
+    // });
+
+
+    for (var pair of frmData.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]);
+    }
+
+    $.ajax({
+        url : `${contextPath}/camp/campDetailUpdate`,
+        method: 'post',
+        data: frmData,
+        contentType: false,
+        processData: false,
+        success(response) {
+            const {msg} = response;
+            alert(msg);
+        },
+        complete() {
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 기본정보 수정 비동기처리
 // 내용 수정 비동기처리
 document.campUpdateFrm.addEventListener('submit', (e) => {
     // 폼 제출 막기

@@ -1,8 +1,9 @@
 package com.sh.petking.camp.model.service;
 
 import com.sh.petking.camp.model.dao.CampDao;
-import com.sh.petking.camp.model.entity.Camp;
+import com.sh.petking.camp.model.entity.*;
 import com.sh.petking.camp.model.vo.CampVo;
+import com.sh.petking.camp.model.vo.CampWithTagVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -87,10 +88,56 @@ public class CampService {
         return camps;
     }
 
-    public List<CampService> findAllCampService() {
+    public List<_CampService> findAllCampService() {
         SqlSession session = getSqlSession();
-        List<CampService> campServices = campDao.findAllCampService(session);
+        List<_CampService> campServices = campDao.findAllCampService(session);
         session.close();
         return campServices;
+    }
+
+    public List<CampTag> findAllCampTag() {
+        SqlSession session = getSqlSession();
+        List<CampTag> campTags = campDao.findAllCampTag(session);
+        return campTags;
+    }
+
+    public int updateCampDetail(Map<String, List<Object>> param) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try {
+            // param -> campWithTags와 campWithSerivce를 꺼내서 모두 지우고 다시 인서트 처리
+            Long campId = (Camp) param.get("campId").get(0).getId();
+            System.out.println(campId);
+
+            List<Object> campWithTags = param.get("campWithTags");
+            List<Object> campWithServices = param.get("campWithServices");
+
+            // tag 전체 삭제하기
+            result = campDao.deleteCampTag(session, campId);
+            System.out.println("삭제된 태그 수 " + result);
+            // tag 다시 인서트하기
+            for(Object campWithTag : campWithTags){
+                result = campDao.insertCampWithTag(session, (CampWithTag) campWithTag);
+            }
+
+            // service 전체 삭제하기
+            result = campDao.deleteCampService(session, campId);
+            System.out.println("삭제된 태그 수 " + result);
+            // tag 다시 인서트하기
+            for(Object campWithService : campWithServices){
+                result = campDao.insertCampWithService(session, (CampWithService) campWithService);
+            }
+
+
+
+
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
     }
 }

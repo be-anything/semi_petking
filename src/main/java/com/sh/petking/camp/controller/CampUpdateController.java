@@ -1,6 +1,8 @@
 package com.sh.petking.camp.controller;
 
 import com.google.gson.Gson;
+import com.sh.petking.camp.model.entity.CampTag;
+import com.sh.petking.camp.model.entity._CampService;
 import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
 import org.apache.commons.fileupload.FileItem;
@@ -31,9 +33,13 @@ public class CampUpdateController extends HttpServlet {
         // 2. 업무로직
         req.setAttribute("camp", camp);
         // - 부가서비스 종류 가져오기
-        List<CampService> campServices = campService.findAllCampService();
+        List<_CampService> campServices = campService.findAllCampService();
         req.setAttribute("campServices", campServices);
         System.out.println(campServices);
+        // - 태그 종류 가져오기
+        List<CampTag> campTags = campService.findAllCampTag();
+        req.setAttribute("campTags", campTags);
+        System.out.println(campTags);
 
         // 3. 포워딩
         req.getRequestDispatcher("/WEB-INF/views/camp/campUpdate.jsp").forward(req, resp);

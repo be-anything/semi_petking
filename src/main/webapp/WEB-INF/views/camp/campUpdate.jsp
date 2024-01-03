@@ -33,7 +33,7 @@
                     <dl class="divide-y divide-gray-100">
                         <div class="px-4 py-4 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
                             <label class="block mb-2 text-xl font-medium text-gray-900 dark:text-white" for="campImg">대표사진</label>
-                            <input class="campImg block w-full text-sm cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="campImg" name="campImg" type="file">
+                            <input class="block w-full text-sm cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="campImg" name="campImg" type="file">
                         </div>
                         <div class="px-4 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-0">
                             <img id="img-view" class="img-view" src="${pageContext.request.contextPath}/upload/camp/${camp.campRenamedImg}" alt="">
@@ -79,20 +79,24 @@
 <div class="justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
     <div class="px-4 sm:grid sm:grid-cols-1 sm:gap-10 sm:px-0 items-start">
         <form name="campDetailUpdateFrm">
-            <input type="hidden" name="id" value="${camp.id}">
+            <input type="hidden" name="campId" value="${camp.id}">
             <div class="px-4 sm:px-0">
                 <dl class="mt-10 mx-4">
                     <h1 class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">부가서비스</h1>
                     <div class="px-4 py-4 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-0">
                         <c:forEach items="${campServices}" var="service">
-                            <div class="grid w-full gap-6">
-                                <input type="checkbox" id="service-option" value="" class="hidden peer" required="">
-                                <label for="service-option" class="inline-flex items-center justify-center w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer">
-                                    <div class="block ">
-                                        <div class="w-full text-md font-md">${service.name}</div>
-                                    </div>
-                                </label>
-                            </div>
+                            <c:if test="${camp.campWithServices.toString().contains(service.name)}">
+                                <div class="options grid w-full gap-6 text-white bg-light-pink selected border-2 border-gray-200 rounded-lg cursor-pointer inline-flex items-center justify-center w-full p-5">
+                                    <input type="checkbox" checked name="serviceId" value="${service.id}" class="hidden peer tag-btn options grid w-full gap-6 text-white bg-light-pink selected border-2 border-gray-200 rounded-lg cursor-pointer inline-flex items-center justify-center w-full p-5" >
+                                        ${service.name}
+                                </div>
+                            </c:if>
+                            <c:if test="${!camp.campWithServices.toString().contains(service.name)}">
+                                <div class="options grid w-full gap-6 text-gray-500 border-2 border-gray-200 rounded-lg cursor-pointer inline-flex items-center justify-center w-full p-5">
+                                    <input type="checkbox" name="serviceId" value="${service.id}" class="hidden peer tag-btn" >
+                                        ${service.name}
+                                </div>
+                            </c:if>
                         </c:forEach>
                     </div>
 
@@ -234,19 +238,29 @@
                     <%-- 캠핑장 태그 --%>
                     <h1 class="mt-5 block mb-2 text-xl font-medium text-gray-900 dark:text-white">태그를 선택해주세요</h1>
                     <div class="px-4 py-4 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-0">
-                        <c:forEach items="${campServices}" var="service">
-                            <div class="grid w-full gap-6">
-                                <input type="checkbox" id="service-option" value="" class="hidden peer" required="">
-                                <label for="service-option" class="inline-flex items-center justify-center w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer">
-                                    <div class="block ">
-                                        <div class="w-full text-md font-md">${service.name}</div>
-                                    </div>
-                                </label>
-                            </div>
+                        <c:forEach items="${campTags}" var="tag">
+                            <c:if test="${camp.campWithTags.toString().contains(tag.name)}">
+                                <div class="options grid w-full gap-6 text-white bg-light-pink selected border-2 border-gray-200 rounded-lg cursor-pointer inline-flex items-center justify-center w-full p-5">
+                                    <input type="checkbox" checked name="tagId" value="${tag.id}" class="hidden peer tag-btn" >
+                                        ${tag.name}
+                                </div>
+                            </c:if>
+                            <c:if test="${!camp.campWithTags.toString().contains(tag.name)}">
+                                <div class="options grid w-full gap-6 text-gray-500 border-2 border-gray-200 rounded-lg cursor-pointer inline-flex items-center justify-center w-full p-5">
+                                    <input type="checkbox" name="tagId" value="${tag.id}" class="hidden peer tag-btn" >
+                                        ${tag.name}
+                                </div>
+                            </c:if>
                         </c:forEach>
                     </div>
 
-
+                    <div class="px-4 py-4 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
+                        <!-- 레이아웃용 빈 div -->
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <button id="updateDetailBtn" type="button" class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">수정하기</button>
+                    </div>
                 </dl>
             </div>
         </form>

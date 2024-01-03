@@ -1,7 +1,6 @@
 package com.sh.petking.camp.model.dao;
 
-import com.sh.petking.camp.model.entity.Camp;
-import com.sh.petking.camp.model.service.CampService;
+import com.sh.petking.camp.model.entity.*;
 import com.sh.petking.camp.model.vo.CampVo;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -42,7 +41,27 @@ public class CampDao {
         return session.selectList("camp.findAll", param, rowBounds);
     }
 
-    public List<CampService> findAllCampService(SqlSession session) {
+    public List<_CampService> findAllCampService(SqlSession session) {
         return session.selectList("camp.findAllCampService");
+    }
+
+    public List<CampTag> findAllCampTag(SqlSession session) {
+        return session.selectList("camp.findAllCampTag");
+    }
+
+    public int deleteCampTag(SqlSession session, Long campId) {
+        return session.delete("camp.deleteCampTag", campId);
+    }
+
+    public int insertCampWithTag(SqlSession session, CampWithTag campWithTag) {
+        return session.insert("camp.insertCampWithTag", campWithTag);
+    }
+
+    public int deleteCampService(SqlSession session, Long campId) {
+        return session.delete("camp.deleteCampService", campId);
+    }
+
+    public int insertCampWithService(SqlSession session, CampWithService campWithService) {
+        return session.insert("camp.insertCampWithService", campWithService);
     }
 }

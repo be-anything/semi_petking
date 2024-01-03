@@ -2,15 +2,15 @@ package com.sh.petking.camp.model.entity;
 
 public class CampWithService {
     private Long id;
-    private String name;
-    private String serviceImg;
+    private Long serviceId;
+    private Long campId;
 
     @Override
     public String toString() {
-        return "CampService{" +
+        return "CampWithService{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", serviceImg='" + serviceImg + '\'' +
+                ", serviceId=" + serviceId +
+                ", campId=" + campId +
                 '}';
     }
 
@@ -22,26 +22,26 @@ public class CampWithService {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getServiceId() {
+        return serviceId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setServiceId(Long serviceId) {
+        this.serviceId = serviceId;
     }
 
-    public String getServiceImg() {
-        return serviceImg;
+    public Long getCampId() {
+        return campId;
     }
 
-    public void setServiceImg(String serviceImg) {
-        this.serviceImg = serviceImg;
+    public void setCampId(Long campId) {
+        this.campId = campId;
     }
 
-    public CampWithService(Long id, String name, String serviceImg) {
+    public CampWithService(Long id, Long serviceId, Long campId) {
         this.id = id;
-        this.name = name;
-        this.serviceImg = serviceImg;
+        this.serviceId = serviceId;
+        this.campId = campId;
     }
 
     public CampWithService() {
