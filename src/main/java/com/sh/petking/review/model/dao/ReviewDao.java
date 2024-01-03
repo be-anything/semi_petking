@@ -31,10 +31,13 @@ public class ReviewDao {
         return session.update("review.updateReview", review);
     }
 
+    public int deleteReview(SqlSession session, String userId) {
+        System.out.println(userId);
+        return session.delete("review.deleteReview", userId);
+    }
     public int deleteReview(SqlSession session, long id) {
         return session.delete("review.deleteReview", id);
     }
-
     public int getTotalCount(SqlSession session) {
         return session.selectOne("review.getTotalCount");
     }

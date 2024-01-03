@@ -26,4 +26,20 @@ public class ReviewService {
         session.close();
         return totalCount;
     }
+
+    public int deleteReview(long id) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = reviewDao.deleteReview(session, id);
+            System.out.println(id);
+            session.commit();
+        } catch (Exception e){
+            session.close();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }
