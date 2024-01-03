@@ -39,7 +39,7 @@ public class UserDao extends HttpServlet {
     }
 
     public int updateUser(SqlSession session, User user) {
-        return session.update("User.updateUser", user);
+        return session.update("user.updateUser", user);
     }
     public int updateUserRole(SqlSession session, User user) {
         System.out.println(user);
@@ -66,15 +66,11 @@ public class UserDao extends HttpServlet {
      *
      *
      */
+    public int userPasswordUpdate(SqlSession session, User user) {
+        return session.update("user.userPasswordUpdate", user);
+    }
 
-
-
-
-
-
-
-
-
-
-
+    public int deleteUser(SqlSession session, String id) {
+        return session.delete("user.deleteUser", id);
+    }
 }

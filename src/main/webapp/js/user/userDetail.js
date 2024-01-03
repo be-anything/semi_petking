@@ -1,4 +1,4 @@
-document.memberUpdateFrm.addEventListener('submit', (e) => {
+document.userUpdateFrm.addEventListener('submit', (e) => {
     const frm = e.target;
     const name = frm.name;
 

@@ -19,7 +19,7 @@
         values (
             #{id},
             default,
-            null,
+            0,
             #{nickname} || seq_users_nickname.nextval,
             #{name},
             #{password},
@@ -104,6 +104,21 @@
     <!--
     * 정효씨
     -->
+    <update id="userPasswordUpdate">
+        update
+            users
+        set
+            password = #{password}
+        where
+            id = #{id}
+    </update>
+
+    <delete id="deleteUser">
+        delete from
+            users
+        where
+            id = #{id}
+    </delete>
 
 
 

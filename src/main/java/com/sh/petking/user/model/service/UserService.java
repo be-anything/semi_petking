@@ -108,15 +108,34 @@ public class UserService {
      * 
      * 
      */
+    public int userPasswordUpdate(User user) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = userDao.userPasswordUpdate(session, user);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 
 
-
-
-
-
-
-
-
-
-
+    public int deleteUser(String id) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = userDao.deleteUser(session, id);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }

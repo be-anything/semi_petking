@@ -130,4 +130,34 @@ public class UserDaoTest {
         assertThat(user1.getNickname()).isEqualTo(newNickname);
     }
 
+    @DisplayName("회원 비밀번호 수정")
+    @Test
+    public void test8() {
+        String id = "ronn112";
+        User user = userDao.findById(session, id);
+
+        String newPassword = "1234q!";
+        user.setPassword(newPassword);
+
+        int result = userDao.userPasswordUpdate(session, user);
+
+        assertThat(result).isGreaterThan(0);
+        User user1 = userDao.findById(session, id);
+        assertThat(user1.getPassword()).isEqualTo(newPassword);
+    }
+
+    @DisplayName("회원 탈퇴")
+    @Test
+    public void test9() {
+        String id = "ronn112";
+        User user = userDao.findById(session, id);
+        assertThat(user).isNotNull();
+
+        int result = userDao.deleteUser(session, id);
+        assertThat(result).isGreaterThan(0);
+
+        User user1 = userDao.findById(session, id);
+        assertThat(user1).isNull();
+    }
+
 }

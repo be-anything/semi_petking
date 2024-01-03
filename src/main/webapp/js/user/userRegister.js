@@ -1,3 +1,40 @@
+document.querySelector("#id").addEventListener('keyup', (e) => {
+    const value = e.target.value;
+    console.log(value);
+
+    const guideOk = document.querySelector(".guide.ok");
+    const guideError = document.querySelector(".guide.error");
+    const idValid = document.querySelector("#idValid");
+
+    if (/^\w{4,}$/.test(value)) {
+        $.ajax({
+            url : `${contextPath}/user/UserCheckIdDuplicate`,
+            data : {
+                id : value
+            },
+            success(response) {
+                const {result} = response;
+                if (result) {
+                    // 아이디 사용가능한 경우
+                    guideError.classList.add('hidden');
+                    guideOk.classList.remove('hidden');
+                    idValid.value = 1;
+                } else {
+                    // 아이디 이미 사용중인 경우
+                    guideOk.classList.add('hidden');
+                    guideError.classList.remove('hidden');
+                    idValid.value = 0;
+                }
+            }
+        });
+    } else {
+        // 다시쓰기하는 경우
+        guideOk.classList.add('hidden');
+        guideError.classList.add('hidden');
+        idValid.value = 0; // 리셋해줌
+    }
+});
+
 /**
  * 회원가입 유효성검사
  */

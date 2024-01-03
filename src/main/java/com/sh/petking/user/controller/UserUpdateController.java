@@ -19,7 +19,7 @@ public class UserUpdateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 인코딩처리
-        req.setCharacterEncoding("utf-8");
+//        req.setCharacterEncoding("utf-8");
 
         // 사용자 입력값 가져오기
         User loginUser = (User) req.getSession().getAttribute("loginUser");
@@ -27,12 +27,12 @@ public class UserUpdateController extends HttpServlet {
         String name = req.getParameter("name");
         String password = req.getParameter("password");
         String nickname = req.getParameter("nickname");
-        String originalProfileName = req.getParameter("originalProfileName");
-        String renamedProfileName = req.getParameter("renamedProfileName");
+//        String originalProfileName = req.getParameter("originalProfileName");
+//        String renamedProfileName = req.getParameter("renamedProfileName");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
 
-    User user = new User(id, null, 0L, nickname, name, password, originalProfileName, renamedProfileName, email,
+    User user = new User(id, null, 0L, nickname, name, password, null, null, email,
             phone, 0L, Role.U, null);
         System.out.println(user);
 
