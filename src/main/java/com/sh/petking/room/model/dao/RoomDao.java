@@ -29,17 +29,17 @@ public class RoomDao
         int page = (int)param.get("page");
         int limit = (int)param.get("limit");
         int offset = (page-1) * limit;
-        RowBounds rowBounds = new RowBounds(offset,limit);
-        return session.selectList("room.findAll",param,rowBounds);
+        //RowBounds rowBounds = new RowBounds(offset,limit);
+        return session.selectList("room.findAll",param);
     }
     public int getToTalCount(SqlSession session)
     {
         return session.selectOne("room.getTotalCount");
     }
 
-    public int deleteRoom(SqlSession session, RoomDto roomDto)
+    public int deleteRoom(SqlSession session, RoomVo room)
     {
-        return session.delete("room.deleteRoom",roomDto);
+        return session.delete("room.deleteRoom",room);
     }
 
     public Room findRoom(SqlSession session, RoomDto roomDto)
@@ -60,5 +60,10 @@ public class RoomDao
     //객실 첨부사진 삭제
     public int deleteAttachment(SqlSession session, Long id) {
         return session.delete("room.deleteRoomAttach",id);
+    }
+
+    //0103 객실 수정
+    public int updateRoom(SqlSession session, RoomVo room) {
+        return session.update("room.updateRoom", room);
     }
 }

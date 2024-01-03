@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    0103 문의내역 관련 mapper
+    0.select query test
+    1.insert query test
+    2.update qeury test
+     - askComment
+     - askCommentRegDate
+    -->
+<mapper namespace="ask">
+
+<!-- test - 모든 값 가져오기   -->
+
+    <select id="findAll" resultType="ask">
+        select
+            *
+        from
+            ask
+        order by
+            ask_reg_date desc
+    </select>
+
+<!-- 사용자가 문의 작성한 것을 insert한것이므로 문의글답변과 문의글답변 작성일은 null로 처리했습니다.   -->
+    <insert id="insertAsk">
+        insert into
+            ask
+        values (
+            seq_ask_id.nextval,
+            #{userId},
+            #{campId},
+            ${askTitle},
+            ${askContent},
+            default,
+            null,
+            null
+        )
+    </insert>
+
+<!-- 캠핑장 주인 즉, 사업자가 문의 답변을 달아준 경우   -->
+    <update id = "updateAsk">
+        update
+            ask
+        set
+            ask_comment = #{askComment},
+            ask_comment_reg_date = #{askCommentRegDate}
+        where
+            id = #{id}
+        and
+            camp_id = #{campId}
+
+    </update>
+
+</mapper>

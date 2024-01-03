@@ -162,6 +162,23 @@
             id = #{id}
     </delete>
 
+    <!--객실 정보 update 쿼리-->
+    <update id="updateRoom">
+        update
+            room
+        set
+        room_name = #{roomName},
+        room_type = #{roomType},
+        room_intro = #{roomIntro},
+        room_default_person = #{roomDefaultPerson},
+        room_maximum_person = #{roomMaximumPerson},
+        room_default_fee = #{roomDefaultFee},
+        room_over_fee = #{roomOverFee}
+        where
+        id = #{id}
+    </update>
+
+
 
 
 </mapper>

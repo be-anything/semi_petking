@@ -75,13 +75,13 @@ public class RoomService
     }
 
 
-    public int deleteRoom(RoomDto roomDto)//특정 룸 하나
+    public int deleteRoom(RoomVo room)//특정 룸 하나
     {
         int result=0;
         SqlSession session = getSqlSession();
         try
         {
-            result = roomDao.deleteRoom(session,roomDto);
+            result = roomDao.deleteRoom(session,room);
             session.commit();
         }
         catch(Exception e)
@@ -122,4 +122,37 @@ public class RoomService
         return room;
     }
 
+    //0103 객실 수정 service 단 코드
+    public int updateRoom(RoomVo room) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            // board테이블 수정
+            result = roomDao.updateRoom(session, room);
+
+            // attachment테이블 삭제
+            List<Long> delFiles = room.getDelFiles();
+            if (!delFiles.isEmpty()) {
+                for (Long id : delFiles) {
+                    result = roomDao.deleteAttachment(session, id);
+                }
+            }
+
+            // attachment테이블 등록
+            List<RoomAttach> attachments = room.getRoomAttachs();
+            if (!attachments.isEmpty()) {
+                for (RoomAttach attach : attachments) {
+                    attach.setRoomId(room.getId()); // fk 등록
+                    result = roomDao.insertAttachment(session, attach);
+                }
+            }
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }

@@ -45,7 +45,7 @@ public class RoomVo extends Room {
 
     @Override
     public String toString() {
-        return "RoomVo{" +
+        return "\nRoomVo{" +
                 "roomAttachs=" + roomAttachs +
                 '}'+ super.toString();
     }

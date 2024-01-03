@@ -40,7 +40,7 @@
             </thead>
             <tbody>
             <c:forEach items="${rooms}" var="room" varStatus="vs">
-                <tr class="odd:bg-white even:bg-gray-50 border-b ">
+                <div class="odd:bg-white even:bg-gray-50 border-b ">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${room.id}</th>
                     <td class="px-6 py-4"><img class="w-[300px]" src="../images/room/room1.jpg" alt=""></td>
                     <td class="px-6 py-4">
@@ -54,18 +54,37 @@
                     <td class="px-6 py-4">${room.roomDefaultPerson}</td>
                     <td class="px-6 py-4">${room.roomMaximumPerson}</td>
                     <td class="px-6 py-4">
+                        <div class="flex justify-end">
                     <button type="button"
                             onclick="location.href = '${pageContext.request.contextPath}/room/roomUpdate?id=${room.id}'"
                             class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-black bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
                         수정
                     </button>
+                        <button type="button"
+                                onClick="confirm('${room.id} 번 객실을 삭제하시겠습니까?') &&
+                                        document.roomDeleteFrm${room.id}.submit();"
+                                class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+                            ${vs.index}번째 삭제
+                        </button>
+                        </div>
                     </td>
+                </div>
                 </tr>
+                <form
+                        name="roomDeleteFrm${room.id}"
+                        action="${pageContext.request.contextPath}/room/roomDelete"
+                      method="post" >
+                    <input type = "hidden" name="id" value="${room.id}">
+                    <input type = "hidden" name="campId" value="${room.campId}">
+                </form>
             </c:forEach>
+
+
             </tbody>
         </table>
     </div>
 </div>
+
 
 <div class="flex justify-center mt-6">
     <nav aria-label="Page navigation example">
@@ -75,5 +94,5 @@
     </nav>
 </div>
 
-
+<script src="${pageContext.request.contextPath}/js/room/roomList.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
