@@ -102,139 +102,37 @@
 
                     <h1 class="block mb-2 mt-5 text-xl font-medium text-gray-900 dark:text-white">캠핑장 소개 사진</h1>
                     <div class="px-4 py-4 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-0">
-                        <div class="flex items-center justify-center w-full">
-                            <label for="campAttachfile1"
-                                   style="background-size: cover; background-position: center"
-                                   class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
-                                </div>
-                                <input id="campAttachfile1" type="file" class="campImg hidden campAttach" />
-                            </label>
-                        </div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="campAttachfile2"
-                                   style="background-size: cover; background-position: center"
-                                   class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6" >
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
-                                </div>
-                                <input id="campAttachfile2" type="file" class="campImg hidden campAttach" />
-                            </label>
-                        </div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="campAttachfile3"
-                                   style="background-size: cover; background-position: center"
-                                   class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
-                                </div>
-                                <input id="campAttachfile3" type="file" class="campImg hidden campAttach" />
-                            </label>
-                        </div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="campAttachfile4"
-                                   style="background-size: cover; background-position: center"
-                                   class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
-                                </div>
-                                <input id="campAttachfile4" type="file" class="campImg hidden campAttach" />
-                            </label>
-                        </div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="campAttachfile5"
-                                   style="background-size: cover; background-position: center"
-                                   class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
-                                </div>
-                                <input id="campAttachfile5" type="file" class="campImg hidden campAttach" />
-                            </label>
-                        </div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="campAttachfile6"
-                                   style="background-size: cover; background-position: center"
-                                   class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
-                                </div>
-                                <input id="campAttachfile6" type="file" class="campImg hidden campAttach" />
-                            </label>
-                        </div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="campAttachfile7"
-                                   style="background-size: cover; background-position: center"
-                                   class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
-                                </div>
-                                <input id="campAttachfile7" type="file" class="campImg hidden campAttach" />
-                            </label>
-                        </div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="campAttachfile8"
-                                   style="background-size: cover; background-position: center"
-                                   class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
-                                </div>
-                                <input id="campAttachfile8" type="file" class="campImg hidden campAttach" />
-                            </label>
-                        </div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="campAttachfile9"
-                                   style="background-size: cover; background-position: center"
-                                   class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
-                                </div>
-                                <input id="campAttachfile9" type="file" class="campImg hidden campAttach" />
-                            </label>
-                        </div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="campAttachfile10"
-                                   style="background-size: cover; background-position: center"
-                                   class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
-                                </div>
-                                <input id="campAttachfile10" type="file" class="campImg hidden campAttach" />
-                            </label>
-                        </div>
+                        <c:forEach items="${camp.campAttaches}" var="campAttach" varStatus="vs">
+                            <div class="flex items-center justify-center w-full">
+                                <label for="campImg${vs.index}"
+                                       style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/upload/camp/${campAttach.campAttachRenamedName}')"
+                                       class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                        </svg>
+                                        <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
+                                    </div>
+                                    <input id="campImg${vs.index}" name="campDetailImg" type="file" class="campImg hidden campAttach" />
+                                </label>
+                            </div>
+                        </c:forEach>
+                        <c:forEach var="box" begin="0" end="${9 - camp.campAttaches.size()}" varStatus="vs">
+                            <div class="flex items-center justify-center w-full">
+                                <label for="campImg${vs}"
+                                       style="background-size: cover; background-position: center"
+                                       class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                        </svg>
+                                        <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
+                                    </div>
+                                    <input id="campImg${vs}" type="file" class="campImg hidden campAttach" />
+                                </label>
+                            </div>
+                        </c:forEach>
                     </div>
-
-
                     <%-- 캠핑장 태그 --%>
                     <h1 class="mt-5 block mb-2 text-xl font-medium text-gray-900 dark:text-white">태그를 선택해주세요</h1>
                     <div class="px-4 py-4 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-0">

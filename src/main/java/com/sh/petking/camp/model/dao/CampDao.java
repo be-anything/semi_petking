@@ -2,6 +2,7 @@ package com.sh.petking.camp.model.dao;
 
 import com.sh.petking.camp.model.entity.*;
 import com.sh.petking.camp.model.vo.CampVo;
+import org.apache.commons.fileupload.FileItem;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
@@ -63,5 +64,18 @@ public class CampDao {
 
     public int insertCampWithService(SqlSession session, CampWithService campWithService) {
         return session.insert("camp.insertCampWithService", campWithService);
+    }
+
+    public int deleteCampAttach(SqlSession session, Long campId) {
+        return session.delete("camp.deleteCampAttach", campId);
+    }
+
+    public int insertCampAttach(SqlSession session, CampAttach campAttach) {
+        System.out.println("================ dao attach ============");
+        System.out.println(campAttach.getCampId());
+        System.out.println(campAttach.getCampAttachOriginalName());
+        System.out.println(campAttach.getCampAttachRenamedName());
+
+        return session.insert("camp.insertCampAttach", campAttach);
     }
 }

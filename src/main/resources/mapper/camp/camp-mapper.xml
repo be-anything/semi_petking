@@ -52,6 +52,9 @@
             cs.id service_id,
             cs.name service_name,
             cs.service_img service_img,
+            ca.id attach_id,
+            ca.camp_id camp_id_attach,
+            ca.camp_attach_renamed_name renamed_img,
             (select count(*) from review where camp_id = c.id) review_count,
             (select count(*) from wish where camp_id = c.id) wish_count
         from
@@ -66,6 +69,8 @@
                     on c.id = cws.camp_id
                 left join camp_service cs
                     on cws.service_id = cs.id
+                left join camp_attach ca
+                    on c.id = ca.camp_id
         where
             c.id = #{id}
     </select>
@@ -102,6 +107,11 @@
             <id column="service_id" property="id"/>
             <result column="service_name" property="serviceName"/>
             <result column="service_img" property="serviceImg"/>
+        </collection>
+        <collection property="campAttaches" ofType="campAttach">
+            <id column="attach_id" property="id"/>
+            <result column="camp_id_attach" property="campId"/>
+            <result column="renamed_img" property="campAttachRenamedName"/>
         </collection>
     </resultMap>
 
@@ -178,29 +188,42 @@
         camp_tag
     </select>
     <delete id="deleteCampTag">
-        delete
+        delete from
             camp_with_tag
-        from
+        where
             camp_id = #{campId}
     </delete>
     <insert id="insertCampWithTag">
         insert into
             camp_with_tag
         values(
-            camp_with_tag.nextval, #{tagId}, #{campId}
+            SEQ_CAMP_WITH_TAG.nextval, #{tagId}, #{campId}
         )
     </insert>
     <delete id="deleteCampService">
-        delete
+        delete from
             camp_with_service
-        from
+        where
             camp_id = #{campId}
     </delete>
     <insert id="insertCampWithService">
         insert into
             camp_with_service
         values(
-            camp_with_service.nextval, #{serviceId}, #{campId}
+            seq_camp_with_service_id.nextval, #{serviceId}, #{campId}
+        )
+    </insert>
+    <delete id="deleteCampAttach">
+        delete from
+            camp_attach
+        where
+            camp_id = #{campId}
+    </delete>
+    <insert id="insertCampAttach">
+        insert into
+            camp_attach
+        values(
+            seq_camp_attach_id.nextval, #{campId}, #{campAttachOriginalName}, #{campAttachRenamedName}
         )
     </insert>
 </mapper>

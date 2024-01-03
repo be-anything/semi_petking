@@ -34,58 +34,69 @@ public class CampDetailUpdateController extends HttpServlet {
         factory.setSizeThreshold(sizeThreshold);
         ServletFileUpload servletFileUpload = new ServletFileUpload(factory);
 
-        System.out.println("1");
-
         // Camp Attach - insert / delete
-//        CampAttach campAttach = new CampAttach();
+        List<CampAttach> campAttaches = new ArrayList<>();
         // Camp with Tags - insert / delete
         List<CampWithTag> campWithTags = new ArrayList<>();
         // Camp with Services - insert / delete
         List<CampWithService> campWithServices = new ArrayList<>();
+        List<FileItem> campImgFileItems = new ArrayList<>();
 
-        List<Camp> camps = new ArrayList<>();
-        camps.add(new Camp());
-
+        Long campId = 0L;
         try {
             // 1. 사용자 입력값 처리
             Map<String, List<FileItem>> fileItemMap = servletFileUpload.parseParameterMap(req);
-            camps.get(0).setId(Long.parseLong(fileItemMap.get("campId").get(0).getString("utf-8")));
+            campId= Long.parseLong(fileItemMap.get("campId").get(0).getString("utf-8"));
 
             // campWithTag 처리
             for (int i = 0; i < fileItemMap.get("tagId").size(); i++) {
                 Long tagId = Long.parseLong(fileItemMap.get("tagId").get(i).getString("utf-8"));
-                campWithTags.add(new CampWithTag((long) 0, tagId, camps.get(0).getId()));
-                System.out.println("213213");
+                campWithTags.add(new CampWithTag((long) 0, tagId, campId));
             }
             // campWithService 처리
             for (int i = 0; i < fileItemMap.get("serviceId").size(); i++) {
                 Long serviceId = Long.parseLong(fileItemMap.get("serviceId").get(i).getString("utf-8"));
-                campWithServices.add(new CampWithService((long) 0, serviceId, camps.get(0).getId()));
-                System.out.println("213213");
+                campWithServices.add(new CampWithService((long) 0, serviceId, campId));
             }
 
-            System.out.println(campWithTags);
-            System.out.println(campWithServices);
-
+            campImgFileItems = fileItemMap.get("campDetailImg");
             // campAttach 처리
+            for(int i = 0; i < campImgFileItems.size(); i++){
+                System.out.println(campImgFileItems.get(i) + " " + i);
+                String originalImgName = campImgFileItems.get(i).getName().toString();
+
+                if(originalImgName != null && !("".equals(originalImgName))) {
+                    System.out.println(originalImgName + " " + i);
+                    int dotIndex = originalImgName.lastIndexOf(".");
+                    String ext = dotIndex > -1 ? originalImgName.substring(dotIndex) : "";
+
+                    UUID uuid = UUID.randomUUID();
+                    String renamedImgName = uuid + ext;
+
+                    CampAttach campAttach = new CampAttach();
+                    campAttach.setCampAttachOriginalName(originalImgName);
+                    campAttach.setCampAttachRenamedName(renamedImgName);
+                    campAttach.setCampId(campId);
+
+                    campAttaches.add(campAttach);
+                    campImgFileItems.get(i).write(new File(repository, renamedImgName));
+                }
+            }
 //            List<FileItem> campImgAttachItem = fileItemMap.get("campAttach");
-        } catch (FileUploadException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        System.out.println("3");
+        Map<String, Object> param = new HashMap<>();
+        param.put("campId", campId);
+        param.put("campWithTags", campWithTags);
+        param.put("campWithServices", campWithServices);
+        param.put("campAttaches", campAttaches);
 
-        Map<String, List<Object>> param = new HashMap<>();
-        param.put("campId", Collections.singletonList(camps));
-        param.put("campWithTags", Collections.singletonList(campWithTags));
-        param.put("campWithServices", Collections.singletonList(campWithServices));
-        System.out.println(param);
         // 2. 업무로직
         int result = campService.updateCampDetail(param);
-
         // 사용자 메시지
         Map<String, Object> resultMap = Map.of("msg", "캠핑장 정보가 수정되었습니다.");
-
         // 3. redirect
         resp.setContentType("application/json; charset=utf-8");
         new Gson().toJson(resultMap, resp.getWriter());

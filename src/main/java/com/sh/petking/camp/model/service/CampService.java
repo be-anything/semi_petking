@@ -3,9 +3,10 @@ package com.sh.petking.camp.model.service;
 import com.sh.petking.camp.model.dao.CampDao;
 import com.sh.petking.camp.model.entity.*;
 import com.sh.petking.camp.model.vo.CampVo;
-import com.sh.petking.camp.model.vo.CampWithTagVo;
+import org.apache.commons.fileupload.FileItem;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -101,38 +102,52 @@ public class CampService {
         return campTags;
     }
 
-    public int updateCampDetail(Map<String, List<Object>> param) {
+    public int updateCampDetail(Map<String, Object> param) {
+        System.out.println("나오나요");
         SqlSession session = getSqlSession();
         int result = 0;
+        Long campId = (Long) param.get("campId");
+        List<CampWithTag> campWithTags = (List<CampWithTag>) param.get("campWithTags");
+        List<CampWithService> campWithServices = (List<CampWithService>) param.get("campWithServices");
+        List<CampAttach> campAttaches = (List<CampAttach>) param.get("campAttaches");
+        System.out.println(campAttaches);
+
         try {
-            // param -> campWithTags와 campWithSerivce를 꺼내서 모두 지우고 다시 인서트 처리
-            Long campId = (Camp) param.get("campId").get(0).getId();
-            System.out.println(campId);
-
-            List<Object> campWithTags = param.get("campWithTags");
-            List<Object> campWithServices = param.get("campWithServices");
-
-            // tag 전체 삭제하기
-            result = campDao.deleteCampTag(session, campId);
-            System.out.println("삭제된 태그 수 " + result);
-            // tag 다시 인서트하기
-            for(Object campWithTag : campWithTags){
-                result = campDao.insertCampWithTag(session, (CampWithTag) campWithTag);
+            // 태그 전체 삭제
+            if (campWithTags != null && campWithTags.size() > 0) {
+                result = campDao.deleteCampTag(session, campId);
+                System.out.println("삭제된 태그 수 " + result);
+                // 태그 다시 삽입
+                for (int i = 0; i < campWithTags.size(); i++) {
+                    result = campDao.insertCampWithTag(session, campWithTags.get(i));
+                    System.out.println("태그 반복문: " + i);
+                }
             }
 
-            // service 전체 삭제하기
-            result = campDao.deleteCampService(session, campId);
-            System.out.println("삭제된 태그 수 " + result);
-            // tag 다시 인서트하기
-            for(Object campWithService : campWithServices){
-                result = campDao.insertCampWithService(session, (CampWithService) campWithService);
+            if (campWithServices != null && campWithServices.size() > 0) {
+                // 서비스 전체 삭제
+                result = campDao.deleteCampService(session, campId);
+                System.out.println("삭제된 서비스 수 " + result);
+                // 서비스 다시 삽입
+                for (int i = 0; i < campWithServices.size(); i++) {
+                    result = campDao.insertCampWithService(session, campWithServices.get(i));
+                    System.out.println("서비스 반복문: " + i);
+                }
             }
 
-
-
+            if(campAttaches != null && !campAttaches.isEmpty()){
+                for(int i = 0; i < campAttaches.size(); i++){
+                    System.out.println("================ service attach ============");
+                    System.out.println(campAttaches.get(i).getCampId());
+                    System.out.println(campAttaches.get(i).getCampAttachRenamedName());
+                    System.out.println(campAttaches.get(i).getCampAttachOriginalName());
+                    result = campDao.insertCampAttach(session, campAttaches.get(i));
+                }
+            }
 
             session.commit();
         } catch (Exception e) {
+            e.printStackTrace();
             session.rollback();
             throw e;
         } finally {

@@ -70,17 +70,13 @@ document.querySelectorAll(".campImg").forEach((img) => {
         const btn = e.target;
         const img = btn.files[0];
         const imgView = btn.parentElement;
+        console.log(imgView)
         const text = btn.previousElementSibling;
-
-        console.dir(e.target);
-        console.dir(img);
-        console.dir(imgView);
 
         const loadImg = (img) => {
             const imgReader = new FileReader();
             imgReader.onload = (e) => {
                 imgView.style["backgroundImage"] =  "url('" + e.target.result + "')";
-                console.log(imgView.style["backgroundImage"]);
             };
             imgReader.readAsDataURL(img);
             text.style.display = 'none';
@@ -95,22 +91,6 @@ document.querySelector("#updateDetailBtn").addEventListener('click', (e) => {
     console.log(btn);
     const frm = document.campDetailUpdateFrm;
     const frmData = new FormData(frm);
-
-    // const service = frm.querySelectorAll("input[name=serviceId]");
-    // const serviceList = [];
-    // service.forEach((checkbox) => {
-    //     if(checkbox.checked){
-    //         serviceList.push(checkbox);
-    //     }
-    // });
-    // const tag = frm.querySelectorAll("input[name=tagId]");
-    // const tagList = [];
-    // tag.forEach((checkbox) => {
-    //     if(checkbox.checked){
-    //         tagList.push(checkbox);
-    //     }
-    // });
-
 
     for (var pair of frmData.entries()) {
         console.log(pair[0]+ ', ' + pair[1]);
