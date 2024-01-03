@@ -47,9 +47,6 @@ public class BoardUpdateController extends HttpServlet {
         try {
             // 1. 사용자입력값 처리
             List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
-            Map<String, List<FileItem>> fileItemMap = servletFileUpload.parseParameterMap(req);
-            System.out.println(fileItemMap.get("id"));
-            if(true) return;
             for (FileItem fileItem : fileItemList) {
                 String name = fileItem.getFieldName();
                 if (fileItem.isFormField()) {
