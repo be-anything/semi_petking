@@ -90,14 +90,16 @@
                     class="del-btn bg-red text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline-red hover:bg-red-600">
                 삭제
             </button>
+                <form name="reviewDeleteFrm" action="${pageContext.request.contextPath}/review/reviewDelete" method="post">
+                    <input type="hidden" name="id" value="${review.id}">
+                </form>
             </td>
         </tr>
+
         </c:forEach>
         </tbody>
     </table>
-    <form name="reviewDeleteFrm" action="${pageContext.request.contextPath}/review/reviewDelete" method="post">
-        <input type="hidden" name="id" value="${review.id}">
-    </form>
+
 
     <div class="flex justify-center mt-6">
         <nav aria-label="Page navigation example">

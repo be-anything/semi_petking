@@ -32,7 +32,7 @@ public class ReviewListController extends HttpServlet {
 
         List<ReviewVo> reviews = reviewService.findAll(param);
         req.setAttribute("reviews", reviews);
-
+        System.out.println(reviews.get(0).getId());
         int totalCount = reviewService.getTotalCount();
         String url = req.getRequestURI();
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
