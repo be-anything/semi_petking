@@ -36,28 +36,28 @@
         </span>
         </div>
         <%-- 작성자 본인과 관리자에게만 노출 --%>
-<%--        <c:if test="${loginUser.id eq board.userId}">--%>
-<%--            <div class="flex justify-end">--%>
-<%--                <button--%>
-<%--                        type="button"--%>
-<%--                        onclick="location.href = '${pageContext.request.contextPath}/board/boardUpdate?id=${board.id}';"--%>
-<%--                        class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">--%>
-<%--                    수정--%>
-<%--                </button>--%>
-<%--                <button type="button"--%>
-<%--                        onclick="confirm('정말 삭제하시겠습니까? 😯') && document.boardDeleteFrm.submit()"--%>
-<%--                        class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">--%>
-<%--                    삭제--%>
-<%--                </button>--%>
-<%--            </div>--%>
-<%--            <form--%>
-<%--&lt;%&ndash;                    action="${pageContext.request.contextPath}/board/boardDelete"&ndash;%&gt;--%>
-<%--                    method="post"--%>
-<%--                    name="boardDeleteFrm">--%>
-<%--                <input type="hidden" name="id" value="${board.id}">--%>
-<%--            </form>--%>
-<%--        </c:if>--%>
-<%--    </div>--%>
+        <c:if test="${loginUser.id eq board.userId}">
+            <div class="flex justify-end">
+                <button
+                        type="button"
+                        onclick="location.href = '${pageContext.request.contextPath}/board/boardUpdate?id=${board.id}';"
+                        class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-black bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+                    수정
+                </button>
+                <button type="button"
+                        onclick="confirm('정말 삭제하시겠습니까? 😯') && document.boardDeleteFrm.submit()"
+                        class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+                    삭제
+                </button>
+            </div>
+            <form
+                    action="${pageContext.request.contextPath}/board/boardDelete"
+                    method="post"
+                    name="boardDeleteFrm">
+                <input type="hidden" name="id" value="${board.id}">
+            </form>
+        </c:if>
+    </div>
 
     <!-- 댓글 폼 -->
     <div class="w-full my-2">

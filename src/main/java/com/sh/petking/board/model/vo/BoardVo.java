@@ -85,6 +85,7 @@ public class BoardVo extends Board {
     public void setValue(String name, String value) {
         switch (name) {
             case "id" : setId(Long.parseLong(value)); break;
+            case "boardType" : setBoardType(BoardType.valueOf(value)); break;
             case "title" : setBoardTitle(value); break;
             case "userId" : setUserId(value); break;
             case "content" : setBoardContent(value); break;

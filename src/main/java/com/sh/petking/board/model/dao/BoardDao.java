@@ -21,8 +21,7 @@ public class BoardDao {
         return session.selectList("board.findAll", null, new RowBounds(offset, limit));
     }
 
-    public Board findById(SqlSession session, long id) {
-        System.out.println(id);
+    public BoardVo findById(SqlSession session, long id) {
         return session.selectOne("board.findById", id);
     }
 

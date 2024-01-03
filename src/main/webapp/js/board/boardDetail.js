@@ -7,10 +7,10 @@ document.addEventListener('submit', (e) => {
     // 정적으로 생성된 폼, 동적으로 생성된 폼 모두 적용
     if(e.target.matches("[name=boardCommentCreateFrm]")){
         const frm = e.target;
-        const memberId = frm.memberId;
+        const userId = frm.userId;
         const content = frm.content;
 
-        if(!memberId.value){
+        if(!userId.value){
             alert('로그인후 댓글을 작성해주세요. 🥲');
             e.preventDefault();
             return;
@@ -32,14 +32,14 @@ document.querySelectorAll(".btn-reply").forEach((button)=>{
         console.log(e.target.value); // 댓글 id
         console.log(e.target.dataset); // button.btn-reply의 data속성
         const parentCommentId = e.target.value;
-        const {contextPath, boardId, loginMemberId} = e.target.dataset;
+        const {contextPath, boardId, loginUserId} = e.target.dataset;
         // 대댓글 입력폼 tr
         const html = `
               <tr>
                 <td colspan="4">
                   <form name="boardCommentCreateFrm" action="${contextPath}/board/boardCommentCreate" method="post">
                     <input type="hidden" name="boardId" value="${boardId}">
-                    <input type="hidden" name="memberId" value="${loginMemberId}">
+                    <input type="hidden" name="userId" value="${loginUserId}">
                     <input type="hidden" name="commentLevel" value="2">
                     <input type="hidden" name="parentCommentId" value="${parentCommentId}">
                     <div class="flex items-center px-3 py-2 bg-white hover:bg-gray-50 border-b">
