@@ -19,9 +19,9 @@
                 <label>카테고리</label>
                 <select name="boardType" required class="BOARD-boardType bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="" disabled selected>선택</option>
-                    <option value="Q" ${board.boardType eq BoardType.Q ? 'selected' : ''}>지식인</option>
-                    <option value="F" ${board.boardType eq BoardType.F ? 'selected' : ''}>자유게시판</option>
-                    <option value="C" ${board.boardType eq BoardType.C ? 'selected' : ''}>동아리</option>
+                    <option value="Q" ${board.boardType eq BoardType.Q ? 'selected' : ''}>아-나-바-다</option>
+                    <option value="F" ${board.boardType eq BoardType.F ? 'selected' : ''}>슬.캠.생</option>
+                    <option value="C" ${board.boardType eq BoardType.C ? 'selected' : ''}>동아리 모집</option>
                 </select>
             </div>
             <div class="sm:col-span-2">

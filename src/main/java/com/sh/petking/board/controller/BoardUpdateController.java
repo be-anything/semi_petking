@@ -60,8 +60,8 @@ public class BoardUpdateController extends HttpServlet {
                         String ext = dotIndex > -1 ? originalName.substring(dotIndex) : "";
                         String renamedName = UUID.randomUUID() + ext;
                         BoardAttach attach = new BoardAttach();
-                        attach.setOriginalName(originalName);
-                        attach.setRenamedName(renamedName);
+//                        attach.setOriginalName(originalName);
+//                        attach.setRenamedName(renamedName);
                         board.addAttachment(attach);
 
                         File upFile = new File(repository, renamedName);

@@ -29,8 +29,8 @@
                 <input type="file" id="upFile" name="upFile" multiple class="block p-2.5 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
             </div>
             <div class="sm:col-span-2">
-                <c:forEach items="${board.attachments}" var="attach" varStatus="vs">
-                    <label for="delFile${vs.count}">${attach.originalName} 삭제</label>
+                <c:forEach items="${boardVo.attachments}" var="attach" varStatus="vs">
+                    <label for="delFile${vs.count}">${boardAttach.originalName} 삭제</label>
                     <input type="checkbox" name="delFile" id="delFile${vs.count}" value="${boardAttach.id}">
                     <br>
                 </c:forEach>

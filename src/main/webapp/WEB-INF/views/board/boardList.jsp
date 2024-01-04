@@ -21,13 +21,13 @@
 <div class="flex flex-wrap justify-between items-center m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
     <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
         <li class="tabBtn">
-            <a href="#" aria-current="page" class="inline-block p-4 rounded-t-lg text-white bg-green active px-5">자유게시판</a>
+            <a href="#" aria-current="page" class="inline-block p-4 rounded-t-lg text-white bg-green active px-5">슬.캠.생</a>
         </li>
         <li class="tabBtn">
-            <a href="#" class="inline-block p-4 rounded-t-lg px-5">지식인</a>
+            <a href="#" class="inline-block p-4 rounded-t-lg px-5">아-나-바-다</a>
         </li>
         <li class="tabBtn">
-            <a href="#" class="inline-block p-4 rounded-t-lg px-5">동아리</a>
+            <a href="#" class="inline-block p-4 rounded-t-lg px-5">동아리 모집</a>
         </li>
     </ul>
 </div>
@@ -36,7 +36,7 @@
     <div class="container mx-auto my-6">
         <div class="flex justify-start">
             <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                자유게시판
+                슬기로운 캠핑생활 🏕️
             </h1>
         </div>
         <c:if test="${loginUser != null}">
@@ -66,7 +66,7 @@
                     <tr class="odd:bg-white even:bg-gray-50 border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
                         <td class="px-6 py-4">
-                            <p>${board.boardType == 'F' ? '자유게시판' : board.boardType == 'F' ? '자유게시판' : '동아리'}</p>
+                            <p>${board.boardType == 'F' ? '슬.캠.생' : board.boardType == 'Q' ? '아나바다' : '동아리모집'}</p>
                         </td>
                         <td class="px-6 py-4">
                             <a href="${pageContext.request.contextPath}/board/boardDetail?id=${board.id}" class="hover:underline">${fn:escapeXml(board.boardTitle)}</a>
@@ -99,7 +99,7 @@
         <nav aria-label="Page navigation example">
             <ul class="my-8 flex items-center -space-x-px h-8 text-sm">
                 <%-- 생성한 pagebar --%>
-                ${pagebar}
+<%--                ${pagebar}--%>
             </ul>
         </nav>
     </div>
@@ -109,7 +109,7 @@
     <div class="container mx-auto my-6">
         <div class="flex justify-start">
             <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                지식인
+                아끼고 나눠쓰고 바꿔쓰고 다시쓰기 ♻️
             </h1>
         </div>
         <c:if test="${loginUser != null}">
@@ -136,11 +136,10 @@
                 <tbody>
                     <c:forEach items="${boards}" var="board" varStatus="vs">
                     <c:if test="${board.boardType eq 'Q'}">
-<%--                <c:if items="${boards}" var="board" varStatus="vs">--%>
                     <tr class="odd:bg-white even:bg-gray-50 border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
                         <td class="px-6 py-4">
-                            <p>${board.boardType == 'Q' ? '지식인' : board.boardType == 'F' ? '자유게시판' : '동아리'}
+                            <p>${board.boardType == 'Q' ? '아나바다' : board.boardType == 'F' ? '자유게시판' : '동아리모집'}
                             </p>
                         </td>
                         <td class="px-6 py-4">
@@ -174,7 +173,7 @@
         <nav aria-label="Page navigation example">
             <ul class="my-8 flex items-center -space-x-px h-8 text-sm">
                 <%-- 생성한 pagebar --%>
-                ${pagebar}
+<%--                ${pagebar}--%>
             </ul>
         </nav>
     </div>
@@ -184,7 +183,7 @@
     <div class="container mx-auto my-6">
         <div class="flex justify-start">
             <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                동아리
+                동아리 가입은 빠르면 빠를수록 좋다 😄
             </h1>
         </div>
         <c:if test="${loginUser != null}">
@@ -211,11 +210,10 @@
                 <tbody>
                     <c:forEach items="${boards}" var="board" varStatus="vs">
                     <c:if test="${board.boardType eq 'C'}">
-<%--                <c:if items="${boards}" var="board" varStatus="vs">--%>
                     <tr class="odd:bg-white even:bg-gray-50 border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
                         <td class="px-6 py-4">
-                            <p>${board.boardType == 'Q' ? '지식인' : board.boardType == 'F' ? '자유게시판' : '동아리'}
+                            <p>${board.boardType == 'C' ? '동아리모집 글' : board.boardType == 'F' ? '자유게시판' : '아나바다'}
                             </p>
                         </td>
                         <td class="px-6 py-4">
@@ -233,9 +231,9 @@
                             <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
                         </td>
                         <td class="px-6 py-4">
-                                <%--                        <c:if test="${board.attachCount gt 0}">--%>
+                            <c:if test="${boardVo.attachCount gt 0}">
                             <img class="w-[16px]" src="../images/file.png" alt="">
-                                <%--                        </c:if>--%>
+                            </c:if>
                         </td>
                         <td class="px-6 py-4">${board.viewCount}</td>
                     </tr>
@@ -249,7 +247,7 @@
         <nav aria-label="Page navigation example">
             <ul class="my-8 flex items-center -space-x-px h-8 text-sm">
                 <%-- 생성한 pagebar --%>
-                ${pagebar}
+<%--                ${pagebar}--%>
             </ul>
         </nav>
     </div>

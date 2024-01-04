@@ -18,13 +18,13 @@
 <%--        <p class="mb-3 font-normal text-gray-500">${board.user.name} (${board.userId})</p>--%>
         <p class="mb-3 font-normal text-gray-500">${board.userId}</p>
         <p class="mb-3 font-normal text-gray-700">${board.boardContent}</p>
-<%--        <c:forEach items="${board.attachments}" var="attach">--%>
-<%--            <a href="${pageContext.request.contextPath}/upload/board/${boardAttach.renamedFilename}"--%>
-<%--               download="${boardAttach.originalFilename}" class="flex items-center text-blue-600 hover:underline">--%>
-<%--                <img src="../images/file.png" class="w-[16px] mr-1">--%>
-<%--                    ${boardAttach.originalFilename}--%>
-<%--            </a>--%>
-<%--        </c:forEach>--%>
+        <c:forEach items="${boardVo.attachments}" var="attach">
+            <a href="${pageContext.request.contextPath}/upload/board/${boardAttach.renamedname}"
+               download="${boardAttach.originalName}" class="flex items-center text-blue-600 hover:underline">
+                <img src="../images/file.png" class="w-[16px] mr-1">
+                    ${boardAttach.originalName}
+            </a>
+        </c:forEach>
         <div class="text-sm mt-2 font-medium text-gray-400">
             조회수 <span>${board.viewCount}</span>
         </div>

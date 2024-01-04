@@ -1,10 +1,7 @@
 package com.sh.petking.board.model.service;
 
 import com.sh.petking.board.model.dao.BoardDao;
-import com.sh.petking.board.model.entity.Attachment;
-import com.sh.petking.board.model.entity.Board;
-import com.sh.petking.board.model.entity.BoardAttach;
-import com.sh.petking.board.model.entity.BoardComment;
+import com.sh.petking.board.model.entity.*;
 import com.sh.petking.board.model.vo.BoardVo;
 import org.apache.ibatis.session.SqlSession;
 
@@ -29,6 +26,8 @@ public class BoardService {
         session.close();
         return board;
     }
+
+
     public BoardVo findById(long id, boolean hasRead) {
         SqlSession session = getSqlSession();
         BoardVo board = null;
@@ -53,11 +52,20 @@ public class BoardService {
         return board;
     }
 
-    public int insertBoard(Board board){
+    public int insertBoard(BoardVo board){
         int result = 0;
         SqlSession session = getSqlSession();
         try {
             result = boardDao.insertBoard(session, board);
+
+            // attachment
+            List<BoardAttach> attachments = board.getAttachments();
+            if(!attachments.isEmpty()){
+                for(BoardAttach attach : attachments){
+                    attach.setBoardId(board.getId());
+                    result = boardDao.insertAttachment(session, attach);
+                }
+            }
             session.commit();
         }
         catch (Exception e){

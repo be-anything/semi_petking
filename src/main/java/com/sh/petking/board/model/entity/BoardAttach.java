@@ -1,6 +1,6 @@
 package com.sh.petking.board.model.entity;
 
-public class BoardAttach extends Attachment{
+public class BoardAttach {
     private long id;
     private long attachId;
     private long boardId;
