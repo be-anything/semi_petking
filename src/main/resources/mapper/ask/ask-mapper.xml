@@ -23,6 +23,39 @@
             ask_reg_date desc
     </select>
 
+
+    <!-- vo클래스용 findById(문의글 상세보기)
+         현재는 사업자 로그인을 못해 campId를 4로 고정함 -->
+    <select id="findById" resultMap="AskVoMap">
+        select
+        c.camp_name camp_name,
+        a.*
+        from
+        ask a left join camp c
+        on a.camp_id = c.id
+        where
+        a.id = #{id}
+    </select>
+
+    <resultMap id="AskVoMap" type="askVo">
+    <id column = "id" property="id"/>
+    <result column="user_id" property="userId"/>
+    <result column="camp_id" property="campId"/>
+    <result column="ask_title" property="askTitle"/>
+    <result column="ask_content" property="askContent"/>
+    <result column="ask_reg_date" property="askRegDate"/>
+    <result column="ask_comment" property="askComment"/>
+    <result column="ask_comment_reg_date" property="askCommentRegDate"/>
+
+    <!-- 1:1 association -->
+    <association property="camp"  javaType="Camp" >
+        <id column="camp_id" property="id"/>
+        <result column="camp_name" property="campName"/>
+    </association>
+
+    </resultMap>
+
+
 <!-- 사용자가 문의 작성한 것을 insert한것이므로 문의글답변과 문의글답변 작성일은 null로 처리했습니다.   -->
     <insert id="insertAsk">
         insert into
@@ -31,9 +64,10 @@
             seq_ask_id.nextval,
             #{userId},
             #{campId},
-            ${askTitle},
-            ${askContent},
+            #{askTitle},
+            #{askContent},
             default,
+<!--            #{askRegDate},-->
             null,
             null
         )
@@ -50,7 +84,6 @@
             id = #{id}
         and
             camp_id = #{campId}
-
     </update>
 
 </mapper>
