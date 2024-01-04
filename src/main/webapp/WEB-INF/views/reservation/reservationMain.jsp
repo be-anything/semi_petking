@@ -144,39 +144,39 @@
         </tr>
         </thead>
         <tbody>
-        <%
-            // 1일 앞 달
-            Calendar preCal = (Calendar)cal.clone();
-            preCal.add(Calendar.DATE, -(week-1));
-            int preDate = preCal.get(Calendar.DATE);
+<%--        <%--%>
+<%--            // 1일 앞 달--%>
+<%--            Calendar preCal = (Calendar)cal.clone();--%>
+<%--            preCal.add(Calendar.DATE, -(week-1));--%>
+<%--            int preDate = preCal.get(Calendar.DATE);--%>
 
-            out.print("<tr>");
-            // 1일 앞 부분
-            for(int i=1; i<week; i++) {
-                //out.print("<td> </td>");
-                out.print("<td class='gray'>"+(preDate++)+"</td>");
-            }
+<%--            out.print("<tr>");--%>
+<%--            // 1일 앞 부분--%>
+<%--            for(int i=1; i<week; i++) {--%>
+<%--                //out.print("<td> </td>");--%>
+<%--                out.print("<td class='gray'>"+(preDate++)+"</td>");--%>
+<%--            }--%>
 
-            // 1일부터 말일까지 출력
-            int lastDay = cal.getActualMaximum(Calendar.DATE);
-            String cls;
-            for(int i=1; i<=lastDay; i++) {
-                cls = year==ty && month==tm && i==td ? "today":"";
+<%--            // 1일부터 말일까지 출력--%>
+<%--            int lastDay = cal.getActualMaximum(Calendar.DATE);--%>
+<%--            String cls;--%>
+<%--            for(int i=1; i<=lastDay; i++) {--%>
+<%--                cls = year==ty && month==tm && i==td ? "today":"";--%>
 
-                out.print("<td class='"+cls+"'>"+i+"</td>");
-                if(lastDay != i && (++week)%7 == 1) {
-                    out.print("</tr><tr>");
-                }
-            }
+<%--                out.print("<td class='"+cls+"'>"+i+"</td>");--%>
+<%--                if(lastDay != i && (++week)%7 == 1) {--%>
+<%--                    out.print("</tr><tr>");--%>
+<%--                }--%>
+<%--            }--%>
 
-            // 마지막 주 마지막 일자 다음 처리
-            int n = 1;
-            for(int i = (week-1)%7; i<6; i++) {
-                // out.print("<td> </td>");
-                out.print("<td class='gray'>"+(n++)+"</td>");
-            }
-            out.print("</tr>");
-        %>
+<%--            // 마지막 주 마지막 일자 다음 처리--%>
+<%--            int n = 1;--%>
+<%--            for(int i = (week-1)%7; i<6; i++) {--%>
+<%--                // out.print("<td> </td>");--%>
+<%--                out.print("<td class='gray'>"+(n++)+"</td>");--%>
+<%--            }--%>
+<%--            out.print("</tr>");--%>
+<%--        %>--%>
         </tbody>
     </table>
 

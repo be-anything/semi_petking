@@ -15,18 +15,10 @@
     <script>
         const contextPath = "${pageContext.request.contextPath}";
         <c:if test="${msg != null}">
-<<<<<<< HEAD
         alert(`${msg}`); // 여러줄 입력이 가능하도록 `(백틱)으로 감싸야한다. 0104 test 용으로 복붙했어요
         <c:remove var="msg" scope="session" />
         </c:if>
-=======
-        alert(`${msg}`);
-        <c:remove var="msg" scope="session"/>
-        </c:if>
-
->>>>>>> a6e752bae49a13b0de2fffe23b3dd8369143a016
     </script>
-
     <script
             src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
