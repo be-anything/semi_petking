@@ -50,6 +50,16 @@
         order by
             reg_date desc
     </select>
+    <select id="findDeleteAll" resultType="campVo">
+        select
+            *
+        from
+            camp
+        where
+            camp_state = 2
+        order by
+            reg_date desc
+    </select>
     <select id="findById" resultMap="campVoMap">
         select
             c.*,
@@ -151,7 +161,8 @@
             camp_phone = #{campPhone},
             camp_addr = #{campAddr},
             camp_original_img = #{campOriginalImg},
-            camp_renamed_img = #{campRenamedImg}
+            camp_renamed_img = #{campRenamedImg},
+            camp_state = #{campState}
         where
             id = #{id}
     </update>
@@ -181,12 +192,29 @@
         from
             camp_service
     </select>
-    <update id="updateCampConfirm">
-        update
+    <insert id="insertApprove">
+        insert into
+            camp_approve_msg
+        values (
+            seq_camp_approve_msg_id.nextval,
+            #{campId},
+            #{campMsg}
+        )
+    </insert>
+    <select id="getTotalRegistCount" resultType="_int">
+        select
+            count(*)
+        from
             camp
-        set
-            camp_state = 1
         where
-            id = #{id}
-    </update>
+            camp_state = 0
+    </select>
+    <select id="getTotalDeleteCount" resultType="_int">
+        select
+            count(*)
+        from
+            camp
+        where
+            camp_state = 2
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.sh.petking.camp.model.service;
 
 import com.sh.petking.camp.model.dao.CampDao;
+import com.sh.petking.camp.model.entity.Approve;
 import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.vo.CampVo;
 import org.apache.ibatis.session.SqlSession;
@@ -101,6 +102,23 @@ public class CampService {
             result = campDao.updateCampConfirm(session, id);
             session.commit();
         } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+
+    public int insertApprove(Approve approve) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try {
+            result = campDao.insertApprove(session, approve);
+            System.out.println(result);
+            session.commit();
+        } catch (Exception e) {
             session.rollback();
             throw e;
         } finally {

@@ -1,5 +1,6 @@
 package com.sh.petking.camp.model.dao;
 
+import com.sh.petking.camp.model.entity.Approve;
 import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
@@ -47,6 +48,11 @@ public class CampDao {
     }
 
     public int updateCampConfirm(SqlSession session, Long id) {
+        System.out.println(id);
         return session.update("camp.updateCampConfirm", id);
+    }
+
+    public int insertApprove(SqlSession session, Approve approve) {
+        return session.insert("camp.insertApprove", approve);
     }
 }

@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/admin/registList")
-public class AdminCampRegistController extends HttpServlet {
+@WebServlet("/admin/deleteRegist")
+public class AdminCampDeleteRegistController extends HttpServlet {
     private AdminCampListService adminCampListService = new AdminCampListService();
 
     @Override
@@ -29,14 +29,15 @@ public class AdminCampRegistController extends HttpServlet {
         param.put("page", page);
         param.put("limit", limit);
 
-        List<CampVo> campVos = adminCampListService.findRegistAll(param);
+        List<CampVo> campVos = adminCampListService.findDeleteAll(param);
         req.setAttribute("campVos", campVos);
 
-        int totalCount = adminCampListService.getTotalRegistCount();
+        int totalCount = adminCampListService.getTotalDeleteCount();
         String url = req.getRequestURI();
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);
+        req.getSession().setAttribute("msg", "승인완료");
 
-        req.getRequestDispatcher("/WEB-INF/views/admin/adminCampRegistList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/views/admin/adminCampDeleteList.jsp").forward(req,resp);
     }
 }

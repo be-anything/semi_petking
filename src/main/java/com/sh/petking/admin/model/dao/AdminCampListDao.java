@@ -28,4 +28,20 @@ public class AdminCampListDao {
         RowBounds rowBounds = new RowBounds(offset, limit);
         return session.selectList("camp.findRegistAll", param, rowBounds);
     }
+
+    public int getTotalRegistCount(SqlSession session) {
+        return session.selectOne("camp.getTotalRegistCount");
+    }
+
+    public List<CampVo> findDeleteAll(SqlSession session, Map<String, Object> param) {
+        int page = (int) param.get("page");
+        int limit = (int) param.get("limit");
+        int offset = (page - 1) * limit;
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return session.selectList("camp.findDeleteAll", param, rowBounds);
+    }
+
+    public int getTotalDeleteCount(SqlSession session) {
+        return session.selectOne("camp.getTotalDeleteCount");
+    }
 }
