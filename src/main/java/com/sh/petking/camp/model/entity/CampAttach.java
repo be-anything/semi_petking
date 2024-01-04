@@ -9,14 +9,11 @@ public class CampAttach {
     public CampAttach() {
     }
 
-    @Override
-    public String toString() {
-        return "CampAttach{" +
-                "id=" + id +
-                ", campId=" + campId +
-                ", campAttachOriginalName='" + campAttachOriginalName + '\'' +
-                ", campAttachRenamedName='" + campAttachRenamedName + '\'' +
-                '}';
+    public CampAttach(Long id, Long campId, String campAttachOriginalName, String campAttachRenamedName) {
+        this.id = id;
+        this.campId = campId;
+        this.campAttachOriginalName = campAttachOriginalName;
+        this.campAttachRenamedName = campAttachRenamedName;
     }
 
     public Long getId() {
@@ -48,13 +45,6 @@ public class CampAttach {
     }
 
     public void setCampAttachRenamedName(String campAttachRenamedName) {
-        this.campAttachRenamedName = campAttachRenamedName;
-    }
-
-    public CampAttach(Long id, Long campId, String campAttachOriginalName, String campAttachRenamedName) {
-        this.id = id;
-        this.campId = campId;
-        this.campAttachOriginalName = campAttachOriginalName;
         this.campAttachRenamedName = campAttachRenamedName;
     }
 }
