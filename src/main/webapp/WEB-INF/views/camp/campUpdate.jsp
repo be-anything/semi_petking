@@ -119,7 +119,7 @@
                         </c:forEach>
                         <c:forEach var="box" begin="0" end="${9 - camp.campAttaches.size()}" varStatus="vs">
                             <div class="flex items-center justify-center w-full">
-                                <label for="campImg${vs}"
+                                <label for="campImg${vs.index + camp.campAttaches.size()}"
                                        style="background-size: cover; background-position: center"
                                        class="flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -128,7 +128,7 @@
                                         </svg>
                                         <p class="mb-2 text-sm text-gray-500 text-center"><span class="font-semibold">사진 업로드<br></span></p>
                                     </div>
-                                    <input id="campImg${vs}" type="file" class="campImg hidden campAttach" />
+                                    <input id="campImg${vs.index + camp.campAttaches.size()}" name="campDetailImg" type="file" class="campImg hidden campAttach" />
                                 </label>
                             </div>
                         </c:forEach>

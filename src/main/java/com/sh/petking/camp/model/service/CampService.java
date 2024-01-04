@@ -146,7 +146,7 @@ public class CampService {
             }
             session.commit();
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
             session.rollback();
             throw e;
         } finally {
