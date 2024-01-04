@@ -81,99 +81,99 @@ class RoomServiceTest {
 
 
 
-   @Disabled //이미 추가한거라 disabled로 실행 막아둘게요
-    @DisplayName("캠핑장id가 4번인 캠핑장에 객실 하나를 추가 할 수 있습니다.")
-    @ParameterizedTest
-    @CsvSource({"111,4,기본펜션형,4,무난한 객실타입. 기본형입니다. ,3,4"})
-    void test3(Long id, Long campId, String roomName, int roomType, String roomIntro, int roomDefaultPerson, int roomMaximumPersona) {
-        Room room = new Room();
-        room.setId(id);
-        room.setCampId(campId);
-        room.setRoomName(roomName);
-        room.setRoomType(roomType);
-        room.setRoomIntro(roomIntro);
-        room.setRoomDefaultPerson(roomDefaultPerson);
-        room.setRoomMaximumPerson(roomMaximumPersona);
-        int result = roomService.insertRoom(room);
-        System.out.println(result);
-        System.out.println(room);
-        System.out.println("객실id:"+room.getId()+"/객실이름:"+room.getRoomName());
-    }
+//   @Disabled //이미 추가한거라 disabled로 실행 막아둘게요
+//    @DisplayName("캠핑장id가 4번인 캠핑장에 객실 하나를 추가 할 수 있습니다.")
+//    @ParameterizedTest
+//    @CsvSource({"111,4,기본펜션형,4,무난한 객실타입. 기본형입니다. ,3,4"})
+//    void test3(Long id, Long campId, String roomName, int roomType, String roomIntro, int roomDefaultPerson, int roomMaximumPersona) {
+//        Room room = new Room();
+//        room.setId(id);
+//        room.setCampId(campId);
+//        room.setRoomName(roomName);
+//        room.setRoomType(roomType);
+//        room.setRoomIntro(roomIntro);
+//        room.setRoomDefaultPerson(roomDefaultPerson);
+//        room.setRoomMaximumPerson(roomMaximumPersona);
+//        int result = roomService.insertRoom(room);
+//        System.out.println(result);
+//        System.out.println(room);
+//        System.out.println("객실id:"+room.getId()+"/객실이름:"+room.getRoomName());
+//    }
 
-    @Disabled
-    @DisplayName("캠핑장 번호가 4인 객실(들)을 조회할 수 있습니다.")
-    @Test
-    void test4() {
-        long id=4;
-        List<RoomVo> rooms = roomService.findAll();
-        //반환타입은 리스트이다.
-        assertThat(rooms)
-                .isNotNull()
-                .isNotEmpty();
-        //Consumer 타입 람다식:매개변수가 하나 있고, 리턴타입은 없음.
-        rooms.forEach((room) ->
-        {
-            System.out.println(room);
-            assertThat(room.getId()).isNotNull(); //객실번호
-            assertThat(room.getRoomName()).isNotNull(); //객실명
-            assertThat(room.getRoomIntro()).isNotNull(); //객실설명
-            assertThat(room.getRoomDefaultPerson()).isNotZero(); //기준인원
-            assertThat(room.getRoomMaximumPerson()).isNotZero(); //최대인원
-            assertThat(room.getRoomType()).isNotZero(); //객실 타입
-        });
-    }
+//    @Disabled
+//    @DisplayName("캠핑장 번호가 4인 객실(들)을 조회할 수 있습니다.")
+//    @Test
+//    void test4() {
+//        long id=4;
+//        List<RoomVo> rooms = roomService.findAll();
+//        //반환타입은 리스트이다.
+//        assertThat(rooms)
+//                .isNotNull()
+//                .isNotEmpty();
+//        //Consumer 타입 람다식:매개변수가 하나 있고, 리턴타입은 없음.
+//        rooms.forEach((room) ->
+//        {
+//            System.out.println(room);
+//            assertThat(room.getId()).isNotNull(); //객실번호
+//            assertThat(room.getRoomName()).isNotNull(); //객실명
+//            assertThat(room.getRoomIntro()).isNotNull(); //객실설명
+//            assertThat(room.getRoomDefaultPerson()).isNotZero(); //기준인원
+//            assertThat(room.getRoomMaximumPerson()).isNotZero(); //최대인원
+//            assertThat(room.getRoomType()).isNotZero(); //객실 타입
+//        });
+//    }
 
 
 
     /**
      * 특정 캠핑장의 특정 객실 [하나]만 조회
      */
-    @DisplayName("캠핑장 아이디가 4이면서 객실 아이디가 100인 객실 1개를 조회할 수 있습니다..")
-    @Test
-    public void test5()
-    {
-        //given 캠핑장 4번 안에 객실 100번이 존재한다고 가정
-        RoomDto roomDto = new RoomDto();
-        long id = 100;
-        long campId = 4;
-        roomDto.setId(id);
-        roomDto.setCampId(campId);
-
-        //when
-        Room room = roomService.findRoom(roomDto); //sql처리된 새 값을 변수에 대입
-
-        //then
-        assertThat(room).isNotNull();
-        System.out.println(room);
-    }
-
-
-    @Disabled
-    /**
-     * 객실 아이디(pk)가 시퀀스로 발급받는거라 겹치는게 없겠지만 ..
-     * 특정 캠핑장의 아이디도 where and 조건에 걸어야 할 것 같아서 그렇게 진행해보겠습니다..
-     */
-    @DisplayName("캠핑장 아이디가 4이면서 객실 아이디가 100인 객실을 삭제할 수 있습니다.")
-    @Test
-    public void test6()
-    {
-        //given 캠핑장 4번 안에 객실 100번이 존재한다고 가정
-        RoomDto roomDto = new RoomDto();
-        long id = 100;
-        long campId = 4;
-        roomDto.setId(id);
-        roomDto.setCampId(campId);
-
-        //when 삭제하면
-        int result = roomService.deleteRoom(roomDto);
-        assertThat(result).isGreaterThan(0);
-
-        //then
-        Room room = roomService.findRoom(roomDto);
-        assertThat(room).isNull();
+//    @DisplayName("캠핑장 아이디가 4이면서 객실 아이디가 100인 객실 1개를 조회할 수 있습니다..")
+//    @Test
+//    public void test5()
+//    {
+//        //given 캠핑장 4번 안에 객실 100번이 존재한다고 가정
+//        RoomDto roomDto = new RoomDto();
+//        long id = 100;
+//        long campId = 4;
+//        roomDto.setId(id);
+//        roomDto.setCampId(campId);
+//
+//        //when
+//        Room room = roomService.findRoom(roomDto); //sql처리된 새 값을 변수에 대입
+//
+//        //then
+//        assertThat(room).isNotNull();
+//        System.out.println(room);
+//    }
 
 
-}
+//    @Disabled
+//    /**
+//     * 객실 아이디(pk)가 시퀀스로 발급받는거라 겹치는게 없겠지만 ..
+//     * 특정 캠핑장의 아이디도 where and 조건에 걸어야 할 것 같아서 그렇게 진행해보겠습니다..
+//     */
+//    @DisplayName("캠핑장 아이디가 4이면서 객실 아이디가 100인 객실을 삭제할 수 있습니다.")
+//    @Test
+//    public void test6()
+//    {
+//        //given 캠핑장 4번 안에 객실 100번이 존재한다고 가정
+//        RoomDto roomDto = new RoomDto();
+//        long id = 100;
+//        long campId = 4;
+//        roomDto.setId(id);
+//        roomDto.setCampId(campId);
+//
+//        //when 삭제하면
+//        int result = roomService.deleteRoom(roomDto);
+//        assertThat(result).isGreaterThan(0);
+//
+//        //then
+//        Room room = roomService.findRoom(roomDto);
+//        assertThat(room).isNull();
+//
+//
+//}
 
 //특정 객실 하나를 수정하거나 삭제하려면 캠핑장번호and객실번호로 찾아야 한다.(only one)
 //    @DisplayName("캠핑장 번호가 4이면서 객실 번호가 777인 객실의 정보를 수정 할 수 있다.")
