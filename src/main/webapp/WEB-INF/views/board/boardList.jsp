@@ -61,7 +61,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${boards}" var="board" varStatus="vs">
+                    <c:forEach items="${boards}" var="board" varStatus="vs">
+                    <c:if test="${board.boardType eq 'F'}">
                     <tr class="odd:bg-white even:bg-gray-50 border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
                         <td class="px-6 py-4">
@@ -88,6 +89,7 @@
                         </td>
                         <td class="px-6 py-4">${board.viewCount}</td>
                     </tr>
+                </c:if>
                 </c:forEach>
                 </tbody>
             </table>
@@ -132,7 +134,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${boards}" var="board" varStatus="vs">
+                    <c:forEach items="${boards}" var="board" varStatus="vs">
+                    <c:if test="${board.boardType eq 'Q'}">
+<%--                <c:if items="${boards}" var="board" varStatus="vs">--%>
                     <tr class="odd:bg-white even:bg-gray-50 border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
                         <td class="px-6 py-4">
@@ -160,6 +164,7 @@
                         </td>
                         <td class="px-6 py-4">${board.viewCount}</td>
                     </tr>
+                </c:if>
                 </c:forEach>
                 </tbody>
             </table>
@@ -204,7 +209,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${boards}" var="board" varStatus="vs">
+                    <c:forEach items="${boards}" var="board" varStatus="vs">
+                    <c:if test="${board.boardType eq 'C'}">
+<%--                <c:if items="${boards}" var="board" varStatus="vs">--%>
                     <tr class="odd:bg-white even:bg-gray-50 border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
                         <td class="px-6 py-4">
@@ -232,6 +239,7 @@
                         </td>
                         <td class="px-6 py-4">${board.viewCount}</td>
                     </tr>
+                </c:if>
                 </c:forEach>
                 </tbody>
             </table>
