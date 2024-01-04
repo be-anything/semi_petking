@@ -3,6 +3,7 @@ package com.sh.petking.ask.model.entity;
 import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * 0103 혜진
@@ -14,16 +15,16 @@ public class Ask {
     private long campId; //문의하려는 캠핑장 번호 :fk
     private String askTitle; //문의글 제목
     private String askContent; //문의글 내용
-    private LocalDate askRegDate; //문의글 작성일
+    private LocalDateTime askRegDate; //문의글 작성일
     private String askComment; //문의글 답변
-    private LocalDate askCommentRegDate; //문의글 답변 작성일
+    private LocalDateTime askCommentRegDate; //문의글 답변 작성일
 
     //기본생성자
     public Ask() {
     }
     
     //파라메터 생성자
-    public Ask(long id, String userId, long campId, String askTitle, String askContent, LocalDate askRegDate, String askComment, LocalDate askCommentRegDate) {
+    public Ask(long id, String userId, long campId, String askTitle, String askContent, LocalDateTime askRegDate, String askComment, LocalDateTime askCommentRegDate) {
         this.id = id;
         this.userId = userId;
         this.campId = campId;
@@ -74,11 +75,11 @@ public class Ask {
         this.askContent = askContent;
     }
 
-    public LocalDate getAskRegDate() {
+    public LocalDateTime getAskRegDate() {
         return askRegDate;
     }
 
-    public void setAskRegDate(LocalDate askRegDate) {
+    public void setAskRegDate(LocalDateTime askRegDate) {
         this.askRegDate = askRegDate;
     }
 
@@ -90,11 +91,11 @@ public class Ask {
         this.askComment = askComment;
     }
 
-    public LocalDate getAskCommentRegDate() {
+    public LocalDateTime getAskCommentRegDate() {
         return askCommentRegDate;
     }
 
-    public void setAskCommentRegDate(LocalDate askCommentRegDate) {
+    public void setAskCommentRegDate(LocalDateTime askCommentRegDate) {
         this.askCommentRegDate = askCommentRegDate;
     }
 

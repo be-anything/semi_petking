@@ -49,7 +49,10 @@
 
                     </td>
                     <td class="px-6 py-4">${ask.userId}</td>
-                    <td class="px-6 py-4">${ask.askRegDate}</td>
+                    <td class="px-6 py-4">
+<%--                            ${ask.askRegDate}--%>
+                                <fmt:parseDate value="${ask.askRegDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
+                                <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/></td>
 
                 </div>
                 </tr>
@@ -60,12 +63,11 @@
 
     </div>
 
-    <div class="flex justify-end">
+    <div class="flex justify-end py-10">
         <button type="button"
                 onClick="location.href='${pageContext.request.contextPath}/ask/askCreate';"
-                class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">문의 등록</button>
+                class="text-white bg-gradient-to-r from-rose-200 via-rose-300 to-rose-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">문의 등록</button>
     </div>
-
 </div>
 
 
