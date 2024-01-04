@@ -14,7 +14,12 @@
     <script src="${pageContext.request.contextPath}/js/tailwind.config.js"></script>
     <script>
         const contextPath = "${pageContext.request.contextPath}";
+        <c:if test="${msg != null}">
+        alert(`${msg}`); // 여러줄 입력이 가능하도록 `(백틱)으로 감싸야한다. 0104 test 용으로 복붙했어요
+        <c:remove var="msg" scope="session" />
+        </c:if>
     </script>
+
     <script
             src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -32,6 +37,7 @@
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="#">이벤트</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/room/roomList">객실목록(임시)</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/ask/askList">문의하기(임시)</a></div>
+                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/reservation/reservationMain">예약하기(임시)</a></div>
                 <c:if test="${loginUser.role eq 'A' }">
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userList">전체회원목록(임시)</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/admin/reviewList">전체리뷰보기</a></div>
