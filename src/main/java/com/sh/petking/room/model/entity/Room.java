@@ -4,6 +4,10 @@ package com.sh.petking.room.model.entity;
 /***
  * 1228 jin 객실 table 1:1 매칭되는 entity class
  * 코드단에서는 카멜케이싱
+ *
+ * 0102 jin 객실 테이블 변경사항
+ * -roomType 외래키 삭제
+ * -room_default_fee / room_over_fee 컬럼 추가 (요금 컬럼이 빠져있었다..)
  */
 public class Room {
     private Long id; //객실 아이디
@@ -14,10 +18,14 @@ public class Room {
     private int roomDefaultPerson; //적정(기본)인원
     private int roomMaximumPerson; //최대인원
 
+    private int roomDefaultFee; //기본요금
+    private int roomOverFee; //초과요금
+
     public Room() {
     }
 
-    public Room(Long id, Long campId, String roomName, int roomType, String roomIntro, int roomDefaultPerson, int roomMaximumPerson) {
+    public Room(Long id, Long campId, String roomName, int roomType, String roomIntro,
+                int roomDefaultPerson, int roomMaximumPerson,int roomDefaultFee, int roomOverFee) {
         System.out.println("room 매개변수 있는 생성자.");
         this.id = id;
         this.campId = campId;
@@ -26,6 +34,8 @@ public class Room {
         this.roomIntro = roomIntro;
         this.roomDefaultPerson = roomDefaultPerson;
         this.roomMaximumPerson = roomMaximumPerson;
+        this.roomDefaultFee = roomDefaultFee;
+        this.roomOverFee = roomOverFee;
     }
 
     public Long getId() {
@@ -84,6 +94,22 @@ public class Room {
         this.roomMaximumPerson = roomMaximumPerson;
     }
 
+    public int getRoomDefaultFee() {
+        return roomDefaultFee;
+    }
+
+    public void setRoomDefaultFee(int roomDefaultFee) {
+        this.roomDefaultFee = roomDefaultFee;
+    }
+
+    public int getRoomOverFee() {
+        return roomOverFee;
+    }
+
+    public void setRoomOverFee(int roomOverFee) {
+        this.roomOverFee = roomOverFee;
+    }
+
     @Override
     public String toString() {
         return "ToString test - Room{" +
@@ -94,6 +120,8 @@ public class Room {
                 ", roomIntro='" + roomIntro + '\'' +
                 ", roomDefaultPerson=" + roomDefaultPerson +
                 ", roomMaximumPerson=" + roomMaximumPerson +
+                ", roomDefaultFee=" + roomDefaultFee +
+                ", roomOverFee=" + roomOverFee +
                 '}';
     }
 }
