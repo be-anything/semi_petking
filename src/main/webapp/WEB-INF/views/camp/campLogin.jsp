@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user1
-  Date: 2023-12-28
-  Time: 오후 4:09
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -14,9 +7,9 @@
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <div class="border-b-2 border-green flex justify-center mb-10">
-            <h1 class="block mb-2 mt-5 text-xl font-medium text-black dark:text-white">사용자 로그인</h1>
+            <h1 class="block mb-2 mt-5 text-xl font-medium text-black dark:text-white">캠핑장 사장님 로그인</h1>
         </div>
-        <form name="userLoginFrm" class="space-y-6" method="POST">
+        <form name="userLoginFrm" class="space-y-6" >
             <div>
                 <label for="id" class="block text-sm font-medium leading-6 text-gray-900">아이디</label>
                 <div class="mt-2">
@@ -46,7 +39,7 @@
 
             <div class="flex flex-col">
                 <button type="submit" class="flex w-full justify-center rounded-md bg-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">로그인</button>
-                <a href="${pageContext.request.contextPath}/camp/campLogin" class="text-center text-sm text-green hover:text-blue hover:underline mt-5">사업자 회원로그인은 여기를 눌러주세요</a>
+                <a href="${pageContext.request.contextPath}/user/userLogin" class="text-center text-sm text-green hover:text-blue hover:underline mt-5">사용자 회원로그인은 여기를 눌러주세요</a>
             </div>
         </form>
     </div>
