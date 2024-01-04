@@ -19,7 +19,7 @@
         values (
             #{id},
             default,
-            null,
+            0,
             #{nickname} || seq_users_nickname.nextval,
             #{name},
             #{password},
@@ -79,7 +79,6 @@
         update
             users
         set
-            name = #{name},
             nickname = #{nickname},
             phone = #{phone}
         where
@@ -104,7 +103,30 @@
     <!--
     * 정효씨
     -->
+    <update id="userPasswordUpdate">
+        update
+            users
+        set
+            password = #{password}
+        where
+            id = #{id}
+    </update>
 
+    <delete id="deleteUser">
+        delete from
+            users
+        where
+            id = #{id}
+    </delete>
+
+    <select id="findByEmail" resultType="user">
+        select
+            *
+        from
+            users
+        where
+            email = #{email}
+    </select>
 
 
 
