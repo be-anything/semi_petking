@@ -281,7 +281,7 @@
         where
             camp_state = 2
     </select>
-    
+
     <select id="findByBusinessId" resultType="camp">
         select
             *
@@ -298,6 +298,7 @@
         where
             business_number = #{businessNumber}
     </select>
+
     <update id="updateDeleteCamp">
         update
             camp
