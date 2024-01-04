@@ -1,5 +1,6 @@
 package com.sh.petking.user.controller;
 
+import com.sh.petking.common.PetkingUtils;
 import com.sh.petking.common.RandomNicknameGenerator;
 import com.sh.petking.common.Role;
 import com.sh.petking.user.model.entity.User;
@@ -24,13 +25,13 @@ public class UserRegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 인코딩처리
-        req.setCharacterEncoding("utf-8");
+//        req.setCharacterEncoding("utf-8");
 
         // 사용자 입력값 가져오기
         String id = req.getParameter("id");
+        String password = PetkingUtils.getEncryptedPassword(req.getParameter("password"), id); // 비밀번호 암호화처리
         String name = req.getParameter("name");
-        String password = req.getParameter("password");
-        String originProfileName = req.getParameter("originProfileName");
+//        String originProfileName = req.getParameter("originProfileName");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
 
