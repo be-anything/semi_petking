@@ -82,4 +82,12 @@ public class CampDao {
     public int updateCampConfirm(SqlSession session, Long id) {
         return session.update("camp.updateCampConfirm", id);
     }
+
+    public Camp findByBusinessId(SqlSession session, String businessId) {
+        return session.selectOne("camp.findByBusinessId", businessId);
+    }
+
+    public Camp findByBusinessNumber(SqlSession session, String businessNumber) {
+        return session.selectOne("camp.findByBusinessNumber", businessNumber);
+    }
 }

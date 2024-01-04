@@ -244,4 +244,29 @@
         where
             id = #{id}
     </update>
+
+
+
+
+
+
+
+
+
+    <select id="findByBusinessId" resultType="camp">
+        select
+            *
+        from
+            camp
+        where
+            business_id = #{businessId}
+    </select>
+    <select id="findByBusinessNumber" resultType="camp">
+        select
+            *
+        from
+            camp
+        where
+            business_number = #{businessNumber}
+    </select>
 </mapper>

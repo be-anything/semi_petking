@@ -99,6 +99,7 @@ public class CampUpdateController extends HttpServlet {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
 

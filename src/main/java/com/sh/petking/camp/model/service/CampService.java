@@ -167,4 +167,18 @@ public class CampService {
         }
     return result;
     }
+
+    public Camp findByBusinessId(String businessId) {
+        SqlSession session = getSqlSession();
+        Camp camp = campDao.findByBusinessId(session, businessId);
+        session.close();
+        return camp;
+    }
+
+    public Camp findByBusinessNumber(String businessNumber) {
+        SqlSession session = getSqlSession();
+        Camp camp = campDao.findByBusinessNumber(session, businessNumber);
+        session.close();
+        return camp;
+    }
 }
