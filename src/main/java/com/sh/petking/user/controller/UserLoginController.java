@@ -1,5 +1,6 @@
 package com.sh.petking.user.controller;
 
+import com.sh.petking.common.PetkingUtils;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.service.UserService;
 
@@ -23,7 +24,7 @@ public class UserLoginController extends HttpServlet {
         String referer = req.getHeader("Referer");
         System.out.println("referer = " + referer); // 저장된정보 확인
 
-        if (!referer.contains("/petking"))
+        if (!referer.contains("/user.userlogin"))
             req.getSession().setAttribute("next", referer);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/user/userLogin.jsp");
@@ -38,7 +39,7 @@ public class UserLoginController extends HttpServlet {
 
         // 사용자 입력값 가져오기
         String id = req.getParameter("id");
-        String pw = req.getParameter("password");
+        String pw = PetkingUtils.getEncryptedPassword(req.getParameter("password"), id);
 //        System.out.println(id + pw);
 
         // 업무 로직

@@ -35,10 +35,8 @@ public class UserUpdateController extends HttpServlet {
     User user = new User(id, null, 0L, nickname, name, password, null, null, email,
             phone, 0L, Role.U, null);
         System.out.println(user);
-
         // 업무로직
         int result = userService.updateUser(user);
-
         // db수정 성공하면 session속성의 loginUser도 업데이트
         User userUpdated = userService.findById(id);
         req.getSession().setAttribute("loginUser", userUpdated);

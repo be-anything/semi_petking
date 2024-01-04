@@ -39,7 +39,7 @@ public class UserPasswordUpdateController extends HttpServlet {
 
         // 기존비밀번호 비교
         if (oldPassword.equals(loginUser.getPassword())) {
-            System.out.println("비교성공");
+//            System.out.println("비교성공");
 
             // 업무로직
             loginUser.setPassword(newPassword);
@@ -47,7 +47,7 @@ public class UserPasswordUpdateController extends HttpServlet {
             msg = "비밀번호 변경 완료";
             location += "/user/userDetail";
         } else {
-            msg = "비밀번호를 다시 확인해주세요";
+            msg = "비밀번호가 일치하지않습니다. 다시 확인해주세요";
             location += "/user/userPasswordUpdate";
         }
 

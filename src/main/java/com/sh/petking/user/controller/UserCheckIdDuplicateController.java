@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @WebServlet("/user/UserCheckIdDuplicate")
-public class UserCheckIdDuplicateServlet extends HttpServlet {
+public class UserCheckIdDuplicateController extends HttpServlet {
     private UserService userService = new UserService();
 
     @Override

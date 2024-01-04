@@ -16,7 +16,7 @@ document.userPasswordUpdateFrm.onsubmit = (e) => {
     const newPasswordConfirmation = e.target.querySelector("#newPasswordConfirmation");
 
     // 비밀번호 검사 - 영문자/숫자/특수문자!@#$% 4글자 이상
-    if (/^[\w!@#$%]{4,}$/.test(newPassword.value)) {
+    if (!/^[\w!@#$%]{4,}$/.test(newPassword.value)) {
         alert("비밀번호는 영문자/숫자/특수문자(!@#$%)를 포함해 4글자 이상이어야 합니다.");
         return false;
     }

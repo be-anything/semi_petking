@@ -64,20 +64,24 @@
             <form name="userUpdateFrm" action="${pageContext.request.contextPath}/user/userUpdate" method="post" class="space-y-4 md:space-y-6">
                 <div id="photo-container" class="w-full flex flex-col items-center"></div>
                 <div>
-                    <label for="id" class="block mb-2 text-sm font-medium text-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500">아이디</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">아이디</label>
                     <input type="text" name="id" id="id" value="${loginUser.id}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" readonly>
                 </div>
                 <div>
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500">이름</label>
-                    <input type="text" name="name" id="name" value="${loginUser.name}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">이름</label>
+                    <input type="text" name="name" id="name" value="${loginUser.name}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" readonly>
                 </div>
                 <div>
-                    <label for="gradeId" class="block mb-2 text-sm font-medium text-gray-900">회원등급 ${loginUser.gradeId}</label>
-                    <input type="text" name="gradeId" id="gradeId" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" readonly>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">회원등급</label>
+                    <input type="text" name="gradeId" id="gradeId" value="${loginUser.gradeId}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" readonly>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">이메일</label>
+                    <input type="text" name="email" id="email" value="${loginUser.email}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" readonly>
                 </div>
                 <div>
                     <label for="nickname" class="block mb-2 text-sm font-medium text-gray-900">닉네임</label>
-                    <input type="text" name="nickname" id="nickname" value="${loginUser.nickname}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@naver.com" required>
+                    <input type="text" name="nickname" id="nickname" value="${loginUser.nickname}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
                 </div>
                 <div>
                     <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">전화번호</label>
@@ -92,9 +96,9 @@
                 <div class="w-full bg-white rounded-lg shadow my-4 sm:max-w-md xl:p-0">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                            반려동물 정보
+                            반려동물 정보등록
                         </h1>
-                        <form name="userUpdateFrm" action="${pageContext.request.contextPath}/user/userUpdate" method="post" class="space-y-4 md:space-y-6">
+                        <form name="userUpdateFrm" action="${pageContext.request.contextPath}/user/userPet" method="post" class="space-y-4 md:space-y-6">
                             <div>
                                 <label for="petName" class="block mb-2 text-sm font-medium text-gray-900 ">이름</label>
                                 <input type="text" name="petName" id="petName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>

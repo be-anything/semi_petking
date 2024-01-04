@@ -79,7 +79,6 @@
         update
             users
         set
-            name = #{name},
             nickname = #{nickname},
             phone = #{phone}
         where
@@ -120,6 +119,14 @@
             id = #{id}
     </delete>
 
+    <select id="findByEmail" resultType="user">
+        select
+            *
+        from
+            users
+        where
+            email = #{email}
+    </select>
 
 
 

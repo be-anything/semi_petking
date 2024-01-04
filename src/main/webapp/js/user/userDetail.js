@@ -1,10 +1,10 @@
 document.userUpdateFrm.addEventListener('submit', (e) => {
     const frm = e.target;
-    const name = frm.name;
+    const nickname = frm.nickname;
 
-    // 이름 - 한글 2글자 이상
-    if(!/^[가-힣]{2,}$/.test(name.value)) {
-        alert('이름은 한글 2글자 이상 작성하세요.');
+    // 닉네임 - 2글자 이상
+    if(!/^[가-힣A-Za-z]{2,}$/.test(nickname.value)) {
+        alert('닉네임은 2글자 이상 작성하세요.');
         e.preventDefault();
         return;
     }

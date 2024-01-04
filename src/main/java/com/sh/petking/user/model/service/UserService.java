@@ -1,5 +1,6 @@
 package com.sh.petking.user.model.service;
 
+import com.sh.petking.pet.model.entity.Pet;
 import com.sh.petking.user.model.dao.UserDao;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.vo.UserVo;
@@ -63,6 +64,7 @@ public class UserService {
         try {
             result = userDao.updateUser(session, user);
             session.commit();
+            System.out.println("update commit");
         } catch (Exception e) {
             session.rollback();
             throw e;
@@ -80,7 +82,7 @@ public class UserService {
             System.out.println(user);
             System.out.println(result);
             session.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             session.rollback();
             throw e;
         } finally {
@@ -91,22 +93,12 @@ public class UserService {
 
     /**
      * 민준씨
-     * 
-     * 
+     *
+     *
      */
-
-
-
-
-
-
-
-
 
     /**
      * 정효씨
-     * 
-     * 
      */
     public int userPasswordUpdate(User user) {
         int result = 0;
@@ -137,5 +129,12 @@ public class UserService {
             session.close();
         }
         return result;
+    }
+
+    public User findByEmail(String email) {
+        SqlSession session = getSqlSession();
+        User user = userDao.findByEmail(session, email);
+        session.close();
+        return user;
     }
 }

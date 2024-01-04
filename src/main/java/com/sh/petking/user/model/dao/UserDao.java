@@ -1,5 +1,6 @@
 package com.sh.petking.user.model.dao;
 
+import com.sh.petking.pet.model.entity.Pet;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.vo.UserVo;
 import org.apache.ibatis.session.RowBounds;
@@ -39,6 +40,7 @@ public class UserDao extends HttpServlet {
     }
 
     public int updateUser(SqlSession session, User user) {
+        System.out.println("user dao - "+user);
         return session.update("user.updateUser", user);
     }
     public int updateUserRole(SqlSession session, User user) {
@@ -72,5 +74,9 @@ public class UserDao extends HttpServlet {
 
     public int deleteUser(SqlSession session, String id) {
         return session.delete("user.deleteUser", id);
+    }
+
+    public User findByEmail(SqlSession session, String email) {
+        return session.selectOne("user.findByEmail", email);
     }
 }
