@@ -51,52 +51,52 @@ public class BoardServiceTest {
                     assertThat(board.getViewCount()).isGreaterThanOrEqualTo(0);
                 });
     }
-//    @DisplayName("존재하는 게시글 한건 조회")
-//    @ParameterizedTest
-//    @ValueSource(longs = {1L, 2L, 3L})
-//    void test2_1(long id) {
-//        // given
-//        // when
-//        Board board = boardService.findById(id);
-//
-//        // then
-//        // satisfies : 요소가 모든 단정문을 충족하는지 확인
-//        assertThat(board)
-//                .isNotNull()
-//                .satisfies((_board) -> {
-//                    // pk, 필수값 확인
-//                    assertThat(_board.getId()).isNotZero();
-//                    assertThat(_board.getBoardTitle()).isNotNull();
-//                    assertThat(_board.getBoardContent()).isNotNull();
-//                    assertThat(_board.getRegDate()).isNotNull();
-//                });
-//    }
-//    @DisplayName("존재하지 않는 게시글 한건 조회")
-//    @ParameterizedTest
-//    @ValueSource(longs = {100000000L, 9999999L})
-//    void test2_2(long id) {
-//        // given
-//        // when
-//        Board board = boardService.findById(id);
-//        // then
-//        assertThat(board) .isNull();
-//    }
-    @DisplayName("게시글 등록")
-    @Test
-    void test3() {
+    @DisplayName("존재하는 게시글 한건 조회")
+    @ParameterizedTest
+    @ValueSource(longs = {1L, 2L, 3L})
+    void test2_1(long id) {
         // given
         // when
-        // pk : seq_board_id를 통해 채번
-        // read_count : 기본값 처리
-        // reg_date :  기본값 처리
-        BoardVo board = new BoardVo();
-        board.setBoardTitle("제목");
-        board.setBoardContent("내용");
+        Board board = boardService.findById(id);
 
-        int result = boardService.insertBoard(board);
         // then
-        assertThat(result).isGreaterThan(0);
+        // satisfies : 요소가 모든 단정문을 충족하는지 확인
+        assertThat(board)
+                .isNotNull()
+                .satisfies((_board) -> {
+                    // pk, 필수값 확인
+                    assertThat(_board.getId()).isNotZero();
+                    assertThat(_board.getBoardTitle()).isNotNull();
+                    assertThat(_board.getBoardContent()).isNotNull();
+                    assertThat(_board.getRegDate()).isNotNull();
+                });
     }
+    @DisplayName("존재하지 않는 게시글 한건 조회")
+    @ParameterizedTest
+    @ValueSource(longs = {100000000L, 9999999L})
+    void test2_2(long id) {
+        // given
+        // when
+        Board board = boardService.findById(id);
+        // then
+        assertThat(board) .isNull();
+    }
+//    @DisplayName("게시글 등록")
+//    @Test
+//    void test3() {
+//        // given
+//        // when
+//        // pk : seq_board_id를 통해 채번
+//        // read_count : 기본값 처리
+//        // reg_date :  기본값 처리
+//        BoardVo board = new BoardVo();
+//        board.setBoardTitle("제목");
+//        board.setBoardContent("내용");
+//
+//        int result = boardService.insertBoard(board);
+//        // then
+//        assertThat(result).isGreaterThan(0);
+//    }
 //    @DisplayName("게시글 수정")
 //    @ParameterizedTest
 //    @MethodSource("boardIdProvider") // boardIdProvider메소드가 반환하는 stream객체의 요소별로 테스트실행

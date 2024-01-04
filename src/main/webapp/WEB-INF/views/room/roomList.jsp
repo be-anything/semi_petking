@@ -19,6 +19,11 @@
             객실 리스트
         </h1>
     </div>
+    <div class="flex justify-end">
+        <button type="button"
+                onClick="location.href='${pageContext.request.contextPath}/room/roomCreate';"
+                class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">객실 추가</button>
+    </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -35,12 +40,12 @@
             </thead>
             <tbody>
             <c:forEach items="${rooms}" var="room" varStatus="vs">
-                <tr class="odd:bg-white even:bg-gray-50 border-b ">
+                <div class="odd:bg-white even:bg-gray-50 border-b ">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${room.id}</th>
                     <td class="px-6 py-4"><img class="w-[300px]" src="../images/room/room1.jpg" alt=""></td>
                     <td class="px-6 py-4">
                         <a href="${pageContext.request.contextPath}/room/roomDetail?id=${room.id}"
-                           class="hover:underline">${room.roomName}</a>
+                           class="hover:underline">${fn:escapeXml(room.roomName)}</a>
                             <%--  1221 해당 게시글에 달린 댓글 갯수 보여주기 select count(*) from board_comment where board_id=97; --%>
 
                     </td>
@@ -48,12 +53,38 @@
                     <td class="px-6 py-4">${room.roomIntro}</td>
                     <td class="px-6 py-4">${room.roomDefaultPerson}</td>
                     <td class="px-6 py-4">${room.roomMaximumPerson}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex justify-end">
+                    <button type="button"
+                            onclick="location.href = '${pageContext.request.contextPath}/room/roomUpdate?id=${room.id}'"
+                            class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-black bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+                        수정
+                    </button>
+                        <button type="button"
+                                onClick="confirm('${room.id} 번 객실을 삭제하시겠습니까?') &&
+                                        document.roomDeleteFrm${room.id}.submit();"
+                                class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+                            ${vs.index}번째 삭제
+                        </button>
+                        </div>
+                    </td>
+                </div>
                 </tr>
+                <form
+                        name="roomDeleteFrm${room.id}"
+                        action="${pageContext.request.contextPath}/room/roomDelete"
+                      method="post" >
+                    <input type = "hidden" name="id" value="${room.id}">
+                    <input type = "hidden" name="campId" value="${room.campId}">
+                </form>
             </c:forEach>
+
+
             </tbody>
         </table>
     </div>
 </div>
+
 
 <div class="flex justify-center mt-6">
     <nav aria-label="Page navigation example">
@@ -63,5 +94,5 @@
     </nav>
 </div>
 
-
+<script src="${pageContext.request.contextPath}/js/room/roomList.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

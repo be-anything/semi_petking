@@ -12,7 +12,7 @@
         order by
             id
     </select>
-    <select id="findById" resultType="board">
+    <select id="findById" resultType="boardVo">
         select
             *
         from
@@ -22,16 +22,13 @@
     </select>
     <insert id="insertBoard">
         insert into
-            board
+            board (id, board_type, board_title, user_id, board_content)
         values(
             seq_board_id.nextval,
-            #{userId},
             #{boardType},
             #{boardTitle},
-            #{boardContent},
-            default,
-            default,
-            default
+            #{userId},
+            #{boardContent}
         )
         <selectKey order="AFTER" resultType="_int" keyProperty="id">
             select
@@ -61,4 +58,12 @@
         from
             board
     </select>
+    <update id="updateBoardViewCount">
+        update
+            board
+        set
+            view_count = view_count + 1
+        where
+            id = #{id}
+    </update>
 </mapper>
