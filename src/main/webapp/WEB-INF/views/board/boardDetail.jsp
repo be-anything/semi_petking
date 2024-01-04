@@ -18,13 +18,13 @@
 <%--        <p class="mb-3 font-normal text-gray-500">${board.user.name} (${board.userId})</p>--%>
         <p class="mb-3 font-normal text-gray-500">${board.userId}</p>
         <p class="mb-3 font-normal text-gray-700">${board.boardContent}</p>
-<%--        <c:forEach items="${board.attachments}" var="attach">--%>
-<%--            <a href="${pageContext.request.contextPath}/upload/board/${boardAttach.renamedFilename}"--%>
-<%--               download="${boardAttach.originalFilename}" class="flex items-center text-blue-600 hover:underline">--%>
-<%--                <img src="../images/file.png" class="w-[16px] mr-1">--%>
-<%--                    ${boardAttach.originalFilename}--%>
-<%--            </a>--%>
-<%--        </c:forEach>--%>
+        <c:forEach items="${boardVo.attachments}" var="attach">
+            <a href="${pageContext.request.contextPath}/upload/board/${boardAttach.renamedname}"
+               download="${boardAttach.originalName}" class="flex items-center text-blue-600 hover:underline">
+                <img src="../images/file.png" class="w-[16px] mr-1">
+                    ${boardAttach.originalName}
+            </a>
+        </c:forEach>
         <div class="text-sm mt-2 font-medium text-gray-400">
             조회수 <span>${board.viewCount}</span>
         </div>
@@ -67,7 +67,6 @@
                 method="post">
             <input type="hidden" name="boardId" value="${board.id}">
             <input type="hidden" name="userId" value="${loginUser.id}">
-<%--            <input type="hidden" name="commentLevel" value="1">--%>
             <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50">
                 <div class="px-4 py-2 bg-white rounded-t-lg">
                     <label for="content" class="sr-only">댓글 작성하기</label>
@@ -87,82 +86,39 @@
             </div>
         </form>
     </div>
+
     <!-- 댓글 테이블 -->
     <div class="relative my-8 shadow-xl sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <tbody>
             <c:forEach items="${board.comments}" var="comment" varStatus="vs">
-                <c:if test="${comment.commentLevel eq 1}">
                     <%-- 댓글 tr --%>
                     <tr class="bg-white border-b hover:bg-gray-50">
                         <td scope="row" colspan="2" class="w-4/6 px-6 py-4 font-medium text-gray-800">
-                            <sub class="text-gray-500">${boardComment.userId}</sub>
+                            <sub class="text-gray-500">${comment.userId}</sub>
                             <sub class="text-gray-400">
-                                <fmt:parseDate value="${boardComment.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
+                                <fmt:parseDate value="${comment.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
                                 <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/>
                             </sub>
                             <p class="mt-2">
-                                    ${boardComment.content}
+                                    ${comment.content}
                             </p>
                         </td>
                         <td class="px-6 py-4">
-                            <c:if test="${loginUser.id eq boardComment.userId}">
+                            <c:if test="${loginUser.id eq comment.userId || loginUser.role eq Role.A}">
                                 <div class="flex">
-                                    <a href="javascript:confirm('정말 삭제하시겠습니까? 😲') && document.boardCommentDeleteFrm${comment.id}.submit();" class="font-medium text-red-600 hover:underline ms-3">Remove</a>
+                                    <a href="javascript:confirm('정말 삭제하시겠습니까? 😲') && document.boardCommentDeleteFrm${comment.id}.submit();" class="font-medium text-red-600 hover:underline ms-3">삭제하기</a>
                                 </div>
-                                <form name="boardCommentDeleteFrm${boardComment.id}" action="${pageContext.request.contextPath}/board/boardCommentDelete" method="post">
-                                    <input type="hidden" name="id" value="${boardComment.id}">
+                                <form name="boardCommentDeleteFrm${comment.id}" action="${pageContext.request.contextPath}/board/boardCommentDelete" method="post">
+                                    <input type="hidden" name="id" value="${comment.id}">
                                     <input type="hidden" name="boardId" value="${board.id}">
                                 </form>
                             </c:if>
                         </td>
-                        <td class="px-4 py-4">
-                            <button
-                                    type="button"
-                                    value="${boardComment.id}"
-                                    data-context-path="${pageContext.request.contextPath}"
-                                    data-board-id="${board.id}"
-                                    data-login-user-id="${loginUser.id}"
-                                    class="btn-reply w-14 inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800">
-                                답글
-                            </button>
-                        </td>
                     </tr>
-                </c:if>
-<%--                <c:if test="${comment.commentLevel eq 2}">--%>
-<%--                     대댓글 tr --%>
-                    <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="pl-6 pr-2 w-10">⎣</td>
-                        <td scope="row" class="w-4/6 py-4 font-medium text-gray-600">
-                            <sub class="text-gray-500">${boardComment.userId}</sub>
-                            <sub class="text-gray-400">
-                                <fmt:parseDate value="${boardComment.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
-                                <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/>
-                            </sub>
-                            <p class="mt-2">
-                                    ${boardComment.content}
-                            </p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <c:if test="${loginUser.id eq boardComment.userId}">
-                                <div class="flex">
-                                    <a href="#" class="font-medium text-red-600 hover:underline ms-3">Remove</a>
-                                </div>
-                            </c:if>
-                        </td>
-                        <td class="px-6 py-4"></td>
-                    </tr>
-<%--                </c:if>--%>
             </c:forEach>
             </tbody>
         </table>
     </div>
 </div>
-<script>
-    const contextPath = '${pageContext.request.contextPath}';
-    const boardId = '${board.id}';
-    const loginUserId = '${loginUser.id}';
-</script>
 <script src="${pageContext.request.contextPath}/js/board/boardDetail.js"></script>
-
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

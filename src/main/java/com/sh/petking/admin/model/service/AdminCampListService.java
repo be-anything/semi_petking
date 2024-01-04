@@ -32,4 +32,25 @@ public class AdminCampListService {
         session.close();
         return campVos;
     }
+
+    public int getTotalRegistCount() {
+        SqlSession session = getSqlSession();
+        int totalCount = adminCampListDao.getTotalRegistCount(session);
+        session.close();
+        return totalCount;
+    }
+
+    public List<CampVo> findDeleteAll(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<CampVo> campVos = adminCampListDao.findDeleteAll(session, param);
+        session.close();
+        return campVos;
+    }
+
+    public int getTotalDeleteCount() {
+        SqlSession session = getSqlSession();
+        int totalCount = adminCampListDao.getTotalDeleteCount(session);
+        session.close();
+        return totalCount;
+    }
 }

@@ -28,9 +28,12 @@
                     <input id="password" name="password" type="password" autocomplete="password" required class="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
             </div>
-            <div class="flex items-center">
-                <input id="saveId" name="saveId" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                <label for="saveId" class="ms-2 text-sm font-medium text-gray-700">아이디 저장</label>
+            <div class="flex items-center justify-between">
+                <div>
+                    <input id="saveId" name="saveId" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                    <label for="saveId" class="ms-2 text-sm font-medium text-gray-700">아이디 저장</label>
+                </div>
+                <a href="${pageContext.request.contextPath}/user/userRegisterType" class="ms-2 text-sm font-medium text-gray-700 hover:underline">회원가입</a>
             </div>
 
             <p class="text-sm font-light text-gray-500">
