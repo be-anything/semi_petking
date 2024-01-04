@@ -1,6 +1,9 @@
 package com.sh.petking.camp.model.dao;
 
 import com.sh.petking.camp.model.entity.*;
+import com.sh.petking.camp.model.entity.Approve;
+import com.sh.petking.camp.model.entity.Camp;
+import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.ibatis.session.RowBounds;
@@ -80,6 +83,7 @@ public class CampDao {
     }
 
     public int updateCampConfirm(SqlSession session, Long id) {
+        System.out.println(id);
         return session.update("camp.updateCampConfirm", id);
     }
 
@@ -89,5 +93,8 @@ public class CampDao {
 
     public Camp findByBusinessNumber(SqlSession session, String businessNumber) {
         return session.selectOne("camp.findByBusinessNumber", businessNumber);
+    }
+    public int insertApprove(SqlSession session, Approve approve) {
+        return session.insert("camp.insertApprove", approve);
     }
 }

@@ -14,6 +14,11 @@
     <script src="${pageContext.request.contextPath}/js/tailwind.config.js"></script>
     <script>
         const contextPath = "${pageContext.request.contextPath}";
+        <c:if test="${msg != null}">
+        alert(`${msg}`);
+        <c:remove var="msg" scope="session"/>
+        </c:if>
+
     </script>
     <script
             src="https://code.jquery.com/jquery-3.7.1.js"
