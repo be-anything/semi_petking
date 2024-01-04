@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: cksgm
-  Date: 2024-01-03
-  Time: PM 3:50
+  Date: 2024-01-04
+  Time: PM 4:07
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -43,7 +43,7 @@
                 </th>
                 <td class="px-6 py-4">
                     <a href="${pageContext.request.contextPath}/admin/CampConfirm?id=${camp.id}">
-                        ${camp.campName}
+                            ${camp.campName}
                 </td>
                 <td class="px-6 py-4">
                         ${camp.businessName}
@@ -56,9 +56,9 @@
                     <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
                 </td>
                 <td class="px-6 py-4">
-                    <c:if test="${camp.campState eq 0}">
+                    <c:if test="${camp.campState eq 2}">
                         <c:set target="${camp}" property="campState" value="1" />
-                        <p>승인대기</p>
+                        <p>삭제승인대기</p>
                     </c:if>
                 </td>
             </tr>

@@ -1,5 +1,6 @@
 package com.sh.petking.admin.controller;
 
+import com.sh.petking.camp.model.entity.Approve;
 import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
@@ -18,7 +19,6 @@ public class AdminCampConfirmController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = Long.parseLong(req.getParameter("id"));
-        System.out.println(id);
         CampVo camp = campService.findById(id);
         req.setAttribute("camp", camp);
         req.getRequestDispatcher("/WEB-INF/views/admin/adminCampConfirm.jsp").forward(req, resp);
@@ -26,4 +26,42 @@ public class AdminCampConfirmController extends HttpServlet {
 
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Long id = Long.parseLong(req.getParameter("id"));
+        int campState = Integer.parseInt(req.getParameter("campState"));
+        String campMsg = req.getParameter("campMsg");
+        Camp camp = campService.findById(id);
+        camp.setCampState(campState);
+        System.out.println(id);
+        System.out.println(campState);
+        int result = campService.updateCamp(camp);
+        req.getSession().setAttribute("msg", "승인완료");
+
+        if(campState == -1){
+            Approve approve = new Approve();
+            approve.setCampId(id);
+            approve.setCampMsg(campMsg);
+            result = campService.insertApprove(approve);
+            req.getSession().setAttribute("msg", "반려");
+        }
+
+
+        resp.sendRedirect(req.getContextPath() + "/admin/registList?id=" + id);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
