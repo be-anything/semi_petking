@@ -112,7 +112,6 @@ public class CampService {
         List<CampWithTag> campWithTags = (List<CampWithTag>) param.get("campWithTags");
         List<CampWithService> campWithServices = (List<CampWithService>) param.get("campWithServices");
         List<CampAttach> campAttaches = (List<CampAttach>) param.get("campAttaches");
-        System.out.println(campAttaches);
 
         try {
             // 태그 전체 삭제
@@ -139,10 +138,6 @@ public class CampService {
 
             if (campAttaches != null && !campAttaches.isEmpty()) {
                 for (int i = 0; i < campAttaches.size(); i++) {
-                    System.out.println("================ service attach ============");
-                    System.out.println(campAttaches.get(i).getCampId());
-                    System.out.println(campAttaches.get(i).getCampAttachRenamedName());
-                    System.out.println(campAttaches.get(i).getCampAttachOriginalName());
                     result = campDao.insertCampAttach(session, campAttaches.get(i));
                 }
             }

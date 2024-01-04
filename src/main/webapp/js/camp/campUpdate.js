@@ -2,7 +2,6 @@
 document.querySelectorAll(".options").forEach((option) => {
     option.addEventListener('click', (e) => {
         const selected = e.target;
-        console.log(selected)
         selected.classList.toggle("bg-light-pink");
         selected.classList.toggle("text-white");
         selected.classList.toggle("selected");
@@ -19,7 +18,7 @@ document.querySelectorAll(".options").forEach((option) => {
 });
 
 // 탭 메뉴 이동
-const tabBtns =  document.querySelectorAll(".tabBtn");
+const tabBtns = document.querySelectorAll(".tabBtn");
 tabBtns.forEach((tab, index) => {
     tab.addEventListener('click', (e) => {
         const tabBtn = e.target;
@@ -58,7 +57,6 @@ document.querySelector("#campImg").addEventListener('change', (e) => {
         const imgReader = new FileReader();
         imgReader.onload = (e) => {
             imgView.src = e.target.result;
-            console.log(imgView.src);
         };
         imgReader.readAsDataURL(img);
     }
@@ -70,7 +68,6 @@ document.querySelectorAll(".campImg").forEach((img) => {
         const btn = e.target;
         const img = btn.files[0];
         const imgView = btn.parentElement;
-        console.log(imgView)
         const text = btn.previousElementSibling;
 
         const loadImg = (img) => {
@@ -88,13 +85,12 @@ document.querySelectorAll(".campImg").forEach((img) => {
 // 부가정보 수정 비동기처리
 document.querySelector("#updateDetailBtn").addEventListener('click', (e) => {
     const btn = e.target;
-    console.log(btn);
     const frm = document.campDetailUpdateFrm;
     const frmData = new FormData(frm);
 
-    for (var pair of frmData.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]);
-    }
+    // for (var pair of frmData.entries()) {
+    //     console.log(pair[0]+ ', ' + pair[1]);
+    // }
 
     $.ajax({
         url : `${contextPath}/camp/campDetailUpdate`,
@@ -130,9 +126,7 @@ document.campUpdateFrm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const frm = e.target;
-    console.log(frm)
     const frmData = new FormData(frm);
-    console.log(frmData);
     $.ajax({
         url : `${contextPath}/camp/campUpdate`,
         method: 'post',
