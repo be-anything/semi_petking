@@ -68,7 +68,10 @@ public class CampDetailUpdateController extends HttpServlet {
             if(fileItemMap.get("campDetailImg") != null && !fileItemMap.get("campDetailImg").isEmpty()) {
                 campImgFileItems = fileItemMap.get("campDetailImg");
                 // campAttach 처리
+                System.out.println(campImgFileItems);
+                System.out.println(campImgFileItems.size());
                 for(int i = 0; i < campImgFileItems.size(); i++){
+                    System.out.println(campImgFileItems.get(i));
                     String originalImgName = campImgFileItems.get(i).getName().toString();
 
                     if(originalImgName != null && !("".equals(originalImgName))) {

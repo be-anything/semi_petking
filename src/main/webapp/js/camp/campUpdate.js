@@ -2,7 +2,7 @@
 document.querySelectorAll(".options").forEach((option) => {
     option.addEventListener('click', (e) => {
         const selected = e.target;
-        selected.classList.toggle("bg-light-pink");
+        selected.classList.toggle("bg-green");
         selected.classList.toggle("text-white");
         selected.classList.toggle("selected");
 
@@ -42,6 +42,37 @@ tabBtns.forEach((tab, index) => {
         formList[index].classList.add("active");
     })
 });
+
+//
+document.querySelectorAll(".delbtn").forEach((btn) =>{
+   btn.addEventListener('click', (e) => {
+       const attachId = e.target.nextElementSibling;
+       const reset = attachId.nextElementSibling;
+       console.log(attachId);
+
+       if(confirm("삭제하시겠습니까?")){
+            $.ajax({
+                url: `${contextPath}/camp/campAttachDelete`,
+                data: {
+                    attachId : attachId.value
+                },
+                method: 'post',
+                success(response){
+                    reset.style.backgroundImage = '';
+                    // ajax reload
+                    location.reload();
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    console.error("AJAX 오류 발생: ", textStatus, errorThrown);
+                    // 여기에서 오류 처리 로직을 추가할 수 있습니다.
+                }
+            })
+       }
+   });
+});
+
+
+
 
 
 // 메인 이미지 미리보기
@@ -88,9 +119,9 @@ document.querySelector("#updateDetailBtn").addEventListener('click', (e) => {
     const frm = document.campDetailUpdateFrm;
     const frmData = new FormData(frm);
 
-    // for (var pair of frmData.entries()) {
-    //     console.log(pair[0]+ ', ' + pair[1]);
-    // }
+    for (var pair of frmData.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]);
+    }
 
     $.ajax({
         url : `${contextPath}/camp/campDetailUpdate`,
@@ -101,6 +132,8 @@ document.querySelector("#updateDetailBtn").addEventListener('click', (e) => {
         success(response) {
             const {msg} = response;
             alert(msg);
+            // ajax reload
+            // location.reload();
         },
         complete() {
         }
