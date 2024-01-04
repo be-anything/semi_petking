@@ -106,7 +106,7 @@
     </form>
 </div>
 <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
-    <form name="campdeleteFrm" action="${pageContext.request.contextPath}/admin/deleteRegist" method="get">
+    <form name="campdeleteFrm" action="${pageContext.request.contextPath}/admin/CampConfirm" method="post">
         <input type="hidden" name="id" value="${camp.id}">
         <input type="hidden" name="campState" value="${camp.campState}">
         <div class="px-5">

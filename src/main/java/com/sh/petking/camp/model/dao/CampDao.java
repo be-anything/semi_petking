@@ -83,7 +83,6 @@ public class CampDao {
     }
 
     public int updateCampConfirm(SqlSession session, Long id) {
-        System.out.println(id);
         return session.update("camp.updateCampConfirm", id);
     }
 
@@ -96,5 +95,10 @@ public class CampDao {
     }
     public int insertApprove(SqlSession session, Approve approve) {
         return session.insert("camp.insertApprove", approve);
+    }
+
+    public int updateDeleteCamp(SqlSession session, Camp camp) {
+        System.out.println(camp);
+        return session.update("camp.updateDeleteCamp", camp);
     }
 }
