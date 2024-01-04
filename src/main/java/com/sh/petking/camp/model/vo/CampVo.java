@@ -1,6 +1,7 @@
 package com.sh.petking.camp.model.vo;
 
 import com.sh.petking.camp.model.entity.Camp;
+import com.sh.petking.camp.model.entity.CampAttach;
 import com.sh.petking.camp.model.entity.CampTag;
 import com.sh.petking.camp.model.entity.CampWithTag;
 import com.sh.petking.room.model.entity.Room;
@@ -14,6 +15,16 @@ public class CampVo extends Camp {
     private List<CampWithTagVo> campWithTags = new ArrayList<>();
     private List<CampWithServiceVo> campWithServices = new ArrayList<>();
     private List<Room> rooms = new ArrayList<>();
+    private List<CampAttach> campAttaches = new ArrayList<>();
+
+    public List<CampAttach> getCampAttaches() {
+        return campAttaches;
+    }
+
+    public void setCampAttaches(List<CampAttach> campAttaches) {
+        this.campAttaches = campAttaches;
+    }
+
     private String campTagName;
 
     public List<CampWithServiceVo> getCampWithServices() {

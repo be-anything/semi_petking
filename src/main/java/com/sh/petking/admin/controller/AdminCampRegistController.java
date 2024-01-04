@@ -32,7 +32,7 @@ public class AdminCampRegistController extends HttpServlet {
         List<CampVo> campVos = adminCampListService.findRegistAll(param);
         req.setAttribute("campVos", campVos);
 
-        int totalCount = adminCampListService.getTotalCount();
+        int totalCount = adminCampListService.getTotalRegistCount();
         String url = req.getRequestURI();
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);

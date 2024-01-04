@@ -50,6 +50,16 @@
         order by
             reg_date desc
     </select>
+    <select id="findDeleteAll" resultType="campVo">
+        select
+            *
+        from
+            camp
+        where
+            camp_state = 2
+        order by
+            reg_date desc
+    </select>
     <select id="findById" resultMap="campVoMap">
         select
             c.*,
@@ -62,6 +72,9 @@
             cs.id service_id,
             cs.name service_name,
             cs.service_img service_img,
+            ca.id attach_id,
+            ca.camp_id camp_id_attach,
+            ca.camp_attach_renamed_name renamed_img,
             (select count(*) from review where camp_id = c.id) review_count,
             (select count(*) from wish where camp_id = c.id) wish_count
         from
@@ -76,6 +89,8 @@
                     on c.id = cws.camp_id
                 left join camp_service cs
                     on cws.service_id = cs.id
+                left join camp_attach ca
+                    on c.id = ca.camp_id
         where
             c.id = #{id}
     </select>
@@ -112,6 +127,11 @@
             <id column="service_id" property="id"/>
             <result column="service_name" property="serviceName"/>
             <result column="service_img" property="serviceImg"/>
+        </collection>
+        <collection property="campAttaches" ofType="campAttach">
+            <id column="attach_id" property="id"/>
+            <result column="camp_id_attach" property="campId"/>
+            <result column="renamed_img" property="campAttachRenamedName"/>
         </collection>
     </resultMap>
 
@@ -151,7 +171,8 @@
             camp_phone = #{campPhone},
             camp_addr = #{campAddr},
             camp_original_img = #{campOriginalImg},
-            camp_renamed_img = #{campRenamedImg}
+            camp_renamed_img = #{campRenamedImg},
+            camp_state = #{campState}
         where
             id = #{id}
     </update>
@@ -175,12 +196,57 @@
             </if>
         </where>
     </select>
-    <select id="findAllCampService" resultType="campWithService">
+    <select id="findAllCampService" resultType="_campService">
         select
             *
         from
             camp_service
     </select>
+    <select id="findAllCampTag" resultType="campTag">
+        select
+        *
+        from
+        camp_tag
+    </select>
+    <delete id="deleteCampTag">
+        delete from
+            camp_with_tag
+        where
+            camp_id = #{campId}
+    </delete>
+    <insert id="insertCampWithTag">
+        insert into
+            camp_with_tag
+        values(
+            SEQ_CAMP_WITH_TAG.nextval, #{tagId}, #{campId}
+        )
+    </insert>
+    <delete id="deleteCampService">
+        delete from
+            camp_with_service
+        where
+            camp_id = #{campId}
+    </delete>
+    <insert id="insertCampWithService">
+        insert into
+            camp_with_service
+        values(
+            seq_camp_with_service_id.nextval, #{serviceId}, #{campId}
+        )
+    </insert>
+    <delete id="deleteCampAttach">
+        delete from
+            camp_attach
+        where
+            camp_id = #{campId}
+    </delete>
+    <insert id="insertCampAttach">
+        insert into
+            camp_attach
+        values(
+            seq_camp_attach_id.nextval, #{campId}, #{campAttachOriginalName}, #{campAttachRenamedName}
+        )
+    </insert>
     <update id="updateCampConfirm">
         update
             camp
@@ -189,4 +255,75 @@
         where
             id = #{id}
     </update>
+    <insert id="insertApprove">
+        insert into
+            camp_approve_msg
+        values (
+            seq_camp_approve_msg_id.nextval,
+            #{campId},
+            #{campMsg}
+        )
+    </insert>
+    <select id="getTotalRegistCount" resultType="_int">
+        select
+            count(*)
+        from
+            camp
+        where
+            camp_state = 0
+    </select>
+
+    <select id="getTotalDeleteCount" resultType="_int">
+        select
+            count(*)
+        from
+            camp
+        where
+            camp_state = 2
+    </select>
+
+    <select id="findByBusinessId" resultType="camp">
+        select
+            *
+        from
+            camp
+        where
+            business_id = #{businessId}
+    </select>
+    <select id="findByBusinessNumber" resultType="camp">
+        select
+            *
+        from
+            camp
+        where
+            business_number = #{businessNumber}
+    </select>
+    <!--민정-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--민준-->
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

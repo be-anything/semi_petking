@@ -30,7 +30,7 @@ public class BoardListController extends HttpServlet {
         System.out.println(param);
 
         // 2. 업무로직
-        List<Board> boards = boardService.findAll(param);
+        List<BoardVo> boards = boardService.findAll(param);
         req.setAttribute("boards", boards);
         System.out.println(boards);
 

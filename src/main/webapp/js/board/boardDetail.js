@@ -31,7 +31,6 @@ document.querySelectorAll(".btn-reply").forEach((button)=>{
     button.addEventListener('click', (e)=>{
         console.log(e.target.value); // 댓글 id
         console.log(e.target.dataset); // button.btn-reply의 data속성
-        const parentCommentId = e.target.value;
         const {contextPath, boardId, loginUserId} = e.target.dataset;
         // 대댓글 입력폼 tr
         const html = `
@@ -40,8 +39,6 @@ document.querySelectorAll(".btn-reply").forEach((button)=>{
                   <form name="boardCommentCreateFrm" action="${contextPath}/board/boardCommentCreate" method="post">
                     <input type="hidden" name="boardId" value="${boardId}">
                     <input type="hidden" name="userId" value="${loginUserId}">
-                    <input type="hidden" name="commentLevel" value="2">
-                    <input type="hidden" name="parentCommentId" value="${parentCommentId}">
                     <div class="flex items-center px-3 py-2 bg-white hover:bg-gray-50 border-b">
                         <textarea id="content" name="content" rows="1" required class="resize-none block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="답글을 작성하세요..."></textarea>
                         <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100">

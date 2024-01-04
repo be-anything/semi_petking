@@ -65,14 +65,6 @@
         </c:forEach>
         </tbody>
     </table>
-    <style>
-        .forms {
-            display: none;
-        }
-        .active {
-            display: block;
-        }
-    </style>
     <div class="flex justify-center mt-6">
         <nav aria-label="Page navigation example">
             <ul class="flex items-center -space-x-px h-8 text-sm">
