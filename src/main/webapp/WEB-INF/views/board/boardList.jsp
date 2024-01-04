@@ -109,7 +109,7 @@
     <div class="container mx-auto my-6">
         <div class="flex justify-start">
             <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                아끼고 나눠쓰고 바꿔쓰고 다시쓰기 ♻️
+                아껴쓰고 나눠쓰고 바꿔쓰고 다시쓰기 ♻️
             </h1>
         </div>
         <c:if test="${loginUser != null}">
@@ -139,7 +139,7 @@
                     <tr class="odd:bg-white even:bg-gray-50 border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
                         <td class="px-6 py-4">
-                            <p>${board.boardType == 'Q' ? '아나바다' : board.boardType == 'F' ? '자유게시판' : '동아리모집'}
+                            <p>${board.boardType == 'Q' ? '아-나-바-다' : board.boardType == 'F' ? '자유게시판' : '동아리모집'}
                             </p>
                         </td>
                         <td class="px-6 py-4">
@@ -183,7 +183,7 @@
     <div class="container mx-auto my-6">
         <div class="flex justify-start">
             <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                동아리 가입은 빠르면 빠를수록 좋다 😄
+                동아리 가입은 빠르면 빠를수록 좋다 🐶
             </h1>
         </div>
         <c:if test="${loginUser != null}">
@@ -213,7 +213,7 @@
                     <tr class="odd:bg-white even:bg-gray-50 border-b ">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
                         <td class="px-6 py-4">
-                            <p>${board.boardType == 'C' ? '동아리모집 글' : board.boardType == 'F' ? '자유게시판' : '아나바다'}
+                            <p>${board.boardType == 'C' ? '모집 글' : board.boardType == 'F' ? '자유게시판' : '아나바다'}
                             </p>
                         </td>
                         <td class="px-6 py-4">

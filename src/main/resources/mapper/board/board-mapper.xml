@@ -61,25 +61,25 @@
             board
     </select>
 
-    <resultMap id="boardVoMap" type="boardVo">
-        <id column="id" property="id"/>
-        <result column="title" property="title"/>
-        <result column="member_id" property="memberId"/>
-        <result column="content" property="content"/>
-        <result column="read_count" property="readCount"/>
-        <result column="reg_date" property="regDate"/>
-        <association property="member" javaType="member">
-            <id column="member_id" property="id"/>
-            <result column="member_name" property="name"/>
-        </association>
-        <collection property="attachments" ofType="attachment">
-            <id column="attach_id" property="id"/>
-            <result column="board_id" property="boardId"/>
-            <result column="original_filename" property="originalFilename"/>
-            <result column="renamed_filename" property="renamedFilename"/>
-            <result column="attach_reg_date" property="regDate"/>
-        </collection>
-    </resultMap>
+<!--    <resultMap id="boardVoMap" type="boardVo">-->
+<!--        <id column="id" property="id"/>-->
+<!--        <result column="title" property="title"/>-->
+<!--        <result column="member_id" property="memberId"/>-->
+<!--        <result column="content" property="content"/>-->
+<!--        <result column="read_count" property="readCount"/>-->
+<!--        <result column="reg_date" property="regDate"/>-->
+<!--        <association property="member" javaType="member">-->
+<!--            <id column="member_id" property="id"/>-->
+<!--            <result column="member_name" property="name"/>-->
+<!--        </association>-->
+<!--        <collection property="attachments" ofType="attachment">-->
+<!--            <id column="attach_id" property="id"/>-->
+<!--            <result column="board_id" property="boardId"/>-->
+<!--            <result column="original_filename" property="originalFilename"/>-->
+<!--            <result column="renamed_filename" property="renamedFilename"/>-->
+<!--            <result column="attach_reg_date" property="regDate"/>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
 
     <insert id="insertAttachment">
         insert into
