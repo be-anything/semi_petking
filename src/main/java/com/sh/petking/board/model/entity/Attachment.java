@@ -1,6 +1,8 @@
 package com.sh.petking.board.model.entity;
 
-public class Attachment {
+import com.sh.petking.board.model.vo.BoardVo;
+
+public class Attachment{
     private long id;
     private String originalName;
     private String renamedName;

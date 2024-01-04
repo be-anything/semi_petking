@@ -1,9 +1,6 @@
 package com.sh.petking.board.model.vo;
 
-import com.sh.petking.board.model.entity.Attachment;
-import com.sh.petking.board.model.entity.Board;
-import com.sh.petking.board.model.entity.BoardComment;
-import com.sh.petking.board.model.entity.BoardType;
+import com.sh.petking.board.model.entity.*;
 import com.sh.petking.user.model.entity.User;
 
 import java.time.LocalDateTime;
@@ -13,7 +10,7 @@ import java.util.List;
 public class BoardVo extends Board {
     private User user;
     private int attachCount; // 첨부파일 개수
-    private List<Attachment> attachments = new ArrayList<>();
+    private List<BoardAttach> attachments = new ArrayList<>();
     private List<Long> delFiles = new ArrayList<>();
     private List<BoardComment> comments;
     private int commentCount;
@@ -34,15 +31,15 @@ public class BoardVo extends Board {
         this.attachCount = attachCount;
     }
 
-    public void addAttachment(Attachment attachment) {
+    public void addAttachment(BoardAttach attachment) {
         this.attachments.add(attachment);
     }
 
-    public List<Attachment> getAttachments() {
+    public List<BoardAttach> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(List<Attachment> attachments) {
+    public void setAttachments(List<BoardAttach> attachments) {
         this.attachments = attachments;
     }
 
