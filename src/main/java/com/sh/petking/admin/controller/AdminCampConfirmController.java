@@ -35,7 +35,7 @@ public class AdminCampConfirmController extends HttpServlet {
         camp.setCampState(campState);
         int result = campService.updateCamp(camp);
         req.getSession().setAttribute("msg", "승인완료");
-
+        String url = "/admin/registList?id=" + id;
         if(campState == -1){
             Approve approve = new Approve();
             approve.setCampId(id);
@@ -50,8 +50,10 @@ public class AdminCampConfirmController extends HttpServlet {
             System.out.println(id1);
             System.out.println(camp1);
             System.out.println(result1);
+            req.getSession().setAttribute("msg", "삭제완료");
+            url = "/admin/deleteRegist";
         }
-        resp.sendRedirect(req.getContextPath() + "/admin/registList?id=" + id);
+        resp.sendRedirect(req.getContextPath() + url);
 
 
     }

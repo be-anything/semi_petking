@@ -257,7 +257,10 @@ CREATE TABLE camp (
 -- drop table camp;
 create sequence seq_camp_id;
 -- drop sequence seq_camp_id;
-
+ALTER TABLE camp
+DROP CONSTRAINT ck_camp_camp_state;
+ALTER TABLE CAMP
+ADD CONSTRAINT ck_camp_camp_state CHECK(camp_state IN (-1, 0, 1, 2));
 select * from camp;
 commit;
 select * from camp where id = 1 ;
@@ -282,6 +285,7 @@ create table camp_approve_msg (
 );
 create sequence seq_camp_approve_msg_id;
 select * from camp_approve_msg;
+commit;
 ----------------------------------------------------------------- promotion 영역
 create table promotion(
       id number not null,
@@ -636,6 +640,52 @@ VALUES (seq_camp_id.nextval, '7gbtp2', '@FCgo4WolH28', '436-97-02730', '한아�
 
 INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_IMG, CAMP_STATE, REG_DATE)
 VALUES (seq_camp_id.nextval, '6w8pbf', 'e4wFOVsr$Sy4', '436-97-02733', '황소현', '제주베스트힐', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 1, to_date('08/10/2023', 'MM/DD/RRRR'));
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'sdsdfa', 'e4wFOVsr$Sy4', '436-97-02737', '김깝심', '캠핑구로', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 1, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'sdxcv', 'e4wFOVsr$Sy4', '436-97-47812', '행공두', '킁퉂', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'qiryhf', 'e4wFOVsr$Sy4', '436-97-75945', '성민준', '킁퉂', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'xpedm', 'e4wFOVsr$Sy4', '436-97-75961', '이민정', '호잇', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'xiekdm', 'e4wFOVsr$Sy4', '436-97-12424', '정승범', '돈까스', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'qeudc', 'e4wFOVsr$Sy4', '436-97-85634', '고헤진', '농담곰', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'mkioq', 'e4wFOVsr$Sy4', '436-97-76155', '김정효', '박효신효신', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'xwoee', 'e4wFOVsr$Sy4', '436-97-12486', '호룰루', '킥뱅', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'qxme', 'e4wFOVsr$Sy4', '436-97-25746', '칼칼해지', '쿧태', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'xiwmw', 'e4wFOVsr$Sy4', '436-97-24795', '히옹', '가캠핑', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'vledje', 'e4wFOVsr$Sy4', '436-97-96225', '팉디', '나나', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'xcvzee', 'e4wFOVsr$Sy4', '436-97-78563', '래랠', '다다', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'knmhg', 'e4wFOVsr$Sy4', '436-97-21451', '태탵', '라라', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'qxcege', 'e4wFOVsr$Sy4', '436-97-79115', '드배', '마마', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
+INSERT INTO CAMP (ID, BUSINESS_ID, BUSINESS_PASSWORD, BUSINESS_NUMBER, BUSINESS_NAME, CAMP_NAME, CAMP_INTRO, CAMP_PHONE, CAMP_ADDR, CAMP_LC_LA, CAMP_LC_LO, CAMP_ORIGINAL_IMG, CAMP_STATE, REG_DATE,CAMP_RENAMED_IMG)
+VALUES (seq_camp_id.nextval, 'fbaww', 'e4wFOVsr$Sy4', '436-97-21596', '벤캐', '바바', '글램핑, 바비큐장, 개별바비큐, 신축, 온돌방, 독채, 단체, 한옥, 가족실, 침대방, 수영장, 체험활동, 세미나실, 와이파이, 2인실, 잔디, 자연학습', 7044003300, '제주특별자치도 제주시 조천읍 남조로 2109-36', 33.45383584, 126.6577122, NULL, 2, to_date('08/10/2023', 'MM/DD/RRRR'),NULL);
+
 commit;
 
 select * from camp;

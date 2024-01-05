@@ -21,10 +21,7 @@
 <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg mt-10">
 <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
     <li class="tabBtn">
-        <a href="#" aria-current="page" class="inline-block p-4 rounded-t-lg text-white bg-green active px-5">캠핑장 신규등록 요청</a>
-    </li>
-    <li class="tabBtn">
-        <a href="#" class="inline-block p-4 rounded-t-lg px-5">캠핑장 삭제 요청</a>
+        <a href="#" aria-current="page" class="inline-block p-4 rounded-t-lg text-white bg-green active px-5">캠핑장 등록 요청</a>
     </li>
 
 </ul>
