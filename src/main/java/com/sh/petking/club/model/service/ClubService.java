@@ -33,4 +33,21 @@ public class ClubService {
         }
         return result;
     }
+
+    public int deleteClub(long id) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = clubDao.deleteClub(session, id);
+            session.commit();
+        }
+        catch(Exception e){
+            session.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+        return result;
+    }
 }

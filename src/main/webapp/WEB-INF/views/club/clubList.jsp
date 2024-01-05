@@ -20,6 +20,10 @@
         <button type="button" onClick="location.href='${pageContext.request.contextPath}/board/boardList';" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-blue bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
             동아리 가입
         </button>
+        <div className="2 w-[133px] h-[35px] relative">
+            <div className="Rectangle10 w-[133px] h-[35px] left-0 top-0 absolute bg-red-300 rounded-2xl" />
+            <div className="2 w-[120.09px] h-[21.45px] left-[6.46px] top-[6.77px] absolute text-center text-white text-base font-semibold font-['Inter']">탈퇴하기</div>
+        </div>
     </form>
 </div>
 </c:if>

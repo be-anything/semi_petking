@@ -14,4 +14,8 @@ public class ClubDao {
     public int insertClub(SqlSession session, Club club) {
         return session.insert("club.insertClub", club);
     }
+
+    public int deleteClub(SqlSession session, long id) {
+        return session.delete("club.deleteClub", id);
+    }
 }
