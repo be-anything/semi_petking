@@ -123,10 +123,10 @@
                             <div class="flex items-center justify-center w-full relative">
                                 <div class="delbtn drop-shadow-xl w-[80px] h-[80px] cursor-pointer absolute" style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/images/camp/remove.png')"></div>
                                 <input hidden="hidden" value="${campAttach.id}">
-                                <label for="campImg${vs.index}"
+                                <label for="campImg${vs.index + 1}"
                                        style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/upload/camp/${campAttach.campAttachRenamedName}')"
                                        class="delSelected flex flex-col items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                        <input id="campImg${vs.index}" disabled name="campDetailImg" type="file" value=""
+                                        <input id="campImg${vs.index + 1}" disabled name="campDetailImg" type="file" value=""
                                            class="campImg hidden campAttach"/>
                                 </label>
                             </div>

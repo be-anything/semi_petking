@@ -13,5 +13,7 @@
         </div>
     </div>
 </div> <!-- header부터 footer까지 감싸는 div 닫는 태그 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
 </body>
 </html>

@@ -9,7 +9,7 @@
         <div class="border-b-2 border-green flex justify-center mb-10">
             <h1 class="block mb-2 mt-5 text-xl font-medium text-black dark:text-white">캠핑장 사장님 로그인</h1>
         </div>
-        <form name="userLoginFrm" class="space-y-6" >
+        <form name="userLoginFrm" action="${pageContext.request.contextPath}/camp/campLogin" class="space-y-6" method="post">
             <div>
                 <label for="id" class="block text-sm font-medium leading-6 text-gray-900">아이디</label>
                 <div class="mt-2">
