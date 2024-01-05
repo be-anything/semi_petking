@@ -79,4 +79,8 @@ public class UserDao extends HttpServlet {
     public User findByEmail(SqlSession session, String email) {
         return session.selectOne("user.findByEmail", email);
     }
+
+    public int insertPet(SqlSession session, Pet pet) {
+        return session.insert("pet.insertPet", pet);
+    }
 }

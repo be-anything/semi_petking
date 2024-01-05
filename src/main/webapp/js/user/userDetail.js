@@ -9,3 +9,21 @@ document.userUpdateFrm.addEventListener('submit', (e) => {
         return;
     }
 });
+
+document.userPetFrm.addEventListener('submit', (e) => {
+   const frm = e.target;
+   const name = frm.name;
+   const age = frm.age;
+
+   // 반려동물 이름 - 1글자이상
+   if (!/^[가-힣A-Za-z]{1,}$/.test(name.value)) {
+       alert('이름은 1글자 이상 작성해주세요.');
+       e.preventDefault();
+       return;
+   }
+   if (!/^[1-9]$/.test(age.number)) {
+       alert('나이를 입력해주세요.');
+       e.preventDefault();
+       return;
+   }
+});

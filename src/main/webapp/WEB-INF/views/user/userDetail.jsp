@@ -98,18 +98,18 @@
                         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                             반려동물 정보등록
                         </h1>
-                        <form name="userUpdateFrm" action="${pageContext.request.contextPath}/user/userPet" method="post" class="space-y-4 md:space-y-6">
+                        <form name="userPetFrm" action="${pageContext.request.contextPath}/user/userPet" method="post" class="space-y-4 md:space-y-6">
                             <div>
-                                <label for="petName" class="block mb-2 text-sm font-medium text-gray-900 ">이름</label>
+                                <label for="petName" class="block mb-2 text-sm font-medium text-gray-900 ">반려동물 이름</label>
                                 <input type="text" name="petName" id="petName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
                             </div>
                             <div>
-                                <label for="nickname" class="block mb-2 text-sm font-medium text-gray-900">나이</label>
+                                <label for="nickname" class="block mb-2 text-sm font-medium text-gray-900">반려동물 나이</label>
                                 <input type="number" name="petAge" id="petAge" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
                             </div>
                             <div>
                                 <fieldset>
-                                    <legend class="mb-3">성별</legend>
+                                    <legend class="mb-3">반려동물 성별</legend>
                                     <div class="inline-flex items-center mr-4">
                                         <input id="pet-gender-option-1" type="radio" name="gender" value="M" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
                                         <label for="pet-gender-option-1" class="block ms-2  text-sm font-medium text-gray-900">남</label>
@@ -122,18 +122,23 @@
                             </div>
                             <div>
                                 <fieldset>
-                                    <legend class="mb-3">중성화여부</legend>
+                                    <legend class="mb-3">반려동물 중성화여부</legend>
                                     <div class="inline-flex items-center mr-4">
-                                        <input id="pet-neutered-option-1" type="radio" name="neutered" value="O" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
+                                        <input id="pet-neutered-option-1" type="radio" name="neutered" value="Y" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
                                         <label for="pet-neutered-option-1" class="block ms-2  text-sm font-medium text-gray-900">O</label>
                                     </div>
                                     <div class="inline-flex items-center mr-4">
-                                        <input id="pet-neutered-option-2" type="radio" name="neutered" value="X" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
+                                        <input id="pet-neutered-option-2" type="radio" name="neutered" value="N" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
                                         <label for="pet-neutered-option-2" class="block ms-2 text-sm font-medium text-gray-900">X</label>
                                     </div>
                                 </fieldset>
                             </div>
                             <button type="submit" class="text-white w-full bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">반려동물정보 저장</button>
+                            <nav class="mb-8 flex justify-center" >
+                                <ul class="flex items-center -space-x-px h-8 text-sm">
+                                    ${pagebar}
+                                </ul>
+                            </nav>
                         </form>
 
     <form action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm"></form>
