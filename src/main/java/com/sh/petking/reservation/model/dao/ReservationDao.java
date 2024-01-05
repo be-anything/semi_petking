@@ -2,6 +2,7 @@ package com.sh.petking.reservation.model.dao;
 
 
 import com.sh.petking.reservation.model.entity.Reservation;
+import com.sh.petking.room.model.vo.RoomVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -24,5 +25,10 @@ public class ReservationDao
     //특정 예약내역 하나만 조회
     public Reservation findById(SqlSession session, long id) {
         return session.selectOne("reservation.findById",id);
+    }
+
+    public List<RoomVo> findByCampId(SqlSession session, long campId)
+    {
+        return session.selectList("reservation.findByCampId",campId);
     }
 }

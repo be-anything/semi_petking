@@ -3,7 +3,7 @@
 
 <%--<div><img class="w-full mx-auto mb-[500px]" src="${pageContext.request.contextPath}/images/common/main.jpg" alt=""></div>--%>
 
-<script src="${pageContext.request.contextPath}/js/index.js"></script>
+<%--<script src="${pageContext.request.contextPath}/js/index.js"></script>--%>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 

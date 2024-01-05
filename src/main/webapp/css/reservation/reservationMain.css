@@ -1,0 +1,25 @@
+/* 달력 테이블 */
+/*table*/
+/*{*/
+/*    border:1px solid #BDBDBD;*/
+/*    text-align:center;*/
+/*    !*width:30%;*!*/
+/*}*/
+#calendarTest{
+    border:1px solid #BDBDBD;
+    text-align:center;
+    width:30%;
+}
+#calendarTest tr,td{
+    border:1px solid #BDBDBD;
+    padding: 5px;
+}
+
+/* ? */
+.forms {
+    display: none;
+}
+.active {
+    display: block;
+}
+
