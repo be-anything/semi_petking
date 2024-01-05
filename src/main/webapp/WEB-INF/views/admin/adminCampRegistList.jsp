@@ -10,8 +10,28 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<style>
+    .forms {
+        display: none;
+    }
+    .active {
+        display: block;
+    }
+</style>
+<div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg mt-10">
+    <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
+        <li class="tabBtn">
+            <a href="#" aria-current="page" class="inline-block p-4 rounded-t-lg text-white bg-green active px-5">캠핑장 신규등록 요청</a>
+        </li>
+        <li class="tabBtn">
+            <a href="${pageContext.request.contextPath}/admin/deleteRegist" class="inline-block p-4 rounded-t-lg px-5">캠핑장 삭제 요청</a>
+        </li>
+
+    </ul>
+</div>
+<div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
 <div class="relative overflow-x-auto">
-    <table class="w-62 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
             <th scope="col" class="px-6 py-3">
@@ -73,4 +93,6 @@
         </nav>
     </div>
 </div>
+</div>
+<script src="${pageContext.request.contextPath}/js/admin/adminRegist.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>    

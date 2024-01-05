@@ -197,6 +197,21 @@ public class CampService {
         return result;
     }
 
+    public int updateDeleteCamp(Camp camp) {
+        SqlSession session = getSqlSession();
+        int result1 = 0;
+        try{
+            result1 = campDao.updateDeleteCamp(session, camp);
+            System.out.println(result1);
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result1;
+    }
     public int deleteCampAttach(Long attachId) {
         SqlSession session = getSqlSession();
         int result = 0;

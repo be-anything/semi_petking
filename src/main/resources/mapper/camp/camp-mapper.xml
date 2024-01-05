@@ -298,32 +298,13 @@
         where
             business_number = #{businessNumber}
     </select>
-    <!--민정-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--민준-->
-
-
-
-
-
-
-
-
-
-
-
-
+    <update id="updateDeleteCamp">
+        update
+            camp
+        set
+            camp_state = -1
+        where
+            id = #{id}
+    </update>
 </mapper>
