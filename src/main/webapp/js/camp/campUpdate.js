@@ -2,8 +2,7 @@
 document.querySelectorAll(".options").forEach((option) => {
     option.addEventListener('click', (e) => {
         const selected = e.target;
-        console.log(selected)
-        selected.classList.toggle("bg-light-pink");
+        selected.classList.toggle("bg-green");
         selected.classList.toggle("text-white");
         selected.classList.toggle("selected");
 
@@ -19,7 +18,7 @@ document.querySelectorAll(".options").forEach((option) => {
 });
 
 // 탭 메뉴 이동
-const tabBtns =  document.querySelectorAll(".tabBtn");
+const tabBtns = document.querySelectorAll(".tabBtn");
 tabBtns.forEach((tab, index) => {
     tab.addEventListener('click', (e) => {
         const tabBtn = e.target;
@@ -44,6 +43,37 @@ tabBtns.forEach((tab, index) => {
     })
 });
 
+//
+document.querySelectorAll(".delbtn").forEach((btn) =>{
+   btn.addEventListener('click', (e) => {
+       const attachId = e.target.nextElementSibling;
+       const reset = attachId.nextElementSibling;
+       console.log(attachId);
+
+       if(confirm("삭제하시겠습니까?")){
+            $.ajax({
+                url: `${contextPath}/camp/campAttachDelete`,
+                data: {
+                    attachId : attachId.value
+                },
+                method: 'post',
+                success(response){
+                    reset.style.backgroundImage = '';
+                    // ajax reload
+                    location.reload();
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    console.error("AJAX 오류 발생: ", textStatus, errorThrown);
+                    // 여기에서 오류 처리 로직을 추가할 수 있습니다.
+                }
+            })
+       }
+   });
+});
+
+
+
+
 
 // 메인 이미지 미리보기
 document.querySelector("#campImg").addEventListener('change', (e) => {
@@ -58,7 +88,6 @@ document.querySelector("#campImg").addEventListener('change', (e) => {
         const imgReader = new FileReader();
         imgReader.onload = (e) => {
             imgView.src = e.target.result;
-            console.log(imgView.src);
         };
         imgReader.readAsDataURL(img);
     }
@@ -70,7 +99,6 @@ document.querySelectorAll(".campImg").forEach((img) => {
         const btn = e.target;
         const img = btn.files[0];
         const imgView = btn.parentElement;
-        console.log(imgView)
         const text = btn.previousElementSibling;
 
         const loadImg = (img) => {
@@ -88,7 +116,6 @@ document.querySelectorAll(".campImg").forEach((img) => {
 // 부가정보 수정 비동기처리
 document.querySelector("#updateDetailBtn").addEventListener('click', (e) => {
     const btn = e.target;
-    console.log(btn);
     const frm = document.campDetailUpdateFrm;
     const frmData = new FormData(frm);
 
@@ -105,6 +132,8 @@ document.querySelector("#updateDetailBtn").addEventListener('click', (e) => {
         success(response) {
             const {msg} = response;
             alert(msg);
+            // ajax reload
+            // location.reload();
         },
         complete() {
         }
@@ -130,9 +159,7 @@ document.campUpdateFrm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const frm = e.target;
-    console.log(frm)
     const frmData = new FormData(frm);
-    console.log(frmData);
     $.ajax({
         url : `${contextPath}/camp/campUpdate`,
         method: 'post',
