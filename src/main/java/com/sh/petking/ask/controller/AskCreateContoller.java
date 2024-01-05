@@ -1,6 +1,7 @@
 package com.sh.petking.ask.controller;
 
 import com.sh.petking.ask.model.service.AskService;
+import com.sh.petking.ask.model.vo.AskVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("/ask/askCreate")
 public class AskCreateContoller extends HttpServlet {
@@ -22,12 +24,26 @@ public class AskCreateContoller extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("askCreateController - doPost!");
         //name값으로 가져오는 값들.
-        String userId = req.getParameter("userId");
+        String userId = req.getParameter("userId"); //loginUser.id
+        //long campId = Long.parseLong(req.getParameter("campId"));
         String askTitle = req.getParameter("askTitle");
         String askContent = req.getParameter("askContent");
         System.out.println("문의자:"+userId);
+       // System.out.println("캠핑장번호:"+campId);
         System.out.println("문의 제목:"+askTitle);
         System.out.println("문의 내용:"+askContent);
+
+        AskVo ask = new AskVo();
+        ask.setUserId(userId);
+        ask.setCampId(4); //임시 매직넘버
+        ask.setAskTitle(askTitle);
+        ask.setAskContent(askContent);
+        ask.setAskRegDate(LocalDateTime.now()); //os기준 현재 시간으로 넘김 sysdate로 insert시 시간차 발생
+        int result = askService.insertAsk(ask);
+        req.getSession().setAttribute("msg","문의글을 성공적으로 등록하였습니다");
+
+        //3.게시판 목록페이지로 redirect
+        resp.sendRedirect(req.getContextPath()+"/ask/askList");
 
     }
 }

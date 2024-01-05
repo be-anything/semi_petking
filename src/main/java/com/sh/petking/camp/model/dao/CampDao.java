@@ -69,8 +69,8 @@ public class CampDao {
         return session.insert("camp.insertCampWithService", campWithService);
     }
 
-    public int deleteCampAttach(SqlSession session, Long campId) {
-        return session.delete("camp.deleteCampAttach", campId);
+    public int deleteCampAttach(SqlSession session, Long attachId) {
+        return session.delete("camp.deleteCampAttach", attachId);
     }
 
     public int insertCampAttach(SqlSession session, CampAttach campAttach) {

@@ -11,7 +11,8 @@ tailwind.config = {
                 "gray2" : "#E6E6E6",
                 "gray3" : "#757575",
                 "red" : "#F24822",
-                "green1" : "#dffsdd",
+                "green1" : "#2d8659",
+                "green2" : "#dffsdd",
                 "blue" : "#006aff"
             }
         },

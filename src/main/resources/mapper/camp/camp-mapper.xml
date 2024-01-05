@@ -238,7 +238,7 @@
         delete from
             camp_attach
         where
-            camp_id = #{campId}
+            id = #{attachId}
     </delete>
     <insert id="insertCampAttach">
         insert into

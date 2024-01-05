@@ -1,5 +1,6 @@
 package com.sh.petking.user.controller;
 
+import com.sh.petking.common.PetkingUtils;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.service.UserService;
 
@@ -23,7 +24,7 @@ public class UserLoginController extends HttpServlet {
         String referer = req.getHeader("Referer");
         System.out.println("referer = " + referer); // 저장된정보 확인
 
-        if (!referer.contains("/user/userlogin"))
+        if (!referer.contains("/user.userlogin"))
             req.getSession().setAttribute("next", referer);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/user/userLogin.jsp");
@@ -34,11 +35,11 @@ public class UserLoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 사용자 입력값 인코딩 처리
-        req.setCharacterEncoding("utf-8");
+//        req.setCharacterEncoding("utf-8");
 
         // 사용자 입력값 가져오기
         String id = req.getParameter("id");
-        String pw = req.getParameter("password");
+        String pw = PetkingUtils.getEncryptedPassword(req.getParameter("password"), id);
 //        System.out.println(id + pw);
 
         // 업무 로직
@@ -51,7 +52,7 @@ public class UserLoginController extends HttpServlet {
             // 로그인 성공
             session.setAttribute("loginUser", user);
             String location = req.getContextPath() + "/";
-            String  next = (String) req.getSession().getAttribute("next");
+            String next = (String) req.getSession().getAttribute("next");
             if (next != null) {
                 location = next;
                 req.getSession().removeAttribute("next");
