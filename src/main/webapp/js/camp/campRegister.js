@@ -287,10 +287,22 @@ document.querySelector(".submitBtn").addEventListener('click', (e) => {
     const _phone = [...document.campUserRegisterFrm.phone];
     totalFrm.campPhone.value = _phone[0].value + "-" + _phone[1].value + "-" + _phone[2].value;
 
-    // totalFrm.campAddr.value = registCampFrm.businessAddr.value;
-    // totalFrm.campLcLa.value = registUserFrm.id.value;
-    // totalFrm.campLcLo.value = registUserFrm.id.value;
-
-    console.log(totalFrm);
-    totalFrm.submit();
+    $.ajax({
+        url: 'https://dapi.kakao.com/v2/local/search/address.json?query=' + totalFrm.campAddr.value,
+        type: 'GET',
+        headers: {'Authorization' : 'KakaoAK 758b89b906bf079dad3af90e28c940e4'},
+        success(response){
+            console.log(response);
+            const {documents} = response;
+            const {address : {x, y}} = documents[0];
+            totalFrm.campLcLa.value = y;
+            totalFrm.campLcLo.value = x;
+        },
+        error(){
+            console.log("에러발생");
+        }
+    }).done(() => {
+        console.log(totalFrm);
+        totalFrm.submit();
+    });
 });
