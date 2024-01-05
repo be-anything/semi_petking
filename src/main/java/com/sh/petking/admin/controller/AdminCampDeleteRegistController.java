@@ -28,7 +28,6 @@ public class AdminCampDeleteRegistController extends HttpServlet {
         Map<String, Object> param = new HashMap<>();
         param.put("page", page);
         param.put("limit", limit);
-
         List<CampVo> campVos = adminCampListService.findDeleteAll(param);
         req.setAttribute("campVos", campVos);
 
@@ -36,7 +35,7 @@ public class AdminCampDeleteRegistController extends HttpServlet {
         String url = req.getRequestURI();
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);
-        req.getSession().setAttribute("msg", "승인완료");
+
 
         req.getRequestDispatcher("/WEB-INF/views/admin/adminCampDeleteList.jsp").forward(req,resp);
     }

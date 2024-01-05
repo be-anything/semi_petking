@@ -69,8 +69,8 @@ public class CampDao {
         return session.insert("camp.insertCampWithService", campWithService);
     }
 
-    public int deleteCampAttach(SqlSession session, Long campId) {
-        return session.delete("camp.deleteCampAttach", campId);
+    public int deleteCampAttach(SqlSession session, Long attachId) {
+        return session.delete("camp.deleteCampAttach", attachId);
     }
 
     public int insertCampAttach(SqlSession session, CampAttach campAttach) {
@@ -83,7 +83,6 @@ public class CampDao {
     }
 
     public int updateCampConfirm(SqlSession session, Long id) {
-        System.out.println(id);
         return session.update("camp.updateCampConfirm", id);
     }
 
@@ -96,5 +95,10 @@ public class CampDao {
     }
     public int insertApprove(SqlSession session, Approve approve) {
         return session.insert("camp.insertApprove", approve);
+    }
+
+    public int updateDeleteCamp(SqlSession session, Camp camp) {
+        System.out.println(camp);
+        return session.update("camp.updateDeleteCamp", camp);
     }
 }

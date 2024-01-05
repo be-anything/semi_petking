@@ -112,7 +112,6 @@ public class CampService {
         List<CampWithTag> campWithTags = (List<CampWithTag>) param.get("campWithTags");
         List<CampWithService> campWithServices = (List<CampWithService>) param.get("campWithServices");
         List<CampAttach> campAttaches = (List<CampAttach>) param.get("campAttaches");
-        System.out.println(campAttaches);
 
         try {
             // 태그 전체 삭제
@@ -138,11 +137,8 @@ public class CampService {
             }
 
             if (campAttaches != null && !campAttaches.isEmpty()) {
+//                result = campDao.deleteCampAttach(session, campId);
                 for (int i = 0; i < campAttaches.size(); i++) {
-                    System.out.println("================ service attach ============");
-                    System.out.println(campAttaches.get(i).getCampId());
-                    System.out.println(campAttaches.get(i).getCampAttachRenamedName());
-                    System.out.println(campAttaches.get(i).getCampAttachOriginalName());
                     result = campDao.insertCampAttach(session, campAttaches.get(i));
                 }
             }
@@ -190,6 +186,37 @@ public class CampService {
         int result = 0;
         try {
             result = campDao.insertApprove(session, approve);
+            System.out.println(result);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public int updateDeleteCamp(Camp camp) {
+        SqlSession session = getSqlSession();
+        int result1 = 0;
+        try{
+            result1 = campDao.updateDeleteCamp(session, camp);
+            System.out.println(result1);
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result1;
+    }
+    public int deleteCampAttach(Long attachId) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try {
+            result = campDao.deleteCampAttach(session, attachId);
             System.out.println(result);
             session.commit();
         } catch (Exception e) {

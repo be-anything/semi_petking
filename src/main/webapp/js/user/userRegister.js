@@ -37,48 +37,48 @@ document.querySelector("#id").addEventListener('keyup', (e) => {
 });
 
 // 이메일 중복검사
-document.querySelector("#email").addEventListener('keyup', (e) => {
-    const value = e.target.value;
-    console.log(value);
-
-    const guideOk = document.querySelector(".guide.ok");
-    const guideError = document.querySelector(".guide.error");
-    const emailValid = document.querySelector("#emailValid");
-
-    if (!/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/.test(value)) {
-        $.ajax({
-            type : post,
-            url : `${contextPath}/user/UserCheckEmailDuplicateController`,
-            data : {
-                email : value
-            },
-            success(response) {
-                const {result} = response;
-                if (result) {
-                    // 이메일 사용가능한 경우
-                    guideError.classList.add('hidden');
-                    guideOk.classList.remove('hidden');
-                    emailValid.value = 1;
-                } else {
-                    // 이메일 이미 사용중인 경우
-                    guideOk.classList.add('hidden');
-                    guideError.classList.remove('hidden');
-                    emailValid.value = 0;
-                }
-            }
-        });
-    } else {
-        // 다시쓰기하는 경우
-        guideOk.classList.add('hidden');
-        guideError.classList.add('hidden');
-        emailValid.value = 0; // 리셋해줌
-    }
-});
+// document.querySelector("#email").addEventListener('keyup', (e) => {
+//     const value = e.target.value;
+//     console.log(value);
+//
+//     const guideOk = document.querySelector(".guide.ok");
+//     const guideError = document.querySelector(".guide.error");
+//     const emailValid = document.querySelector("#emailValid");
+//
+//     if (!/^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/.test(value)) {
+//         $.ajax({
+//             method : 'post',
+//             url : `${contextPath}/user/UserCheckEmailDuplicateController`,
+//             data : {
+//                 email : value
+//             },
+//             success(response) {
+//                 const {result} = response;
+//                 if (result) {
+//                     // 이메일 사용가능한 경우
+//                     guideError.classList.add('hidden');
+//                     guideOk.classList.remove('hidden');
+//                     emailValid.value = 1;
+//                 } else {
+//                     // 이메일 이미 사용중인 경우
+//                     guideOk.classList.add('hidden');
+//                     guideError.classList.remove('hidden');
+//                     emailValid.value = 0;
+//                 }
+//             }
+//         });
+//     } else {
+//         // 다시쓰기하는 경우
+//         guideOk.classList.add('hidden');
+//         guideError.classList.add('hidden');
+//         emailValid.value = 0; // 리셋해줌
+//     }
+// });
 
 /**
  * 회원가입 유효성검사
  */
-document.userRegisterFrm.addEventListener('', (e) => {
+document.userRegisterFrm.addEventListener('submit', (e) => {
     const frm = e.target;
     const id = frm.id;
     const password = frm.password;
