@@ -79,7 +79,7 @@
     </div>
 </section>
 
-<section class="campInfoRegister">
+<section class="campInfoRegister hidden">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         <div class="w-full bg-white rounded-lg shadow my-6 sm:max-w-md xl:p-0">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -108,8 +108,15 @@
                         <textarea name="businessIntro" id="businessIntro" rows="10" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required></textarea>
                     </div>
                     <div class="mt-4">
-                        <label for="businessAddr" class="block mb-2 text-sm font-medium text-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500">캠핑장 주소</label>
-                        <input type="text" name="businessAddr" id="businessAddr" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+
+                        <label class="block mb-2 text-sm font-medium text-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500">캠핑장 주소</label>
+                        <div class="flex justify-around items-center mb-1">
+                            <input type="text" name="addr-postcode" placeholder="우편번호" id="addr-postcode" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block mr-1 w-full p-2.5" required>
+                            <input type="button" name="findAddr" id="findAddr" class="cursor-pointer bg-gray3 w-[100px] border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5" value="우편번호 찾기" required>
+                        </div>
+                        <input type="text" name="addr-address" id="addr-address" placeholder="주소" class="mb-1 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block mr-1 w-full p-2.5" required>
+                        <input type="text" name="addr-detail" id="addr-detail" placeholder="상세주소" class="mb-1 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block mr-1 w-full p-2.5" required>
+                        <input type="text" name="addr-extra" id="addr-extra" placeholder="참고항목" class="mb-1 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block mr-1 w-full p-2.5" required>
                     </div>
                     <div class="mt-4">
                     </div>
