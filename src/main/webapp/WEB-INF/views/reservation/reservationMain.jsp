@@ -188,7 +188,47 @@
 
 <%--</div>--%>
 
-<%--<table id="myTable" border=1>	<thead>	    <tr>	        <th></th>	        <th>sample1</th>	        <th>sample2</th>	        <th>sample3</th>	        <th>sample4</th>	    </tr>	</thead>	<tbody>	    <tr>	        <th>sample1</th>	        <td>Text1</td>	        <td>Text2</td>	        <td>Text3</td>	        <td>Text4</td>	    </tr>	    <tr>	        <th>sample2</th>	        <td>Text11</td>	        <td>Text22</td>	        <td>Text33</td>	        <td>Text44</td>	    </tr>	    <tr>	        <th>sample3</th>	        <td>Text111</td>	        <td>Text222</td>	        <td>Text333</td>	        <td>Text444</td>	    </tr>	    <tr>	        <th>sample4</th>	        <td>Text1111</td>	        <td>Text2222</td>	        <td>Text3333</td>	        <td>Text4444</td>	    </tr>	</tbody></table>--%>
+<table id="myTable" border=1>
+    <thead>
+        <tr>
+
+            <th>sample1</th>
+            <th>sample2</th>
+            <th>sample3</th>
+            <th>sample4</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>sample1</th>
+            <td>Text1</td>
+            <td>Text2</td>
+            <td>Text3</td>
+            <td>Text4</td>
+        </tr>
+        <tr>
+            <th>sample2</th>
+            <td>Text11</td>
+            <td>Text22</td>
+            <td>Text33</td>
+            <td>Text44</td>
+        </tr>
+        <tr>
+            <th>sample3</th>
+            <td>Text111</td>
+            <td>Text222</td>
+            <td>Text333</td>
+            <td>Text444</td>
+        </tr>
+        <tr>
+            <th>sample4</th>
+            <td>Text1111</td>
+            <td>Text2222</td>
+            <td>Text3333</td>
+            <td>Text4444</td>
+        </tr>
+    </tbody>
+</table>
 
 
 
@@ -258,6 +298,7 @@
     <div class="mx-auto my-6" >
         <div class="flex justify-normal">
             <table align="center" id="calendarTest">
+            </th>
                 <tr>
                     <td><font size=1%; color="#B3B6B3"><label onclick="beforem()" id="before" ></label></font></td>
                     <td colspan="5" align="center" id="yearmonth"></td>
@@ -272,6 +313,7 @@
                     <td align="center"> 금 </td>
                     <td align="center"><font color=#7ED5E4>토</font></td>
                 </tr>
+                </th>
             </table>
         </div>
         <button id="btn-check"
@@ -289,19 +331,18 @@
     <div class="flex-grow border-t border-gray-400"></div>
 
 <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
-    <table id="rooms">
+    <table id="celebs">
+        <thead>
         <tr>
-            <th>방번호</th>
-            <td class="room-id"></td>
-        </tr>
+            <th>객실 이름</th>
+            <th>객실 타입</th>
+            <th>적정 인원</th>
+            <th>최대 인원</th>
         <tr>
-            <th>캠핑장</th>
-            <td class="room-camp-id"></td>
-        </tr>
-        <tr>
-            <th>방이름</th>
-            <td class="room-name"></td>
-        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
     </table>
 </div>
 

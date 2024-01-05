@@ -122,9 +122,9 @@ public class RoomService
     }
 
     //0105 캠핑장 아이디로 객실 들 찾기
-    public List<RoomVo> findByCampId(long id) {
+    public RoomVo findByCampId(long id) {
         SqlSession session = getSqlSession();
-        List<RoomVo> room = roomDao.findByCampId(session,id);
+        RoomVo room = roomDao.findByCampId(session,id);
         session.close();
         return room;
     }

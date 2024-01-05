@@ -110,6 +110,7 @@ public class RoomCreateController extends HttpServlet
 
                         attach.setRoomAttachOriginalName(originalFileName);
                         attach.setRoomAttachRenamedName(renamedFileName);
+                        room.setRoomRenamedImg(renamedFileName); //0105 혜진 임시 대표사진 설정
                         room.addAttachment(attach);
                     }
                 }

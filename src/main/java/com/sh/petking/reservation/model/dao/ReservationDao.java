@@ -29,6 +29,9 @@ public class ReservationDao
 
     public List<RoomVo> findByCampId(SqlSession session, long campId)
     {
+        System.out.println("ReservationDao , 4번 캠핑장 객실리스트 출력");
         return session.selectList("reservation.findByCampId",campId);
     }
+
+
 }

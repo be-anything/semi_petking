@@ -14,15 +14,74 @@ function nextm()  //다음 달을 today에 저장
     build();
 }
 
+
+
+
 $(document).ready(function()
 {
     //외부 리소스 및 이미지 로딩과는 상관없이 dom데이터만 로딩완료 되면 바로 실행이 되는 함수이다.
     // (window.onload보다 빠르게 실행된다)
     build();
+    clickTd2();
+    //clickEvent();
 })
 
+function clickEvent()
+{
+    console.log("clickEvent()-----------");
+        // let str ="";
+        // let tdArr = new Array();//배열선언
+        //
+        // // 현재 클릭된 Row(<tr>)
+        // let tr = $(this);
+        // let td = tr.children();
+        // console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+        // console.log("tdtdtdtdtd : "+td.text());
+        // console.log("테이블 tr 클릭,,,,,,,,,,,,,,,,,");
+
+
+        $("#calendarTest tr").click(function(){
+            var tdArray = new Array();
+            var td = $(this).children();
+            //tr에 있는 모든 데이터
+            console.log($(this).text());
+
+            //만들어둔 배열에 td값을 하나하나 담아준다.
+            td.each(function(i)
+            {
+                tdArray.push(td.eq(i).text());	});
+            console.log(tdArray);
+            var td1 = tdArray[0];
+            var td2 = tdArray[1];
+            var td3 = tdArray[2];
+            var td4 = tdArray[3];
+            var td5 = tdArray[4];
+            var td6 = tdArray[5];
+            var td7 = tdArray[6];
+            console.log("td1/"+td1);
+            console.log("td2/"+td2);
+            console.log("td3/"+td3);
+            console.log("td4/"+td4);
+            console.log("td5/"+td5);
+            console.log("td6/"+td5);
+            console.log("td7/"+td5);
+        });
+
+
+
+
+
+
+    // $("#calendarTest tr td").click(function(){
+    //     var text = $(this).text();
+    //     alert(text+"클릭!!!!!");
+    // });
+
+
+}
 function build()
 {
+    console.log("build.....");
     var nMonth = new Date(today.getFullYear(), today.getMonth(), 1); //현재달의 첫째 날
     var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); //현재 달의 마지막 날
     var tbcal = document.getElementById("calendarTest"); // 테이블 달력을 만들 테이블
@@ -44,7 +103,6 @@ function build()
         before.innerHTML=(today.getMonth())+"월";
         next.innerHTML=(today.getMonth()+2)+"월";
     }
-
 
 // 남은 테이블 줄 삭제
     while (tbcal.rows.length > 2)
@@ -80,17 +138,15 @@ function build()
             cell.bgColor = "#BCF1B1"; //오늘날짜배경색
         }
     }
-
 }
 
 
 //
 document.querySelector("#btn-check").addEventListener('click',(e)=>{
-
     console.log("테스트용 조회 버튼 클릭!");
     console.log("테스트용 - 4번 캠핑장 객실만 조회");
     //const celebId = document.querySelector("#id").value;
-    const campId=4;
+    const campId=11;
     console.log("내가 검색할 캠핑장 아이디 값(campId) : "+campId);
 
     $.ajax({
@@ -98,23 +154,67 @@ document.querySelector("#btn-check").addEventListener('click',(e)=>{
         data:{
             campId:campId.value
         },
-        success(room){
+        success(rooms){
             //응답받은 json 데이터를 파싱(json.parse)후 , js 객체로 반환.
-            console.log(room);
-            if(room)
+            console.log(rooms);
+            const tbody = document.querySelector("#celebs tbody");
+            tbody.innerHTML= '';
+
+            rooms.forEach(({roomName,roomType,roomDefaultPerson,roomMaximumPerson})=>
             {
-                const {id,campId,roomName} = room;
-                const table = document.querySelector("table#rooms");
-                table.querySelector(".room-id").innerHTML=id;
-                table.querySelector(".room-camp-id").innerHTML=campId;
-                //table.querySelector(".room-name").innerHTML = `<img src="${contextPath}/images/celeb/${profile}"/>`;
-                table.querySelector(".room-name").innerHTML=roomName;
-            }
-            else
-            {
-                alert(`해당하는 객실이 없습니다.`);
-            }
+                    tbody.innerHTML += `
+                    <tr>
+                        <td>${roomName}</td>
+                        <td>${roomType}</td>
+                        <td>${roomDefaultPerson}</td>
+                        <td>${roomMaximumPerson}</td>
+                    </tr>`;
+
+
+            });
         },
+        //<td><img src="${contextPath}/images/celeb/${profile}"></td>
+
+        // success(rooms){
+        //     //응답받은 json 데이터를 파싱(json.parse)후 , js 객체로 반환.
+        //     console.log("------------------success------------------");
+        //     console.log(rooms);
+        //
+        //     //numbers.forEach(function(number) {
+        //     //     console.log(number);
+        //     // });
+        //     if(rooms)
+        //     {
+        //         // rooms.forEach(({
+        //         //                    roomAttachs: {
+        //         //                        id,
+        //         //                        roomid,
+        //         //                        origin,
+        //         //                        rename
+        //         //                    }
+        //         //                     // ,
+        //         //                     //  roominfo: {
+        //         //                     //      rid,
+        //         //                     //      rcampid,
+        //         //                     //      rname
+        //         //                     //  }
+        //         //                  }) => {
+        //         //     // console.log(`사진원본명 : ${origin}, 사진리네임명 : ${rename}, 방아이디 : ${rid}, 캠핑장번호 : ${rcampid},방이름 : ${rname}`);
+        //         //     console.log(`사진원본명 : ${origin}, 사진리네임명 : ${rename}`);
+        //         // });
+        //         const {roomAttachs,id,roomName,roomInfo} = rooms;
+        //         const table = document.querySelector("table#rooms");
+        //         table.querySelector(".room-id").innerHTML=id;
+        //         table.querySelector(".room-camp-id").innerHTML=roomInfo;
+        //         //table.querySelector(".room-name").innerHTML = `<img src="${contextPath}/images/celeb/${profile}"/>`;
+        //         table.querySelector(".room-name").innerHTML=roomName;
+        //
+        //     }
+        //     else
+        //     {
+        //         alert(`해당하는 객실이 없습니다.`);
+        //     }
+        // },
         error()
         {
             console.log("reservation room search error");
@@ -122,3 +222,40 @@ document.querySelector("#btn-check").addEventListener('click',(e)=>{
 
     });
 });
+
+
+function changeColor(){
+    $('#myTable tr').mouseover(function() {
+        $(this).addClass('changeColor');
+    }).mouseout(function() {
+        $(this).removeClass('changeColor');
+    });
+
+}
+
+// function clickTd(){
+//     $("#myTable td").click(function(){
+//         var text = $(this).text();
+//         alert(text+"클릭!");
+//     });  }
+// function clickTr(){
+//     $("#myTable tr").click(function(){
+//         var text = $(this).text();
+//         //alert(text);
+//     });
+// }
+
+function clickTd2(){
+    $("#calendarTest td").click(function(){
+        var text = $(this).text();
+        console.log("날짜클릭::"+text);
+        //모든 tr 배경색을 white로.
+        //$("#calendarTest td").css("background","white");
+        //if(parseInt(text))
+        //$(this).css("background","red"); //선택한 셀 색상 변경
+        // $(this).siblings()
+    });
+}
+
+//https://www.codingfactory.net/10265
+//https://tcpschool.com/jquery/jq_elementTraversing_SiblingTraversing

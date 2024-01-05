@@ -68,9 +68,9 @@ public class RoomDao
     }
 
     //0105 캠핑장 아이디로 객실 리스트 조회
-    public List<RoomVo> findByCampId(SqlSession session, long id)
+    public RoomVo findByCampId(SqlSession session, long id)
     {
         System.out.println("daofindByCampId......캠핑장 아이디 : "+id);
-        return session.selectList("room.findByCampId",id);
+        return session.selectOne("room.findByCampId",id);
     }
 }

@@ -29,7 +29,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3">번호</th>
-                <th scope="col" class="px-6 py-3">이미지</th>
+                <th scope="col" class="px-6 py-3">섬네일</th>
                 <th scope="col" class="px-6 py-3">객실 이름</th>
                 <th scope="col" class="px-6 py-3">객실 타입</th>
                 <th scope="col" class="px-6 py-3">객실 설명</th>
@@ -42,7 +42,13 @@
             <c:forEach items="${rooms}" var="room" varStatus="vs">
                 <div class="odd:bg-white even:bg-gray-50 border-b ">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${room.id}</th>
-                    <td class="px-6 py-4"><img class="w-[300px]" src="../images/room/room1.jpg" alt=""></td>
+                    <c:if test="${empty room.roomRenamedImg}">
+                    <td class="px-6 py-4"><img class="w-[300px] h-[200px]" src="../images/room/room_default_img.jpg" alt=""></td>
+                    </c:if>
+                    <c:if test="${!empty room.roomRenamedImg}">
+                        <td class="px-6 py-4"><img class="w-[300px] h-[200px]"
+                          src="${pageContext.request.contextPath}/upload/room/${room.roomRenamedImg}" alt=""></td>
+                    </c:if>
                     <td class="px-6 py-4">
                         <a href="${pageContext.request.contextPath}/room/roomDetail?id=${room.id}"
                            class="hover:underline">${fn:escapeXml(room.roomName)}</a>

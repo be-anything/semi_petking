@@ -8,7 +8,8 @@
         insert into
             room
         values (
-        seq_room_id.nextval, #{campId}, #{roomName}, #{roomType}, #{roomIntro}, #{roomDefaultPerson}, #{roomMaximumPerson},#{roomDefaultFee},#{roomOverFee}
+        seq_room_id.nextval, #{campId}, #{roomName}, #{roomType}, #{roomIntro}, #{roomDefaultPerson}, #{roomMaximumPerson},
+        #{roomDefaultFee},#{roomOverFee}, #{roomRenamedImg}
         )
         <selectKey order="AFTER" resultType="_long" keyProperty="id">
             select
@@ -68,6 +69,7 @@
         <result column="room_maximum_person" property="roomMaximumPerson"/>
         <result column="room_default_fee" property="roomDefaultFee"/>
         <result column="room_over_fee" property="roomOverFee"/>
+        <result column="room_renamed_img" property="roomRenamedImg"/>
     <!--
                 여러개인 경우 여러번 실행
                 property:필드명
@@ -127,6 +129,7 @@
         <result column="room_maximum_person" property="roomMaximumPerson"/>
         <result column="room_default_fee" property="roomDefaultFee"/>
         <result column="room_over_fee" property="roomOverFee"/>
+        <result column="room_renamed_img" property="roomRenamedImg"/>
         <!--
                     여러개인 경우 여러번 실행
                     property:필드명
@@ -173,21 +176,26 @@
         room_default_person = #{roomDefaultPerson},
         room_maximum_person = #{roomMaximumPerson},
         room_default_fee = #{roomDefaultFee},
-        room_over_fee = #{roomOverFee}
+        room_over_fee = #{roomOverFee},
+        room_renamed_img = #{roomRenamedImg}
         where
         id = #{id}
     </update>
 
 
     <!-- 0105 캠핑장 id로 객실 리스트 조회 -->
-    <select id="findByCampId" resultType="RoomVo">
-        select
-            *
-        from
-            room
-        where
-            camp_id = #{id}
-    </select>
+<!--    <select id="findByCampId" resultType="RoomVo">-->
+<!--        select-->
+<!--            *-->
+<!--        from-->
+<!--            room-->
+<!--        where-->
+<!--            id = #{id}-->
+<!--    </select>-->
+
+
+
+
 
 
 </mapper>
