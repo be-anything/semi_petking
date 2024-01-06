@@ -14,11 +14,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/userSidebar.jsp"/>
 
+<div class="w-2/3 ml-auto mr-24 mb-8">
 <div class="container mx-auto my-6">
     <div class="flex justify-start">
         <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-            문의 리스트(임시)
+            내가 한 문의
         </h1>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -38,7 +40,7 @@
 
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${ask.id}</th>
                     <td class="px-6 py-4">
-                        <a href="${pageContext.request.contextPath}/ask/askDetail?id=${ask.id}"
+                        <a href="${pageContext.request.contextPath}/user/userAskDetail?id=${ask.id}"
                            class="hover:underline">${fn:escapeXml(ask.askTitle)}</a>
                             <%-- 제목 옆에 답변 완료 /미완료 출력해보기 --%>
                         <c:if test="${ask.askComment eq null}">
@@ -63,15 +65,7 @@
         </table>
 
     </div>
-
-    <div class="flex justify-end py-10">
-        <button type="button"
-                onClick="location.href='${pageContext.request.contextPath}/ask/askCreate';"
-                class="text-white bg-gradient-to-r from-rose-200 via-rose-300 to-rose-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">문의 등록</button>
-    </div>
 </div>
-
-
 
 <div class="flex justify-center mt-6">
     <nav aria-label="Page navigation example">
@@ -79,5 +73,7 @@
             ${pagebar}
         </ul>
     </nav>
+</div>
+</div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
