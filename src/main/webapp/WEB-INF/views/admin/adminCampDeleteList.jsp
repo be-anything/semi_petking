@@ -19,23 +19,21 @@
         display: block;
     }
 </style>
-<div class="w-6xl ml-72">
-<div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg mt-10">
-    <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
-        <li class="tabBtn">
-            <a href="${pageContext.request.contextPath}/admin/registList" aria-current="page" class="inline-block p-4 rounded-t-lg  active px-5">캠핑장 신규등록 요청</a>
-        </li>
-        <li class="tabBtn">
-            <a href="${pageContext.request.contextPath}/admin/deleteRegist" class="inline-block p-4 text-white bg-green rounded-t-lg px-5">캠핑장 삭제 요청</a>
-        </li>
+<div class="container mx-auto mt-10">
+    <div class="flex justify-between items-center mb-10">
+        <ul class="flex text-sm font-medium text-gray-500 border-b border-gray-200">
+            <li class="tabBtn">
+                <a href="${pageContext.request.contextPath}/admin/registList" aria-current="page"  class="inline-block p-4 rounded-t-lg" onclick="showNewRegistration()">캠핑장 신규등록 요청</a>
+            </li>
+            <li class="tabBtn">
+                <a href="${pageContext.request.contextPath}/admin/deleteRegist"  class="inline-block p-4 rounded-t-lg text-white bg-green active" onclick="showDeleteRequest()">캠핑장 삭제 요청</a>
+            </li>
+        </ul>
+    </div>
 
-    </ul>
-</div>
-<div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
-
-    <div class="relative overflow-x-auto">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div class="bg-gray-100 rounded-lg mb-10">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
         <tr>
             <th scope="col" class="px-6 py-3">
                 번호
@@ -60,10 +58,8 @@
         <tbody>
         <c:forEach items="${campVos}" var="camp" varStatus="vs">
 
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        ${vs.index + 1}
-                </th>
+            <tr class="bg-white border-b">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900">${vs.index + 1}</th>
                 <td class="px-6 py-4">
                     <a href="${pageContext.request.contextPath}/admin/campDeleteRequest?id=${camp.id}">
                             ${camp.campName}
@@ -81,7 +77,7 @@
                 <td class="px-6 py-4">
                     <c:if test="${camp.campState eq 2}">
                         <c:set target="${camp}" property="campState" value="1" />
-                        <p>삭제승인대기</p>
+                        <p class="text-yellow-500">삭제승인대기</p>
                     </c:if>
                 </td>
             </tr>

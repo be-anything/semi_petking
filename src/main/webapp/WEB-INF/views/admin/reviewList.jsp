@@ -11,63 +11,61 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <jsp:include page="/WEB-INF/views/common/adminSidebar.jsp"/>
-<div class="w-6xl ml-72">
-<div class="relative overflow-x-auto">
-    <table class="w-62 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+<div class="w-full mx-auto mt-8">
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-collapse">
+            <thead class="text-xs text-white bg-green">
         <tr>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 번호
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 회원아이디
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 리뷰 태그
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 캠핑장
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 리뷰 제목
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 조회수
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 좋아요수
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 작성시간
             </th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${reviews}" var="review" varStatus="vs">
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                ${vs.index + 1}
-            </th>
-            <td class="px-6 py-4">
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-8 py-6 font-medium text-gray-900">${vs.index + 1}</td>
+            <td class="px-8 py-6">
                 <a href="${pageContext.request.contextPath}/admin/reviewDetail?id=${review.id}">
                 ${review.userId}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                 ${review.reviewTag}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                     ${review.camp.campName}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                 ${review.reviewTitle}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                 ${review.viewCount}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                 ${review.likeCount}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                 <fmt:parseDate value="${review.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
                 <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
             </td>
@@ -87,7 +85,7 @@
     </table>
 
 
-    <div class="flex justify-center mt-6">
+    <div class="flex justify-center mt-8">
         <nav aria-label="Page navigation example">
             <ul class="flex items-center -space-x-px h-8 text-sm">
                 ${pagebar}
