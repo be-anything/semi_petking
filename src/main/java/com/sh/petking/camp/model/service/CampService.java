@@ -235,11 +235,11 @@ public class CampService {
         return promotionVos;
     }
 
-    public List<CampVo> findNewCampAll() {
+    public List<Camp> findNewCampAll() {
         SqlSession session = getSqlSession();
-        List<CampVo> campVos = campDao.findNewCampAll(session);
+        List<Camp> camps = campDao.findNewCampAll(session);
         session.close();
-        return campVos;
+        return camps;
     }
 }
 

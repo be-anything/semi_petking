@@ -107,7 +107,7 @@ public class CampDao {
         return session.selectList("promo.findPromoAll");
     }
 
-    public List<CampVo> findNewCampAll(SqlSession session) {
+    public List<Camp> findNewCampAll(SqlSession session) {
         return session.selectList("camp.findNewCampAll");
     }
 }

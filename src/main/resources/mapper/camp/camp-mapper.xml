@@ -301,12 +301,18 @@
         where
             id = #{id}
     </update>
-    <select id="findNewCampAll" resultType="campVo">
-        select
-            *
-        from
-            camp
-        where
-            camp_state = 1
+    <select id="findNewCampAll" resultType="camp">
+        SELECT *
+            FROM (
+                SELECT
+                    camp.*,
+                    RANK() OVER (ORDER BY id) AS ranking
+                FROM
+                    camp
+                WHERE
+                    camp_state = 1
+            ) ranked_camps
+                WHERE
+                    ranking  &lt;= 10
     </select>
 </mapper>

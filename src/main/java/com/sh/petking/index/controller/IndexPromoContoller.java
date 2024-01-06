@@ -1,6 +1,8 @@
 package com.sh.petking.index.controller;
 
+import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.service.CampService;
+import com.sh.petking.camp.model.vo.CampVo;
 import com.sh.petking.index.vo.CampPromotionVo;
 
 import javax.servlet.ServletException;
@@ -19,8 +21,11 @@ public class IndexPromoContoller extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<CampPromotionVo> promotionVos = campService.finaPromoAll();
         req.setAttribute("promotionVos", promotionVos);
-        System.out.println(promotionVos);
+
+        List<Camp> camps = campService.findNewCampAll();
+        req.setAttribute("camps", camps);
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
+
     }
 }
