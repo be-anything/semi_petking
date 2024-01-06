@@ -26,6 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css" rel="stylesheet">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -46,7 +47,7 @@
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userList">전체회원목록(임시)</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/admin/reviewList">전체리뷰보기</a></div>
                 </c:if>
-                <c:if test="${loginUser == null}">
+                <c:if test="${loginUser == null && loginCamp == null}">
                     <div class="text-black text-right font-normal mr-7 absolute right-0 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></div>
                     <i class="fa-regular fa-clock ml-10 absolute right-0 text-black hover:text-green hover:font-bold"></i>
                 </c:if>
@@ -54,6 +55,10 @@
                 <c:if test="${loginUser != null}">
                     <div class="text-black text-right font-normal mr-20 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userDetail">${loginUser.id}님의 페이지</a></div>
                     <div class="text-black text-right font-normal mr-3 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogout">로그아웃</a></div>
+                </c:if>
+                <c:if test="${loginCamp != null}">
+                    <div class="text-black text-right font-normal mr-20 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campManagement">${loginCamp.businessName}님의 페이지</a></div>
+                    <div class="text-black text-right font-normal mr-3 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campLogout">로그아웃</a></div>
                 </c:if>
             </nav>
         </header>
