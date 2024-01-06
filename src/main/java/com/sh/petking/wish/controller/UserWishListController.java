@@ -24,10 +24,6 @@ public class UserWishListController extends HttpServlet {
         User loginUser =(User) session.getAttribute("loginUser");
         List<WishVo> wishes = wishService.findByUserId(loginUser.getId());
         session.setAttribute("wishes", wishes);
-        System.out.println(wishes.size());
-        System.out.println(wishes.get(0).getCamps());
-        System.out.println(wishes.get(1).getCamps());
-        System.out.println(wishes.get(2).getCamps());
 
         req.getRequestDispatcher("/WEB-INF/views/user/userWishList.jsp").forward(req, resp);
     }

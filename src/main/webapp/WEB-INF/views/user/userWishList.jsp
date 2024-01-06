@@ -5,23 +5,23 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <jsp:include page="/WEB-INF/views/common/userSidebar.jsp"/>
 
-    <div class="w-full">
-        <table>
+    <div class="w-full flex justify-end">
+        <table class="w-3/4">
             <tbody>
                 <tr class="flex flex-wrap">
                     <c:forEach items="${wishes}" var="wish" varStatus="vs">
                         <c:forEach items="${wish.camps}" var="camp" varStatus="vs">
-                            <td>
-                                <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <td class="m-1">
+                                <div class="w-[250px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                     <a href="${pageContext.request.contextPath}/camp/campDetail?id=${camp.id}">
-                                        <div class="w-[250px] h-[250px] bg-gray2">
-                                            <img class="p-8 rounded-t-lg" src="${pageContext.request.contextPath}/upload/camp/${camp.campRenamedImg}" alt="product image" />
+                                        <div class="w-[250px] h-[250px] bg-gray2 overflow-hidden flex items-center">
+                                            <img class="p-4 w-full rounded-t-lg" src="${pageContext.request.contextPath}/upload/camp/${camp.campRenamedImg}" alt="image" />
                                         </div>
                                     </a>
                                     <div class="px-5 pb-4 mt-4">
                                         <div class="flex items-center justify-between">
-                                            <span class="text-xl font-bold text-gray-900">${camp.campName}</span>
-                                            <a href="#" class="text-white bg-red font-medium rounded-lg text-xs px-3 py-1.5 text-center">${wish.wishCount}</a>
+                                            <span class="text-xl w-[150px] h-[28px] overflow-hidden font-bold text-gray-900">${camp.campName}</span>
+                                            <span class="inline-flex items-center rounded-full bg-pink px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-gray-500/10">찜 ${wish.wishCount}</span>
                                         </div>
                                     </div>
                                 </div>
