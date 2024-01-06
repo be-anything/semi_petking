@@ -10,22 +10,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="w-52 h-96 relative">
-    <div class="w-52 h-96 left-5 top-10 absolute flex-col justify-center items-center inline-flex">
-        <div class="w-52 h-96 bg-white rounded-2xl border border-neutral-200"></div>
-    </div>
-    <div class="left-[70px] top-[42px] absolute text-stone-900 text-xl font-bold font-['Inter']">캠핑장 관리</div>
-    <div class="left-[70px] top-[82px] absolute text-neutral-600 text-sm font-normal font-['Inter']">캠핑장 전체 보기</div>
-    <div class="left-[70px] top-[109px] absolute text-black text-opacity-80 text-sm font-normal font-['Inter']">캠핑장 등록 관리</div>
-    <div class="left-[70px] top-[136px] absolute text-black text-opacity-80 text-sm font-normal font-['Inter']">캠핑장 홍보 관리</div>
-    <div class="left-[70px] top-[213px] absolute text-stone-900 text-xl font-bold font-['Inter']">회원 관리</div>
-    <div class="left-[70px] top-[252.77px] absolute text-black text-opacity-80 text-sm font-['Inter'] ">회원 전체 보기</div>
-    <div class="left-[70px] top-[330px] absolute text-stone-900 text-xl font-bold font-['Inter']">게시판 관리</div>
-    <div>
-        <button type="submit" class="left-[70px] top-[370px] absolute text-black text-opacity-80 text-sm font-normal font-semibold font-['Inter'] underline">리뷰 관리</button>
-    </div>
-    <div class="left-[70px] top-[397px] absolute text-black text-opacity-80 text-sm font-normal font-['Inter']">포인트 관리</div>
-</div>
+<jsp:include page="/WEB-INF/views/common/adminSidebar.jsp"/>
+<div class="w-6xl ml-82">
+
 <div class="relative overflow-x-auto">
     <table class="w-62 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -82,5 +69,6 @@
             </ul>
         </nav>
     </div>
+</div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>    
