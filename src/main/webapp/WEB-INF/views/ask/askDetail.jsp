@@ -12,8 +12,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.sh.petking.camp.model.entity.Camp" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/userSidebar.jsp"/>
 
-<div class="xl:container snap-x mx-auto p-8">
+<div class="xl:container snap-x p-8 ml-96">
     <div class="w-9/12 p-6 bg-white border border-gray-200 rounded-lg shadow">
         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${fn:escapeXml(ask.askTitle)}</h5>
         <div class="flex-grow border-t border-gray-400"></div>

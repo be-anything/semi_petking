@@ -10,8 +10,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/userSidebar.jsp"/>
 
-<div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+<div class="w-1/2 py-8 px-4 mx-auto lg:py-16">
     <h2 class="mb-4 text-xl font-bold text-gray-900">문의 작성하기</h2>
     <form
             action="${pageContext.request.contextPath}/ask/askCreate"
@@ -37,11 +38,11 @@
             </div>
         </div>
         <button type="submit"
-                class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                class="text-white mt-1 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                 등록
         </button>
     </form>
 </div>
-
+</div>
 <%--<script src="${pageContext.request.contextPath}/js/board/boardCreate.js"></script>--%>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

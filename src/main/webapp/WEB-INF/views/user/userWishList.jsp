@@ -8,6 +8,17 @@
     <div class="w-full flex justify-end">
         <table class="w-3/4">
             <tbody>
+                <tr>
+                    <c:if test="${wishes.size() == 0}">
+                        <td class="flex justify-center flex-col items-center">
+                            <div>
+                                <i class="fa-solid fa-heart-crack text-red text-9xl pt-36"></i>
+                            </div>
+                            <p class="text-3xl pt-12"> 내가 찜한 캠핑장이 없습니다.</p>
+                            <a class="mb-36 mt-8 py-1 px-3 rounded-lg border border-gray2 hover:bg-light-pink" href="${pageContext.request.contextPath}/camp/campList">맘에 드는 캠핑장 찾으러가기</a>
+                        </td>
+                    </c:if>
+                </tr>
                 <tr class="flex flex-wrap">
                     <c:forEach items="${wishes}" var="wish" varStatus="vs">
                         <c:forEach items="${wish.camps}" var="camp" varStatus="vs">
