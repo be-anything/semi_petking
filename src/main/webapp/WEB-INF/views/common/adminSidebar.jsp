@@ -26,10 +26,10 @@
                 </button>
                 <ul id="dropdown-example" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="#" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">캠핑장 전체보기</a>
+                        <a href="${pageContext.request.contextPath}/admin/campList" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">캠핑장 전체보기</a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">캠핑장 등록관리</a>
+                        <a href="${pageContext.request.contextPath}/admin/registList" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">캠핑장 등록관리</a>
                     </li>
                     <li>
                         <a href="#" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">캠핑장 홍보관리</a>
@@ -48,7 +48,10 @@
                 </button>
                 <ul id="dropdown-example2" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="#" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">사용자 회원 전체보기</a>
+                        <a href="${pageContext.request.contextPath}/user/userList" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">사용자 회원 전체보기</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/delUser/delUserList" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">사용자 탈퇴회원 전체보기</a>
                     </li>
                     <li>
                         <a href="#" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">캠핑장 회원 전체보기</a>
@@ -67,7 +70,7 @@
                 </button>
                 <ul id="dropdown-example3" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="#" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">리뷰 관리</a>
+                        <a href="${pageContext.request.contextPath}/admin/reviewList" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">리뷰 관리</a>
                     </li>
                     <li>
                         <a href="#" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">포인트 관리</a>

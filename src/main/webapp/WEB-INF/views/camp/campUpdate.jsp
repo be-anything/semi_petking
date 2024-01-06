@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/campSidebar.jsp"/>
 <style>
     .forms {
         display: none;
@@ -12,6 +13,7 @@
         display: block;
     }
 </style>
+<div class="mr-0 absolute top-20 left-[500px]">
 <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg mt-10">
     <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
         <li class="tabBtn">
@@ -21,12 +23,8 @@
         <li class="tabBtn">
             <a href="#" class="inline-block p-4 rounded-t-lg px-5">부가 정보</a>
         </li>
-        <li class="tabBtn">
-            <a href="#" class="inline-block p-4 rounded-t-lg px-5">캠핑존 정보</a>
-        </li>
     </ul>
 </div>
-
 
 <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
     <form name="campUpdateFrm" class="">
@@ -194,17 +192,24 @@
     </div>
 </div>
 
-
-<%--객실정보 수정--%>
-<div class="justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
-    <div class="px-4 py-6 sm:grid sm:grid-cols-1 sm:gap-10 sm:px-0 items-start">
-        <form name="campRoomUpdateFrm" class="">
-
-        </form>
-    </div>
 </div>
-
 
 <script src="${pageContext.request.contextPath}/js/camp/campUpdate.js"></script>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<%--<jsp:include page="/WEB-INF/views/common/footer.jsp"/>--%>
+
+</main>
+<div class="bg-salmon bottom-nav mt-72">
+    <div class="flex justify-between items-center mx-auto max-w-screen-xl relative">
+        <footer>
+            <nav class="flex flex-row pt-8 pb-8 items-center">
+                <div class="text-right font-normal mr-10 absolute right-0 hover:font-bold hover:text-black"><a href="#">고객센터</a></div>
+            </nav>
+        </footer>
+    </div>
+</div>
+</div> <!-- header부터 footer까지 감싸는 div 닫는 태그 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
+</body>
+</html>

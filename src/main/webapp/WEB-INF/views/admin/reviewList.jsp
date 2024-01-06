@@ -10,79 +10,62 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
-<div class="w-52 h-96 relative">
-    <div class="w-52 h-96 left-5 top-10 absolute flex-col justify-center items-center inline-flex">
-        <div class="w-52 h-96 bg-white rounded-2xl border border-neutral-200"></div>
-    </div>
-    <div class="left-[70px] top-[42px] absolute text-stone-900 text-xl font-bold font-['Inter']">캠핑장 관리</div>
-    <div class="left-[70px] top-[82px] absolute text-neutral-600 text-sm font-normal font-['Inter']">캠핑장 전체 보기</div>
-    <div class="left-[70px] top-[109px] absolute text-black text-opacity-80 text-sm font-normal font-['Inter']">캠핑장 등록 관리</div>
-    <div class="left-[70px] top-[136px] absolute text-black text-opacity-80 text-sm font-normal font-['Inter']">캠핑장 홍보 관리</div>
-    <div class="left-[70px] top-[213px] absolute text-stone-900 text-xl font-bold font-['Inter']">회원 관리</div>
-    <div class="left-[70px] top-[252.77px] absolute text-black text-opacity-80 text-sm font-['Inter'] ">회원 전체 보기</div>
-    <div class="left-[70px] top-[330px] absolute text-stone-900 text-xl font-bold font-['Inter']">게시판 관리</div>
-    <div>
-        <button type="submit" class="left-[70px] top-[370px] absolute text-black text-opacity-80 text-sm font-normal font-semibold font-['Inter'] underline">리뷰 관리</button>
-    </div>
-    <div class="left-[70px] top-[397px] absolute text-black text-opacity-80 text-sm font-normal font-['Inter']">포인트 관리</div>
-</div>
-<div class="relative overflow-x-auto">
-    <table class="w-62 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+<jsp:include page="/WEB-INF/views/common/adminSidebar.jsp"/>
+<div class="w-full mx-auto mt-8">
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-collapse">
+            <thead class="text-xs text-white bg-green">
         <tr>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 번호
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 회원아이디
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 리뷰 태그
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 캠핑장
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 리뷰 제목
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 조회수
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 좋아요수
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-8 py-4">
                 작성시간
             </th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${reviews}" var="review" varStatus="vs">
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                ${vs.index + 1}
-            </th>
-            <td class="px-6 py-4">
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-8 py-6 font-medium text-gray-900">${vs.index + 1}</td>
+            <td class="px-8 py-6">
                 <a href="${pageContext.request.contextPath}/admin/reviewDetail?id=${review.id}">
                 ${review.userId}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                 ${review.reviewTag}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                     ${review.camp.campName}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                 ${review.reviewTitle}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                 ${review.viewCount}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                 ${review.likeCount}
             </td>
-            <td class="px-6 py-4">
+            <td class="px-8 py-6">
                 <fmt:parseDate value="${review.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
                 <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
             </td>
@@ -102,7 +85,7 @@
     </table>
 
 
-    <div class="flex justify-center mt-6">
+    <div class="flex justify-center mt-8">
         <nav aria-label="Page navigation example">
             <ul class="flex items-center -space-x-px h-8 text-sm">
                 ${pagebar}
@@ -110,6 +93,6 @@
         </nav>
     </div>
 </div>
-
+</div>
 <script src="${pageContext.request.contextPath}/js/review/reviewDelete.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>    

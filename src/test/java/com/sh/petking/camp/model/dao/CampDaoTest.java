@@ -119,7 +119,7 @@ class CampDaoTest {
 //    @Disabled
     @DisplayName("존재하는 캠핑장 정보를 수정할 수 있습니다.")
     @ParameterizedTest
-    @CsvSource({"sample,djfkl*d23213,000-99-00000,홍길동동동,샘플캠핑장수정,소형반려견이 뛰놀 수 있는 넓은 운동장,07045671234,강원도 홍천군 서면 밤벌길19번길 900,default.png,1"})
+    @CsvSource({"sample,djfkl*d23213,000-99-00000,홍길동동동,샘플캠핑장수정,소형반려견이 뛰놀 수 있는 넓은 운동장,07045671234,강원도 홍천군 서면 밤벌길19번길 900,_default.png,1"})
     void test4(String businessId, String businessPassword, String businessNumber, String businessName, String campName, String campIntro, String campPhone, String campAddr, String campOriginalImg, int campState) {
         Long id = (long) 1;
         Camp camp = campDao.findById(session, id);
