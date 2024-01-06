@@ -1,4 +1,4 @@
-package com.sh.petking.ask.controller;
+package com.sh.petking.user.controller;
 
 import com.sh.petking.ask.model.entity.Ask;
 import com.sh.petking.ask.model.service.AskService;
@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/ask/askList")
-public class AskListController extends HttpServlet {
+@WebServlet("/user/userAskList")
+public class UserAskListController extends HttpServlet {
 
     AskService askService = new AskService();
     @Override
@@ -38,7 +38,7 @@ public class AskListController extends HttpServlet {
         // 페이지바
         int totalCount = askService.getTotalUserAsk(param);
         req.setAttribute("totalCount", totalCount);
-        String url = req.getRequestURI();
+        String url = req.getRequestURI() + "?userId=" + userId;
 
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);
@@ -48,7 +48,7 @@ public class AskListController extends HttpServlet {
         System.out.println("ASk : "+ask);
         req.setAttribute("asks",ask);
 
-        req.getRequestDispatcher("/WEB-INF/views/user/campAskList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/views/user/userAskList.jsp").forward(req,resp);
     }
 
     @Override

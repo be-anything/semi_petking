@@ -1,4 +1,4 @@
-package com.sh.petking.ask.controller;
+package com.sh.petking.camp.controller;
 
 import com.sh.petking.ask.model.entity.Ask;
 import com.sh.petking.ask.model.service.AskService;
@@ -14,16 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/ask/askList")
-public class AskListController extends HttpServlet {
+@WebServlet("/camp/campAskList")
+public class CampAskListController extends HttpServlet {
 
     AskService askService = new AskService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("askListController - doGet");
-        String userId = req.getParameter("userId");
-
-        //페이징 처리 없이 일단 selectAll -> page 처리
+        Long campId = Long.parseLong(req.getParameter("campId"));
         int page = 1;
         int limit = 5;
         try {
@@ -33,22 +30,22 @@ public class AskListController extends HttpServlet {
 
         param.put("page", page);
         param.put("limit", limit);
-        param.put("userId", userId);
+        param.put("campId", campId);
 
         // 페이지바
-        int totalCount = askService.getTotalUserAsk(param);
+        int totalCount = askService.getTotalCampAsk(param);
         req.setAttribute("totalCount", totalCount);
-        String url = req.getRequestURI();
+        String url = req.getRequestURI() + "?campId=" + campId;
+
 
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);
 
 //        List<Ask> ask = askService.findAll();
-        List<Ask> ask = askService.findByUserId(param);
+        List<Ask> ask = askService.findByCampId(param);
         System.out.println("ASk : "+ask);
         req.setAttribute("asks",ask);
-
-        req.getRequestDispatcher("/WEB-INF/views/user/campAskList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/views/camp/campAskList.jsp").forward(req,resp);
     }
 
     @Override

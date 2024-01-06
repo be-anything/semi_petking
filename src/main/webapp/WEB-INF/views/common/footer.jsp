@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 </main>
-    <div class="bg-salmon ">
+    <div class="bg-salmon bottom-nav">
         <div class="flex justify-between items-center mx-auto max-w-screen-xl relative">
             <footer>
                 <nav class="flex flex-row pt-8 pb-8 items-center">
