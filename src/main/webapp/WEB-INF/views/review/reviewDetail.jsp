@@ -47,8 +47,11 @@
                                 </button>
                             </li>
                             <li class="relative inline-flex items-center justify-center">
-                                <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                <button type="button" onclick="if(confirm('정말 삭제하시겠습니까?')){document.userReviewDeleteFrm.submit();}" class="delbtn text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                                     리뷰 삭제하기
+                                    <form action="${pageContext.request.contextPath}/user/userReviewDelete" method="post" name="userReviewDeleteFrm">
+                                        <input type="hidden" name="id" value="${review.id}">
+                                    </form>
                                 </button>
                             </li>
                         </ul>
