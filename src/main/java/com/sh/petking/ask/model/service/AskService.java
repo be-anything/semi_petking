@@ -3,9 +3,11 @@ package com.sh.petking.ask.model.service;
 import com.sh.petking.ask.model.dao.AskDao;
 import com.sh.petking.ask.model.entity.Ask;
 import com.sh.petking.ask.model.vo.AskVo;
+import com.sh.petking.reservation.model.vo.ReservationVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.sh.petking.common.SqlSessionTemplate.getSqlSession;
 
@@ -76,9 +78,17 @@ public class AskService {
     }
 
 
+    public int getTotalUserAsk(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = askDao.getTotalUserAsk(session, param);
+        session.close();
+        return totalCount;
+    }
 
-
-
-
-    
+    public List<Ask> findByUserId(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<Ask> asks = askDao.findByUserId(session, param);
+        session.close();
+        return asks;
+    }
 }

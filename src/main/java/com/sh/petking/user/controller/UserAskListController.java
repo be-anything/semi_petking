@@ -1,4 +1,4 @@
-package com.sh.petking.ask.controller;
+package com.sh.petking.user.controller;
 
 import com.sh.petking.ask.model.entity.Ask;
 import com.sh.petking.ask.model.service.AskService;
@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/ask/askList")
-public class AskListController extends HttpServlet {
+@WebServlet("/user/userAskList")
+public class UserAskListController extends HttpServlet {
 
     AskService askService = new AskService();
     @Override

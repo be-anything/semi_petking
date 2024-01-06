@@ -36,6 +36,7 @@
                           onclick="'${loginUser.id}' || alert('로그인 후 문의 작성하세요2.(임시)');"
                           rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500" placeholder="내용을 작성하세요." required></textarea>
             </div>
+            <input type="hidden" name="campId" value="${campId}">
         </div>
         <button type="submit"
                 class="text-white mt-1 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
