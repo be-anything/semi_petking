@@ -42,4 +42,32 @@ public class ReservationService
         session.close();
         return totalCount;
     }
+
+    public int getTotalProcessReservCount(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = reservationDao.getTotalProcessReservCount(session, param);
+        session.close();
+        return totalCount;
+    }
+
+    public List<ReservationVo> findByProcessReservUserId(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<ReservationVo> reservations = reservationDao.findByProcessReservUserId(session, param);
+        session.close();
+        return reservations;
+    }
+
+    public int getTotalCancelReservCount(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = reservationDao.getTotalCancelReservCount(session, param);
+        session.close();
+        return totalCount;
+    }
+
+    public List<ReservationVo> findByCancelReservUserId(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<ReservationVo> reservations = reservationDao.findByCancelReservUserId(session, param);
+        session.close();
+        return reservations;
+    }
 }
