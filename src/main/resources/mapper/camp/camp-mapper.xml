@@ -6,15 +6,9 @@
     <select id="findAll" resultMap="campVoMap">
         select
             c.*,
-            r.id room_id,
-            r.room_name room_name,
-            r.room_type room_type,
             ct.id tag_id,
             ct.name tag_name,
             cwt.camp_id camp_id,
-            cs.id service_id,
-            cs.name service_name,
-            cs.service_img service_img,
             (select count(*) from review where camp_id = c.id) review_count,
             (select count(*) from wish where camp_id = c.id) wish_count
         from

@@ -17,6 +17,7 @@
 </c:forEach>
 
 
+<%--<script src="${pageContext.request.contextPath}/js/index.js"></script>--%>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 

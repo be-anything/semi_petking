@@ -19,6 +19,7 @@ public class Camp {
     private int campState;
     private LocalDate regDate;
 
+
     public Camp() {
     }
 

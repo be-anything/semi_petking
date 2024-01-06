@@ -1,6 +1,7 @@
 package com.sh.petking.wish.model.dao;
 
 import com.sh.petking.wish.model.entity.Wish;
+import com.sh.petking.wish.model.vo.WishVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class WishDao {
         return session.selectList("wish.findAll");
     }
 
-    public List<Wish> findByUserId(SqlSession session, String userId) {
+    public List<WishVo> findByUserId(SqlSession session, String userId) {
         return session.selectList("wish.findByUserId", userId);
     }
 

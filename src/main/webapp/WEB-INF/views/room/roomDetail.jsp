@@ -12,13 +12,13 @@
             </div>
             <div class="">
                 <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-10 sm:px-0 items-center">
-                <%--  첨부 사진이 여러개 있다면 첫번째 사진만 긁어와서 출력함--%>
-                <c:if test="${!empty room.roomAttachs}">
-                    <img src="${pageContext.request.contextPath}/upload/room/${room.roomAttachs[0].roomAttachRenamedName}">
+                <%--  첨부 사진이 여러개 있다면 첫번째 사진만 긁어와서 출력함 ${room.roomAttachs[0].roomAttachRenamedName}
+                -> room.roomRenamedImg 대표사진으로 수정--%>
+                <c:if test="${!empty room.roomRenamedImg}">
+                    <img src="${pageContext.request.contextPath}/upload/room/${room.roomRenamedImg}">
                 </c:if>
-                    <c:if test="${empty room.roomAttachs}">
-                        <p>저장한 이미지가 없습니다.</p>
-                        <img class="w-[300px]" src="../images/room/room1.jpg" alt="">
+                    <c:if test="${empty room.roomRenamedImg}">
+                        <img class="w-[300px]" src="../images/room/room_default_img.jpg" alt="대표이미지없을경우기본이미지사용">
                     </c:if>
                 </div>
                     <dl class="divide-y divide-gray-100">
@@ -28,19 +28,19 @@
                         </div>
                         <div class="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                             <dt class="text-sm font-medium leading-6 text-gray-900">기본 인원</dt>
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">${room.roomDefaultPerson}</dd>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">${room.roomDefaultPerson} 명</dd>
                         </div>
                         <div class="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                             <dt class="text-sm font-medium leading-6 text-gray-900">최대 인원</dt>
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">${room.roomMaximumPerson}</dd>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">${room.roomMaximumPerson} 명</dd>
                         </div>
                         <div class="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                             <dt class="text-sm font-medium leading-6 text-gray-900">기본 요금</dt>
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">${room.roomDefaultFee}</dd>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">${room.roomDefaultFee} 원</dd>
                         </div>
                         <div class="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                             <dt class="text-sm font-medium leading-6 text-gray-900">초과 요금</dt>
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">${room.roomOverFee}</dd>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">${room.roomOverFee} 원</dd>
                         </div>
 
                         <c:if test="${room.roomAttachs != null}">

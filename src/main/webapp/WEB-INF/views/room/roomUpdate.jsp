@@ -64,7 +64,8 @@
                                 <label class="block mb-2 text-xl font-medium text-gray-900 dark:text-white" for="roomImg">대표사진</label>
                             </div>
                             <div class="px-4 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-0">
-                                <input id="roomImg" name="roomImg" type="file" class="real-upload" accept="image/*"  multiple>
+<%--    roomRenamedImg 대표사진 확인 위해 roomImg->roomRenamedImg 임시변경                            --%>
+                                <input id="roomRenamedImg" name="roomRenamedImg" type="file" class="real-upload" accept="image/*"  multiple>
                                 <div class="upload">
                                     <p>upload</p>
                                 </div>

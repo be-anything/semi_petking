@@ -18,8 +18,7 @@ public class ReservationMain extends HttpServlet
 {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("예약메인");
-
+        System.out.println("예약메인 ReservationMain");
         req.getRequestDispatcher("/WEB-INF/views/reservation/reservationMain.jsp").forward(req, resp);
     }
 }

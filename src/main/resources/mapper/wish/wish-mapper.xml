@@ -9,15 +9,31 @@
         from
             wish
     </select>
-    <select id="findByUserId" resultType="wish">
+    <select id="findByUserId" resultMap="wishVoMap">
         select distinct
-            user_id,
-            camp_id
+            w.user_id user_id,
+            c.camp_renamed_img camp_renamed_img,
+            c.camp_name camp_name,
+            c.id camp_id,
+            count(*) over(partition by c.id) wish_count
         from
-            wish
+            wish w
+                join camp c
+                    on w.camp_id = c.id
         where
-            user_id = #{userId}
+            w.user_id = #{userId}
     </select>
+    <resultMap id="wishVoMap" type="wishVo">
+        <result column="user_id" property="userId" />
+        <result column="wish_count" property="wishCount"/>
+
+        <collection property="camps" ofType="camp">
+            <id column="camp_id" property="id"/>
+            <result column="camp_name" property="campName"/>
+            <result column="camp_renamed_img" property="campRenamedImg"/>
+        </collection>
+    </resultMap>
+
     <select id="findByCampId" resultType="wish">
         select
             *
