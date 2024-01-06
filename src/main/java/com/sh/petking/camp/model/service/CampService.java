@@ -5,10 +5,9 @@ import com.sh.petking.camp.model.entity.*;
 import com.sh.petking.camp.model.entity.Approve;
 import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.vo.CampVo;
-import org.apache.commons.fileupload.FileItem;
+import com.sh.petking.index.vo.CampPromotionVo;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -228,5 +227,19 @@ public class CampService {
         return result;
     }
 
+    public List<CampPromotionVo> finaPromoAll() {
+        SqlSession session = getSqlSession();
+        List<CampPromotionVo> promotionVos = campDao.findPromoAll(session);
+        System.out.println(promotionVos);
+        session.close();
+        return promotionVos;
+    }
+
+    public List<CampVo> findNewCampAll() {
+        SqlSession session = getSqlSession();
+        List<CampVo> campVos = campDao.findNewCampAll(session);
+        session.close();
+        return campVos;
+    }
 }
 

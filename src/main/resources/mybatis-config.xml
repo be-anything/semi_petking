@@ -60,5 +60,7 @@
         <mapper resource="mapper/wish/wish-mapper.xml"></mapper>
         <mapper resource="mapper/admin/admin-mapper.xml"></mapper>
         <mapper resource="mapper/ask/ask-mapper.xml"></mapper>
+        <mapper resource="mapper/Promotion/promo-mapper.xml"></mapper>
+
     </mappers>
 </configuration>

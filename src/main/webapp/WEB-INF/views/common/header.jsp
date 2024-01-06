@@ -37,7 +37,7 @@
     <div class="flex justify-between items-center mx-auto max-w-6xl relative">
         <header>
             <nav class="flex flex-row pt-7 pb-7 items-center">
-                <div class="text-[#000] text-2xl font-bold mr-20"><a href="#">펫킹.</a></div>
+                <div class="text-[#000] text-2xl font-bold mr-20"><a href="${pageContext.request.contextPath}">펫킹.</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campList">캠핑장 찾기</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/board/boardList">커뮤니티</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="#">이벤트</a></div>

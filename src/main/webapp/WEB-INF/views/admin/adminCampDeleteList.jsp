@@ -10,6 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/adminSidebar.jsp"/>
 <style>
     .forms {
         display: none;
@@ -18,6 +19,7 @@
         display: block;
     }
 </style>
+<div class="w-6xl ml-72">
 <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg mt-10">
     <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
         <li class="tabBtn">
@@ -93,6 +95,7 @@
             </ul>
         </nav>
     </div>
+</div>
 </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>    

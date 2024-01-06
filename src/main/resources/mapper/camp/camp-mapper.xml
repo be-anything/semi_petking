@@ -307,4 +307,12 @@
         where
             id = #{id}
     </update>
+    <select id="findNewCampAll" resultType="campVo">
+        select
+            *
+        from
+            camp
+        where
+            camp_state = 1
+    </select>
 </mapper>

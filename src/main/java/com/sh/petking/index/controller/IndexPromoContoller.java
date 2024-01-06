@@ -1,8 +1,7 @@
 package com.sh.petking.index.controller;
 
 import com.sh.petking.camp.model.service.CampService;
-import com.sh.petking.camp.model.vo.CampVo;
-import com.sh.petking.index.model.service.IndexPromoService;
+import com.sh.petking.index.vo.CampPromotionVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,15 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/index/promo")
+@WebServlet("")
 public class IndexPromoContoller extends HttpServlet {
     private CampService campService = new CampService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<CampVo> campVos = campService.finaPromoAll();
-        req.setAttribute("campVos", campVos);
+        List<CampPromotionVo> promotionVos = campService.finaPromoAll();
+        req.setAttribute("promotionVos", promotionVos);
+        System.out.println(promotionVos);
 
-        req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }
