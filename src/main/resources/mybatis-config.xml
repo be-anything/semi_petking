@@ -62,5 +62,6 @@
         <mapper resource="mapper/ask/ask-mapper.xml"></mapper>
         <mapper resource="mapper/Promotion/promo-mapper.xml"></mapper>
 
+        <mapper resource="mapper/club/club-mapper.xml"></mapper>
     </mappers>
 </configuration>

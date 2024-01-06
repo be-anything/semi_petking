@@ -53,7 +53,7 @@ public class BoardDao {
         return session.update("board.updateBoardViewCount", id);
     }
 
-    public int deleteAttachment(SqlSession session, Long id) {
+    public int deleteAttachment(SqlSession session, long id) {
         return session.delete("board.deleteAttachment", id);
     }
 
