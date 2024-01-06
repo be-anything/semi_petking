@@ -11,7 +11,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<c:if test="${loginUser.clubId == null && loginUser != null}">
+<c:if test="${loginUser.clubId == '0' && loginUser != null}">
 <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
     <form name="clubMainFrm" method="post" enctype="multipart/form-data">
         <button type="button" onClick="location.href='${pageContext.request.contextPath}/club/clubCreate';" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-blue bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
@@ -20,18 +20,21 @@
         <button type="button" onClick="location.href='${pageContext.request.contextPath}/board/boardList';" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-blue bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
             동아리 가입
         </button>
-        <div className="2 w-[133px] h-[35px] relative">
-            <div className="Rectangle10 w-[133px] h-[35px] left-0 top-0 absolute bg-red-300 rounded-2xl" />
-            <div className="2 w-[120.09px] h-[21.45px] left-[6.46px] top-[6.77px] absolute text-center text-white text-base font-semibold font-['Inter']">탈퇴하기</div>
-        </div>
     </form>
 </div>
 </c:if>
-<c:if test="${loginUser.clubId != null}">
+<c:if test="${loginUser.clubId != '0' && loginUser != null}">
 <div class="xl:container p-8">
     <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
-        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">동아리 소개</h5>
+        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">가입 한 동아리 : ${loginUser.clubId}번 동아리</h5>
     </div>
+</div>
+<div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+    <form name="clubMainFrm" method="post" enctype="multipart/form-data">
+        <button type="button" onClick="location.href='${pageContext.request.contextPath}/club/clubDetail';" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-blue bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+            내 동아리 들어가기
+        </button>
+    </form>
 </div>
 </c:if>
 <c:if test="${loginUser == null}">

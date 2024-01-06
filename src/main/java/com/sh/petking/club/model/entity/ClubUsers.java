@@ -1,5 +1,7 @@
 package com.sh.petking.club.model.entity;
 
+import com.sh.petking.common.Role;
+
 import java.time.LocalDateTime;
 
 public class ClubUsers {
@@ -8,15 +10,17 @@ public class ClubUsers {
     private String userId;
     private int joinState;
     private LocalDateTime regDate;
+    private Role role;
 
     public ClubUsers() {
     }
 
-    public ClubUsers(long clubId, String userId, int joinState, LocalDateTime regDate) {
+    public ClubUsers(long clubId, String userId, int joinState, LocalDateTime regDate, Role role) {
         this.clubId = clubId;
         this.userId = userId;
         this.joinState = joinState;
         this.regDate = regDate;
+        this.role = role;
     }
 
     public long getClubId() {
@@ -51,6 +55,14 @@ public class ClubUsers {
         this.regDate = regDate;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "ClubUsers{" +
@@ -58,6 +70,7 @@ public class ClubUsers {
                 ", userId='" + userId + '\'' +
                 ", joinState=" + joinState +
                 ", regDate=" + regDate +
+                ", role=" + role +
                 '}';
     }
 }

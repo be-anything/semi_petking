@@ -39,6 +39,7 @@
                 dual
         </selectKey>
     </insert>
+
     <update id="updateBoard">
         update
             board

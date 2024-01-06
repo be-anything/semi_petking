@@ -3,10 +3,67 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="club">
-    <select id="findAll" resultType="club">
+    <select id="findAll" resultType="clubVo">
         select
             *
         from
             club
     </select>
+    <select id="findById" resultType="clubVo">
+        select
+            *
+        from
+            club
+        where
+            id = #{id}
+    </select>
+    <insert id="insertClub">
+        insert into
+            club(id, club_name, user_id, club_intro_title, club_intro_content)
+        values(
+            seq_club_id.nextval,
+            #{clubName},
+            #{userId},
+            #{clubIntroTitle},
+            #{clubIntroContent}
+        )
+<!--        <selectKey order="AFTER" resultType="_int" keyProperty="id">-->
+<!--            select-->
+<!--                seq_club_id.nextval-->
+<!--            from-->
+<!--                dual-->
+<!--        </selectKey>-->
+    </insert>
+    <insert id="insertClubUsers">
+        insert into
+            club_users (club_id, user_id, join_state, reg_date, role)
+        values(
+            #{clubId},
+            #{userId},
+            default,
+            default,
+            default
+        )
+        <selectKey order="AFTER" resultType="_int" keyProperty="id">
+            select
+                seq_club_id.nextval
+            from
+                dual
+        </selectKey>
+    </insert>
+    <update id="updateClub">
+        update
+            club
+        set
+            club_intro_title = #{clubIntroTitle},
+            club_intro_content= #{clubIntroContent}
+        where
+            id = #{id}
+    </update>
+    <delete id="deleteClub">
+        delete from
+            club
+        where
+            id = #{id}
+    </delete>
 </mapper>

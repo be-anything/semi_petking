@@ -16,20 +16,20 @@
     <form name="clubCreateFrm" method="post" enctype="multipart/form-data">
         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div class="sm:col-span-2">
-                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">동아리 명</label>
-                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="동아리명을 작성하세요." required>
+                <label for="clubName" class="block mb-2 text-sm font-medium text-gray-900">동아리 명</label>
+                <input type="text" name="clubName" id="clubName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="동아리명을 작성하세요." required>
             </div>
             <div class="sm:col-span-2">
                 <label for="userId" class="block mb-2 text-sm font-medium text-gray-900">생성자</label>
                 <input type="text" name="userId" id="userId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value="${loginUser.id}" required readonly>
             </div>
             <div class="sm:col-span-2">
-                <label for="title" class="block mb-2 text-sm font-medium text-gray-900">소개 제목</label>
-                <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="소개제목을 작성하세요." required>
+                <label for="clubIntroTitle" class="block mb-2 text-sm font-medium text-gray-900">소개 제목</label>
+                <input type="text" name="clubIntroTitle" id="clubIntroTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="소개제목을 작성하세요." required>
             </div>
             <div class="sm:col-span-2">
-                <label for="content" class="block mb-2 text-sm font-medium text-gray-900">소개글</label>
-                <textarea name="content" id="content" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500" placeholder="소개글을 작성하세요." required></textarea>
+                <label for="clubIntroContent" class="block mb-2 text-sm font-medium text-gray-900">소개글</label>
+                <textarea name="clubIntroContent" id="clubIntroContent" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500" placeholder="소개글을 작성하세요." required></textarea>
             </div>
         </div>
         <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-blue bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
