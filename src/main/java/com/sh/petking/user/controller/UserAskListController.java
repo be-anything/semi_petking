@@ -38,7 +38,7 @@ public class UserAskListController extends HttpServlet {
         // 페이지바
         int totalCount = askService.getTotalUserAsk(param);
         req.setAttribute("totalCount", totalCount);
-        String url = req.getRequestURI();
+        String url = req.getRequestURI() + "?userId=" + userId;
 
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);

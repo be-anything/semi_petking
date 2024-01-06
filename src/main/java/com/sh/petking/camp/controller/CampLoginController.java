@@ -34,6 +34,7 @@ public class CampLoginController extends HttpServlet {
         String _saveId = req.getParameter("saveId.checked");
 
         businessPassword = PetkingUtils.getEncryptedPassword(businessPassword, businessId);
+        System.out.println(businessPassword);
 
         Camp camp = campService.findByBusinessId(businessId);
         HttpSession session = req.getSession();

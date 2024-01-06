@@ -1,4 +1,4 @@
-package com.sh.petking.user.controller;
+package com.sh.petking.camp.controller;
 
 import com.sh.petking.ask.model.exception.AskException;
 import com.sh.petking.ask.model.service.AskService;
@@ -25,8 +25,8 @@ import java.io.IOException;
  * escape html 처리
  *
  */
-@WebServlet("/user/userAskDetail")
-public class UserAskDetailController extends HttpServlet {
+@WebServlet("/camp/campAskDetail")
+public class CampAskDetailController extends HttpServlet {
     private AskService askService = new AskService();
 
     @Override
@@ -49,7 +49,7 @@ public class UserAskDetailController extends HttpServlet {
 
             System.out.println(ask.getCamp());
             //3.forward
-            req.getRequestDispatcher("/WEB-INF/views/user/userAskDetail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/camp/campAskDetail.jsp").forward(req, resp);
         } catch (Exception e)
         {
             throw new AskException("문의글 상세보기 오류",e);

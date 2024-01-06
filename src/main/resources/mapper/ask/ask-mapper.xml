@@ -103,4 +103,20 @@
         where
             user_id = #{userId}
     </select>
+    <select id="findByCampId" resultType="ask">
+        select
+            *
+        from
+            ask
+        where
+            camp_id = #{campId}
+    </select>
+    <select id="getTotalCampAsk" resultType="_int">
+        select
+            count(*)
+        from
+            ask
+        where
+            camp_id = #{campId}
+    </select>
 </mapper>

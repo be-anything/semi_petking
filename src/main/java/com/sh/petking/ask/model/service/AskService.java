@@ -91,4 +91,18 @@ public class AskService {
         session.close();
         return asks;
     }
+
+    public int getTotalCampAsk(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = askDao.getTotalCampAsk(session, param);
+        session.close();
+        return totalCount;
+    }
+
+    public List<Ask> findByCampId(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<Ask> asks = askDao.findByCampId(session, param);
+        session.close();
+        return asks;
+    }
 }

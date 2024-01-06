@@ -22,7 +22,7 @@
     }
 </style>
 <div class="ml-auto mr-32 w-2/3">
-<div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg mt-10">
+<div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg">
     <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
         <li class="tabBtn">
             <a href="#" aria-current="page" class="inline-block p-4 rounded-t-lg text-white bg-green active px-5">완료된 예약</a>
@@ -38,7 +38,7 @@
 
 
 <!-- 완료된 예약내역 -->
-<div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
+<div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl p-4 rounded-lg bg-gray1 mb-10 forms active">
     <h1 class="text-xl mt-8">완료된 예약은 총 <span class="text-blue font-bold">${doneTotalCount}</span>건 입니다.</h1>
     <c:forEach items="${doneReservations}" var="reservation">
         <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-white mt-5 mb-5 hover:drop-shadow">
@@ -82,7 +82,7 @@
 
 
 <!-- 진행중 예약내역 -->
-    <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl p-4 rounded-lg bg-gray1 mb-10 forms">
         <h1 class="text-xl mt-8">진행중인 예약은 총 <span class="text-blue font-bold">${processTotalCount}</span>건 입니다.</h1>
         <c:forEach items="${processReservations}" var="reservation">
             <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-white mt-5 mb-5 hover:drop-shadow">
@@ -126,7 +126,7 @@
 
 
 <!-- 취소된 예약내역 -->
-    <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl p-4 rounded-lg bg-gray1 mb-10 forms">
         <h1 class="text-xl mt-8">취소된 예약은 총 <span class="text-blue font-bold">${cancelTotalCount}</span>건 입니다.</h1>
         <c:forEach items="${cancelReservations}" var="reservation">
             <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-white mt-5 mb-5 hover:drop-shadow">

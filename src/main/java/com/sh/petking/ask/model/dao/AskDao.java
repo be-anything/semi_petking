@@ -41,4 +41,16 @@ public class AskDao {
         RowBounds rowBounds = new RowBounds(offset, limit);
         return session.selectList("ask.findByUserId", param, rowBounds);
     }
+
+    public int getTotalCampAsk(SqlSession session, Map<String, Object> param) {
+        return session.selectOne("ask.getTotalCampAsk", param);
+    }
+
+    public List<Ask> findByCampId(SqlSession session, Map<String, Object> param) {
+        int page = (int) param.get("page");
+        int limit = (int) param.get("limit");
+        int offset = (page - 1) * limit;
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return session.selectList("ask.findByCampId", param, rowBounds);
+    }
 }
