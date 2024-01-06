@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<jsp:include page="/WEB-INF/views/common/userSidebar.jsp"/>
 <div class="w-2/3 ml-auto mr-24 mb-8">
     <div class="container mx-auto my-6">
         <div class="flex justify-start">
@@ -26,17 +25,17 @@
                 <c:forEach items="${reviews}" var="review" varStatus="vs">
                     <div class="odd:bg-white even:bg-gray-50 border-b ">
                         <tr>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${review.id}</th>
-                        <td class="px-6 py-4">
-                            <a href="${pageContext.request.contextPath}/review/reviewDetail?id=${review.id}"
-                               class="hover:underline">${fn:escapeXml(review.reviewTitle)}</a>
-                                <%-- 댓글 수 노출하기 --%>
-<%--                            <c:if test="${review.askCommentCount}">--%>
-                        </td>
-                        <td class="px-6 py-4">${review.userId}</td>
-                        <td class="px-6 py-4">
-                            <fmt:parseDate value="${review.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
-                            <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/></td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${review.id}</th>
+                            <td class="px-6 py-4">
+                                <a href="${pageContext.request.contextPath}/review/reviewDetail?id=${review.id}"
+                                   class="hover:underline">${fn:escapeXml(review.reviewTitle)}</a>
+                                    <%-- 댓글 수 노출하기 --%>
+                                    <%--                            <c:if test="${review.askCommentCount}">--%>
+                            </td>
+                            <td class="px-6 py-4">${review.userId}</td>
+                            <td class="px-6 py-4">
+                                <fmt:parseDate value="${review.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
+                                <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/></td>
                         </tr>
                     </div>
                 </c:forEach>
@@ -53,7 +52,4 @@
         </nav>
     </div>
 </div>
-</div>
-
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

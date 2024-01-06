@@ -1,18 +1,21 @@
 package com.sh.petking.review.model.vo;
 
 import com.sh.petking.board.model.entity.Attachment;
+import com.sh.petking.board.model.vo.AttachmentVo;
 import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.review.model.entity.Review;
+import com.sh.petking.review.model.entity.ReviewComment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewVo extends Review {
     private Camp camp;
-    private Attachment attachment;
-
     private String campName;
     private int commentCount;
+
+    List<AttachmentVo> attachments = new ArrayList<>();
+    List<ReviewComment> reviewComments = new ArrayList<>();
 
     public int getCommentCount() {
         return commentCount;
@@ -30,14 +33,6 @@ public class ReviewVo extends Review {
         this.campName = campName;
     }
 
-    public Attachment getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(Attachment attachment) {
-        this.attachment = attachment;
-    }
-
     private List<String> tags = new ArrayList<>();
 
     public List<String> getTags() {
@@ -48,13 +43,11 @@ public class ReviewVo extends Review {
         this.tags = tags;
     }
 
-    private List<Attachment> attachments = new ArrayList<>();
-
-    public List<Attachment> getAttachments() {
+    public List<AttachmentVo> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(List<Attachment> attachments) {
+    public void setAttachments(List<AttachmentVo> attachments) {
         this.attachments = attachments;
     }
 
@@ -70,7 +63,11 @@ public class ReviewVo extends Review {
     public String toString() {
         return "ReviewVo{" +
                 "camp=" + camp +
+                ", campName='" + campName + '\'' +
+                ", commentCount=" + commentCount +
                 ", attachments=" + attachments +
+                ", reviewComments=" + reviewComments +
+                ", tags=" + tags +
                 '}';
     }
 

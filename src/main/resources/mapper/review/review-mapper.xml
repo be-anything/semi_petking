@@ -40,6 +40,46 @@
         where
             r.id = #{id}
     </select>
+
+    <select id="findByIdWithAttach" resultMap="reviewAttachVoMap">
+        select
+            r.*,
+            c.camp_name camp_name,
+            a.id attach_id,
+            a.renamed_name renamed_name
+        from
+            attachment a
+                join board_attach ba
+                    on a.id = ba.attach_id
+                join review r
+                    on ba.board_id = r.id
+                join camp c
+                    on r.camp_id = c.id
+        where
+            ba.board_attr = 2
+            and
+            r.id = #{id}
+    </select>
+    <resultMap id="reviewAttachVoMap" type="reviewVo">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="camp_id" property="campId"/>
+        <result column="board_attr" property="boardAttr"/>
+        <result column="review_tag" property="reviewTag"/>
+        <result column="review_title" property="reviewTitle"/>
+        <result column="review_content" property="reviewContent"/>
+        <result column="view_count" property="viewCount"/>
+        <result column="like_count" property="likeCount"/>
+        <result column="reg_date" property="regDate"/>
+        <result column="camp_name" property="campName"/>
+
+        <collection property="attachments" ofType="attachmentVo">
+            <id column="attach_id" property="id"/>
+            <result column="renamed_name" property="renamedName"/>
+        </collection>
+    </resultMap>
+
+
     <insert id="insertReview">
         insert into
             review
@@ -136,5 +176,11 @@
             review r
         where
             user_id = #{userId}
+    </select>
+    <select id="getTotalReview" resultType="reviewVo">
+        select
+            count(*)
+        from
+            review
     </select>
 </mapper>

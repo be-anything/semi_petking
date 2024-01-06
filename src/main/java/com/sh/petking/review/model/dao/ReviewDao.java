@@ -2,6 +2,7 @@ package com.sh.petking.review.model.dao;
 
 import com.sh.petking.board.model.entity.Attachment;
 import com.sh.petking.board.model.entity.BoardAttach;
+import com.sh.petking.board.model.vo.AttachmentVo;
 import com.sh.petking.review.model.entity.Review;
 import com.sh.petking.review.model.vo.ReviewVo;
 import org.apache.ibatis.session.RowBounds;
@@ -41,6 +42,9 @@ public class ReviewDao {
         return session.selectOne("review.getTotalCount");
     }
 
+    public ReviewVo findByIdWithAttach(SqlSession session, Long id) {
+        return session.selectOne("review.findByIdWithAttach", id);
+    }
     public ReviewVo findById(SqlSession session, Long id) {
         return session.selectOne("review.findById", id);
     }
@@ -71,5 +75,9 @@ public class ReviewDao {
 
     public int getTotalUserReview(SqlSession session, Map<String, Object> param) {
         return session.selectOne("review.getTotalUserReview", param);
+    }
+
+    public int getTotalReview(SqlSession session, Map<String, Object> param) {
+        return session.selectOne("review.getTotalReview", param);
     }
 }

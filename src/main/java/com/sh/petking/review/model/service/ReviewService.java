@@ -2,6 +2,7 @@ package com.sh.petking.review.model.service;
 
 import com.sh.petking.board.model.entity.Attachment;
 import com.sh.petking.board.model.entity.BoardAttach;
+import com.sh.petking.board.model.vo.AttachmentVo;
 import com.sh.petking.review.model.dao.ReviewDao;
 import com.sh.petking.review.model.vo.ReviewVo;
 import org.apache.ibatis.session.SqlSession;
@@ -126,10 +127,18 @@ public class ReviewService {
         return totalCount;
     }
 
-    public ReviewVo findById(Long id) {
+    public ReviewVo findByIdWithAttach(Long id) {
         SqlSession session = getSqlSession();
-        ReviewVo review = reviewDao.findById(session, id);
+        ReviewVo review = reviewDao.findByIdWithAttach(session, id);
+        System.out.println(review);
         session.close();
         return review;
+    }
+
+    public int getTotalReview(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = reviewDao.getTotalReview(session, param);
+        session.close();
+        return totalCount;
     }
 }
