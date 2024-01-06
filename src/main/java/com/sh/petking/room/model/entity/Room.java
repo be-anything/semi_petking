@@ -21,11 +21,14 @@ public class Room {
     private int roomDefaultFee; //기본요금
     private int roomOverFee; //초과요금
 
+    //0105 추가
+    private String roomRenamedImg; //객실 대표 이미지
+
     public Room() {
     }
 
     public Room(Long id, Long campId, String roomName, int roomType, String roomIntro,
-                int roomDefaultPerson, int roomMaximumPerson,int roomDefaultFee, int roomOverFee) {
+                int roomDefaultPerson, int roomMaximumPerson,int roomDefaultFee, int roomOverFee,String roomRenamedImg) {
         System.out.println("room 매개변수 있는 생성자.");
         this.id = id;
         this.campId = campId;
@@ -36,6 +39,15 @@ public class Room {
         this.roomMaximumPerson = roomMaximumPerson;
         this.roomDefaultFee = roomDefaultFee;
         this.roomOverFee = roomOverFee;
+        this.roomRenamedImg = roomRenamedImg;
+    }
+
+    public String getRoomRenamedImg() {
+        return roomRenamedImg;
+    }
+
+    public void setRoomRenamedImg(String roomRenamedImg) {
+        this.roomRenamedImg = roomRenamedImg;
     }
 
     public Long getId() {
@@ -122,6 +134,7 @@ public class Room {
                 ", roomMaximumPerson=" + roomMaximumPerson +
                 ", roomDefaultFee=" + roomDefaultFee +
                 ", roomOverFee=" + roomOverFee +
+                ", roomRenamedImg=" + roomRenamedImg +
                 '}';
     }
 }

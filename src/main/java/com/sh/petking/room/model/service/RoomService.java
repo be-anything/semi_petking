@@ -113,12 +113,19 @@ public class RoomService
         session.close();
         return totalCount;
     }
-
-    public RoomVo findById(long id) {
+    
+    public RoomVo findById (long id) {
         SqlSession session = getSqlSession();
         RoomVo room = roomDao.findById(session,id);
         session.close();
+        return room;
+    }
 
+    //0105 캠핑장 아이디로 객실 들 찾기
+    public RoomVo findByCampId(long id) {
+        SqlSession session = getSqlSession();
+        RoomVo room = roomDao.findByCampId(session,id);
+        session.close();
         return room;
     }
 

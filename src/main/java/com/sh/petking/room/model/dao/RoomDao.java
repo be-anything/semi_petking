@@ -66,4 +66,11 @@ public class RoomDao
     public int updateRoom(SqlSession session, RoomVo room) {
         return session.update("room.updateRoom", room);
     }
+
+    //0105 캠핑장 아이디로 객실 리스트 조회
+    public RoomVo findByCampId(SqlSession session, long id)
+    {
+        System.out.println("daofindByCampId......캠핑장 아이디 : "+id);
+        return session.selectOne("room.findByCampId",id);
+    }
 }
