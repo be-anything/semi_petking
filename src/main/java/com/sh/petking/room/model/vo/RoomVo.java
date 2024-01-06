@@ -64,7 +64,7 @@ public class RoomVo extends Room {
             case "roomMaximumPerson" : setRoomMaximumPerson(Integer.parseInt(value)); break;
             case "roomDefaultFee" : setRoomDefaultFee(Integer.parseInt(value)); break;
             case "roomOverFee" : setRoomOverFee(Integer.parseInt(value)); break;
-
+            case "roomRenamedImg" : setRoomRenamedImg(value); break; //0105 대표사진 설정
             //1221 첨부파일 삭제 관련 기능 추가 delFile은 리스트
             case "delFile" : this.delFiles.add(Long.parseLong(value)); break;
             default:throw new RuntimeException("부적절한 name값:"+name);

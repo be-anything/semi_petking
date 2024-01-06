@@ -52,8 +52,8 @@
     </div>
 <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10">
     <form name="roomCreateFrm" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="777">
-        <input type="hidden" name="campId" value="4">
+        <input type="hidden" name="id" value="0">
+        <input type="hidden" name="campId" value="26">
         <div class="px-5">
             <div class="">
                 <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-10 sm:px-0 items-start">

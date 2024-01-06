@@ -74,7 +74,7 @@ public class RoomUpdateController extends HttpServlet
                         attach.setRoomAttachOriginalName(originalFilename);
                         attach.setRoomAttachRenamedName(renamedFilename);
                         room.addAttachment(attach);
-
+                        room.setRoomRenamedImg(renamedFilename);
                         File upFile = new File(repository, renamedFilename);
                         fileItem.write(upFile); // 파일 출력
                     }
