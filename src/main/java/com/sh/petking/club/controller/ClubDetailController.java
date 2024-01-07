@@ -27,8 +27,8 @@ public class ClubDetailController extends HttpServlet {
 //        System.out.println(club);
 
         String id = req.getParameter("loginUser.id");
-        String clubId = req.getParameter("loginUser.clubId");
-        String clubName = req.getParameter("loginUser.clubName");
+        String clubId = req.getParameter("club.clubId");
+        String clubName = req.getParameter("club.clubName");
         String clubIntroTitle = req.getParameter("club.clubIntroTitle");
         String clubIntroContent = req.getParameter("club.clubIntroContent");
 
