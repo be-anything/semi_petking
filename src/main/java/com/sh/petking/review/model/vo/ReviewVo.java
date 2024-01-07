@@ -73,6 +73,7 @@ public class ReviewVo extends Review {
 
     public void setValue(String name, String value) {
         switch (name){
+            case "reviewId" :this.setId(Long.parseLong(value)); break;
             case "reviewTag" : this.tags.add(value); break;
             case "reviewTitle" : this.setReviewTitle(value);break;
             case "reviewContent" : this.setReviewContent(value); break;

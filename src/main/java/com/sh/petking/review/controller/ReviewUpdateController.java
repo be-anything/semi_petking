@@ -1,8 +1,6 @@
-package com.sh.petking.user.controller;
+package com.sh.petking.review.controller;
 
 import com.sh.petking.board.model.entity.Attachment;
-import com.sh.petking.board.model.entity.BoardAttach;
-import com.sh.petking.review.model.entity.Review;
 import com.sh.petking.review.model.service.ReviewService;
 import com.sh.petking.review.model.vo.ReviewVo;
 import org.apache.commons.fileupload.FileItem;
@@ -19,17 +17,23 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
-@WebServlet("/review/reviewCreate")
-public class UserReviewCreateController extends HttpServlet {
+@WebServlet("/review/reviewUpdate")
+public class ReviewUpdateController extends HttpServlet {
     private ReviewService reviewService = new ReviewService();
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long campId = Long.parseLong(req.getParameter("campId"));
-        req.setAttribute("campId", campId);
-        req.getRequestDispatcher("/WEB-INF/views/review/reviewCreate.jsp").forward(req, resp);
-    }
+        Long id = Long.parseLong(req.getParameter("id"));
 
+        // 사진이 필요함
+        ReviewVo review = reviewService.findByIdWithAttach(id);
+        req.setAttribute("review", review);
+        // csvTag 핸들링
+        List<String> tags = Arrays.asList(review.getReviewTag().split(","));
+        req.setAttribute("tags", tags);
+
+        System.out.println("controller" + review);
+        req.getRequestDispatcher("/WEB-INF/views/review/reviewUpdate.jsp").forward(req, resp);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -98,11 +102,11 @@ public class UserReviewCreateController extends HttpServlet {
         param.put("attachments", attachments);
 
         // 2. 업무로직
-        int result = reviewService.insertReview(param);
+        int result = reviewService.updateReview(param);
         // session에 저장
-        req.getSession().setAttribute("msg", "리뷰를 성공적으로 등록했습니다. 😎");
+        req.getSession().setAttribute("msg", "리뷰를 성공적으로 수정했습니다. 😎");
 
         // 3. redirect - board/boardList
-        resp.sendRedirect(req.getContextPath() + "/user/userReviewList");
+        resp.sendRedirect(req.getContextPath() + "/review/reviewDetail?id=" + review.getId());
     }
 }

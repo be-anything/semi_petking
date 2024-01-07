@@ -183,4 +183,20 @@
         from
             review
     </select>
+    <delete id="deleteReviewAttach">
+        delete from
+            attachment
+        where
+            id = #{attachId}
+    </delete>
+    <delete id="deleteReviewAttachBridge">
+        delete from
+            board_attach
+        where
+            attach_id = #{attachId}
+            and
+            board_id = #{reviewId}
+            and
+            board_attr = 2
+    </delete>
 </mapper>

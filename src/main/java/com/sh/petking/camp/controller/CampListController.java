@@ -56,12 +56,19 @@ public class CampListController extends HttpServlet {
         if(loginUser != null) {
             List<Wish> wishes = wishService._findByUserId(loginUser.getId());
             for (Wish wish: wishes) {
+                System.out.println(wish.getCampId());
                 for(CampVo camp: camps){
-                    System.out.println("찜" + wish.getCampId());
-                    System.out.println("캠핑장" + camp.getId());
-                    camp.setWish(camp.getId() == wish.getCampId());
+                    System.out.println(camp.getId());
+                    if(camp.getId() == wish.getCampId()){
+                        camp.setWish(true);
+                        break;
+                    }
+                    else {
+                        camp.setWish(false);
+                    }
                 }
             }
+            req.setAttribute("wishes", wishes);
         }
 
         req.setAttribute("camps", camps);

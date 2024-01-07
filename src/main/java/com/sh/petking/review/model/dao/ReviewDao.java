@@ -80,4 +80,12 @@ public class ReviewDao {
     public int getTotalReview(SqlSession session, Map<String, Object> param) {
         return session.selectOne("review.getTotalReview", param);
     }
+
+    public int deleteReviewAttach(SqlSession session, Map<String, Object> param) {
+        return session.delete("review.deleteReviewAttach", param);
+    }
+
+    public int deleteReviewAttachBridge(SqlSession session, Map<String, Object> param) {
+        return session.delete("review.deleteReviewAttachBridge", param);
+    }
 }

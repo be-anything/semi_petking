@@ -17,8 +17,9 @@
 
         <!-- Product info -->
         <div class="mx-auto max-w-2xl px-4 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16">
-            <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">${review.reviewTitle}</h1>
+            <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8 flex">
+                <h1 class="text-2xl w-3/4 font-bold tracking-tight text-gray-900 sm:text-3xl">${review.reviewTitle}</h1>
+                <span class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">조회수 : ${review.viewCount}</span>
             </div>
 
             <!-- Options -->
@@ -42,7 +43,7 @@
                     <div class="">
                         <ul class="space-y-2 text-sm">
                             <li class="relative inline-flex items-center justify-center">
-                                <button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                <button type="button" onclick="location.href='${pageContext.request.contextPath}/review/reviewUpdate?id=${review.id}'" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                                     리뷰 수정하기
                                 </button>
                             </li>
