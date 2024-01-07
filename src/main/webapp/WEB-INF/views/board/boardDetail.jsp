@@ -105,7 +105,7 @@
                             </p>
                         </td>
                         <td class="px-6 py-4">
-                            <c:if test="${loginUser.id eq comment.userId || loginUser.role eq Role.A}">
+                            <c:if test="${(loginUser.id eq comment.userId || loginUser.role eq Role.A) && loginUser.id != null}">
                                 <div class="flex">
                                     <a href="javascript:confirm('정말 삭제하시겠습니까? 😲') && document.boardCommentDeleteFrm${comment.id}.submit();" class="font-medium text-red-600 hover:underline ms-3">삭제하기</a>
                                 </div>

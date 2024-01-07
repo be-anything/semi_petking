@@ -10,8 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
-<c:if test="${loginUser.clubId == '0' && loginUser != null}">
+<c:if test="${loginUser != null && loginUser.clubId == '0'}">
 <div class="flex justify-center pt-[300px]">
     <div class="w-fit h-fit mr-1">
         <a href="${pageContext.request.contextPath}/club/clubCreate" class="rounded-lg py-[120px] px-[100px] pt-[180px] bg-gray2 hover:bg-indigo-100 hover:drop-shadow-2xl">
@@ -27,13 +26,12 @@
     </div>
 </div>
 </c:if>
-<c:if test="${loginUser.clubId != '0' && loginUser != null}">
+<c:if test="${loginUser != null && loginUser.clubId != '0'}">
 <div class="xl:container p-8">
     <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">가입 한 동아리 : ${loginUser.clubId}번 동아리</h5>
     </div>
 </div>
-<%--<div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">--%>
 <div class="py-8 px-60 mx-auto max-w-2xl lg:py-16">
         <a href="${pageContext.request.contextPath}/club/clubDetail" class="rounded-lg py-[120px] px-[100px] pt-[180px] bg-gray2 hover:bg-orange-100 hover:drop-shadow-2xl">
             <i class="fa fa-smile-o  text-9xl text-black"></i>
