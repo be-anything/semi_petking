@@ -2,7 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<style>
+    aside {
+        position: fixed;
+        left: 0;
+        top:129px;
+    }
+</style>
 <div class="flex mt-10 justify-between items-center mx-auto max-w-8xl rounded-lg bg-gray1 mb-10">
 <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
     <span class="sr-only">Open sidebar</span>
@@ -11,8 +17,8 @@
     </svg>
 </button>
 
-<aside class="absolute mt-10 ml-64 z-40 w-64 h-2/3 " aria-label="Sidebar">
-    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 text-black rounded-lg border border-gray2">
+    <aside class="fixed ml-0 z-10 w-56 h-2/3" aria-label="Sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 text-black rounded-lg border border-gray2">
         <ul class="space-y-2 font-medium">
             <li class="mt-1">
                 <button type="button" class="btn flex items-center w-full p-2 text-base transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
