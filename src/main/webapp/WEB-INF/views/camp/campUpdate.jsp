@@ -164,13 +164,13 @@
                                 <div class="options grid w-full gap-6 text-white bg-green selected border-2 border-gray-200 rounded-lg cursor-pointer inline-flex items-center justify-center w-full p-5">
                                     <input type="checkbox" checked name="tagId" value="${tag.id}"
                                            class="hidden peer tag-btn">
-                                        ${tag.name}
+                                        #${tag.name}
                                 </div>
                             </c:if>
                             <c:if test="${!camp.campWithTags.toString().contains(tag.name)}">
                                 <div class="options grid w-full gap-6 text-gray-500 border-2 border-gray-200 rounded-lg cursor-pointer inline-flex items-center justify-center w-full p-5">
                                     <input type="checkbox" name="tagId" value="${tag.id}" class="hidden peer tag-btn">
-                                        ${tag.name}
+                                        #${tag.name}
                                 </div>
                             </c:if>
                         </c:forEach>

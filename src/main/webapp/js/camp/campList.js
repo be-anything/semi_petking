@@ -3,7 +3,6 @@ document.querySelectorAll("#campBtn").forEach((camp) => {
         const btn = e.target;
         const frm = document.campDetailFrm;
         const {id} = btn.dataset;
-
         console.log(id)
         frm.id.value = id;
         frm.submit();
