@@ -27,12 +27,12 @@
             #{clubIntroTitle},
             #{clubIntroContent}
         )
-<!--        <selectKey order="AFTER" resultType="_int" keyProperty="id">-->
-<!--            select-->
-<!--                seq_club_id.nextval-->
-<!--            from-->
-<!--                dual-->
-<!--        </selectKey>-->
+        <selectKey order="AFTER" resultType="_int" keyProperty="id">
+            select
+                seq_club_id.nextval
+            from
+                dual
+        </selectKey>
     </insert>
     <insert id="insertClubUsers">
         insert into

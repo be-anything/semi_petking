@@ -11,7 +11,6 @@ public class Point {
 
     public Point() {
     }
-
     public Long getId() {
         return id;
     }
@@ -52,11 +51,14 @@ public class Point {
         this.regDate = regDate;
     }
 
-    public Point(Long id, String userId, Long point, String pointLog, LocalDateTime regDate) {
-        this.id = id;
-        this.userId = userId;
-        this.point = point;
-        this.pointLog = pointLog;
-        this.regDate = regDate;
+    @Override
+    public String toString() {
+        return "Point{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", point=" + point +
+                ", pointLog='" + pointLog + '\'' +
+                ", regDate=" + regDate +
+                '}';
     }
 }
