@@ -42,7 +42,6 @@
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/club/clubList">동아리</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="#">이벤트</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/room/roomList">객실목록(임시)</a></div>
-                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/ask/askList">문의하기(임시)</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/reservation/reservationMain">예약하기(임시)</a></div>
                 <c:if test="${loginUser.role eq 'A' }">
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userList">전체회원목록(임시)</a></div>

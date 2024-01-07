@@ -12,7 +12,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <jsp:include page="/WEB-INF/views/common/userSidebar.jsp"/>
 
-<div class="w-1/2 py-8 px-4 mx-auto lg:py-16">
+<div class="w-3/5 py-8 px-4 mx-auto mt-4 mr-48">
     <h2 class="mb-4 text-xl font-bold text-gray-900">문의 작성하기</h2>
     <form
             action="${pageContext.request.contextPath}/ask/askCreate"

@@ -2,7 +2,6 @@ document.addEventListener('submit',(e)=> {
 
     //분기
     //정적으로 생성된 폼 과 동적으로 생성된 폼을 가리지 않고 모두 적용.
-
     if(e.target.matches("[name=askCommentCreateFrm]")) //is:jQuery, js:matches
     {
         const frm = e.target;
@@ -14,6 +13,4 @@ document.addEventListener('submit',(e)=> {
             return;
         }
     }
-
-
 });
