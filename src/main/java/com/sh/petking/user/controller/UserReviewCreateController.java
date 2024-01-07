@@ -5,6 +5,7 @@ import com.sh.petking.board.model.entity.BoardAttach;
 import com.sh.petking.review.model.entity.Review;
 import com.sh.petking.review.model.service.ReviewService;
 import com.sh.petking.review.model.vo.ReviewVo;
+import com.sh.petking.user.model.entity.Point;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -57,7 +58,7 @@ public class UserReviewCreateController extends HttpServlet {
                     System.out.println(name + " = " + value);
                     // Board 객체에 설정자 로직 구현
                     review.setValue(name, value);
-                    review.setRegDate(LocalDateTime.now());
+//                    review.setRegDate(LocalDateTime.now());
                     review.setBoardAttr(2L);
                 }
                 else {
@@ -99,6 +100,29 @@ public class UserReviewCreateController extends HttpServlet {
 
         // 2. 업무로직
         int result = reviewService.insertReview(param);
+
+
+        // 포인트 적립
+        if(result > 0){
+            Point point = new Point();
+            if(attachments.isEmpty()){
+                // 사진 없으면 100포인트
+                point.setUserId(review.getUserId());
+                point.setPoint(100L);
+                point.setPointLog("캠핑장 일반리뷰 작성완료 !");
+                point.setRegDate(LocalDateTime.now());
+                result = reviewService.insertPoint(point);
+            }
+            else {
+                // 사진 있으면 500 포인트
+                point.setUserId(review.getUserId());
+                point.setPoint(500L);
+                point.setPointLog("캠핑장 사진리뷰 작성완료 !");
+                point.setRegDate(LocalDateTime.now());
+                result = reviewService.insertPoint(point);
+            }
+        }
+        
         // session에 저장
         req.getSession().setAttribute("msg", "리뷰를 성공적으로 등록했습니다. 😎");
 

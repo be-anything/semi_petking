@@ -15,6 +15,14 @@
         order by
             r.reg_date desc
     </select>
+    <select id="_findAll" resultType="_reviewVo">
+        select
+            r.*
+        from
+            review r
+        order by
+            r.reg_date desc
+    </select>
     <resultMap id="reviewVoMap" type="reviewVo">
         <id column="id" property="id"/>
         <result column="user_id" property="userId"/>
@@ -24,6 +32,7 @@
         <result column="view_count" property="viewCount"/>
         <result column="like_count" property="likeCount"/>
         <result column="reg_date" property="regDate"/>
+        <result column="renamed_name" property="renamedName"/>
         <association property="camp" javaType="camp">
             <id column="camp_id2" property="id"/>
             <result column="camp_name" property="campName"/>
@@ -46,17 +55,23 @@
             r.*,
             c.camp_name camp_name,
             a.id attach_id,
-            a.renamed_name renamed_name
+            a.renamed_name renamed_name,
+            rc.id comment_id,
+            rc.user_id comment_user_id,
+            rc.content comment_content,
+            rc.reg_date comment_reg_date
         from
             attachment a
                 join board_attach ba
                     on a.id = ba.attach_id
-                join review r
+                right join review r
                     on ba.board_id = r.id
-                join camp c
+                left join camp c
                     on r.camp_id = c.id
+                left join review_comment rc
+                    on r.id = rc.review_id
         where
-            ba.board_attr = 2
+            r.board_attr = 2
             and
             r.id = #{id}
     </select>
@@ -77,6 +92,12 @@
             <id column="attach_id" property="id"/>
             <result column="renamed_name" property="renamedName"/>
         </collection>
+        <collection property="reviewComments" ofType="reviewComment">
+            <id column="comment_id" property="id"/>
+            <result column="comment_user_id" property="userId"/>
+            <result column="comment_content" property="content"/>
+            <result column="comment_reg_date" property="regDate"/>
+        </collection>
     </resultMap>
 
 
@@ -93,7 +114,7 @@
             #{reviewContent},
             default,
             default,
-            #{regDate}
+            default
         )
     <selectKey order="AFTER" resultType="_long" keyProperty="id">
         select
@@ -199,4 +220,64 @@
             and
             board_attr = 2
     </delete>
+    <insert id="insertComment">
+        insert into
+            review_comment
+        values(
+            seq_review_comment_id.nextval,
+            #{userId},
+            #{reviewId},
+            #{content},
+            #{regDate}
+        )
+    </insert>
+    <delete id="deleteComment">
+        delete from
+            review_comment
+        where
+            id = #{id}
+    </delete>
+
+    <select id="findPhotoReview" resultMap="reviewVoMap">
+        select
+            r.*,
+            c.id camp_id,
+            c.camp_name camp_name,
+            img.renamed_name renamed_name
+        from
+            review r
+                left join camp c
+                on r.camp_id = c.id
+                full join (SELECT
+                r.id review_id,
+                (select renamed_name from attachment where ba.attach_id = id) renamed_name
+            FROM
+                review r
+                JOIN (
+                SELECT
+                board_id,
+                attach_id,
+                RANK() OVER (PARTITION BY board_id ORDER BY attach_id) AS rnk
+                FROM
+                board_attach ba right join review r
+                on ba.board_id = r.id
+                ) ba ON r.id = ba.board_id
+                WHERE
+                ba.rnk &lt;= 1) img
+            on r.id = img.review_id
+        order by
+        r.reg_date desc
+    </select>
+    <insert id="insertPoint">
+        insert into
+            point
+        values
+            (
+            seq_point_id.nextval,
+            #{userId},
+            #{point},
+            #{pointLog},
+            #{regDate}
+            )
+    </insert>
 </mapper>

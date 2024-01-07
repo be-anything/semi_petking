@@ -23,14 +23,12 @@ public class ReviewUpdateController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = Long.parseLong(req.getParameter("id"));
-
         // 사진이 필요함
         ReviewVo review = reviewService.findByIdWithAttach(id);
         req.setAttribute("review", review);
         // csvTag 핸들링
         List<String> tags = Arrays.asList(review.getReviewTag().split(","));
         req.setAttribute("tags", tags);
-
         System.out.println("controller" + review);
         req.getRequestDispatcher("/WEB-INF/views/review/reviewUpdate.jsp").forward(req, resp);
     }

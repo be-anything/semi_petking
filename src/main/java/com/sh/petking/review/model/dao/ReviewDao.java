@@ -5,6 +5,8 @@ import com.sh.petking.board.model.entity.BoardAttach;
 import com.sh.petking.board.model.vo.AttachmentVo;
 import com.sh.petking.review.model.entity.Review;
 import com.sh.petking.review.model.vo.ReviewVo;
+import com.sh.petking.review.model.vo._ReviewVo;
+import com.sh.petking.user.model.entity.Point;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
@@ -87,5 +89,29 @@ public class ReviewDao {
 
     public int deleteReviewAttachBridge(SqlSession session, Map<String, Object> param) {
         return session.delete("review.deleteReviewAttachBridge", param);
+    }
+
+    public List<ReviewVo> findPhotoReview(SqlSession session, Map<String, Object> param) {
+        int page = (int) param.get("page");
+        int limit = (int) param.get("limit");
+        int offset = (page - 1) * limit;
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return session.selectList("review.findPhotoReview", param, rowBounds);
+    }
+
+    public List<_ReviewVo> _findAll(SqlSession session, Map<String, Object> param) {
+        int page = (int) param.get("page");
+        int limit = (int) param.get("limit");
+        int offset = (page - 1) * limit;
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return session.selectList("review._findAll", param, rowBounds);
+    }
+
+    public List<_ReviewVo> _findPhotoReview(SqlSession session) {
+        return session.selectList("review.findPhotoReview");
+    }
+
+    public int insertPoint(SqlSession session, Point point) {
+        return session.insert("review.insertPoint", point);
     }
 }

@@ -2,13 +2,13 @@ package com.sh.petking.review.model.service;
 
 import com.sh.petking.board.model.entity.Attachment;
 import com.sh.petking.board.model.entity.BoardAttach;
-import com.sh.petking.board.model.vo.AttachmentVo;
 import com.sh.petking.review.model.dao.ReviewDao;
 import com.sh.petking.review.model.vo.ReviewVo;
+import com.sh.petking.review.model.vo._ReviewVo;
+import com.sh.petking.user.model.entity.Point;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +20,12 @@ public class ReviewService {
     public List<ReviewVo> findAll(Map<String, Object> param) {
         SqlSession session = getSqlSession();
         List<ReviewVo> reviews = reviewDao.findAll(session, param);
+        session.close();
+        return reviews;
+    }
+    public List<_ReviewVo> _findAll(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<_ReviewVo> reviews = reviewDao._findAll(session, param);
         session.close();
         return reviews;
     }
@@ -200,5 +206,35 @@ public class ReviewService {
         }
         System.out.println(review.getReviewTag());
         return result;
+    }
+
+    public List<_ReviewVo> _findPhotoReview() {
+        SqlSession session = getSqlSession();
+        List<_ReviewVo> reviews = reviewDao._findPhotoReview(session);
+        session.close();
+        return reviews;
+    }
+
+    public int insertPoint(Point point) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try {
+            result = reviewDao.insertPoint(session, point);
+            System.out.println(result);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public List<ReviewVo> findPhotoReview(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<ReviewVo> reviews = reviewDao.findPhotoReview(session, param);
+        session.close();
+        return reviews;
     }
 }

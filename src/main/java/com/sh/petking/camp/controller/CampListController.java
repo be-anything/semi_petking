@@ -49,7 +49,6 @@ public class CampListController extends HttpServlet {
         // 값 가져오기 - campList
         List<CampVo> camps = campService.findAll(param);
 
-
         // wishList - 사용자 id로 찾기
         User loginUser = (User) req.getSession().getAttribute("loginUser");
         System.out.println(loginUser);
