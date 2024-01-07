@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center text-center text-black bg-light-pink p-2 hover:bg-white rounded-full group">
+                <a href="${pageContext.request.contextPath}/user/grade?id=${loginUser.id}" class="flex items-center text-center text-black bg-light-pink p-2 hover:bg-white rounded-full group">
                     <span class="flex-1 whitespace-nowrap">포인트 000점</span>
                 </a>
             </li>
