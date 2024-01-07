@@ -5,6 +5,17 @@
 /*    text-align:center;*/
 /*    !*width:30%;*!*/
 /*}*/
+
+table
+{
+    border : 1px solid black;
+}
+tr{
+    border : 1px none black;
+}
+td{
+    border : none;
+}
 #calendarTest{
     border:1px solid #BDBDBD;
     text-align:center;

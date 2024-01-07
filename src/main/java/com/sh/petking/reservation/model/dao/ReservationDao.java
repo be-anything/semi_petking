@@ -2,10 +2,12 @@ package com.sh.petking.reservation.model.dao;
 
 
 import com.sh.petking.reservation.model.entity.Reservation;
+import com.sh.petking.room.model.entity.Room;
 import com.sh.petking.room.model.vo.RoomVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 public class ReservationDao
 {
@@ -27,11 +29,15 @@ public class ReservationDao
         return session.selectOne("reservation.findById",id);
     }
 
-    public List<RoomVo> findByCampId(SqlSession session, long campId)
+    public List<RoomVo> findByCampId(SqlSession session, Map<String, Object> params)
     {
-        System.out.println("ReservationDao , 4번 캠핑장 객실리스트 출력");
-        return session.selectList("reservation.findByCampId",campId);
+        System.out.println("ReservationDao - 캠핑장 객실리스트 출력");
+        return session.selectList("reservation.findByCampId",params);
     }
 
 
+    public List<Reservation> findAbleRoom(SqlSession session, Map<String, Object> params) {
+        System.out.println("ReservationDao , findAbleRoom 대여 가능한 객실 출력");
+        return session.selectList("reservation.findAbleRoom",params);
+    }
 }
