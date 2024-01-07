@@ -3,26 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="camp">
-    <select id="findAll" resultMap="campVoMap">
+    <select id="findAll" resultType="campVo">
         select
             c.*,
-            ct.id tag_id,
-            ct.name tag_name,
-            cwt.camp_id camp_id,
             (select count(*) from review where camp_id = c.id) review_count,
             (select count(*) from wish where camp_id = c.id) wish_count
         from
             camp c
-                left join camp_with_tag cwt
-                    on c.id = cwt.camp_id
-                left join camp_tag ct
-                    on cwt.tag_id = ct.id
-                left join room r
-                    on c.id = r.camp_id
-                left join camp_with_service cws
-                    on c.id = cws.camp_id
-                left join camp_service cs
-                    on cws.service_id = cs.id
         <where>
             <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
                 AND c.${searchType} like '%' || #{searchKeyword} || '%'
@@ -301,4 +288,18 @@
         where
             id = #{id}
     </update>
+    <select id="findNewCampAll" resultType="camp">
+        SELECT *
+            FROM (
+                SELECT
+                    camp.*,
+                    RANK() OVER (ORDER BY id) AS ranking
+                FROM
+                    camp
+                WHERE
+                    camp_state = 1
+            ) ranked_camps
+                WHERE
+                    ranking  &lt;= 10
+    </select>
 </mapper>

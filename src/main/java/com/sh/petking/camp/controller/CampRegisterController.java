@@ -42,7 +42,7 @@ public class CampRegisterController extends HttpServlet {
 
         // 비밀번호 암호화하기
         businessPassword = PetkingUtils.getEncryptedPassword(businessPassword, businessId);
-        Camp camp = new Camp(0L, businessId, businessPassword, businessNumber, businessName, campName, campIntro, campPhone, campAddr, campLcLa, campLcLo, "default.png", "default.png", 0, null);
+        Camp camp = new Camp(0L, businessId, businessPassword, businessNumber, businessName, campName, campIntro, campPhone, campAddr, campLcLa, campLcLo, "_default.png", "_default.png", 0, null);
         System.out.println(camp);
 
         // 2. 업무로직

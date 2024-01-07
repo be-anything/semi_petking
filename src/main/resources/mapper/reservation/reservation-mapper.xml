@@ -128,4 +128,100 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <select id="findByDonReservUserId" resultType="reservationVo">
+        select
+            r.*,
+            (select camp_name from camp where id = r.camp_id) camp_name,
+            (select camp_renamed_img from camp where id = r.camp_id) camp_renamed_img,
+            (select room_name from room where id = r.room_id) room_name
+        from
+            reservation r
+        where
+            user_id = #{userId}
+            and
+            status = 1
+            and
+            end_date <![CDATA[<]]> sysdate
+        order by
+            end_date desc
+    </select>
+    <select id="getTotalDonReservCount" resultType="_int">
+        select
+            count(*)
+        from
+            reservation r
+        where
+            user_id = #{userId}
+            and
+            status = 1
+            and
+            end_date <![CDATA[<]]> sysdate
+    </select>
+    <select id="getTotalProcessReservCount" resultType="_int">
+        select
+            count(*)
+        from
+            reservation r
+        where
+            user_id = #{userId}
+            and
+            status = 1
+            and
+            start_date <![CDATA[>=]]> sysdate
+    </select>
+    <select id="findByProcessReservUserId" resultType="reservationVo">
+        select
+            r.*,
+            (select camp_name from camp where id = r.camp_id) camp_name,
+            (select camp_renamed_img from camp where id = r.camp_id) camp_renamed_img,
+            (select room_name from room where id = r.room_id) room_name
+        from
+            reservation r
+        where
+            user_id = #{userId}
+            and
+            status = 1
+            and
+            start_date <![CDATA[>=]]> sysdate
+        order by
+            end_date desc
+    </select>
+    <select id="getTotalCancelReservCount" resultType="_int">
+        select
+            count(*)
+        from
+            reservation r
+        where
+            user_id = #{userId}
+            and
+            status = 0
+    </select>
+    <select id="findByCancelReservUserId" resultType="reservationVo">
+        select
+            r.*,
+            (select camp_name from camp where id = r.camp_id) camp_name,
+            (select camp_renamed_img from camp where id = r.camp_id) camp_renamed_img,
+            (select room_name from room where id = r.room_id) room_name
+        from
+            reservation r
+        where
+            user_id = #{userId}
+            and
+            status = 0
+        order by
+            end_date desc
+    </select>
 </mapper>

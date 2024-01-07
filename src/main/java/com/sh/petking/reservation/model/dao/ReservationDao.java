@@ -2,8 +2,13 @@ package com.sh.petking.reservation.model.dao;
 
 
 import com.sh.petking.reservation.model.entity.Reservation;
+<<<<<<< HEAD
 import com.sh.petking.room.model.entity.Room;
+=======
+import com.sh.petking.reservation.model.vo.ReservationVo;
+>>>>>>> 7492462b87afb1d2f3878ed20940a43340e0b223
 import com.sh.petking.room.model.vo.RoomVo;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -36,8 +41,45 @@ public class ReservationDao
     }
 
 
+<<<<<<< HEAD
     public List<Reservation> findAbleRoom(SqlSession session, Map<String, Object> params) {
         System.out.println("ReservationDao , findAbleRoom 대여 가능한 객실 출력");
         return session.selectList("reservation.findAbleRoom",params);
+=======
+    public List<ReservationVo> findByDonReservUserId(SqlSession session, Map<String, Object> param) {
+        int page = (int) param.get("page");
+        int limit = (int) param.get("limit");
+        int offset = (page - 1) * limit;
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return session.selectList("reservation.findByDonReservUserId", param, rowBounds);
+    }
+
+    public int getTotalDonReservCount(SqlSession session, Map<String, Object> param) {
+        return session.selectOne("reservation.getTotalDonReservCount", param);
+    }
+
+    public int getTotalProcessReservCount(SqlSession session, Map<String, Object> param) {
+        return session.selectOne("reservation.getTotalProcessReservCount", param);
+    }
+
+    public List<ReservationVo> findByProcessReservUserId(SqlSession session, Map<String, Object> param) {
+        int page = (int) param.get("page");
+        int limit = (int) param.get("limit");
+        int offset = (page - 1) * limit;
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return session.selectList("reservation.findByProcessReservUserId", param, rowBounds);
+    }
+
+    public int getTotalCancelReservCount(SqlSession session, Map<String, Object> param) {
+        return session.selectOne("reservation.getTotalCancelReservCount", param);
+    }
+
+    public List<ReservationVo> findByCancelReservUserId(SqlSession session, Map<String, Object> param) {
+        int page = (int) param.get("page");
+        int limit = (int) param.get("limit");
+        int offset = (page - 1) * limit;
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return session.selectList("reservation.findByCancelReservUserId", param, rowBounds);
+>>>>>>> 7492462b87afb1d2f3878ed20940a43340e0b223
     }
 }

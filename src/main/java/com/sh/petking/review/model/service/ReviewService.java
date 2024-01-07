@@ -1,10 +1,13 @@
 package com.sh.petking.review.model.service;
 
+import com.sh.petking.board.model.entity.Attachment;
+import com.sh.petking.board.model.entity.BoardAttach;
+import com.sh.petking.board.model.vo.AttachmentVo;
 import com.sh.petking.review.model.dao.ReviewDao;
-import com.sh.petking.review.model.entity.Review;
 import com.sh.petking.review.model.vo.ReviewVo;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -63,5 +66,79 @@ public class ReviewService {
             session.close();
         }
         return review;
+    }
+
+    public int insertReview(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        ReviewVo review = (ReviewVo) param.get("review");
+        List<Attachment> attachments = (List<Attachment>) param.get("attachments");
+
+        try {
+            // review 테이블에 저장
+            StringBuilder csvTag = new StringBuilder();
+            for(String tag : review.getTags()){
+                csvTag.append(tag).append(",");
+            }
+            review.setReviewTag(String.valueOf(csvTag));
+            System.out.println(review.getReviewTag());
+
+
+            result = reviewDao.insertReview(session, review);
+            // 방금 작성된 리뷰의 id 가져오기
+            System.out.println(review.getId());
+
+            // attach 테이블에 저장
+            // board-attach 테이블에 저장하기 위해 값 가져와서 셋팅
+            List<BoardAttach> boardAttaches = new ArrayList<>();
+            if(!attachments.isEmpty()){
+                for (Attachment attachment: attachments){
+                    result = reviewDao.insertAttachment(session, attachment);
+                    System.out.println(attachment);
+                    BoardAttach boardAttach = new BoardAttach(0L, attachment.getId(), review.getId(), 2);
+                    boardAttaches.add(boardAttach);
+                    // board-attach 테이블에 저장하기
+                    result = reviewDao.insertBoardAttach(session, boardAttach);
+                }
+            }
+
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        System.out.println(review.getReviewTag());
+        return result;
+    }
+
+    public List<ReviewVo> findByUserId(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<ReviewVo> reviews = reviewDao.findByUserId(session, param);
+        session.close();
+        return reviews;
+    }
+
+    public int getTotalUserReview(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = reviewDao.getTotalUserReview(session, param);
+        session.close();
+        return totalCount;
+    }
+
+    public ReviewVo findByIdWithAttach(Long id) {
+        SqlSession session = getSqlSession();
+        ReviewVo review = reviewDao.findByIdWithAttach(session, id);
+        System.out.println(review);
+        session.close();
+        return review;
+    }
+
+    public int getTotalReview(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = reviewDao.getTotalReview(session, param);
+        session.close();
+        return totalCount;
     }
 }

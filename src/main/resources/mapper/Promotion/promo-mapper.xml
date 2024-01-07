@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="promo">
+<!-- 이 파일 자체를 사용하지 마시구 복사해서 사용해주세요 -->
+
+    <select id="findPromoAll" resultMap="campPromotionVoMap">
+        select
+            p.promo_id id,
+            c.id camp_id,
+            c.camp_name campName,
+            c.camp_renamed_img campImg
+        from
+            camp c left join camp_promotion p
+                on c.id = p.camp_id
+        where
+            p.promo_state = 1
+    </select>
+    <resultMap id="campPromotionVoMap" type="campPromotionVo">
+        <id column="id" property="promoId"/>
+        <association property="camp" javaType="camp">
+            <id column="camp_id" property="id"/>
+            <result column="campName" property="campName"/>
+            <result column="campImg" property="campRenamedImg"/>
+        </association>
+    </resultMap>
+</mapper>

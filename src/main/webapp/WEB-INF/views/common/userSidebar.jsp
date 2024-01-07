@@ -10,7 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<div class="flex mt-10 justify-between items-center mx-auto max-w-8xl rounded-lg bg-gray1 mb-10 relative">
+<div class="flex mt-10 justify-between items-center mx-auto max-w-8xl rounded-lg mb-10 relative">
 <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
     <span class="sr-only">Open sidebar</span>
     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center text-center text-black bg-light-pink p-2 hover:bg-white rounded-full group">
+                <a href="${pageContext.request.contextPath}/user/grade?id=${loginUser.id}" class="flex items-center text-center text-black bg-light-pink p-2 hover:bg-white rounded-full group">
                     <span class="flex-1 whitespace-nowrap">포인트 000점</span>
                 </a>
             </li>
@@ -42,17 +42,17 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="${pageContext.request.contextPath}/user/userReservation" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="flex-1 whitespace-nowrap">예약 내역</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="${pageContext.request.contextPath}/user/userReviewList?userId=${loginUser.id}" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="flex-1 whitespace-nowrap">리뷰 내역</span>
                 </a>
             </li>
             <li>
-                <a href="" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="${pageContext.request.contextPath}/user/userAskList?userId=${loginUser.id}" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="flex-1 whitespace-nowrap">문의 내역</span>
                 </a>
             </li>

@@ -48,19 +48,24 @@ public class CampListController extends HttpServlet {
 
         // 값 가져오기 - campList
         List<CampVo> camps = campService.findAll(param);
-        req.setAttribute("camps", camps);
-        System.out.println(camps);
+
 
         // wishList - 사용자 id로 찾기
         User loginUser = (User) req.getSession().getAttribute("loginUser");
         System.out.println(loginUser);
         if(loginUser != null) {
-            List<WishVo> wishes = wishService.findByUserId(loginUser.getId());
-            if(wishes.size() > 0) {
-                req.setAttribute("wishes", wishes);
-                System.out.println(wishes);
+            List<Wish> wishes = wishService._findByUserId(loginUser.getId());
+            for (Wish wish: wishes) {
+                for(CampVo camp: camps){
+                    System.out.println("찜" + wish.getCampId());
+                    System.out.println("캠핑장" + camp.getId());
+                    camp.setWish(camp.getId() == wish.getCampId());
+                }
             }
         }
+
+        req.setAttribute("camps", camps);
+        System.out.println(camps);
 
         // 페이지바
         int totalCount = campService.getTotalCount(param);

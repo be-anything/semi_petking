@@ -1,7 +1,9 @@
 package com.sh.petking.user.model.service;
 
+import com.sh.petking.camp.model.vo.CampVo;
 import com.sh.petking.pet.model.entity.Pet;
 import com.sh.petking.user.model.dao.UserDao;
+import com.sh.petking.user.model.entity.Point;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.vo.UserVo;
 import org.apache.ibatis.session.SqlSession;
@@ -136,5 +138,20 @@ public class UserService {
         User user = userDao.findByEmail(session, email);
         session.close();
         return user;
+    }
+
+    public UserVo findGradeId(String id) {
+        SqlSession session = getSqlSession();
+        UserVo userVo = userDao.findGradeId(session, id);
+        session.close();
+        return userVo;
+    }
+
+    public List<Point> findPointAll(String id) {
+        SqlSession session = getSqlSession();
+        List<Point> points = userDao.findPointAll(session, id);
+        System.out.println(points);
+        session.close();
+        return points;
     }
 }

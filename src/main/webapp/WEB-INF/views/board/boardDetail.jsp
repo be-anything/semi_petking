@@ -79,7 +79,7 @@
                 </div>
                 <div class="flex items-center justify-end px-3 py-2 border-t">
                     <button type="submit"
-                            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800">
+                            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-black bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800">
                         댓글 등록
                     </button>
                 </div>
@@ -105,7 +105,7 @@
                             </p>
                         </td>
                         <td class="px-6 py-4">
-                            <c:if test="${loginUser.id eq comment.userId || loginUser.role eq Role.A}">
+                            <c:if test="${(loginUser.id eq comment.userId || loginUser.role eq Role.A) && loginUser.id != null}">
                                 <div class="flex">
                                     <a href="javascript:confirm('정말 삭제하시겠습니까? 😲') && document.boardCommentDeleteFrm${comment.id}.submit();" class="font-medium text-red-600 hover:underline ms-3">삭제하기</a>
                                 </div>

@@ -21,6 +21,6 @@ public class AdminReviewDeleteController extends HttpServlet {
         System.out.println(result);
         req.getSession().setAttribute("msg", "리뷰를 삭제했습니다.");
 
-        resp.sendRedirect(req.getContextPath() + "/review/reviewList");
+        resp.sendRedirect(req.getContextPath() + "/admin/reviewList");
     }
 }
