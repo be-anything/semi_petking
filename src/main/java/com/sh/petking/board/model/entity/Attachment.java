@@ -2,10 +2,23 @@ package com.sh.petking.board.model.entity;
 
 import com.sh.petking.board.model.vo.BoardVo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Attachment{
     private long id;
     private String originalName;
     private String renamedName;
+
+    List<Attachment> attachments = new ArrayList<>();
+
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
+    }
 
     public Attachment() {
     }
@@ -47,5 +60,9 @@ public class Attachment{
                 ", originalName='" + originalName + '\'' +
                 ", renamedName='" + renamedName + '\'' +
                 '}';
+    }
+
+    public void addAttachment(Attachment attach) {
+        this.attachments.add(attach);
     }
 }

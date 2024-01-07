@@ -5,23 +5,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 const previewImg = () => {
     document.querySelectorAll(".campImg").forEach((img) => {
-        img.addEventListener('click', () => {
-            const btn = e.target;
-            const img = btn.files[0];
-            const imgView = btn.parentElement;
-            const text = btn.previousElementSibling;
-
-            const loadImg = (img) => {
-                const imgReader = new FileReader();
-                imgReader.onload = (e) => {
-                    imgView.style["backgroundImage"] =  "url('" + e.target.result + "')";
-                };
-                imgReader.readAsDataURL(img);
-                text.style.display = 'none';
-            }
-            loadImg(img);
-        });
-
         img.addEventListener('change', (e) => {
             const btn = e.target;
             const img = btn.files[0];
@@ -189,16 +172,6 @@ document.querySelector("#updateDetailBtn").addEventListener('click', (e) => {
         }
     });
 });
-
-
-
-
-
-
-
-
-
-
 
 
 

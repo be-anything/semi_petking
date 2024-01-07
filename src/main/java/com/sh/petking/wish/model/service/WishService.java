@@ -42,13 +42,19 @@ public class WishService {
         return result;
     }
 
+    public List<Wish> _findByUserId(String userId) {
+        SqlSession session = getSqlSession();
+        List<Wish> wishes = wishDao._findByUserId(session, userId);
+        session.close();
+        return wishes;
+    }
+
     public List<WishVo> findByUserId(String userId) {
         SqlSession session = getSqlSession();
         List<WishVo> wishes = wishDao.findByUserId(session, userId);
         session.close();
         return wishes;
     }
-
     public List<Wish> findByUserIdCampId(Map<String, Object> param) {
         SqlSession session = getSqlSession();
         List<Wish> wishes = wishDao.findByUserIdCampId(session, param);

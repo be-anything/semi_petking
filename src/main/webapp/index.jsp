@@ -4,6 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
+<div class="h-screen w-full bg-gray1">
+
+</div>
+
+
 <link rel="stylesheet" href="https://unpkg.com/splide@3.0.0/dist/css/splide.min.css">
 <style>
     .splide__slide {
