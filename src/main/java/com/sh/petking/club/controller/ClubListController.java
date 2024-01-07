@@ -2,6 +2,8 @@ package com.sh.petking.club.controller;
 
 import com.sh.petking.club.model.entity.Club;
 import com.sh.petking.club.model.service.ClubService;
+import com.sh.petking.user.model.entity.User;
+import com.sh.petking.wish.model.entity.Wish;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
