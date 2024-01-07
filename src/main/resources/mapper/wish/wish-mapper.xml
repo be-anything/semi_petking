@@ -23,6 +23,14 @@
         where
             w.user_id = #{userId}
     </select>
+    <select id="_findByUserId" resultType="wish">
+        select
+            w.*
+        from
+            wish w
+        where
+            w.user_id = #{userId}
+    </select>
     <resultMap id="wishVoMap" type="wishVo">
         <result column="user_id" property="userId" />
         <result column="wish_count" property="wishCount"/>

@@ -12,6 +12,9 @@ public class WishDao {
         return session.selectList("wish.findAll");
     }
 
+    public List<Wish> _findByUserId(SqlSession session, String userId) {
+        return session.selectList("wish._findByUserId", userId);
+    }
     public List<WishVo> findByUserId(SqlSession session, String userId) {
         return session.selectList("wish.findByUserId", userId);
     }

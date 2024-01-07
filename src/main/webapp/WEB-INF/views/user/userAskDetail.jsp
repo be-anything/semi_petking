@@ -27,10 +27,10 @@
         <h6 class="mb-2 text-xl tracking-tight text-gray-900 ">${ask.askContent}</h6>
 
         <%-- 작성자 본인과 관리자에게만 노출이 되어야 한다.--%>
-        <c:if test="${loginMember.role eq Role.A or loginMember.id eq board.memberId}">
+        <c:if test="${loginUser.role eq Role.A or loginUser.id eq ask.userId}">
             <div class="flex justify-end">
                 <button type="button"
-                        onclick="location.href = '${pageContext.request.contextPath}/board/BoardUpdate?id=${board.id}'"
+                        onclick="location.href = '${pageContext.request.contextPath}/ask/BoardUpdate?id=${ask.id}'"
                         class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
                     수정
                 </button>
