@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/user/grade")
+@WebServlet("/user/userGrade")
 public class UserGradeController extends HttpServlet {
     private UserService userService = new UserService();
 
@@ -23,9 +23,9 @@ public class UserGradeController extends HttpServlet {
         UserVo userVo = userService.findGradeId(id);
         req.setAttribute("userVo", userVo);
 
-        List<Point> point = userService.findPointAll(id);
-        System.out.println(point);
-        req.setAttribute("point",point);
+        List<Point> points = userService.findPointAll(id);
+        System.out.println(points);
+        req.setAttribute("points",points);
 
         req.getRequestDispatcher("/WEB-INF/views/user/userGrade.jsp").forward(req, resp);
     }

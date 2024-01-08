@@ -27,8 +27,8 @@
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/user/grade?id=${loginUser.id}" class="flex items-center text-center text-black bg-light-pink p-2 hover:bg-white rounded-full group">
-                    <span class="flex-1 whitespace-nowrap">포인트 000점</span>
+                <a href="${pageContext.request.contextPath}/user/userGrade?id=${loginUser.id}" class="flex items-center text-center text-black bg-light-pink p-2 hover:bg-white rounded-full group">
+                    <span class="flex-1 whitespace-nowrap">보유 포인트 ${pointSum}점</span>
                 </a>
             </li>
             <li>
