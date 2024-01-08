@@ -71,7 +71,6 @@
             <div class="sm:col-span-2">
                 <label for="reviewTitle" class="block mb-2 text-sm font-medium text-gray-900">제목</label>
                 <input type="text" name="reviewTitle" id="reviewTitle"
-                       onclick="'${loginUser.id}' || alert('로그인 후 문의 작성하세요1.(임시)');"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="제목을 작성하세요." required>
             </div>
             <div class="sm:col-span-2">
@@ -178,7 +177,6 @@
             <div class="sm:col-span-2">
                 <label for="reviewContent" class="block mb-2 text-sm font-medium text-gray-900">내용</label>
                 <textarea id="reviewContent" name="reviewContent"
-                          onclick="'${loginUser.id}' || alert('로그인 후 문의 작성하세요2.(임시)');"
                           rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500" placeholder="내용을 작성하세요." required></textarea>
             </div>
             <input type="hidden" name="campId" value="${campId}">

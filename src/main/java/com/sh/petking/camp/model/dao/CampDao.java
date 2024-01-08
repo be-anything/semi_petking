@@ -110,4 +110,8 @@ public class CampDao {
     public List<Camp> findNewCampAll(SqlSession session) {
         return session.selectList("camp.findNewCampAll");
     }
+
+    public int updateCampState(SqlSession session, Camp camp) {
+        return session.update("camp.updateCampState", camp);
+    }
 }

@@ -13,10 +13,10 @@
 <jsp:include page="/WEB-INF/views/common/userSidebar.jsp"/> <%-- 메뉴탭 --%>
 
     <%-- 회원정보 --%>
-    <div class="w-full h-full absolute top-0 right-0 sm:grid sm:grid-cols-2 sm:px-0 items-center">
-            <div class="w-2/3 flex items-center justify-center mx-auto lg:py-0 absolute left-0 top-0">
+<div class="w-full flex ml-80 items-start">
+            <div class="flex w-full items-center justify-center mx-auto lg:py-0 ">
                 <div class="w-full bg-white rounded-lg shadow my-4 sm:max-w-md xl:p-0">
-                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <div class="space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">마이페이지</h1>
             <form name="userUpdateFrm" action="${pageContext.request.contextPath}/user/userUpdate" method="post" class="space-y-4 md:space-y-6">
                 <div id="photo-container" class="w-full flex flex-col items-center"></div>
@@ -48,10 +48,9 @@
                 <button type="submit" class="text-white w-full bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">정보 저장</button>
             </form>
         </div>
-    </div>
 </div>
 </div>
     <form action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm"></form>
     <script src="${pageContext.request.contextPath}/js/user/userDetail.js"></script>
 <jsp:include page="/WEB-INF/views/pet/petDetail.jsp"/> <%-- 펫정보 --%>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
