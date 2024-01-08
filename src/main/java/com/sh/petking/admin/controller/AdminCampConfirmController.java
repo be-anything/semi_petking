@@ -34,7 +34,7 @@ public class AdminCampConfirmController extends HttpServlet {
         Camp camp = campService.findById(id);
         camp.setCampState(campState);
         int result = campService.updateCamp(camp);
-        req.getSession().setAttribute("msg", "승인완료");
+        req.getSession().setAttribute("msg", "승인이 완료 되었습니다.");
         String url = "/admin/registList?id=" + id;
         if(campState == -1){
             Approve approve = new Approve();
