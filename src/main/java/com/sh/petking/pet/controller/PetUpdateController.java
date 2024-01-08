@@ -24,27 +24,15 @@ public class PetUpdateController extends HttpServlet {
         HttpSession session = req.getSession();
         User loginUser = (User) session.getAttribute("loginUser");
         String userId = loginUser.getId();
-//        String newPetName = req.getParameter("petName");
-//        String newPetAge1 = req.getParameter("petAge");
-//        int newPetAge = 0;
-//            if (newPetAge1 != null && newPetAge1.isEmpty()) {
-//                newPetAge = Integer.parseInt(newPetAge1);
-//            }
-//        String newPetGender = req.getParameter("petGender");
-//        String newNeutered = req.getParameter("neutered");
-
         String petName = req.getParameter("newPetName");
         String petAge = req.getParameter("newPetAge");
         int petAge1 = 0;
             if (petAge != null) {
                 petAge1 = Integer.parseInt(petAge);
             }
-        String petGender = req.getParameter("newPetGender");
+        String petGender = req.getParameter("newGender");
         String neutered = req.getParameter("newNeutered");
-
-//        Pet pet = new Pet(userId, newPetName, newPetAge, newPetGender, newNeutered, null);
         Pet pet = new Pet(userId, petName, petAge1, petGender, neutered, null);
-        System.out.println("controller update : " + pet);
 
         // 업무로직
         int petUpdated = petService.updatePet(pet);
