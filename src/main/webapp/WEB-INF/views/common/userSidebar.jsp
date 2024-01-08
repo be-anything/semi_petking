@@ -70,10 +70,19 @@
             <li>
                 <button id="leaveButton" class="">회원탈퇴</button>
             </li>
+            <button onclick="openReasonPage()">회원 탈퇴하기</button>
+
+            <%-- test --%>
+            <script>
+                function openReasonPage() {
+                    var reasonPage = window.open("deleteReason.jsp", "reasonPage", "width=400, height=300");
+                }
+            </script>
 
         </ul>
     </div>
 </aside>
 <form action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm"></form>
 <script src="${pageContext.request.contextPath}/js/user/userDelete.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/userDelete1.js"></script>
 

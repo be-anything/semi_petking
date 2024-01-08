@@ -11,7 +11,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%-- 반려동물정보 --%>
-<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
+<div class="flex mt-10 justify-right items-center mx-auto max-w-8xl rounded-lg mb-10 relative">
     <div class="w-full bg-white rounded-lg shadow my-4 sm:max-w-md xl:p-0">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
@@ -70,16 +70,16 @@
 
             <%-- 정보수정하기 --%>
             <c:if test="${not empty pet}">
-                <p class="text-sm text-green"><b>정보 수정을 원하시면 아래에 작성 후 수정버튼을 눌러주세요😊</b></p>
+                <p class="text-base text-green"><b>정보 수정을 원하시면 아래에 작성 후 수정버튼을 눌러주세요😊</b></p>
                 <form name="petUpdateFrm" action="${pageContext.request.contextPath}/pet/petUpdate" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="userId" value="${pet.userId}">
                     <div>
                         <label for="newPetName" class="block mb-2 text-sm font-medium text-gray-900">반려동물 이름</label>
-                        <input type="text" name="newPetName" id="newPetName" value="" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                        <input type="text" name="newPetName" id="newPetName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
                     </div>
                     <div>
                         <label for="newPetAge" class="block mb-2 text-sm font-medium text-gray-900">반려동물 나이</label>
-                        <input type="number" name="newPetAge" id="newPetAge" value="" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                        <input type="number" name="newPetAge" id="newPetAge" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
                     </div>
                     <div>
                         <fieldset>

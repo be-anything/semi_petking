@@ -38,6 +38,7 @@ public class PetService {
         int result = 0;
         SqlSession session = getSqlSession();
         try {
+            System.out.println("service update" + pet);
             result = petDao.updatePet(session, pet);
                 session.commit();
         } catch (Exception e) {
