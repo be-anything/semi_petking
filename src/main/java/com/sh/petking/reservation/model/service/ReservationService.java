@@ -13,14 +13,14 @@ import java.util.Map;
 
 import static com.sh.petking.common.SqlSessionTemplate.getSqlSession;
 
-public class ReservationService
-{
+public class ReservationService {
     private ReservationDao reservationDao = new ReservationDao();
+
     //0105 캠핑장 아이디로 객실 들 찾기
     public List<RoomVo> findByCampId(Map<String, Object> params) {
 
         SqlSession session = getSqlSession();
-        List<RoomVo> room = reservationDao.findByCampId(session,params);
+        List<RoomVo> room = reservationDao.findByCampId(session, params);
         session.close();
         return room;
     }
@@ -34,50 +34,52 @@ public class ReservationService
         return reservation;
 
     }
-    /**
-     * 사용자 아이디로 예약내역 조회하기
-     * @param id
-     * @return
-     */
-    public List <ReservationVo> findByDonReservUserId(Map<String, Object> param) {
-        SqlSession session = getSqlSession();
-        List<ReservationVo> reservations = reservationDao.findByDonReservUserId(session, param);
-        session.close();
-        return reservations;
-    }
 
-    public int getTotalDonReservCount(Map<String, Object> param) {
-        SqlSession session = getSqlSession();
-        int totalCount = reservationDao.getTotalDonReservCount(session, param);
-        session.close();
-        return totalCount;
-    }
+        /**
+         * 사용자 아이디로 예약내역 조회하기
+         * @param
+         * @return
+         */
+        public List<ReservationVo> findByDonReservUserId (Map < String, Object > param){
+            SqlSession session = getSqlSession();
+            List<ReservationVo> reservations = reservationDao.findByDonReservUserId(session, param);
+            session.close();
+            return reservations;
+        }
 
-    public int getTotalProcessReservCount(Map<String, Object> param) {
-        SqlSession session = getSqlSession();
-        int totalCount = reservationDao.getTotalProcessReservCount(session, param);
-        session.close();
-        return totalCount;
-    }
+        public int getTotalDonReservCount (Map < String, Object > param){
+            SqlSession session = getSqlSession();
+            int totalCount = reservationDao.getTotalDonReservCount(session, param);
+            session.close();
+            return totalCount;
+        }
 
-    public List<ReservationVo> findByProcessReservUserId(Map<String, Object> param) {
-        SqlSession session = getSqlSession();
-        List<ReservationVo> reservations = reservationDao.findByProcessReservUserId(session, param);
-        session.close();
-        return reservations;
-    }
+        public int getTotalProcessReservCount (Map < String, Object > param){
+            SqlSession session = getSqlSession();
+            int totalCount = reservationDao.getTotalProcessReservCount(session, param);
+            session.close();
+            return totalCount;
+        }
 
-    public int getTotalCancelReservCount(Map<String, Object> param) {
-        SqlSession session = getSqlSession();
-        int totalCount = reservationDao.getTotalCancelReservCount(session, param);
-        session.close();
-        return totalCount;
-    }
+        public List<ReservationVo> findByProcessReservUserId (Map < String, Object > param){
+            SqlSession session = getSqlSession();
+            List<ReservationVo> reservations = reservationDao.findByProcessReservUserId(session, param);
+            session.close();
+            return reservations;
+        }
 
-    public List<ReservationVo> findByCancelReservUserId(Map<String, Object> param) {
-        SqlSession session = getSqlSession();
-        List<ReservationVo> reservations = reservationDao.findByCancelReservUserId(session, param);
-        session.close();
-        return reservations;
-    }
+        public int getTotalCancelReservCount (Map < String, Object > param){
+            SqlSession session = getSqlSession();
+            int totalCount = reservationDao.getTotalCancelReservCount(session, param);
+            session.close();
+            return totalCount;
+        }
+
+        public List<ReservationVo> findByCancelReservUserId (Map < String, Object > param){
+            SqlSession session = getSqlSession();
+            List<ReservationVo> reservations = reservationDao.findByCancelReservUserId(session, param);
+            session.close();
+            return reservations;
+        }
+
 }

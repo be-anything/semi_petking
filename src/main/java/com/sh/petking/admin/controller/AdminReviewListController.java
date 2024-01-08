@@ -37,7 +37,7 @@ public class AdminReviewListController extends HttpServlet {
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);
 
-        req.getRequestDispatcher("/WEB-INF/views/admin/reviewGallery.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/admin/reviewList.jsp").forward(req, resp);
 
     }
 }
