@@ -21,14 +21,14 @@ public class ClubService {
         return clubs; //결과값을 리턴
     }
 
-    public ClubVo findById(long id){
+    public ClubVo findById(Long id){
         SqlSession session = getSqlSession();
         ClubVo club = clubDao.findById(session, id);
         session.close();
         return club;
     }
 
-    public ClubVo findById(long id, boolean hasRead) {
+    public ClubVo findById(Long id, boolean hasRead) {
         SqlSession session = getSqlSession();
         ClubVo club = null;
         int result = 0;
@@ -99,7 +99,7 @@ public class ClubService {
         return result;
     }
 
-    public int deleteClub(long id) {
+    public int deleteClub(Long id) {
         int result = 0;
         SqlSession session = getSqlSession();
         try {

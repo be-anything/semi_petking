@@ -89,7 +89,7 @@ public class ClubDaoTest {
     @DisplayName("동아리 등록")
     @Test
     void test3(){
-        Club club = new Club('5', "최고동아리", "최고제목", "최고내용", null, "abcde");
+        Club club = new Club(5L, "최고동아리", "최고제목", "최고내용", null, "abcde");
         System.out.println(club);
         int result = clubDao.insertClub(session, club);
 

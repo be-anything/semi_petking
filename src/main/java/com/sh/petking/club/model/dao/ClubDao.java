@@ -13,14 +13,14 @@ public class ClubDao {
         return session.selectList("club.findAll");
     }
 
-    public ClubVo findById(SqlSession session, long id) {
+    public ClubVo findById(SqlSession session, Long id) {
         return session.selectOne("club.findById", id);
     }
     public int insertClub(SqlSession session, Club club) {
         return session.insert("club.insertClub", club);
     }
 
-    public int deleteClub(SqlSession session, long id) {
+    public int deleteClub(SqlSession session, Long id) {
         return session.delete("club.deleteClub", id);
     }
 
@@ -32,7 +32,7 @@ public class ClubDao {
         return session.insert("club.insertClubUsers", clubUsers);
     }
 
-    public int updateClubViewCount(SqlSession session, long id) {
+    public int updateClubViewCount(SqlSession session, Long id) {
         return session.update("board.updateClubViewCount", id);
     }
 }

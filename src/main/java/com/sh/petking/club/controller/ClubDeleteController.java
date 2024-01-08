@@ -17,7 +17,7 @@ public class ClubDeleteController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // 1. 사용자입력값 처리
-        long id = Long.parseLong(req.getParameter("id"));
+        Long id = Long.parseLong(req.getParameter("id"));
         // 2. 업무로직
         int result = clubService.deleteClub(id);
         req.getSession().setAttribute("msg", "동아리를 삭제했습니다. 🤗");
