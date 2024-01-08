@@ -24,6 +24,8 @@ $(document).ready(function()
     build();
     clickTd2();
     //clickEvent();
+    $('#testTable').css('border','1px solid yellow');
+
 })
 
 function clickEvent()
@@ -142,92 +144,120 @@ function build()
 
 
 //
-document.querySelector("#btn-check").addEventListener('click',(e)=>{
-    console.log("테스트용 조회 버튼 클릭!");
-    console.log("테스트용 - 4번 캠핑장 객실만 조회");
+document.querySelector("#btn-search").addEventListener('click',(e)=>{
+    console.log("테스트용 - 14번 캠핑장 객실만 조회");
     //const celebId = document.querySelector("#id").value;
-    const campId=11;
-    console.log("내가 검색할 캠핑장 아이디 값(campId) : "+campId);
+    //첫날
+    const firstDay = document.querySelector("#datepicker1").value;
+    //마지막날
+    const lastDay = document.querySelector("#datepicker2").value;
+    //임시, 객실 검색을 위한 특정 캠프 아이디를 넘겨준다.
+    const campId = document.querySelector("#campId").value;
+    console.log("조회할 날짜 첫날 : "+firstDay);
+    console.log("조회할 날짜 마지막 날 : "+lastDay);
+    console.log("객실 검색할 캠프 아이디 : "+campId);
+    console.log(firstDay.length);
+    console.log(lastDay.length);
+
+    if(firstDay.length<1 || lastDay.length<1 )
+    {
+        alert(`날짜를 선택해주세요.`);
+        return;
+    }
+    //혹은 lastDay가 firstDay와 같거나 작아서도(과거) 안된다. 무조건 1박이상이라 가정.
+    var date1 = new Date($("#datepicker1").datepicker("getDate"));
+    var date2 = new Date($("#datepicker2").datepicker("getDate"));
+    if(date2 <= date1)
+    {
+        alert(`숙박기간을 올바르게 선택해주세요.(최소 1박이상)`);
+        return;
+    }
+
 
     $.ajax({
         url:`${contextPath}/reservation/reservationRoomSearch`,
         data:{
-            campId:campId.value
+            campId:campId,
+            firstDay:firstDay,
+            lastDay:lastDay
         },
         success(rooms){
             //응답받은 json 데이터를 파싱(json.parse)후 , js 객체로 반환.
             console.log(rooms);
-            const tbody = document.querySelector("#celebs tbody");
+
+            if(rooms.length==0)
+            {
+                alert(`해당하는 객실은 0개입니다.`);
+                return;
+            }
+            const tbody = document.querySelector("#roomSearchResult tbody");
+            const thead =  document.querySelector("#roomSearchResult thead");
+            thead.innerHTML= '';
             tbody.innerHTML= '';
 
-            rooms.forEach(({roomName,roomType,roomDefaultPerson,roomMaximumPerson})=>
+            thead.innerHTML= ` 
+           
+                <tr>
+             
+            <tr>`;
+            tbody.innerHTML= '';
+
+            rooms.forEach(({id,roomName,roomIntro,roomType,roomDefaultPerson,roomMaximumPerson,roomDefaultFee,roomOverFee,roomRenamedImg})=>
             {
-                    tbody.innerHTML += `
+
+                tbody.innerHTML += `
                     <tr>
+                        <td><img id="roomImage" class="w-[200px] h-[100px]" src="${contextPath}/upload/room/${roomRenamedImg}"></td>
                         <td>${roomName}</td>
                         <td>${roomType}</td>
-                        <td>${roomDefaultPerson}</td>
-                        <td>${roomMaximumPerson}</td>
+                        <td>${roomDefaultPerson}명</td>
+                        <td>${roomMaximumPerson}명</td>
+                        <td>${roomDefaultFee}원</td>
+                        <td>${roomOverFee}원</td>
+                        <td><button id="btnReserve"
+                        onclick="location.href = '${contextPath}/reservation/ReservationProgress?id=${id}'"
+                        class="hover:text-white bg-white text-black border border-gray2 hover:bg-green font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2"> 
+                        예약</button></td>
                     </tr>`;
 
 
             });
-        },
-        //<td><img src="${contextPath}/images/celeb/${profile}"></td>
 
-        // success(rooms){
-        //     //응답받은 json 데이터를 파싱(json.parse)후 , js 객체로 반환.
-        //     console.log("------------------success------------------");
-        //     console.log(rooms);
-        //
-        //     //numbers.forEach(function(number) {
-        //     //     console.log(number);
-        //     // });
-        //     if(rooms)
-        //     {
-        //         // rooms.forEach(({
-        //         //                    roomAttachs: {
-        //         //                        id,
-        //         //                        roomid,
-        //         //                        origin,
-        //         //                        rename
-        //         //                    }
-        //         //                     // ,
-        //         //                     //  roominfo: {
-        //         //                     //      rid,
-        //         //                     //      rcampid,
-        //         //                     //      rname
-        //         //                     //  }
-        //         //                  }) => {
-        //         //     // console.log(`사진원본명 : ${origin}, 사진리네임명 : ${rename}, 방아이디 : ${rid}, 캠핑장번호 : ${rcampid},방이름 : ${rname}`);
-        //         //     console.log(`사진원본명 : ${origin}, 사진리네임명 : ${rename}`);
-        //         // });
-        //         const {roomAttachs,id,roomName,roomInfo} = rooms;
-        //         const table = document.querySelector("table#rooms");
-        //         table.querySelector(".room-id").innerHTML=id;
-        //         table.querySelector(".room-camp-id").innerHTML=roomInfo;
-        //         //table.querySelector(".room-name").innerHTML = `<img src="${contextPath}/images/celeb/${profile}"/>`;
-        //         table.querySelector(".room-name").innerHTML=roomName;
-        //
-        //     }
-        //     else
-        //     {
-        //         alert(`해당하는 객실이 없습니다.`);
-        //     }
-        // },
+        },
         error()
         {
-            console.log("reservation room search error");
+            console.log("reservation room  - search error");
+        }
+        ,
+        complete : function ()
+        {
+            //여기서 제이쿼리로 tbody 색상을 변경해본다.
+            console.log("끝났음!");
+            $("roomSearchResult").css("background",'red');
         }
 
     });
 });
+//
 
 
-function changeColor(){
-    $('#myTable tr').mouseover(function() {
+//https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_html&wr_id=240919
+//동적으로 생성된 버튼은 그 자체로 click이벤트가 먹히지 않기 때문에 미리 선언해둔 상위 객체에 바인딩[on]해야 한다고 한다.
+
+//https://code-study.tistory.com/38 버튼 순서 찾기..
+//https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_html&wr_id=257125&page=600
+$('#roomSearchResult').on('click','#btnReserve',function () {
+    let num = $('roomSearchResult > tbody > tr').index(this);
+    console.log("예약버튼누르기1.." + $(this).parent().parent().index());
+    console.log("예약버튼누르기2.." + $(this).parent().parent().html());
+
+})
+
+
+function changeColor() {
+    $('#myTable tr').mouseover(function () {
         $(this).addClass('changeColor');
-    }).mouseout(function() {
+    }).mouseout(function () {
         $(this).removeClass('changeColor');
     });
 
@@ -259,3 +289,34 @@ function clickTd2(){
 
 //https://www.codingfactory.net/10265
 //https://tcpschool.com/jquery/jq_elementTraversing_SiblingTraversing
+
+
+//
+// $(function(){
+//     $('#datepicker').datepicker();
+// })
+
+//https://jqueryui.com/datepicker/
+$(function() {
+    //input을 datepicker로 선언
+    $("#datepicker1,#datepicker2").datepicker({
+        dateFormat: 'yy-mm-dd' //달력 날짜 형태 년/월/일로 변경
+        ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+        ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
+        ,changeYear: true //option값 년 선택 가능
+        ,changeMonth: true //option값  월 선택 가능
+        ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+        //,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+        //,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
+        //,buttonText: "선택" //버튼 호버 텍스트
+        ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+        ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
+        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
+        ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
+        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
+        ,minDate: 0 //"-5Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+        ,maxDate: "+2M" //2달 후 까지 막아둠 //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+    });
+    //초기값을 오늘 날짜로 지정한다.
+    $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+});
