@@ -116,7 +116,7 @@ public class ReviewDao {
     }
 
     public int getTotalCampReview(SqlSession session, Map<String, Object> param) {
-        return session.selectOne("review.getTotalUserReview", param);
+        return session.selectOne("review.getTotalCampReview", param);
     }
 
     public List<ReviewVo> findByCampId(SqlSession session, Map<String, Object> param) {

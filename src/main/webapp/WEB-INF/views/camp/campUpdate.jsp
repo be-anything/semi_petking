@@ -31,6 +31,18 @@
         <input type="hidden" name="id" value="${camp.id}">
         <div class="px-5">
             <div class="">
+                <h1 class="text-2xl pt-8">내 캠핑장은 현재
+                    <c:if test="${camp.campState eq 1}">
+                        <span class="font-bold">등록 완료</span>
+                    </c:if>
+                    <c:if test="${camp.campState eq 0}">
+                        <span class="font-bold">등록 대기</span>
+                    </c:if>
+                    <c:if test="${camp.campState eq 2}">
+                        <span class="font-bold text-red">삭제 요청</span>
+                    </c:if>
+                    상태입니다.
+                </h1>
                 <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-10 sm:px-0 items-start">
                     <dl class="divide-y divide-gray-100">
                         <div class="px-4 py-4 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
@@ -73,11 +85,14 @@
                                    value="${camp.campPhone}"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
-                        <div class="px-4 py-4 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                            <div></div>
+                        <div class="px-6 py-4 sm:grid sm:grid-cols-2 sm:gap-2 sm:px-0">
+                            <button id="deleteBtn" type="button"
+                                    class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center mb-2">
+                                삭제 요청보내기
+                            </button>
                             <button id="updateBtn" type="submit"
-                                    class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
-                                수정하기
+                                    class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center mb-2">
+                                정보 수정하기
                             </button>
                         </div>
                     </dl>

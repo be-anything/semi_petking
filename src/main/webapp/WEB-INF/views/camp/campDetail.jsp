@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=378fbb0293da7feaa0ce71d64debff24"></script>
 
-<div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mt-10 mb-10">
+<div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-xl bg-gray1 mt-10 mb-10">
     <div>
         <div class="py-5 px-5">
             <div class="px-4 sm:px-0">
@@ -77,9 +77,9 @@
                                     예약하기
                                 </button>
                                 <%-- 임시 수정폼 --%>
-<%--                                <form name="campUpdateFrm" action="${pageContext.request.contextPath}/camp/campUpdate">--%>
-<%--                                    <input type="hidden" name="id" value="${camp.id}">--%>
-<%--                                </form>--%>
+                                <form name="campUpdateFrm" action="${pageContext.request.contextPath}/camp/campUpdate">
+                                    <input type="hidden" name="id" value="${camp.id}">
+                                </form>
                             </dd>
                         </div>
                     </dl>
@@ -162,29 +162,71 @@
                         </div>
                     </div>
                 </div>
+        </div>
+        </div>
 
-
-                <%-- 리뷰 --%>
-                <div class="text-xl font-medium leading-6 text-gray-900 mt-20 my-4 text-center">
-                    <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900"><span
-                            class="underline underline-offset-3 decoration-8 decoration-green">캠핑장 부가서비스 안내</span></h1>
-                </div>
-                <c:if test="${empty camp.campWithServices}">
-                    <div class="max-w-ful grid grid-cols-1 relative items-center justify-items-center">
-                        <p class="text-lg font-normal text-gray3 lg:text-xl mt-10">등록된 부가서비스가 없습니다.</p>
-                    </div>
-                </c:if>
-                <div class="mt-10 mb-100 grid grid-cols-2 md:grid-cols-${camp.campWithServices.size()} gap-4 justify-items-center">
-                    <c:forEach items="${camp.campWithServices}" var="service">
-                        <div class="w-[100px] h-[100px] max-w-full rounded-full bg-gray2 grid grid-cols-1 relative items-center justify-items-center">
-                            <img class="w-[60px]"
-                                 src="${pageContext.request.contextPath}/images/camp/${service.serviceImg}" alt="">
-                            <div class="text-center absolute top-full my-3">${service.serviceName}</div>
+    </div>
+</div>
+<%-- 리뷰 --%>
+<div class="max-w-6xl bg-white mx-auto">
+    <div class="container mx-auto my-6">
+        <div class="flex justify-start">
+            <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                캠핑로그
+            </h1>
+        </div>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">번호</th>
+                    <th scope="col" class="px-6 py-3">제목</th>
+                    <th scope="col" class="px-6 py-3">작성자 </th>
+                    <th scope="col" class="px-6 py-3">등록일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:if test="${reviews.size() != 0}">
+                    <c:forEach items="${reviews}" var="review" varStatus="vs">
+                        <div class="odd:bg-white even:bg-gray-50 border-b ">
+                            <tr>
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${review.id}</th>
+                                <td class="px-6 py-4">
+                                    <a href="${pageContext.request.contextPath}/review/reviewDetail?id=${review.id}"
+                                       class="hover:underline">${fn:escapeXml(review.reviewTitle)}</a>
+                                        <%-- 댓글 수 노출하기 --%>
+                                        <%--                            <c:if test="${review.askCommentCount}">--%>
+                                </td>
+                                <td class="px-6 py-4">${review.userId}</td>
+                                <td class="px-6 py-4">
+                                    <fmt:parseDate value="${review.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
+                                    <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/></td>
+                            </tr>
                         </div>
                     </c:forEach>
-                </div>
+                </c:if>
+                <c:if test="${reviews.size() == 0}">
+                    <div class="odd:bg-white even:bg-gray-50 border-b ">
+                        <tr >
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">등록된 리뷰가 없습니다.</th>
+                        </tr>
+                    </div>
+                </c:if>
+                </tbody>
+            </table>
         </div>
-        </div>
+    </div>
+
+    <div class="flex justify-center mt-6 mb-32">
+        <c:if test="${reviews.size() != 0}">
+        <nav aria-label="Page navigation example">
+            <ul class="flex items-center -space-x-px h-8 text-sm">
+                ${pagebar}
+            </ul>
+        </nav>
+        </c:if>
+        <c:if test="${reviews.size() == 0}">
+        </c:if>
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/camp/campDetail.js"></script>
