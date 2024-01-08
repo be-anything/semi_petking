@@ -1,9 +1,10 @@
 package com.sh.petking.review.model.entity;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Review {
+public class _Review {
     private Long id;
     private String userId;
     private Long campId;
@@ -13,22 +14,25 @@ public class Review {
     private String reviewContent;
     private Long viewCount;
     private Long likeCount;
-    private LocalDateTime regDate;
+    private LocalDate regDate;
 
-    public Review() {
+    public _Review() {
     }
 
-    public Review(Long id, String userId, Long campId, Long boardAttr, String reviewTag, String reviewTitle, String reviewContent, Long viewCount, Long likeCount, LocalDateTime regDate) {
-        this.id = id;
-        this.userId = userId;
-        this.campId = campId;
-        this.boardAttr = boardAttr;
-        this.reviewTag = reviewTag;
-        this.reviewTitle = reviewTitle;
-        this.reviewContent = reviewContent;
-        this.viewCount = viewCount;
-        this.likeCount = likeCount;
-        this.regDate = regDate;
+    @Override
+    public String toString() {
+        return "_Review{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", campId=" + campId +
+                ", boardAttr=" + boardAttr +
+                ", reviewTag='" + reviewTag + '\'' +
+                ", reviewTitle='" + reviewTitle + '\'' +
+                ", reviewContent='" + reviewContent + '\'' +
+                ", viewCount=" + viewCount +
+                ", likeCount=" + likeCount +
+                ", regDate=" + regDate +
+                '}';
     }
 
     public Long getId() {
@@ -103,27 +107,24 @@ public class Review {
         this.likeCount = likeCount;
     }
 
-    public LocalDateTime getRegDate() {
+    public LocalDate getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(LocalDateTime regDate) {
+    public void setRegDate(LocalDate regDate) {
         this.regDate = regDate;
     }
 
-    @Override
-    public String toString() {
-        return "Review{" +
-                "id=" + id +
-                ", userId='" + userId + '\'' +
-                ", campId=" + campId +
-                ", boardAttr=" + boardAttr +
-                ", reviewTag='" + reviewTag + '\'' +
-                ", reviewTitle='" + reviewTitle + '\'' +
-                ", reviewContent='" + reviewContent + '\'' +
-                ", viewCount=" + viewCount +
-                ", likeCount=" + likeCount +
-                ", regDate=" + regDate +
-                '}';
+    public _Review(Long id, String userId, Long campId, Long boardAttr, String reviewTag, String reviewTitle, String reviewContent, Long viewCount, Long likeCount, LocalDate regDate) {
+        this.id = id;
+        this.userId = userId;
+        this.campId = campId;
+        this.boardAttr = boardAttr;
+        this.reviewTag = reviewTag;
+        this.reviewTitle = reviewTitle;
+        this.reviewContent = reviewContent;
+        this.viewCount = viewCount;
+        this.likeCount = likeCount;
+        this.regDate = regDate;
     }
 }

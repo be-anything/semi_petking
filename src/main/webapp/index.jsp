@@ -59,10 +59,12 @@
             <ul class="splide__list">
                 <c:forEach items="${promotionVos}" var="promo" varStatus="vs">
                     <li class="splide__slide">
+                        <a href="${pageContext.request.contextPath}/camp/campDetail?id=${promo.camp.id}">
                         <div class="thumbnail">
                             <img src="${pageContext.request.contextPath}/upload/camp/${promo.camp.campRenamedImg}" alt="" />
                         </div>
                         <p>${promo.camp.campName}</p>
+                        </a>
                     </li>
                 </c:forEach>
             </ul>
@@ -77,10 +79,12 @@
             <ul class="splide__list">
                 <c:forEach items="${camps}" var="camp" varStatus="vs">
                     <li class="splide__slide">
+                        <a href="${pageContext.request.contextPath}/camp/campDetail?id=${camp.id}">
                         <div class="thumbnail">
                             <img src="${pageContext.request.contextPath}/upload/camp/${camp.campRenamedImg}" alt="" />
                         </div>
                         <p>${camp.campName}</p>
+                        </a>
                     </li>
                 </c:forEach>
             </ul>

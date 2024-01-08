@@ -7,18 +7,20 @@
 <div class="bg-white">
     <div class="pt-6">
         <!-- Image gallery -->
-        <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-${review.attachments.size()} h-[350px] lg:gap-x-4 lg:px-8">
-            <c:forEach items="${review.attachments}" var="attach">
-                <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-                    <img src="${pageContext.request.contextPath}/upload/review/${attach.renamedName}" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
-                </div>
-            </c:forEach>
-        </div>
-
+        <c:if test="${review.attachments.size() != 0}">
+            <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-${review.attachments.size()} h-[350px] lg:gap-x-4 lg:px-8">
+                <c:forEach items="${review.attachments}" var="attach">
+                    <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                        <img src="${pageContext.request.contextPath}/upload/review/${attach.renamedName}" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
+                    </div>
+                </c:forEach>
+            </div>
+        </c:if>
         <!-- Product info -->
         <div class="mx-auto max-w-2xl px-4 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16">
-            <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">${review.reviewTitle}</h1>
+            <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8 flex">
+                <h1 class="text-2xl w-[85%] font-bold tracking-tight text-gray-900 sm:text-3xl">${review.reviewTitle}</h1>
+                <span class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">조회수 : ${review.viewCount}</span>
             </div>
 
             <!-- Options -->
@@ -42,7 +44,7 @@
                     <div class="">
                         <ul class="space-y-2 text-sm">
                             <li class="relative inline-flex items-center justify-center">
-                                <button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                <button type="button" onclick="location.href='${pageContext.request.contextPath}/review/reviewUpdate?id=${review.id}'" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                                     리뷰 수정하기
                                 </button>
                             </li>
@@ -84,24 +86,74 @@
 
         </div>
         <div class="mx-auto mt-0 max-w-2xl lg:grid lg:max-w-7xl p-8 mb-12">
-            <form>
-                <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-                    <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                        <label for="comment" class="sr-only"></label>
-                        <textarea id="comment" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="댓글을 작성해주세요" required></textarea>
+            <%-- 사용자 댓글 출력 --%>
+            <div class="relative border border-gray-200 overflow-x-auto sm:rounded-lg mb-2">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                        총 ${review.reviewComments.size()}개의 댓글이 달렸습니다.
+                    </caption>
+                    <tbody>
+                    <c:forEach items="${review.reviewComments}" var="comment">
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row" class="w-3/5 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                ${comment.content}
+                            </th>
+                            <td class="px-6 py-4">
+                                ${comment.userId}
+                            </td>
+                            <td class="px-6 py-4">
+                            <td class="px-6 py-4">
+                                <fmt:parseDate value="${comment.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
+                                <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/>
+                            </td>
+                            <c:if test="${comment.userId == loginUser.id}">
+                                <td class="px-6 py-4 text-right">
+                                    <form name="commentDeleteFrm" action="${pageContext.request.contextPath}/review/reviewCommentDelete" method="post">
+                                        <input type="hidden" name="id" value="${comment.id}">
+                                        <input type="hidden" name="reviewId" value="${review.id}">
+                                        <button type="submit" class="font-medium text-red hover:underline">삭제</button>
+                                    </form>
+                                </td>
+                            </c:if>
+                        </tr>
+                    </c:forEach>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <c:if test="${loginUser != null || loginCamp != null}">
+                <form method="post" name="commentCreateFrm" action="${pageContext.request.contextPath}/review/reviewCommentCreate">
+                    <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                        <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                            <label for="content" class="sr-only"></label>
+                            <textarea id="content" name="content" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="댓글을 작성해주세요" required></textarea>
+<%--                            ID--%>
+<%--                            USER_ID--%>
+<%--                            REVIEW_ID--%>
+<%--                            CONTENT--%>
+<%--                            REG_DATE--%>
+
+                        </div>
+                        <input type="hidden" name="userId" value="${loginUser.id}">
+                        <input type="hidden" name="reviewId" value="${review.id}">
+                        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                            <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-black rounded-lg hover:focus:ring-4 hover:focus:ring-gray2 hover:bg-[#000]">
+                                댓글 등록
+                            </button>
+                        </div>
                     </div>
-                    <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-                        <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-black rounded-lg hover:focus:ring-4 hover:text-black hover:focus:ring-gray2 hover:bg-white">
-                            댓글 등록
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </c:if>
+
+
+
+
         </div>
     </div>
 </div>
 
 
-
+<script src="${pageContext.request.contextPath}/js/review/reviewDetail.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
