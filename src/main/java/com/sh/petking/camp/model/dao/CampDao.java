@@ -110,4 +110,20 @@ public class CampDao {
     public List<Camp> findNewCampAll(SqlSession session) {
         return session.selectList("camp.findNewCampAll");
     }
+
+    public int updateCampState(SqlSession session, Camp camp) {
+        return session.update("camp.updateCampState", camp);
+    }
+
+    public List<CampVo> findAllCampWithTag(SqlSession session, Map<String, Object> param) {
+        int page = (int) param.get("page");
+        int limit = (int) param.get("limit");
+        int offset = (page - 1) * limit;
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return session.selectList("camp.findAllCampWithTag", param, rowBounds);
+    }
+
+    public int getTotalCampWithTagCount(SqlSession session, Map<String, Object> param) {
+        return session.selectOne("camp.getTotalCampWithTagCount", param);
+    }
 }

@@ -1,6 +1,7 @@
 package com.sh.petking.index.controller;
 
 import com.sh.petking.camp.model.entity.Camp;
+import com.sh.petking.camp.model.entity.CampTag;
 import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
 import com.sh.petking.index.vo.CampPromotionVo;
@@ -22,8 +23,10 @@ public class IndexPromoContoller extends HttpServlet {
         List<CampPromotionVo> promotionVos = campService.finaPromoAll();
         req.setAttribute("promotionVos", promotionVos);
 
+        List<CampTag> tags = campService.findAllCampTag();
         List<Camp> camps = campService.findNewCampAll();
         req.setAttribute("camps", camps);
+        req.setAttribute("tags", tags);
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
 

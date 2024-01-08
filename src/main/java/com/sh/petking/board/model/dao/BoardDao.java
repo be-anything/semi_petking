@@ -68,4 +68,8 @@ public class BoardDao {
     public int deleteBoardComment(SqlSession session, long id) {
         return session.delete("board.deleteBoardComment", id);
     }
+
+    public int requestBoard(SqlSession session, long id) {
+        return session.insert("board.requestBoard", id);
+    }
 }

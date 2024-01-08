@@ -28,14 +28,6 @@
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css" rel="stylesheet">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
-    <script>
-        const contextPath = "${pageContext.request.contextPath}";
-        <c:if test="${msg != null}">
-        alert(`${msg}`); // 여러줄 입력이 가능하도록 `(백틱)으로 감싸야한다. 0104 test 용으로 복붙했어요
-        <c:remove var="msg" scope="session" />
-        </c:if>
-    </script>
-
 </head>
 <body>
 <div class="3xl:container">
@@ -51,8 +43,7 @@
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/room/roomList">객실목록(임시)</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/reservation/reservationMain">예약하기(임시)</a></div>
                 <c:if test="${loginUser.role eq 'A' }">
-                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userList">전체회원목록(임시)</a></div>
-                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/admin/reviewList">전체리뷰보기</a></div>
+                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userList">홈페이지관리</a></div>
                 </c:if>
                 <c:if test="${loginUser == null && loginCamp == null}">
                     <div class="text-black text-right font-normal mr-7 absolute right-0 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></div>

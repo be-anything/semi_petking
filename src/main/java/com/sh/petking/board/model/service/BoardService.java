@@ -170,4 +170,21 @@ public class BoardService {
         }
         return result;
     }
+
+    public int requestBoard(long id) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = boardDao.requestBoard(session, id);
+            session.commit();
+        }
+        catch(Exception e){
+            session.rollback();
+            throw e;
+        }
+        finally {
+            session.close();
+        }
+        return result;
+    }
 }

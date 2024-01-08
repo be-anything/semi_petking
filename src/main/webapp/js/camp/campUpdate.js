@@ -1,3 +1,24 @@
+// 캠핑장 삭제
+document.querySelector("#deleteBtn").addEventListener('click', (e) => {
+   const btn = e.target;
+   const frm = document.campUpdateFrm;
+   const id = frm.id;
+
+   if(confirm("정말 캠핑장 삭제요청하시겠습니까?")){
+       $.ajax({
+           url: `${contextPath}/camp/campDelete`,
+           method: 'post',
+           data : {
+               id : id.value
+           },
+           success(result) {
+               console.log("삭제 성공")
+           }
+       })
+   }
+});
+
+
 // 추가 이미지 미리보기 및 업로드 메세지 제거하기
 window.addEventListener('DOMContentLoaded', () => {
    previewImg();

@@ -5,27 +5,38 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <div class="mx-auto max-w-6xl mt-20">
-
-
-    <ul class="">
-        <li class="flex"> <!-- justify-evenly -->
-            <button type="button" class="text-black hover:text-white border border-gray2 hover:bg-black font-medium rounded-lg text-sm px-10 py-2.5 text-center me-2 mb-2">오토캠핑</button>
-            <button type="button" class="text-black hover:text-white border border-gray2 hover:bg-black font-medium rounded-lg text-sm px-10 py-2.5 text-center me-2 mb-2">카라반</button>
-            <button type="button" class="text-black hover:text-white border border-gray2 hover:bg-black font-medium rounded-lg text-sm px-10 py-2.5 text-center me-2 mb-2">글램핑</button>
-        </li>
-    </ul>
-
-    <form name="campSearchFrm" class="">
-        <div class="bg-white flex">
-            <select id="search-type" name="search-type" required class="text-black border border-gray2 rounded-lg px-5">
-                <option value="" disabled selected>선택</option>
-                <option value="camp_name" ${param['search-type'] eq 'camp_name' ? 'selected' : ''}>캠핑장 이름</option>
-                <option value="camp_intro" ${param['search-type'] eq 'camp_intro' ? 'selected' : ''}>캠핑장 소개</option>
-                <option value="camp_addr" ${param['search-type'] eq 'camp_addr' ? 'selected' : ''}>캠핑장 주소</option>
-            </select>
-            <div class="ml-1">
-                <input type="search" id="search-keyword" name="search-keyword" value="${param['search-keyword']}" required placeholder="검색어를 입력하세요..." class="text-black border border-gray2 font-medium rounded-lg text-sm py-2.5 px-5 w-[500px]" >
-                <button type="submit" class="text-black end-2.5 bottom-2.5 bg-gray2 hover:bg-black hover:text-white focus:outline-none font-medium rounded-lg text-sm px-4 py-3">검색하기</button>
+    <%--검색하기--%>
+    <form name="campSearchFrm" action="${pageContext.request.contextPath}/camp/campList" method="get">
+        <div class="mx-auto max-w-6xl w-fit">
+            <div class="bg-white flex">
+                <select id="search-type" name="search-type" class="text-black border border-gray2 rounded-lg px-5">
+                    <option value="" disabled selected>선택</option>
+                    <option value="camp_name" ${param['search-type'] eq 'camp_name' ? 'selected' : ''}>캠핑장 이름</option>
+                    <option value="camp_intro" ${param['search-type'] eq 'camp_intro' ? 'selected' : ''}>캠핑장 소개</option>
+                    <option value="camp_addr" ${param['search-type'] eq 'camp_addr' ? 'selected' : ''}>캠핑장 주소</option>
+                </select>
+                <div class="ml-1">
+                    <input type="search" id="search-keyword" name="search-keyword" value="${param['search-keyword']}" placeholder="검색어를 입력하세요..." class="text-black border border-gray2 font-medium rounded-lg text-sm py-2.5 px-5 w-[500px]" >
+                    <button type="submit" class="search-btn text-black end-2.5 bottom-2.5 bg-gray2 hover:bg-black hover:text-white focus:outline-none font-medium rounded-lg text-sm px-4 py-3">검색하기</button>
+                </div>
+            </div>
+        </div>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-0">
+            <div class="w-3/4 mx-auto px-4 py-4 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-0">
+                <c:forEach items="${tags}" var="tag" varStatus="vs">
+                    <c:if test="${tagName != tag.name}">
+                        <div class="options grid w-full gap-6 text-gray-500 border-2 cursor-pointer border-gray-200 rounded-lg inline-flex items-center justify-center w-full p-3">
+                            <input type="checkbox" name="tagName" value="${tag.name}" class="hidden peer tag-btn">
+                            #${tag.name}
+                        </div>
+                    </c:if>
+                    <c:if test="${tagName eq tag.name}">
+                        <div class="options selected grid w-full gap-6 text-white border-2 bg-green border-gray-200 rounded-lg cursor-pointer inline-flex items-center justify-center w-full p-3">
+                            <input type="checkbox" name="tagName" value="${tag.id}" class="hidden peer tag-btn">
+                            #${tag.name}
+                        </div>
+                    </c:if>
+                </c:forEach>
             </div>
         </div>
     </form>
@@ -35,8 +46,8 @@
     <h1 class="text-black text-xl">총 <strong>${totalCount}</strong>개의 캠핑장이 검색되었습니다.</h1>
 </div>
 <c:forEach items="${camps}" var="camp" varStatus="vs">
-    <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mt-5 mb-5 hover:drop-shadow">
-        <div class="w-full flex items-center m-8">
+    <div class="flex justify-between items-center mx-auto max-w-6xl h-fit rounded-lg bg-gray1 mt-5 mb-5 hover:drop-shadow">
+        <div class="w-full flex items-center m-8 h-fit">
             <img class="w-80" src="${pageContext.request.contextPath}/upload/camp/${camp.campRenamedImg}" />
             <div class="w-full ml-10">
                 <span class="inline-flex items-center rounded-full bg-pink px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-gray-500/10">리뷰 ${camp.reviewCount}</span>
@@ -72,11 +83,24 @@
                     <i class="pt-1 pb-1 pl-1.5 pr-1.5 fa-solid fa-phone bg-gray3 text-xs text-white rounded-full mr-2"></i>
                     <span class="pt-2 pb-1">${camp.campPhone}</span>
                 </div>
-                <div class="flex flex-wrap items-center tag-section w-full h-10 mt-5">
-                    <c:forEach items="${camp.campWithTags}" var="campTag">
-                        <span class="bg-green text-white text-m me-1 px-2.5 py-0.5 rounded mb-1"> #${campTag.tagName}</span>
-                    </c:forEach>
-                </div>
+                <c:if test="${camp.tagNameList != null}">
+                    <div class="flex flex-wrap items-center tag-section w-full h-10 mt-5">
+                        <c:forEach items="${camp.tagNameList}" var="campTag">
+                            <c:if test="${campTag != tagName}">
+                                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
+                                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                    #${campTag}
+                                </span>
+                                </button>
+                            </c:if>
+                            <c:if test="${campTag == tagName}">
+                                <button type="button" class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                    #${campTag}
+                                </button>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                </c:if>
 <%--                <div class="pt-2 pb-2 w-40 bg-neutral-500 rounded-2xl text-center text-white text-base font-semibold mt-5">상세보기</div>--%>
             </div>
         </div>

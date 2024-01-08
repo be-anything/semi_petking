@@ -57,7 +57,7 @@
         WHERE r.camp_id = #{campId} AND (
         (
         -- 새로운 예약 기간이 다른 예약과 중첩되지 않아야 함
-        r.start_date >= #{lastDay} OR
+        r.start_date >= #{lastDay} and
         r.end_date <= #{firstDay}
         )
         OR
