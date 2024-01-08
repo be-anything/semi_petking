@@ -20,7 +20,7 @@ public class ClubDeleteController extends HttpServlet {
         long id = Long.parseLong(req.getParameter("id"));
         // 2. 업무로직
         int result = clubService.deleteClub(id);
-        req.getSession().setAttribute("msg", "동아리를 삭제했습니다. 🤗");
+        req.getSession().setAttribute("msg", "동아리를 삭제를 성공했습니다. 🤗");
         // 3. 리다이렉트
         resp.sendRedirect(req.getContextPath() + "/club/clubList");
     }
