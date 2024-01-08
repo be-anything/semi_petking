@@ -17,18 +17,6 @@ import java.io.IOException;
 @WebServlet("/pet/petUpdate")
 public class PetUpdateController extends HttpServlet {
     private PetService petService = new PetService();
-    private UserService userService = new UserService();
-
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        HttpSession session = req.getSession();
-//        User loginUser = (User) session.getAttribute("loginUser");
-//        System.out.println("loginUser : " + loginUser);
-//
-//        User user = userService.findById(loginUser.getId());
-//        req.setAttribute("user", user);
-//        req.getRequestDispatcher("/WEB-INF/views/pet/petUpdate.jsp").forward(req, resp);
-//    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,17 +24,27 @@ public class PetUpdateController extends HttpServlet {
         HttpSession session = req.getSession();
         User loginUser = (User) session.getAttribute("loginUser");
         String userId = loginUser.getId();
-        String newPetName = req.getParameter("newPetName");
-        String newPetAge1 = req.getParameter("newPetAge");
-        int newPetAge = 0;
-            if (newPetAge1 != null && newPetAge1.isEmpty()) {
-                newPetAge = Integer.parseInt(newPetAge1);
-            }
-        String newPetGender = req.getParameter("newPetGender");
-        String newNeutered = req.getParameter("newNeutered");
+//        String newPetName = req.getParameter("petName");
+//        String newPetAge1 = req.getParameter("petAge");
+//        int newPetAge = 0;
+//            if (newPetAge1 != null && newPetAge1.isEmpty()) {
+//                newPetAge = Integer.parseInt(newPetAge1);
+//            }
+//        String newPetGender = req.getParameter("petGender");
+//        String newNeutered = req.getParameter("neutered");
 
-        Pet pet = new Pet(userId, newPetName, newPetAge, newPetGender, newNeutered, null);
-        System.out.println("입력받은pet값 : " + pet);
+        String petName = req.getParameter("newPetName");
+        String petAge = req.getParameter("newPetAge");
+        int petAge1 = 0;
+            if (petAge != null) {
+                petAge1 = Integer.parseInt(petAge);
+            }
+        String petGender = req.getParameter("newPetGender");
+        String neutered = req.getParameter("newNeutered");
+
+//        Pet pet = new Pet(userId, newPetName, newPetAge, newPetGender, newNeutered, null);
+        Pet pet = new Pet(userId, petName, petAge1, petGender, neutered, null);
+        System.out.println("controller update : " + pet);
 
         // 업무로직
         int petUpdated = petService.updatePet(pet);
