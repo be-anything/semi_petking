@@ -89,4 +89,9 @@ public class UserDao extends HttpServlet {
     public int insertPet(SqlSession session, Pet pet) {
         return session.insert("pet.insertPet", pet);
     }
+
+    public int updateUserProfile(SqlSession session, User user) {
+        return session.update("user.updateUserProfile", user);
+
+    }
 }

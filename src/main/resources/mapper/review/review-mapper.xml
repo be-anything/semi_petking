@@ -280,4 +280,19 @@
             #{regDate}
             )
     </insert>
+    <select id="getTotalCampReview" resultType="_int">
+        select
+            count(*)
+        from
+            review
+    </select>
+    <select id="findByCampId" resultType="reviewVo">
+        select
+            r.*,
+            (select camp_name from camp where id = r.camp_id) camp_name
+        from
+            review r
+        where
+            user_id = #{userId}
+    </select>
 </mapper>
