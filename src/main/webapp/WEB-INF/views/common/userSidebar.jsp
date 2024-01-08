@@ -57,32 +57,25 @@
                 </a>
             </li>
 <%--            <li>--%>
-<%--                <a href="#" class="flex mt-10 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">--%>
+<%--                <a href="${pageContext.request.contextPath}/user/userDelete" class="flex mt-10 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">--%>
 <%--                    <span class="flex-1 whitespace-nowrap text-sm font-regular">회원탈퇴</span>--%>
 <%--                </a>--%>
 <%--            </li>--%>
 
-<%--            <li>--%>
-<%--            <p class="flex mt-10 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">--%>
-<%--                <a href="javascript:confirm('정말 탈퇴하시겠습니까?') && document.userDeleteFrm.submit();" class="flex-1 whitespace-nowrap text-sm font-regular">회원탈퇴</a>--%>
-<%--            </p>--%>
-<%--            </li>--%>
+            <%-- 수업시간 코드 --%>
             <li>
-                <button id="leaveButton" class="">회원탈퇴</button>
+                <p class="flex mt-10 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="javascript:confirm('정말 탈퇴하시겠습니까?') && document.userDeleteFrm.submit();" class="flex-1 whitespace-nowrap text-sm font-regular">회원탈퇴</a>
+                </p>
+                <form name="userDeleteFrm" action="${pageContext.request.contextPath}/user/userDelete" method="post">
+                    <input type="hidden" name="id" value="${loginUser.id}">
+                    <input type="hidden" name="password" value="${loginUser.password}">
+                </form>
             </li>
-            <button onclick="openReasonPage()">회원 탈퇴하기</button>
-
-            <%-- test --%>
-            <script>
-                function openReasonPage() {
-                    var reasonPage = window.open("deleteReason.jsp", "reasonPage", "width=400, height=300");
-                }
-            </script>
 
         </ul>
     </div>
 </aside>
-<form action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm"></form>
-<script src="${pageContext.request.contextPath}/js/user/userDelete.js"></script>
-<script src="${pageContext.request.contextPath}/js/user/userDelete1.js"></script>
 
+    <script src="${pageContext.request.contextPath}/js/user/userDelete.js"></script>
+<%--<form action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm"></form>--%>

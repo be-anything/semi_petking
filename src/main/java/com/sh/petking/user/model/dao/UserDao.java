@@ -1,6 +1,5 @@
 package com.sh.petking.user.model.dao;
 
-import com.sh.petking.camp.model.vo.CampVo;
 import com.sh.petking.pet.model.entity.Pet;
 import com.sh.petking.user.model.entity.Point;
 import com.sh.petking.user.model.entity.User;
