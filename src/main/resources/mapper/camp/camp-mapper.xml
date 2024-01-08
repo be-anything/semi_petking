@@ -152,7 +152,14 @@
             camp_phone = #{campPhone},
             camp_addr = #{campAddr},
             camp_original_img = #{campOriginalImg},
-            camp_renamed_img = #{campRenamedImg},
+            camp_renamed_img = #{campRenamedImg}
+        where
+            id = #{id}
+    </update>
+    <update id="updateCampState">
+        update
+            camp
+        set
             camp_state = #{campState}
         where
             id = #{id}

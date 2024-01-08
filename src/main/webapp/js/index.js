@@ -35,3 +35,28 @@ document.addEventListener('DOMContentLoaded', function () {
         speed: 800, // 전환 속도 (밀리초 단위)
     }).mount();
 });
+
+
+
+// options 버튼 클릭 이벤트
+document.querySelectorAll(".options").forEach((option) => {
+    option.addEventListener('click', (e) => {
+        const selected = e.target;
+        selected.classList.toggle("bg-green");
+        selected.classList.toggle("text-white");
+        selected.classList.toggle("selected");
+
+        const input = selected.children[0];
+        console.dir(input.checked);
+        if(selected.classList.contains("selected")){
+            input.checked = true;
+        }
+        else {
+            input.checked = false;
+        }
+    });
+});
+
+
+
+

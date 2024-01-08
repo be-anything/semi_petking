@@ -5,8 +5,6 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <div class="mx-auto max-w-6xl mt-20">
-
-
     <ul class="">
         <li class="flex"> <!-- justify-evenly -->
             <button type="button" class="text-black hover:text-white border border-gray2 hover:bg-black font-medium rounded-lg text-sm px-10 py-2.5 text-center me-2 mb-2">오토캠핑</button>

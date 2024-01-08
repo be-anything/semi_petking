@@ -241,5 +241,21 @@ public class CampService {
         session.close();
         return camps;
     }
+
+    public int updateCampState(Camp camp) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try {
+            result = campDao.updateCampState(session, camp);
+            System.out.println(result);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }
 
