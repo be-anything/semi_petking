@@ -3,12 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="club">
+<!--    <select id="findAll" resultType="clubVo">-->
     <select id="findAll" resultType="clubVo">
         select
             *
         from
             club
     </select>
+<!--    <select id="findById" resultType="clubVo">-->
     <select id="findById" resultType="clubVo">
         select
             *
@@ -27,6 +29,8 @@
             #{clubIntroTitle},
             #{clubIntroContent}
         )
+        ON DUPLICATE KEY UPDATE
+            #{id}
         <selectKey order="AFTER" resultType="_int" keyProperty="id">
             select
                 seq_club_id.nextval

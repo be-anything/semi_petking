@@ -33,6 +33,6 @@ public class ClubDao {
     }
 
     public int updateClubViewCount(SqlSession session, long id) {
-        return session.update("board.updateClubViewCount", id);
+        return session.update("club.updateClubViewCount", id);
     }
 }
