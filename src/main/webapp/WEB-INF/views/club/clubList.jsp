@@ -33,10 +33,10 @@
     </div>
 </div>
 <div class="py-8 px-60 mx-auto max-w-2xl lg:py-16">
-        <a href="${pageContext.request.contextPath}/club/clubDetail" class="rounded-lg py-[120px] px-[100px] pt-[180px] bg-gray2 hover:bg-orange-100 hover:drop-shadow-2xl">
+        <a href="${pageContext.request.contextPath}/club/clubDetail?id=${loginUser.clubId}" class="rounded-lg py-[120px] px-[100px] pt-[180px] bg-gray2 hover:bg-orange-100 hover:drop-shadow-2xl">
             <i class="fa fa-smile-o  text-9xl text-black"></i>
         </a>
-        <p class="mt-[125px] text-lg text-center">                         내 동아리 들어가기</p>
+        <p class="mt-[125px] text-lg text-center">내 동아리 들어가기</p>
 </div>
 </c:if>
 <c:if test="${loginUser == null}">

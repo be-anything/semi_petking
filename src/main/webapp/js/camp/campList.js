@@ -1,3 +1,28 @@
+
+// options 버튼 클릭 이벤트
+document.querySelectorAll(".options").forEach((option) => {
+    option.addEventListener('click', (e) => {
+        const selected = e.target;
+        console.log(e.target);
+
+        const input = selected.children[0];
+        const otherTags = selected.children;
+        document.querySelectorAll(".options").forEach((btn) => {
+            btn.classList.remove("bg-green");
+            btn.classList.remove("text-white");
+            btn.classList.remove("selected");
+            btn.children[0].checked = false;
+
+            if(btn === selected){
+                selected.classList.add("bg-green");
+                selected.classList.add("text-white");
+                selected.classList.add("selected");
+                input.checked = true;
+            }
+        });
+    });
+});
+
 document.querySelectorAll("#campBtn").forEach((camp) => {
     camp.addEventListener('click',(e) => {
         const btn = e.target;

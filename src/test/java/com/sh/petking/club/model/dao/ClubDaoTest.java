@@ -45,12 +45,12 @@ public class ClubDaoTest {
     @DisplayName("동아리 전체를 조회 할 수 있습니다.")
     @Test
     void test1(){
-        List<Club> boards = clubDao.findAll(session);
-        System.out.println(boards);
-        assertThat(boards)
+        List<Club> clubs = clubDao.findAll(session);
+        System.out.println(clubs);
+        assertThat(clubs)
                 .isNotNull()
                 .allSatisfy((club) -> {
-                    assertThat(club.getId()).isNotZero();
+                    assertThat(club.getId()).isNotNull();
                     assertThat(club.getUserId()).isNotNull();
                     assertThat(club.getClubName()).isNotNull();
                     assertThat(club.getClubIntroTitle()).isNotNull();
@@ -69,7 +69,7 @@ public class ClubDaoTest {
         assertThat(club)
                 .isNotNull()
                 .satisfies((_club) -> {
-                    assertThat(_club.getId()).isNotZero();
+                    assertThat(_club.getId()).isNotNull();
                     assertThat(_club.getClubName()).isNotNull();
                     assertThat(_club.getUserId()).isNotNull();
                     assertThat(_club.getClubIntroTitle()).isNotNull();
@@ -89,7 +89,7 @@ public class ClubDaoTest {
     @DisplayName("동아리 등록")
     @Test
     void test3(){
-        Club club = new Club('5', "최고동아리", "최고제목", "최고내용", null, "abcde");
+        Club club = new Club(5L, "최고동아리", "최고제목", "최고내용", null, "abcde");
         System.out.println(club);
         int result = clubDao.insertClub(session, club);
 

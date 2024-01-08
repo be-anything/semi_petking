@@ -257,5 +257,19 @@ public class CampService {
         }
         return result;
     }
+
+    public List<CampVo> findAllCampWithTag(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<CampVo> camps = campDao.findAllCampWithTag(session, param);
+        session.close();
+        return camps;
+    }
+
+    public int getTotalCampWithTagCount(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = campDao.getTotalCampWithTagCount(session, param);
+        session.close();
+        return totalCount;
+    }
 }
 
