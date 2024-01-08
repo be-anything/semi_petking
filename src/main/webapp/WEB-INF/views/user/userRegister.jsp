@@ -50,10 +50,6 @@
                     <div>
                         <button type="submit" class="flex w-full justify-center rounded-md bg-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">회원가입</button>
                     </div>
-                    <p class="text-sm font-light text-gray-500">
-                        <a href="#" class="font-medium text-primary-600 hover:underline">아이디 찾기 |</a>
-                        <a href="#" class="font-medium text-primary-600 hover:underline"> 비밀번호 찾기</a>
-                    </p>
                 </form>
             </div>
         </div>

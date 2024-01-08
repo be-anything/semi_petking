@@ -56,26 +56,13 @@
                     <span class="flex-1 whitespace-nowrap">문의 내역</span>
                 </a>
             </li>
-<%--            <li>--%>
-<%--                <a href="${pageContext.request.contextPath}/user/userDelete" class="flex mt-10 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">--%>
-<%--                    <span class="flex-1 whitespace-nowrap text-sm font-regular">회원탈퇴</span>--%>
-<%--                </a>--%>
-<%--            </li>--%>
-
-            <%-- 수업시간 코드 --%>
             <li>
-                <p class="flex mt-10 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <a href="javascript:confirm('정말 탈퇴하시겠습니까?') && document.userDeleteFrm.submit();" class="flex-1 whitespace-nowrap text-sm font-regular">회원탈퇴</a>
-                </p>
-                <form name="userDeleteFrm" action="${pageContext.request.contextPath}/user/userDelete" method="post">
+                <form action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm" >
                     <input type="hidden" name="id" value="${loginUser.id}">
                     <input type="hidden" name="password" value="${loginUser.password}">
+                    <input type="submit" value="회원탈퇴" onclick="return confirm('정말 탈퇴하시겠습니까?')">
                 </form>
             </li>
-
         </ul>
     </div>
 </aside>
-
-    <script src="${pageContext.request.contextPath}/js/user/userDelete.js"></script>
-<%--<form action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm"></form>--%>

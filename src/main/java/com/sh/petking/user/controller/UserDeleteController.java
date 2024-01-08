@@ -17,26 +17,21 @@ public class UserDeleteController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.getRequestDispatcher("/WEB-INF/views/user/userDetail.jsp").forward(req, resp);
-        // 사용자 입력값 처리
         HttpSession session = req.getSession();
         User loginUser = (User) session.getAttribute("loginUser");
         String id = loginUser.getId();
-        System.out.println(id);
 
-        // 업무로직
         int result = userService.deleteUser(id);
 
-        // 세션해제 후 새로 생성해 msg저장
-//        session.invalidate();
-
-//        session = req.getSession();
-        session.setAttribute("msg", "회원 탈퇴를 완료했습니다.");
-        session.invalidate();
-
-        session = req.getSession();
-
-        // 리다이렉트
-        resp.sendRedirect(req.getContextPath() + "/");
+        if (result > 0) {
+            session.invalidate();
+            session = req.getSession();
+            session.setAttribute("msg", "회원 탈퇴를 완료했습니다.");
+            resp.sendRedirect(req.getContextPath() + "/");
+        } else {
+            // 회원 탈퇴 실패 시의 처리
+            session.setAttribute("msg", "회원 탈퇴에 실패했습니다.");
+            resp.sendRedirect(req.getContextPath() + "/");
+        }
     }
 }
