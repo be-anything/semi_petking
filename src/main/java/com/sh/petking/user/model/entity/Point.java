@@ -1,25 +1,16 @@
 package com.sh.petking.user.model.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Point {
     private Long id;
     private String userId;
     private Long point;
     private String pointLog;
-    private LocalDate regDate;
+    private LocalDateTime regDate;
 
     public Point() {
     }
-
-    public Point(Long id, String userId, Long point, String pointLog, LocalDate regDate) {
-        this.id = id;
-        this.userId = userId;
-        this.point = point;
-        this.pointLog = pointLog;
-        this.regDate = regDate;
-    }
-
     public Long getId() {
         return id;
     }
@@ -52,11 +43,11 @@ public class Point {
         this.pointLog = pointLog;
     }
 
-    public LocalDate getRegDate() {
+    public LocalDateTime getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(LocalDate regDate) {
+    public void setRegDate(LocalDateTime regDate) {
         this.regDate = regDate;
     }
 

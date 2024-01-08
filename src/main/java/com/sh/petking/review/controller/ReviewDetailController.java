@@ -22,10 +22,16 @@ public class ReviewDetailController extends HttpServlet {
         
         // 사진이 필요함
         ReviewVo review = reviewService.findByIdWithAttach(id);
+        System.out.println(review);
+
+        if(review.getReviewTag() != null){
+            // csvTag 핸들링
+            List<String> tags = Arrays.asList(review.getReviewTag().split(","));
+            req.setAttribute("tags", tags);
+        }
+
         req.setAttribute("review", review);
-        // csvTag 핸들링
-        List<String> tags = Arrays.asList(review.getReviewTag().split(","));
-        req.setAttribute("tags", tags);
+
 
         System.out.println("controller" + review);
         req.getRequestDispatcher("/WEB-INF/views/review/reviewDetail.jsp").forward(req, resp);

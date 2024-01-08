@@ -1,15 +1,15 @@
 package com.sh.petking.review.model.vo;
 
-import com.sh.petking.board.model.entity.Attachment;
 import com.sh.petking.board.model.vo.AttachmentVo;
 import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.review.model.entity.Review;
 import com.sh.petking.review.model.entity.ReviewComment;
+import com.sh.petking.review.model.entity._Review;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewVo extends Review {
+public class _ReviewVo extends _Review {
     private Camp camp;
     private String campName;
     private int commentCount;
@@ -94,8 +94,6 @@ public class ReviewVo extends Review {
                 ", commentCount=" + commentCount +
                 ", attachments=" + attachments +
                 ", reviewComments=" + reviewComments +
-                ", attachId=" + attachId +
-                ", renamedName='" + renamedName + '\'' +
                 ", tags=" + tags +
                 '}';
     }
