@@ -25,7 +25,6 @@
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = simpleDate.format(date);
 
-<<<<<<< HEAD
     %>
     <p>오늘 날짜 : ${strDate}</p><%=strDate%>
     <p>예약 일정을 선택해주세요.</p>
@@ -40,7 +39,6 @@
                     조회
                 </button>
             </fieldset>
-=======
 <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
     <table id="celebs">
         <thead>
@@ -174,7 +172,6 @@
                     </div>
                 </dl>
             </div>
->>>>>>> 7492462b87afb1d2f3878ed20940a43340e0b223
         </form>
     </div>
     <div class="flex justify-start">

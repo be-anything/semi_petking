@@ -114,4 +114,16 @@ public class ReviewDao {
     public int insertPoint(SqlSession session, Point point) {
         return session.insert("review.insertPoint", point);
     }
+
+    public int getTotalCampReview(SqlSession session, Map<String, Object> param) {
+        return session.selectOne("review.getTotalUserReview", param);
+    }
+
+    public List<ReviewVo> findByCampId(SqlSession session, Map<String, Object> param) {
+        int page = (int) param.get("page");
+        int limit = (int) param.get("limit");
+        int offset = (page - 1) * limit;
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return session.selectList("review.findByCampId", param, rowBounds);
+    }
 }

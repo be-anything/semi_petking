@@ -93,24 +93,39 @@
 
                 <%--img slider--%>
                 <div class="mb-5">
+                    <div class="font-medium leading-6 text-gray-900 my-4 text-center">
+                        <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900"><span
+                                class="underline underline-offset-3 decoration-8 decoration-green">캠핑장 부가서비스</span></h1>
+                    </div>
+                    <c:if test="${camp.campAttaches.size() == 0}">
+                        <li class="splide__slide">
+                            <p class="w-full text-center py-24 border border-gray2">등록된 사진이 없습니다.</p>
+                        </li>
+                    </c:if>
+                    <c:if test="${camp.campAttaches.size() != 0}">
                     <div id="main-slider" class="splide mx-auto">
                         <div class="splide__track">
                             <ul class="splide__list">
-                                <c:forEach items="${camp.campAttaches}" var="attach" varStatus="vs">
-                                    <li class="splide__slide"><img class="w-full"
-                                                                   src="${pageContext.request.contextPath}/upload/camp/${attach.campAttachRenamedName}"
-                                                                   alt="" /></li>
-                                </c:forEach>
+
+                                    <c:forEach items="${camp.campAttaches}" var="attach" varStatus="vs">
+                                        <li class="splide__slide"><img class="w-full"
+                                                                       src="${pageContext.request.contextPath}/upload/camp/${attach.campAttachRenamedName}"
+                                                                       alt="" /></li>
+                                    </c:forEach>
                             </ul>
                         </div>
                     </div>
-
+                    </c:if>
                     <ul id="thumbnails" class="thumbnails flex mt-1 mx-auto mb-0 p-0 justify-center">
+                        <c:if test="${camp.campAttaches.size() != 0}">
                         <c:forEach items="${camp.campAttaches}" var="attach" varStatus="vs">
                             <li class="thumbnail w-[70px] h-[70px] overflow-hidden my-0 mx-[0.2rem] cursor-pointer"><img class="w-full h-auto"
                                                                                                                          src="${pageContext.request.contextPath}/upload/camp/${attach.campAttachRenamedName}"
                                                                                                                          alt="" /></li>
                         </c:forEach>
+                        </c:if>
+                        <c:if test="${camp.campAttaches.size() == 0}">
+                        </c:if>
                     </ul>
                 </div>
 
@@ -148,6 +163,26 @@
                     </div>
                 </div>
 
+
+                <%-- 리뷰 --%>
+                <div class="text-xl font-medium leading-6 text-gray-900 mt-20 my-4 text-center">
+                    <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900"><span
+                            class="underline underline-offset-3 decoration-8 decoration-green">캠핑장 부가서비스 안내</span></h1>
+                </div>
+                <c:if test="${empty camp.campWithServices}">
+                    <div class="max-w-ful grid grid-cols-1 relative items-center justify-items-center">
+                        <p class="text-lg font-normal text-gray3 lg:text-xl mt-10">등록된 부가서비스가 없습니다.</p>
+                    </div>
+                </c:if>
+                <div class="mt-10 mb-100 grid grid-cols-2 md:grid-cols-${camp.campWithServices.size()} gap-4 justify-items-center">
+                    <c:forEach items="${camp.campWithServices}" var="service">
+                        <div class="w-[100px] h-[100px] max-w-full rounded-full bg-gray2 grid grid-cols-1 relative items-center justify-items-center">
+                            <img class="w-[60px]"
+                                 src="${pageContext.request.contextPath}/images/camp/${service.serviceImg}" alt="">
+                            <div class="text-center absolute top-full my-3">${service.serviceName}</div>
+                        </div>
+                    </c:forEach>
+                </div>
         </div>
         </div>
     </div>

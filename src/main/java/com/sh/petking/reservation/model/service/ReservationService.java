@@ -29,11 +29,11 @@ public class ReservationService
     public List<Reservation> findAbleRoom(Map<String, Object> params) {
 
         SqlSession session = getSqlSession();
-        List<Reservation> reservation = reservationDao.findAbleRoom(session,params);
+        List<Reservation> reservation = reservationDao.findAbleRoom(session, params);
         session.close();
         return reservation;
 
-
+    }
     /**
      * 사용자 아이디로 예약내역 조회하기
      * @param id

@@ -237,4 +237,18 @@ public class ReviewService {
         session.close();
         return reviews;
     }
+
+    public int getTotalCampReview(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = reviewDao.getTotalCampReview(session, param);
+        session.close();
+        return totalCount;
+    }
+
+    public List<ReviewVo> findByCampId(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<ReviewVo> reviews = reviewDao.findByCampId(session, param);
+        session.close();
+        return reviews;
+    }
 }
