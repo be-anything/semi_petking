@@ -39,11 +39,6 @@
                 <a href="${pageContext.request.contextPath}/user/userRegisterType" class="ms-2 text-sm font-medium text-gray-700 hover:underline">회원가입</a>
             </div>
 
-            <p class="text-sm font-light text-gray-500">
-                <a href="#" class="font-medium text-primary-600 hover:underline">아이디 찾기 |</a>
-                <a href="#" class="font-medium text-primary-600 hover:underline"> 비밀번호 찾기</a>
-            </p>
-
             <div class="flex flex-col">
                 <button type="submit" class="flex w-full justify-center rounded-md bg-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">로그인</button>
                 <a href="${pageContext.request.contextPath}/camp/campLogin" class="text-center text-sm text-green hover:text-blue hover:underline mt-5">사업자 회원로그인은 여기를 눌러주세요</a>
