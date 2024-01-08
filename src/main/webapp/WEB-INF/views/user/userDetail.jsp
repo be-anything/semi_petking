@@ -10,11 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<<<<<<< HEAD
 <jsp:include page="/WEB-INF/views/common/userSidebar.jsp"/> <%-- 메뉴탭 --%>
-=======
-<jsp:include page="/WEB-INF/views/common/userSidebar.jsp"/>
-
 
     <%-- 회원정보 --%>
     <div class="w-full h-full absolute top-0 right-0 sm:grid sm:grid-cols-2 sm:px-0 items-center">
