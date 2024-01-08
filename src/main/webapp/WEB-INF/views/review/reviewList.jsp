@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<div class="flex justify-center mt-6">
+<div class="flex justify-center mt-12 mb-24">
     <nav aria-label="Page navigation example">
         <ul class="flex items-center -space-x-px h-8 text-sm">
             ${pagebar}
