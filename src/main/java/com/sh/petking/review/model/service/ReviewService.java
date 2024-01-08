@@ -2,9 +2,10 @@ package com.sh.petking.review.model.service;
 
 import com.sh.petking.board.model.entity.Attachment;
 import com.sh.petking.board.model.entity.BoardAttach;
-import com.sh.petking.board.model.vo.AttachmentVo;
 import com.sh.petking.review.model.dao.ReviewDao;
 import com.sh.petking.review.model.vo.ReviewVo;
+import com.sh.petking.review.model.vo._ReviewVo;
+import com.sh.petking.user.model.entity.Point;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.ArrayList;
@@ -19,6 +20,12 @@ public class ReviewService {
     public List<ReviewVo> findAll(Map<String, Object> param) {
         SqlSession session = getSqlSession();
         List<ReviewVo> reviews = reviewDao.findAll(session, param);
+        session.close();
+        return reviews;
+    }
+    public List<_ReviewVo> _findAll(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<_ReviewVo> reviews = reviewDao._findAll(session, param);
         session.close();
         return reviews;
     }
@@ -140,5 +147,94 @@ public class ReviewService {
         int totalCount = reviewDao.getTotalReview(session, param);
         session.close();
         return totalCount;
+    }
+
+    public int deleteReviewAttach(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try {
+            result = reviewDao.deleteReviewAttach(session, param);
+            result = reviewDao.deleteReviewAttachBridge(session, param);
+            System.out.println(result);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public int updateReview(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        ReviewVo review = (ReviewVo) param.get("review");
+        List<Attachment> attachments = (List<Attachment>) param.get("attachments");
+
+        try {
+            // review 테이블에 저장
+            StringBuilder csvTag = new StringBuilder();
+            for(String tag : review.getTags()){
+                csvTag.append(tag).append(",");
+            }
+            review.setReviewTag(String.valueOf(csvTag));
+            System.out.println(review.getReviewTag());
+
+            result = reviewDao.updateReview(session, review);
+
+            // attach 테이블에 저장
+            // board-attach 테이블에 저장하기 위해 값 가져와서 셋팅
+            List<BoardAttach> boardAttaches = new ArrayList<>();
+            if(!attachments.isEmpty()){
+                for (Attachment attachment: attachments){
+                    result = reviewDao.insertAttachment(session, attachment);
+                    System.out.println(attachment);
+                    BoardAttach boardAttach = new BoardAttach(0L, attachment.getId(), review.getId(), 2);
+                    boardAttaches.add(boardAttach);
+                    // board-attach 테이블에 저장하기
+                    result = reviewDao.insertBoardAttach(session, boardAttach);
+                }
+            }
+
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        System.out.println(review.getReviewTag());
+        return result;
+    }
+
+    public List<_ReviewVo> _findPhotoReview() {
+        SqlSession session = getSqlSession();
+        List<_ReviewVo> reviews = reviewDao._findPhotoReview(session);
+        session.close();
+        return reviews;
+    }
+
+    public int insertPoint(Point point) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try {
+            result = reviewDao.insertPoint(session, point);
+            System.out.println(result);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public List<ReviewVo> findPhotoReview(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<ReviewVo> reviews = reviewDao.findPhotoReview(session, param);
+        session.close();
+        return reviews;
     }
 }
