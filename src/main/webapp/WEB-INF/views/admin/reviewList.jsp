@@ -16,7 +16,7 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-collapse">
             <thead class="text-xs text-white bg-green">
         <tr>
-            <th scope="col" class="px-8 py-4">
+            <th scope="col" class="px-6 py-2">
                 번호
             </th>
             <th scope="col" class="px-8 py-4">
@@ -31,11 +31,8 @@
             <th scope="col" class="px-8 py-4">
                 리뷰 제목
             </th>
-            <th scope="col" class="px-8 py-4">
+            <th scope="col" class="px-4 py-2">
                 조회수
-            </th>
-            <th scope="col" class="px-8 py-4">
-                좋아요수
             </th>
             <th scope="col" class="px-8 py-4">
                 작성시간
@@ -61,9 +58,6 @@
             </td>
             <td class="px-8 py-6">
                 ${review.viewCount}
-            </td>
-            <td class="px-8 py-6">
-                ${review.likeCount}
             </td>
             <td class="px-8 py-6">
                 <fmt:parseDate value="${review.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>

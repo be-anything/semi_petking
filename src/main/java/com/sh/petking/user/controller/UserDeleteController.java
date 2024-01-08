@@ -1,5 +1,8 @@
 package com.sh.petking.user.controller;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.service.UserService;
 
@@ -9,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/user/userDelete")
 public class UserDeleteController extends HttpServlet {
@@ -18,10 +23,6 @@ public class UserDeleteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/views/user/userDetail.jsp").forward(req, resp);
-
-        // 사용자 입력값 인코딩 처리
-//        req.setCharacterEncoding("utf-8");
-
         // 사용자 입력값 처리
         HttpSession session = req.getSession();
         User loginUser = (User) session.getAttribute("loginUser");
@@ -35,7 +36,7 @@ public class UserDeleteController extends HttpServlet {
 //        session.invalidate();
 
 //        session = req.getSession();
-        session.setAttribute("msg", "회원탈퇴완료");
+        session.setAttribute("msg", "회원 탈퇴를 완료했습니다.");
         session.invalidate();
 
         // 리다이렉트

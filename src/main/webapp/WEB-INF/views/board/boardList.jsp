@@ -44,7 +44,8 @@
                 <button
                         type="button"
                         onclick="location.href = '${pageContext.request.contextPath}/board/boardCreate';"
-                        class="text-black bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">글쓰기</button>
+                        class=" py-2.5 px-4 text-xs font-medium text-sky-600 hover:bg-blue-200 ms-30">
+                    글쓰기</button>
             </div>
         </c:if>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -118,7 +119,9 @@
                 <button
                         type="button"
                         onclick="location.href = '${pageContext.request.contextPath}/board/boardCreate';"
-                        class="text-black bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">글쓰기</button>
+                        class=" py-2.5 px-4 text-xs font-medium text-sky-600 hover:bg-blue-200 ms-30">
+                    글쓰기
+                </button>
             </div>
         </c:if>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -192,7 +195,9 @@
                 <button
                         type="button"
                         onclick="location.href = '${pageContext.request.contextPath}/board/boardCreate';"
-                        class="text-black bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">글쓰기</button>
+                        class=" py-2.5 px-4 text-xs font-medium text-sky-600 hover:bg-blue-200 ms-30">
+                    글쓰기
+                </button>
             </div>
         </c:if>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

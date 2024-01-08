@@ -22,13 +22,13 @@
     <div class="h-full px-3 py-4 overflow-y-auto bg-salmon dark:bg-gray-800 text-center text-black rounded-lg border border-gray2">
         <ul class="space-y-2 font-medium">
             <li class="flex justify-center">
-                <a href="${pageContext.request.contextPath}/user/userDetail" class="w-[150px] h-[150px] flex items-center bg-light-pink p-2 rounded-full group">
-                    <img class="flex-1 whitespace-nowrap" src="${pageContext.request.contextPath}/upload/user/${loginUser.renamedProfileName}">
+                <a href="${pageContext.request.contextPath}/user/userDetail" class="w-[150px] h-[150px] overflow-hidden flex items-center border border-white border-4 shadow-lg bg-light-pink rounded-full group">
+                    <img id="sideProfile" class="w-full h-full flex-1 whitespace-nowrap" src="${pageContext.request.contextPath}/upload/user/${loginUser.renamedProfileName}">
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/user/grade?id=${loginUser.id}" class="flex items-center text-center text-black bg-light-pink p-2 hover:bg-white rounded-full group">
-                    <span class="flex-1 whitespace-nowrap">포인트 000점</span>
+                <a href="${pageContext.request.contextPath}/user/userGrade?id=${loginUser.id}" class="flex items-center text-center text-black bg-light-pink p-2 hover:bg-white rounded-full group">
+                    <span class="flex-1 whitespace-nowrap">보유 포인트 ${pointSum}점</span>
                 </a>
             </li>
             <li>
@@ -56,12 +56,33 @@
                     <span class="flex-1 whitespace-nowrap">문의 내역</span>
                 </a>
             </li>
+<%--            <li>--%>
+<%--                <a href="#" class="flex mt-10 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">--%>
+<%--                    <span class="flex-1 whitespace-nowrap text-sm font-regular">회원탈퇴</span>--%>
+<%--                </a>--%>
+<%--            </li>--%>
+
+<%--            <li>--%>
+<%--            <p class="flex mt-10 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">--%>
+<%--                <a href="javascript:confirm('정말 탈퇴하시겠습니까?') && document.userDeleteFrm.submit();" class="flex-1 whitespace-nowrap text-sm font-regular">회원탈퇴</a>--%>
+<%--            </p>--%>
+<%--            </li>--%>
             <li>
-                <a href="#" class="flex mt-10 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="flex-1 whitespace-nowrap text-sm font-regular">회원탈퇴</span>
-                </a>
+                <button id="leaveButton" class="">회원탈퇴</button>
             </li>
+            <button onclick="openReasonPage()">회원 탈퇴하기</button>
+
+            <%-- test --%>
+            <script>
+                function openReasonPage() {
+                    var reasonPage = window.open("deleteReason.jsp", "reasonPage", "width=400, height=300");
+                }
+            </script>
+
         </ul>
     </div>
 </aside>
+<form action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm"></form>
+<script src="${pageContext.request.contextPath}/js/user/userDelete.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/userDelete1.js"></script>
 

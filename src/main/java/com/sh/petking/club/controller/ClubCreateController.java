@@ -3,6 +3,8 @@ package com.sh.petking.club.controller;
 import com.sh.petking.club.model.entity.Club;
 import com.sh.petking.club.model.service.ClubService;
 import com.sh.petking.club.model.vo.ClubVo;
+import com.sh.petking.user.model.entity.User;
+import com.sh.petking.user.model.service.UserService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -23,6 +25,8 @@ import static java.lang.System.out;
 public class ClubCreateController extends HttpServlet {
 
     private ClubService clubService = new ClubService();
+
+    private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -101,40 +105,12 @@ public class ClubCreateController extends HttpServlet {
         // 2. 업무로직
         int result = clubService.insertClub(club);
         req.getSession().setAttribute("msg", "게시글을 성공적으로 등록했습니다. 😉");
+        User user = (User) (req.getSession().getAttribute("loginUser"));
+
+        user = userService.findById(user.getId());
+        req.getSession().setAttribute("loginUser", user);
 
         // 3. redirect 목록페이지
-        resp.sendRedirect(req.getContextPath() + "/club/clubList");
+        resp.sendRedirect(req.getContextPath() + "/club/clubList?id=" + user.getClubId());
     }
-
-    //    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.setCharacterEncoding("utf-8");
-//
-//        String clubName = req.getParameter("clubName");
-//        String userId = req.getParameter("userId");
-//        String clubIntroTitle = req.getParameter("clubIntroTitle");
-//        String clubIntroContent = req.getParameter("clubIntroContent");
-//
-//        Club club = new Club(0L, clubName, clubIntroTitle, clubIntroContent, null, userId);
-//
-//        System.out.println(club);
-//
-//        int result = clubService.insertClub(club);
-//
-//        long clubId = Long.parseLong(req.getParameter("clubId"));
-//        String joinState = req.getParameter("joinState");
-//        String role = req.getParameter("role");
-//
-//        ClubUsers clubUsers = new ClubUsers();
-//        System.out.println(clubUsers);
-//
-//        // 업무로직
-//        int result2 = clubService.insertClubUsers(clubUsers);
-//
-//        // 회원가입성공 메세지
-//        req.getSession().setAttribute("msg", "동아리 생성이 완료되었습니다.");
-//
-//        // view단
-//        resp.sendRedirect(req.getContextPath() + "/club/clubList");
-//    }
 }

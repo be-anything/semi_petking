@@ -6,9 +6,10 @@
 <!-- 이 파일 자체를 사용하지 마시구 복사해서 사용해주세요 -->
     <select id="findAll" resultType="boardVo">
         select
-            b.*,
-            (select count(*) from board_attach where board_id = b.id) attach_count,
-            (select count(*) from board_comment where board_id = b.id) comment_count
+            *
+<!--            b.*,-->
+<!--            (select count(*) from board_attach where board_id = b.id) attach_count,-->
+<!--            (select count(*) from board_comment where board_id = b.id) comment_count-->
         from
             board b
         order by

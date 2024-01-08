@@ -20,9 +20,13 @@
         </h1>
     </div>
     <div class="flex-grow border-t border-gray-400"></div>
+<<<<<<< HEAD
 
 
     <%
+=======
+        <%
+>>>>>>> fa1dab0a48544db736a818c45ea4e8550f6ee0a4
         Date date = new Date();
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = simpleDate.format(date);
@@ -43,6 +47,7 @@
             </fieldset>
         </form>
     </div>
+<<<<<<< HEAD
     <div class="flex justify-start">
         <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
             객실 리스트
@@ -78,18 +83,69 @@
     </div>
 
 </div>
+=======
 
+    <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
 
+        <div class="flex justify-start">
+            <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                객실 리스트
+            </h1>
+        </div>
+        <div class="flex-grow border-t border-gray-400"></div>
+        <table id="roomSearchResult">
+            <thead>
+            </thead>
+            <tbody>
+            <%--        <%--%>
+            <%--            // 1일 앞 달--%>
+            <%--            Calendar preCal = (Calendar)cal.clone();--%>
+            <%--            preCal.add(Calendar.DATE, -(week-1));--%>
+            <%--            int preDate = preCal.get(Calendar.DATE);--%>
 
-<%--객실정보 수정--%>
-<div class="justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
-    <div class="px-4 py-6 sm:grid sm:grid-cols-1 sm:gap-10 sm:px-0 items-start">
-        <form name="campRoomUpdateFrm" class="">
+            <%--            out.print("<tr>");--%>
+            <%--            // 1일 앞 부분--%>
+            <%--            for(int i=1; i<week; i++) {--%>
+            <%--                //out.print("<td> </td>");--%>
+            <%--                out.print("<td class='gray'>"+(preDate++)+"</td>");--%>
+            <%--            }--%>
 
-        </form>
+            <%--            // 1일부터 말일까지 출력--%>
+            <%--            int lastDay = cal.getActualMaximum(Calendar.DATE);--%>
+            <%--            String cls;--%>
+            <%--            for(int i=1; i<=lastDay; i++) {--%>
+            <%--                cls = year==ty && month==tm && i==td ? "today":"";--%>
+
+            <%--                out.print("<td class='"+cls+"'>"+i+"</td>");--%>
+            <%--                if(lastDay != i && (++week)%7 == 1) {--%>
+            <%--                    out.print("</tr><tr>");--%>
+            <%--                }--%>
+            <%--            }--%>
+
+            <%--            // 마지막 주 마지막 일자 다음 처리--%>
+            <%--            int n = 1;--%>
+            <%--            for(int i = (week-1)%7; i<6; i++) {--%>
+            <%--                // out.print("<td> </td>");--%>
+            <%--                out.print("<td class='gray'>"+(n++)+"</td>");--%>
+            <%--            }--%>
+            <%--            out.print("</tr>");--%>
+            <%--        %>--%>
+            </tbody>
+        </table>
     </div>
-</div>
-<script src="${pageContext.request.contextPath}/js/reservation/reservationMain.js"></script>
+>>>>>>> fa1dab0a48544db736a818c45ea4e8550f6ee0a4
+
+
+
+    <%--객실정보 수정--%>
+    <div class="justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
+        <div class="px-4 py-6 sm:grid sm:grid-cols-1 sm:gap-10 sm:px-0 items-start">
+            <form name="campRoomUpdateFrm" class="">
+
+            </form>
+        </div>
+    </div>
+    <script src="${pageContext.request.contextPath}/js/reservation/reservationMain.js"></script>
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

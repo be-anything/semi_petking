@@ -241,5 +241,35 @@ public class CampService {
         session.close();
         return camps;
     }
+
+    public int updateCampState(Camp camp) {
+        SqlSession session = getSqlSession();
+        int result = 0;
+        try {
+            result = campDao.updateCampState(session, camp);
+            System.out.println(result);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public List<CampVo> findAllCampWithTag(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        List<CampVo> camps = campDao.findAllCampWithTag(session, param);
+        session.close();
+        return camps;
+    }
+
+    public int getTotalCampWithTagCount(Map<String, Object> param) {
+        SqlSession session = getSqlSession();
+        int totalCount = campDao.getTotalCampWithTagCount(session, param);
+        session.close();
+        return totalCount;
+    }
 }
 

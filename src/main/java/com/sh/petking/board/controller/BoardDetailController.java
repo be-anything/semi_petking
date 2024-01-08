@@ -21,7 +21,7 @@ public class BoardDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 사용자입력값 처리
-        Long id = Long.parseLong(req.getParameter("id"));
+        long id = Long.parseLong(req.getParameter("id"));
 
         // 조회수 관련 처리
         Cookie[] cookies = req.getCookies();

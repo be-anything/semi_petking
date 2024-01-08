@@ -2,6 +2,7 @@ package com.sh.petking.club.controller;
 
 import com.sh.petking.board.model.entity.BoardAttach;
 import com.sh.petking.board.model.vo.BoardVo;
+import com.sh.petking.club.model.entity.Club;
 import com.sh.petking.club.model.service.ClubService;
 import com.sh.petking.club.model.vo.ClubVo;
 import org.apache.commons.fileupload.FileItem;
@@ -27,6 +28,12 @@ public class ClubUpdateController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        long id = Long.parseLong(req.getParameter("id"));
+        System.out.println(id);
+        // 2. 업무로직
+        ClubVo club = clubService.findById(id);
+        req.setAttribute("club", club);
 
         req.getRequestDispatcher("/WEB-INF/views/club/clubUpdate.jsp").forward(req, resp);
     }

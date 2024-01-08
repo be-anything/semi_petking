@@ -3,6 +3,9 @@ package com.sh.petking.camp.controller;
 import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
+import com.sh.petking.common.PetkingUtils;
+import com.sh.petking.review.model.service.ReviewService;
+import com.sh.petking.review.model.vo.ReviewVo;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.wish.model.entity.Wish;
 import com.sh.petking.wish.model.service.WishService;
@@ -21,6 +24,7 @@ import java.util.Map;
 public class CampDetailController extends HttpServlet {
     private CampService campService = new CampService();
     private WishService wishService = new WishService();
+    private ReviewService reviewService = new ReviewService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 사용자 입력값 처리
@@ -41,6 +45,27 @@ public class CampDetailController extends HttpServlet {
                 System.out.println(wishes);
             }
         }
+
+        // 캠핑장 리뷰 찾아오기
+        int page = 1;
+        int limit = 10;
+        try {
+            page = Integer.parseInt(req.getParameter("page"));
+        } catch (NumberFormatException ignore){};
+        Map<String, Object> param = new HashMap<>();
+
+        param.put("page", page);
+        param.put("limit", limit);
+        param.put("campId", id);
+        // 페이지바
+        int totalCount = reviewService.getTotalCampReview(param);
+        req.setAttribute("totalCount", totalCount);
+        String url = req.getRequestURI() + "?id=" + id;
+        List<ReviewVo> reviews = reviewService.findByCampId(param);
+        System.out.println(reviews);
+        req.setAttribute("reviews", reviews);
+        String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
+        req.setAttribute("pagebar", pagebar);
 
         // 3. 포워딩
         req.getRequestDispatcher("/WEB-INF/views/camp/campDetail.jsp").forward(req, resp);

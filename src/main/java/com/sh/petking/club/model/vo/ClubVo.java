@@ -1,5 +1,6 @@
 package com.sh.petking.club.model.vo;
 
+import com.sh.petking.board.model.entity.BoardAttach;
 import com.sh.petking.club.model.entity.*;
 import com.sh.petking.user.model.entity.User;
 
@@ -12,6 +13,7 @@ public class ClubVo extends Club {
     private List<ClubAttach> attachments = new ArrayList<>();
     private List<Long> delFiles = new ArrayList<>();
     private List<ClubComment> comments;
+    private int commentCount;
 
     public User getUser() {
         return user;
@@ -29,6 +31,9 @@ public class ClubVo extends Club {
         this.attachCount = attachCount;
     }
 
+    public void addAttachment(ClubAttach attachment) {
+        this.attachments.add(attachment);
+    }
     public List<ClubAttach> getAttachments() {
         return attachments;
     }
@@ -53,6 +58,14 @@ public class ClubVo extends Club {
         this.comments = comments;
     }
 
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
     @Override
     public String toString() {
         return "ClubVo{" +
@@ -61,6 +74,7 @@ public class ClubVo extends Club {
                 ", attachments=" + attachments +
                 ", delFiles=" + delFiles +
                 ", comments=" + comments +
+                ", commentCount=" + commentCount +
                 "} " + super.toString();
     }
 
@@ -71,7 +85,6 @@ public class ClubVo extends Club {
             case "clubIntroTitle" : setClubIntroTitle(value); break;
             case "userId" : setUserId(value); break;
             case "clubIntroContent" : setClubIntroContent(value); break;
-            case "delFile" : this.delFiles.add(Long.parseLong(value)); break;
             default: throw new RuntimeException("부적절한 name값 : " + name);
         }
     }

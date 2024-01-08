@@ -37,7 +37,7 @@
             <%--  작성된 문의 내역 출력하는 구간. forEach로 반복 --%>
             <c:forEach items="${asks}" var="ask" varStatus="vs">
                 <div class="odd:bg-white even:bg-gray-50 border-b ">
-
+                    <tr>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${ask.id}</th>
                     <td class="px-6 py-4">
                         <a href="${pageContext.request.contextPath}/camp/campAskDetail?id=${ask.id}"
@@ -56,9 +56,8 @@
 <%--                            ${ask.askRegDate}--%>
                                 <fmt:parseDate value="${ask.askRegDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
                                 <fmt:formatDate value="${regDate}" pattern="yy/MM/dd HH:mm"/></td>
-
+                    </tr>
                 </div>
-                </tr>
             </c:forEach>
 
             </tbody>

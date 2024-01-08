@@ -39,7 +39,7 @@ public class AskCommentCreateController extends HttpServlet {
 
         //2.업무로직
         int result = askService.updateAsk(ask);
-        req.getSession().setAttribute("msg","문의 답변이 등록었습니다.");
+        req.getSession().setAttribute("msg","문의 답변이 등록되었습니다.");
 
         //3.redirect 문의목록으로 리다이렉트처리
         resp.sendRedirect(req.getContextPath()+"/ask/askList");

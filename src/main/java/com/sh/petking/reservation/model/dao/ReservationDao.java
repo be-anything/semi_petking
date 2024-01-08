@@ -39,8 +39,7 @@ public class ReservationDao
 
     public List<Reservation> findAbleRoom(SqlSession session, Map<String, Object> params) {
         System.out.println("ReservationDao , findAbleRoom 대여 가능한 객실 출력");
-        return session.selectList("reservation.findAbleRoom", params);
-
+        return session.selectList("reservation.findAbleRoom",params);
     }
     public List<ReservationVo> findByDonReservUserId(SqlSession session, Map<String, Object> param) {
         int page = (int) param.get("page");
