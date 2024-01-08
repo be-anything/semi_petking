@@ -208,6 +208,7 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
                 tbody.innerHTML += `
                     <tr>
                         <td><img id="roomImage" class="w-[200px] h-[100px]" src="${contextPath}/upload/room/${roomRenamedImg}"></td>
+                        <td>${id}</td>
                         <td>${roomName}</td>
                         <td>${roomType}</td>
                         <td>${roomDefaultPerson}명</td>
@@ -219,10 +220,7 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
                         class="hover:text-white bg-white text-black border border-gray2 hover:bg-green font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2"> 
                         예약</button></td>
                     </tr>`;
-
-
             });
-
         },
         error()
         {
