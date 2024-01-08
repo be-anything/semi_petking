@@ -12,6 +12,26 @@ import java.util.List;
 public class CampVo extends Camp {
     private int reviewCount;
     private int wishCount;
+    private String tagNames;
+
+    public String getTagNames() {
+        return tagNames;
+    }
+
+
+    private List<String> tagNameList = new ArrayList<>();
+
+    public List<String> getTagNameList() {
+        return tagNameList;
+    }
+
+    public void setTagNameList(List<String> tagNameList) {
+        this.tagNameList = tagNameList;
+    }
+
+    public void setTagNames(String tagNames) {
+        this.tagNames = tagNames;
+    }
     private List<CampWithTagVo> campWithTags = new ArrayList<>();
     private List<CampWithServiceVo> campWithServices = new ArrayList<>();
     private List<Room> rooms = new ArrayList<>();
