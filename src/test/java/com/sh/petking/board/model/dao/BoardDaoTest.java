@@ -62,7 +62,7 @@ public class BoardDaoTest {
 
     @DisplayName("게시판 하나를 조회 할 수 있습니다.")
     @ParameterizedTest
-    @ValueSource(longs = {1L, 2L, 3L})
+    @ValueSource(longs = {35L, 36L, 37L})
     void test2_1(long id) {
         Board board = boardDao.findById(session, id);
         System.out.println(board);
@@ -93,7 +93,7 @@ public class BoardDaoTest {
     @Test
     void test3(){
         BoardType boardType = BoardType.F;
-        Board board = new Board(0, "goyoung12", boardType, "제목", "내용", null, 0, 0);
+        Board board = new Board(0L, "goyoung12", boardType, "제목", "내용", null, 0, 0);
         System.out.println(board);
         int result = boardDao.insertBoard(session, board);
 
