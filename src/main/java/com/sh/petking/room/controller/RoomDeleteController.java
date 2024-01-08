@@ -41,7 +41,7 @@ public class RoomDeleteController extends HttpServlet {
         room.setCampId(campId);
         // 2. 업무로직
         int result = roomService.deleteRoom(room);
-        req.getSession().setAttribute("msg", "객실을 삭제했습니다..");
+        req.getSession().setAttribute("msg", "객실을 성공적으로 삭제했습니다.");
         // 3. 리다이렉트
         resp.sendRedirect(req.getContextPath() + "/room/roomList");
 

@@ -36,7 +36,7 @@ public class UserDeleteController extends HttpServlet {
 //        session.invalidate();
 
 //        session = req.getSession();
-        session.setAttribute("msg", "회원탈퇴완료");
+        session.setAttribute("msg", "회원 탈퇴를 완료했습니다.");
         session.invalidate();
 
         // 리다이렉트
