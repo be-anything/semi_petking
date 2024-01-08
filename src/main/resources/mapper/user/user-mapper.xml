@@ -146,6 +146,13 @@
             email = #{email}
     </select>
 
+    <insert id="insertPet">
+        insert into
+            pet
+        values (
+        userId, #{petName}, #{petAge}, #{petGender}, #{neutered}, default
+        )
+    </insert>
 
 
 
