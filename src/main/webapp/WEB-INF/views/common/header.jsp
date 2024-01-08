@@ -28,6 +28,13 @@
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css" rel="stylesheet">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <script>
+        const contextPath = "${pageContext.request.contextPath}";
+        <c:if test="${msg != null}">
+        alert(`${msg}`); // 여러줄 입력이 가능하도록 `(백틱)으로 감싸야한다. 0104 test 용으로 복붙했어요
+        <c:remove var="msg" scope="session" />
+        </c:if>
+    </script>
 
 </head>
 <body>

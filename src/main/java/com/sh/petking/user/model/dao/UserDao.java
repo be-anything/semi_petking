@@ -59,7 +59,9 @@ public class UserDao extends HttpServlet {
     public UserVo findGradeId(SqlSession session, String id) {
         return session.selectOne("user.findGradeId", id);
     }
-
+    public List<Point> findPointAll (SqlSession session, String id){
+        return session.selectList("user.findPointAll", id);
+    }
 
 
 
@@ -84,8 +86,7 @@ public class UserDao extends HttpServlet {
         return session.selectOne("user.findByEmail", email);
     }
 
-
-    public List<Point> findPointAll(SqlSession session, String id) {
-        return session.selectList("user.findPointAll", id);
+    public int insertPet(SqlSession session, Pet pet) {
+        return session.insert("pet.insertPet", pet);
     }
 }
