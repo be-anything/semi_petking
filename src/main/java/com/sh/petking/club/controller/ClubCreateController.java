@@ -3,6 +3,8 @@ package com.sh.petking.club.controller;
 import com.sh.petking.club.model.entity.Club;
 import com.sh.petking.club.model.service.ClubService;
 import com.sh.petking.club.model.vo.ClubVo;
+import com.sh.petking.user.model.entity.User;
+import com.sh.petking.user.model.service.UserService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -23,6 +25,8 @@ import static java.lang.System.out;
 public class ClubCreateController extends HttpServlet {
 
     private ClubService clubService = new ClubService();
+
+    private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -101,8 +105,12 @@ public class ClubCreateController extends HttpServlet {
         // 2. 업무로직
         int result = clubService.insertClub(club);
         req.getSession().setAttribute("msg", "게시글을 성공적으로 등록했습니다. 😉");
+        User user = (User) (req.getSession().getAttribute("loginUser"));
+
+        user = userService.findById(user.getId());
+        req.getSession().setAttribute("loginUser", user);
 
         // 3. redirect 목록페이지
-        resp.sendRedirect(req.getContextPath() + "/club/clubList");
+        resp.sendRedirect(req.getContextPath() + "/club/clubList?id=" + user.getClubId());
     }
 }

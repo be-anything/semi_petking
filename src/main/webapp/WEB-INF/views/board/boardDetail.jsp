@@ -53,7 +53,7 @@
                 <c:if test="${loginUser.clubId eq '0' && board.boardType == 'C'}">
                     <button type="button"
                             onclick="confirm('동아리 가입신청을 하시겠습니까? 😎') && document.boardRequestFrm.submit()"
-                            class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+                            class=" py-2.5 px-4 text-xs font-medium text-sky-600 hover:bg-blue-200 ms-30">
                         가입 신청
                     </button>
                 </c:if>

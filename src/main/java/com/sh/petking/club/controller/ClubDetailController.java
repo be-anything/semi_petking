@@ -18,14 +18,14 @@ public class ClubDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 사용자입력값 처리
-//        long id = Long.parseLong(req.getParameter("id"));
+        long id = Long.parseLong(req.getParameter("id"));
+
+        ClubVo club = clubService.findById(id);
+        System.out.println(id);
+        // 2. 업무로직
 //
-//        ClubVo club = clubService.findById(id);
-//        System.out.println(id);
-//        // 2. 업무로직
-////
-//        req.setAttribute("club", club);
-//        System.out.println(club);
+        req.setAttribute("club", club);
+        System.out.println(club);
         // 3. 포워딩
         req.getRequestDispatcher("/WEB-INF/views/club/clubDetail.jsp").forward(req, resp);
     }

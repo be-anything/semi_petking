@@ -1,5 +1,6 @@
 package com.sh.petking.club.model.service;
 
+import com.sh.petking.board.model.vo.BoardVo;
 import com.sh.petking.club.model.dao.ClubDao;
 import com.sh.petking.club.model.entity.Club;
 import com.sh.petking.club.model.entity.ClubUsers;
@@ -7,6 +8,7 @@ import com.sh.petking.club.model.vo.ClubVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.sh.petking.common.SqlSessionTemplate.getSqlSession;
 
