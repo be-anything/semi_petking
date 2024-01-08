@@ -3,8 +3,7 @@ package com.sh.petking.pet.model.entity;
 import java.time.LocalDateTime;
 
 public class Pet {
-    private String id; // 사용자아이디
-    private String userId; // 동아리장아이디
+    private String userId; // 사용자아이디
     private String petName;
     private int petAge;
     private String petGender;
@@ -14,22 +13,13 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(String id, String userId, String petName, int petAge, String petGender, String neutered, LocalDateTime regDate) {
-        this.id = id;
+    public Pet(String userId, String petName, int petAge, String petGender, String neutered, LocalDateTime regDate) {
         this.userId = userId;
         this.petName = petName;
         this.petAge = petAge;
         this.petGender = petGender;
         this.neutered = neutered;
         this.regDate = regDate;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getUserId() {
@@ -83,8 +73,7 @@ public class Pet {
     @Override
     public String toString() {
         return "Pet{" +
-                "id='" + id + '\'' +
-                ", userId='" + userId + '\'' +
+                "userId='" + userId + '\'' +
                 ", petName='" + petName + '\'' +
                 ", petAge=" + petAge +
                 ", petGender='" + petGender + '\'' +
