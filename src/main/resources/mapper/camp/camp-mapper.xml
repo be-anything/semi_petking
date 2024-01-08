@@ -311,50 +311,65 @@
     </select>
     <select id="findAllCampWithTag" resultType="campVo">
         select
-            camp_id,
-            LISTAGG(tag_id, ',') WITHIN GROUP (ORDER BY tag_id) AS tag_ids,
-            LISTAGG(name, ',') WITHIN GROUP (ORDER BY tag_id) AS names
+            *
         from
-            camp c full join (select cwt.camp_id camp_id,cwt.tag_id, ct.name from camp_tag ct full join camp_with_tag cwt on ct.id = cwt.tag_id) tag
-            on c.id = tag.camp_id
-        <where>
-            <if test="true">
+            (select
+                camp_id id,
+                camp_name,
+                camp_intro,
+                camp_phone,
+                camp_addr,
+                reg_date,
+                LISTAGG(tag_id, ',') WITHIN GROUP (ORDER BY tag_id) AS tags,
+                LISTAGG(name, ',') WITHIN GROUP (ORDER BY tag_id) AS tagNames
+            from
+                camp c join (select cwt.camp_id camp_id,cwt.tag_id, ct.name from camp_tag ct full join camp_with_tag cwt on ct.id = cwt.tag_id) tag
+                on c.id = tag.camp_id
+            where
                 camp_state = 1
+            group by
+                camp_id, camp_name, camp_intro, camp_phone, camp_addr, reg_date)
+        <where>
+            <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+                AND ${searchType} like '%' || #{searchKeyword} || '%'
             </if>
-            <if test="tagIds != null">
-                <foreach item="tagId" index="i" collection="tagIds"
-                         open="and (" separator="or" close=")">
-                    tag_ids like '%' || #{tagId} || '%'
-                </foreach>
+            <if test="tagName != null and tagName != ''">
+                AND tagNames like '%' || #{tagName} || '%'
             </if>
         </where>
-        group by
-            camp_id
+            order by
+                reg_date desc
     </select>
     <select id="getTotalCampWithTagCount" resultType="_int">
         select
             count(*)
-        from(
-            select
-                camp_id,
-                LISTAGG(tag_id, ',') WITHIN GROUP (ORDER BY tag_id) AS tag_ids,
-                LISTAGG(name, ',') WITHIN GROUP (ORDER BY tag_id) AS names
+        from
+            (select
+                camp_id id,
+                camp_name,
+                camp_intro,
+                camp_phone,
+                camp_addr,
+                reg_date,
+                LISTAGG(tag_id, ',') WITHIN GROUP (ORDER BY tag_id) AS tags,
+                LISTAGG(name, ',') WITHIN GROUP (ORDER BY tag_id) AS tagNames
             from
-                camp c full join (select cwt.camp_id camp_id,cwt.tag_id, ct.name from camp_tag ct full join camp_with_tag cwt on ct.id = cwt.tag_id) tag
+                camp c join (select cwt.camp_id camp_id,cwt.tag_id, ct.name from camp_tag ct full join camp_with_tag cwt on ct.id = cwt.tag_id) tag
                 on c.id = tag.camp_id
-            <where>
-                <if test="true">
-                    camp_state = 1
-                </if>
-                <if test="tagIds != null">
-                    <foreach item="tagId" index="i" collection="tagIds"
-                             open="and (" separator="or" close=")">
-                        tag_ids like '%' || #{tagId} || '%'
-                    </foreach>
-                </if>
-            </where>
+            where
+                camp_state = 1
             group by
-                camp_id)
+                camp_id, camp_name, camp_intro, camp_phone, camp_addr, reg_date)
+        <where>
+            <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
+                AND ${searchType} like '%' || #{searchKeyword} || '%'
+            </if>
+            <if test="tagName != null and tagName != ''">
+                AND tagNames like '%' || #{tagName} || '%'
+            </if>
+        </where>
+        order by
+            reg_date desc
     </select>
 
 </mapper>

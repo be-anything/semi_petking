@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function () {
     new Splide('#main-slider', {
         type: 'loop',

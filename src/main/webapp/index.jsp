@@ -10,14 +10,14 @@
         <form name="campSearchFrm" action="${pageContext.request.contextPath}/camp/campList" method="get">
         <div class="mx-auto max-w-6xl w-fit">
             <div class="bg-white flex">
-                <select id="search-type" name="search-type" required class="text-black border border-gray2 rounded-lg px-5">
-                    <option value="" disabled selected>선택</option>
+                <select id="search-type" name="search-type" class="text-black border border-gray2 rounded-lg px-5">
+                    <option value="" selected>선택</option>
                     <option value="camp_name" ${param['search-type'] eq 'camp_name' ? 'selected' : ''}>캠핑장 이름</option>
                     <option value="camp_intro" ${param['search-type'] eq 'camp_intro' ? 'selected' : ''}>캠핑장 소개</option>
                     <option value="camp_addr" ${param['search-type'] eq 'camp_addr' ? 'selected' : ''}>캠핑장 주소</option>
                 </select>
                 <div class="ml-1">
-                    <input type="search" id="search-keyword" name="search-keyword" value="${param['search-keyword']}" required placeholder="검색어를 입력하세요..." class="text-black border border-gray2 font-medium rounded-lg text-sm py-2.5 px-5 w-[500px]" >
+                    <input type="search" id="search-keyword" name="search-keyword" value="${param['search-keyword']}" placeholder="검색어를 입력하세요..." class="text-black border border-gray2 font-medium rounded-lg text-sm py-2.5 px-5 w-[500px]" >
                     <button type="submit" class="search-btn text-black end-2.5 bottom-2.5 bg-gray2 hover:bg-black hover:text-white focus:outline-none font-medium rounded-lg text-sm px-4 py-3">검색하기</button>
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <div class="w-3/4 mx-auto px-4 py-4 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-0">
                 <c:forEach items="${tags}" var="tag" varStatus="vs">
                     <div class="options grid w-full gap-6 text-gray-500 border-2 border-gray-200 rounded-lg cursor-pointer inline-flex items-center justify-center w-full p-3">
-                        <input type="checkbox" name="tagId${vs.index + 1}" value="${tag.id}" class="hidden peer tag-btn">
+                        <input type="checkbox" name="tagName" value="${tag.name}" class="hidden peer tag-btn">
                         #${tag.name}
                     </div>
                 </c:forEach>
