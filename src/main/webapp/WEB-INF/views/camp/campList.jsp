@@ -21,7 +21,7 @@
                 <option value="" disabled selected>선택</option>
                 <option value="camp_name" ${param['search-type'] eq 'camp_name' ? 'selected' : ''}>캠핑장 이름</option>
                 <option value="camp_intro" ${param['search-type'] eq 'camp_intro' ? 'selected' : ''}>캠핑장 소개</option>
-                <option value="camp_addr" ${param['search-type'] eq 'camp_addr                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ' ? 'selected' : ''}>캠핑장 주소</option>
+                <option value="camp_addr" ${param['search-type'] eq 'camp_addr' ? 'selected' : ''}>캠핑장 주소</option>
             </select>
             <div class="ml-1">
                 <input type="search" id="search-keyword" name="search-keyword" value="${param['search-keyword']}" required placeholder="검색어를 입력하세요..." class="text-black border border-gray2 font-medium rounded-lg text-sm py-2.5 px-5 w-[500px]" >
@@ -44,20 +44,16 @@
                 <div class="w- text-black font-semibold text-2xl mt-5 flex items-center place-content-between relative">
                         <span id="campBtn" data-id="${camp.id}" class="hover:underline cursor-pointer">${camp.campName}</span>
 
-                        <%--<i class="fa-solid fa-heart text-right"></i>--%>
-                        <%-- ajax wish insert/delete -> loginUser 기능 완성되면 data-user-id 하드코딩 부분 수정 필요 --%>
-                        <c:if test="${loginUser != null}">
-                            <c:forEach items="${wishes}" var="wish">
-                                <c:if test="${wish.campId == camp.id}">
-                                    <i data-camp-id="${camp.id}" data-user-id="${loginUser.id}" class="z-50 wish-btn fa-solid fa-heart absolute bottom-full right-10 text-5xl text-red cursor-pointer"></i>
-                                </c:if>
-                                <c:if test="${wish.campId != camp.id}">
-                                    <i data-camp-id="${camp.id}" data-user-id="${loginUser.id}" class="wish-btn fa-regular fa-heart absolute bottom-full right-10 text-5xl text-gray2 cursor-pointer"></i>
-                                </c:if>
-                            </c:forEach>
+                    <%--<i class="fa-solid fa-heart text-right"></i>--%>
+                    <%-- ajax wish insert/delete -> loginUser 기능 완성되면 data-user-id 하드코딩 부분 수정 필요 --%>
+                    <c:if test="${loginUser != null}">
+<%--                        <c:if test="${wishes.toString().contains('campId=' + camp.id)}">--%>
+                        <c:if test="${camp.wish}">
+                        <i data-camp-id="${camp.id}" data-user-id="${loginUser.id}" class="z-50 wish-btn fa-solid fa-heart absolute bottom-full right-10 text-5xl text-red cursor-pointer"></i>
                         </c:if>
-                    <c:if test="${wishes == null}">
-                        <i data-camp-id="${camp.id}" data-user-id="${loginUser.id}" class="wish-btn fa-regular fa-heart absolute bottom-full right-10 text-5xl text-gray2 cursor-pointer"></i>
+                        <c:if test="${!camp.wish}">
+                            <i data-camp-id="${camp.id}" data-user-id="${loginUser.id}" class="wish-btn fa-regular fa-heart absolute bottom-full right-10 text-5xl text-gray2 cursor-pointer"></i>
+                        </c:if>
                     </c:if>
                     <c:if test="${loginUser == null}">
                         <i class="fa-regular cursor-not-allowed fa-heart absolute bottom-full right-10 text-5xl text-gray2"></i>

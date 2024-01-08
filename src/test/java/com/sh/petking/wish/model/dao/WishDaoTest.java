@@ -5,6 +5,7 @@ import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.user.model.dao.UserDao;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.wish.model.entity.Wish;
+import com.sh.petking.wish.model.vo.WishVo;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -74,7 +75,7 @@ class WishDaoTest {
     @ParameterizedTest
     @MethodSource("userIdProvider")
     public void test3(String userId) {
-        List<Wish> wishes = wishDao.findByUserId(session, userId);
+        List<WishVo> wishes = wishDao.findByUserId(session, userId);
         System.out.println(wishes);
         assertThat(wishes)
                 .isNotNull()
@@ -126,7 +127,7 @@ class WishDaoTest {
     @ParameterizedTest
     @MethodSource("userIdProvider")
     void test6(String userId) {
-        List<Wish> wishes = wishDao.findByUserId(session, userId);
+        List<WishVo> wishes = wishDao.findByUserId(session, userId);
         
         // 사용자의 찜목록이 비어있지 않을 때만 삭제 테스트를 하도록 함
         if(!wishes.isEmpty()){
@@ -146,14 +147,14 @@ class WishDaoTest {
     @ParameterizedTest
     @MethodSource("userIdProvider")
     void test7(String userId) {
-        List<Wish> wishes = wishDao.findByUserId(session, userId);
+        List<WishVo> wishes = wishDao.findByUserId(session, userId);
 
         // 사용자의 찜목록이 비어있지 않을 때만 삭제 테스트를 하도록 함
         if(!wishes.isEmpty()){
             int result = wishDao.deleteWishByUserId(session, userId);
             assertThat(result).isEqualTo(wishes.size());
 
-            List<Wish> wishes1 = wishDao.findByUserId(session, userId);
+            List<WishVo> wishes1 = wishDao.findByUserId(session, userId);
             assertThat(wishes1).isEmpty();
         }
     }

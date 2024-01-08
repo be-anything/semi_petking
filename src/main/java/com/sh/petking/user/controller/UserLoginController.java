@@ -40,7 +40,7 @@ public class UserLoginController extends HttpServlet {
         // 사용자 입력값 가져오기
         String id = req.getParameter("id");
         String pw = PetkingUtils.getEncryptedPassword(req.getParameter("password"), id);
-//        System.out.println(id + pw);
+        System.out.println(id + pw);
 
         // 업무 로직
         User user = userService.findById(id);

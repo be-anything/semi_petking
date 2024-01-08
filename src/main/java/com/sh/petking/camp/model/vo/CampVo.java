@@ -17,6 +17,16 @@ public class CampVo extends Camp {
     private List<Room> rooms = new ArrayList<>();
     private List<CampAttach> campAttaches = new ArrayList<>();
 
+    private boolean isWish;
+
+    public boolean isWish() {
+        return isWish;
+    }
+
+    public void setWish(boolean wish) {
+        isWish = wish;
+    }
+
     public List<CampAttach> getCampAttaches() {
         return campAttaches;
     }
@@ -80,7 +90,10 @@ public class CampVo extends Camp {
                 "reviewCount=" + reviewCount +
                 ", wishCount=" + wishCount +
                 ", campWithTags=" + campWithTags +
+                ", campWithServices=" + campWithServices +
                 ", rooms=" + rooms +
+                ", campAttaches=" + campAttaches +
+                ", isWish=" + isWish +
                 ", campTagName='" + campTagName + '\'' +
                 '}';
     }

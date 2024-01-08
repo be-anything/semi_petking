@@ -6,6 +6,11 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ask/askList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ask" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pet/petDetail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pet" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/userDetail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/reservation/ReservationProgress.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/reservation" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/userDetail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/reservation/reservationMain.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/reservation" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/userDetail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
     </option>
   </component>

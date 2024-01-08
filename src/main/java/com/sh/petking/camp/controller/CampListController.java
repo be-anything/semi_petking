@@ -7,6 +7,7 @@ import com.sh.petking.common.PetkingUtils;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.wish.model.entity.Wish;
 import com.sh.petking.wish.model.service.WishService;
+import com.sh.petking.wish.model.vo.WishVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static com.sh.petking.common.PetkingUtils.getPagebar;
 
@@ -46,19 +48,30 @@ public class CampListController extends HttpServlet {
 
         // 값 가져오기 - campList
         List<CampVo> camps = campService.findAll(param);
-        req.setAttribute("camps", camps);
 
         // wishList - 사용자 id로 찾기
-
         User loginUser = (User) req.getSession().getAttribute("loginUser");
         System.out.println(loginUser);
         if(loginUser != null) {
-            List<Wish> wishes = wishService.findByUserId(loginUser.getId());
-            if(wishes.size() > 0) {
-                req.setAttribute("wishes", wishes);
-                System.out.println(wishes);
+            List<Wish> wishes = wishService._findByUserId(loginUser.getId());
+            for (Wish wish: wishes) {
+                System.out.println(wish.getCampId());
+                for(CampVo camp: camps){
+                    System.out.println(camp.getId());
+                    if(camp.getId() == wish.getCampId()){
+                        camp.setWish(true);
+                        break;
+                    }
+                    else {
+                        camp.setWish(false);
+                    }
+                }
             }
+            req.setAttribute("wishes", wishes);
         }
+
+        req.setAttribute("camps", camps);
+        System.out.println(camps);
 
         // 페이지바
         int totalCount = campService.getTotalCount(param);
@@ -69,6 +82,8 @@ public class CampListController extends HttpServlet {
         if(searchType != null && searchKeyword != null){
             url += "?search-type=" + searchType + "&search-keyword=" + searchKeyword;
         }
+
+
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);
         System.out.println(totalCount);

@@ -1,6 +1,8 @@
 package com.sh.petking.user.model.dao;
 
+import com.sh.petking.camp.model.vo.CampVo;
 import com.sh.petking.pet.model.entity.Pet;
+import com.sh.petking.user.model.entity.Point;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.vo.UserVo;
 import org.apache.ibatis.session.RowBounds;
@@ -54,8 +56,12 @@ public class UserDao extends HttpServlet {
      *
      *
      */
-
-
+    public UserVo findGradeId(SqlSession session, String id) {
+        return session.selectOne("user.findGradeId", id);
+    }
+    public List<Point> findPointAll (SqlSession session, String id){
+        return session.selectList("user.findPointAll", id);
+    }
 
 
 

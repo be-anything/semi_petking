@@ -39,6 +39,7 @@
                 dual
         </selectKey>
     </insert>
+
     <update id="updateBoard">
         update
             board
@@ -54,11 +55,21 @@
         where
             id = #{id}
     </delete>
+
     <select id="getTotalCount" resultType="_int">
         select
             count(*)
         from
             board
+    </select>
+
+    <select id="getTotalCountByType" resultType="_int">
+        select
+        count(*)
+        from
+        board
+        where
+         board_type = #{boardType}
     </select>
 
 <!--    <resultMap id="boardVoMap" type="boardVo">-->

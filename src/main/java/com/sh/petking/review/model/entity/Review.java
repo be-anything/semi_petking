@@ -1,6 +1,6 @@
 package com.sh.petking.review.model.entity;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 public class Review {

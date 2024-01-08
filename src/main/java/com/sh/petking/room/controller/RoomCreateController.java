@@ -57,7 +57,8 @@ public class RoomCreateController extends HttpServlet
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         //1.사용자 입력값 처리 및 파일 업로드
-        File repository = new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\room");
+        //"C:\\Users\\min_j\\Dropbox\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\camp"
+        File repository = new File("C:\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\room");
         int sizeThreshold = 10 * 1024 * 1024; //10MB
 
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -80,7 +81,6 @@ public class RoomCreateController extends HttpServlet
                     //일반 텍스트 : room 객체에 설정
                     String value = item.getString("utf-8");
                     System.out.println(name+"///"+value);
-                    //Board객체에 설정자 로직 구현..
                     room.setValue(name,value);
 
                 }
@@ -110,6 +110,10 @@ public class RoomCreateController extends HttpServlet
 
                         attach.setRoomAttachOriginalName(originalFileName);
                         attach.setRoomAttachRenamedName(renamedFileName);
+                        if(renamedFileName == null || renamedFileName.isEmpty()) {
+                            room.setRoomRenamedImg("room_default_img.jpg"); //대표를 설정하지 않았다면 기본사진으로 지정
+                        }
+                        room.setRoomRenamedImg(renamedFileName); //0105 혜진 임시 대표사진 설정
                         room.addAttachment(attach);
                     }
                 }

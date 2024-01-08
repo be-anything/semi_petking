@@ -43,6 +43,17 @@
         order by
             u.reg_date desc
     </select>
+    <select id="findGradeId" resultMap="userVoMap">
+        select
+            u.*,
+            g.id grade_id2,
+            g.name grade_name
+        from
+            users u left join user_grade g
+                on u.grade_id = g.id
+        where
+            u.id = #{id}
+    </select>
     <resultMap id="userVoMap" type="userVo">
         <id column="id" property="id"/>
         <result column="club_id" property="clubId"/>
@@ -88,7 +99,14 @@
     <!--
     * 민준씨
     -->
-
+    <select id="findPointAll" resultType="point">
+        select
+            *
+        from
+            point
+        where
+            user_id = #{userId}
+    </select>
 
 
 

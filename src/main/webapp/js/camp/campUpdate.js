@@ -1,41 +1,30 @@
 // 추가 이미지 미리보기 및 업로드 메세지 제거하기
+window.addEventListener('DOMContentLoaded', () => {
+   previewImg();
+});
+
+const previewImg = () => {
+    document.querySelectorAll(".campImg").forEach((img) => {
+        img.addEventListener('change', (e) => {
+            const btn = e.target;
+            const img = btn.files[0];
+            const imgView = btn.parentElement;
+            const text = btn.previousElementSibling;
+
+            const loadImg = (img) => {
+                const imgReader = new FileReader();
+                imgReader.onload = (e) => {
+                    imgView.style["backgroundImage"] =  "url('" + e.target.result + "')";
+                };
+                imgReader.readAsDataURL(img);
+                text.style.display = 'none';
+            }
+            loadImg(img);
+        });
+    })
+}
 
 
-document.querySelectorAll(".campImg").forEach((img) => {
-    img.addEventListener('click', () => {
-        const btn = e.target;
-        const img = btn.files[0];
-        const imgView = btn.parentElement;
-        const text = btn.previousElementSibling;
-
-        const loadImg = (img) => {
-            const imgReader = new FileReader();
-            imgReader.onload = (e) => {
-                imgView.style["backgroundImage"] =  "url('" + e.target.result + "')";
-            };
-            imgReader.readAsDataURL(img);
-            text.style.display = 'none';
-        }
-        loadImg(img);
-    });
-
-    img.addEventListener('change', (e) => {
-        const btn = e.target;
-        const img = btn.files[0];
-        const imgView = btn.parentElement;
-        const text = btn.previousElementSibling;
-
-        const loadImg = (img) => {
-            const imgReader = new FileReader();
-            imgReader.onload = (e) => {
-                imgView.style["backgroundImage"] =  "url('" + e.target.result + "')";
-            };
-            imgReader.readAsDataURL(img);
-            text.style.display = 'none';
-        }
-        loadImg(img);
-    });
-})
 
 
 // options 버튼 클릭 이벤트
@@ -122,10 +111,10 @@ document.querySelectorAll(".delbtn").forEach((btn, _index) =>{
                                         <input id="campImg${index}" name="campDetailImg"
                                                type="file" class="campImg hidden campAttach"/>
                                     </label>`;
+                    previewImg();
                 },
                 error(jqXHR, textStatus, errorThrown) {
                     console.error("AJAX 오류 발생: ", textStatus, errorThrown);
-                    // 여기에서 오류 처리 로직을 추가할 수 있습니다.
                 }
             })
        }
@@ -176,22 +165,13 @@ document.querySelector("#updateDetailBtn").addEventListener('click', (e) => {
             const {msg} = response;
             alert(msg);
             // ajax reload
-            location.reload();
+            // location.reload();
         },
         complete() {
+
         }
     });
 });
-
-
-
-
-
-
-
-
-
-
 
 
 

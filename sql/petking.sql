@@ -36,6 +36,7 @@ CREATE TABLE users (
 -- drop sequence seq_users_nickname;
 create sequence seq_users_nickname;
 select * from users;
+commit;
 ----------------------------------------------------------------- del_user 영역
 create table del_users(
       id number not null,
@@ -295,7 +296,8 @@ create table promotion(
 );
 create sequence promotion_id;
 select * from promotion;
-
+alter table promotion add promo_state number(1);
+alter table promotion add constraints ck_promotion_promo_state check(promo_state in(0,1));
 ----------------------------------------------------------------- camp_promotion 영역
 create table camp_promotion(
        promo_id number not null,
@@ -311,6 +313,8 @@ create table camp_promotion(
 create sequence camp_promotion_promo_id;
 
 select * from camp_promotion;
+
+
 --drop table camp_promotion;
 
 ----------------------------------------------------------------- camp_type 영역 혜진

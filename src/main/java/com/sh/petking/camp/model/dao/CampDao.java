@@ -3,9 +3,8 @@ package com.sh.petking.camp.model.dao;
 import com.sh.petking.camp.model.entity.*;
 import com.sh.petking.camp.model.entity.Approve;
 import com.sh.petking.camp.model.entity.Camp;
-import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
-import org.apache.commons.fileupload.FileItem;
+import com.sh.petking.index.vo.CampPromotionVo;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
@@ -100,5 +99,15 @@ public class CampDao {
     public int updateDeleteCamp(SqlSession session, Camp camp) {
         System.out.println(camp);
         return session.update("camp.updateDeleteCamp", camp);
+    }
+
+
+    public List<CampPromotionVo> findPromoAll(SqlSession session) {
+
+        return session.selectList("promo.findPromoAll");
+    }
+
+    public List<Camp> findNewCampAll(SqlSession session) {
+        return session.selectList("camp.findNewCampAll");
     }
 }
