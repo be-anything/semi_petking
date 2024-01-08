@@ -3,7 +3,7 @@ package com.sh.petking.club.model.entity;
 import java.time.LocalDateTime;
 
 public class Club {
-    private Long id;
+    private long id;
     private String clubName;
     private String clubIntroTitle;
     private String clubIntroContent;
@@ -13,7 +13,7 @@ public class Club {
     public Club() {
     }
 
-    public Club(Long id, String clubName, String clubIntroTitle, String clubIntroContent, LocalDateTime regDate, String userId) {
+    public Club(long id, String clubName, String clubIntroTitle, String clubIntroContent, LocalDateTime regDate, String userId) {
         this.id = id;
         this.clubName = clubName;
         this.clubIntroTitle = clubIntroTitle;
@@ -26,7 +26,7 @@ public class Club {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -80,5 +80,16 @@ public class Club {
                 ", regDate=" + regDate +
                 ", userId='" + userId + '\'' +
                 '}';
+    }
+
+    public void setValue(String name, String value) {
+        switch (name) {
+            case "id" : setId(Long.parseLong(value)); break;
+            case "clubName" : setClubName(value); break;
+            case "clubIntroTitle" : setClubIntroTitle(value); break;
+            case "userId" : setUserId(value); break;
+            case "clubIntroContent" : setClubIntroContent(value); break;
+            default: throw new RuntimeException("부적절한 name값 : " + name);
+        }
     }
 }

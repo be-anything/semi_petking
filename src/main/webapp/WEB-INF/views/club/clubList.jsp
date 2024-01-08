@@ -36,7 +36,7 @@
         <a href="${pageContext.request.contextPath}/club/clubDetail" class="rounded-lg py-[120px] px-[100px] pt-[180px] bg-gray2 hover:bg-orange-100 hover:drop-shadow-2xl">
             <i class="fa fa-smile-o  text-9xl text-black"></i>
         </a>
-        <p class="mt-[125px] text-lg text-center">                         내 동아리 들어가기</p>
+        <p class="mt-[125px] text-lg text-center">내 동아리 들어가기</p>
 </div>
 </c:if>
 <c:if test="${loginUser == null}">

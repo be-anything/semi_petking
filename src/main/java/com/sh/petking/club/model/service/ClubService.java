@@ -21,16 +21,16 @@ public class ClubService {
         return clubs; //결과값을 리턴
     }
 
-    public ClubVo findById(Long id){
+    public Club findById(long id){
         SqlSession session = getSqlSession();
-        ClubVo club = clubDao.findById(session, id);
+        Club club = clubDao.findById(session, id);
         session.close();
         return club;
     }
 
-    public ClubVo findById(Long id, boolean hasRead) {
+    public Club findById(long id, boolean hasRead) {
         SqlSession session = getSqlSession();
-        ClubVo club = null;
+        Club club;
         int result = 0;
         try {
             // 조회수 증가처리
@@ -67,7 +67,7 @@ public class ClubService {
         return result;
     }
 
-    public int updateClub(ClubVo club) {
+    public int updateClub(Club club) {
         int result = 0;
         SqlSession session = getSqlSession();
         try {
@@ -99,7 +99,7 @@ public class ClubService {
         return result;
     }
 
-    public int deleteClub(Long id) {
+    public int deleteClub(long id) {
         int result = 0;
         SqlSession session = getSqlSession();
         try {

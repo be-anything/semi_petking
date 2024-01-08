@@ -36,8 +36,8 @@
         </span>
         </div>
         <%-- 작성자 본인과 관리자에게만 노출 --%>
-        <c:if test="${loginUser.id eq board.userId}">
             <div class="flex justify-end">
+                <c:if test="${loginUser.id eq board.userId}">
                 <button
                         type="button"
                         onclick="location.href = '${pageContext.request.contextPath}/board/boardUpdate?id=${board.id}';"
@@ -49,6 +49,14 @@
                         class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">
                     삭제
                 </button>
+                </c:if>
+                <c:if test="${loginUser.clubId eq '0' && board.boardType == 'C'}">
+                    <button type="button"
+                            onclick="confirm('동아리 가입신청을 하시겠습니까? 😎') && document.boardRequestFrm.submit()"
+                            class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+                        가입 신청
+                    </button>
+                </c:if>
             </div>
             <form
                     action="${pageContext.request.contextPath}/board/boardDelete"
@@ -56,7 +64,12 @@
                     name="boardDeleteFrm">
                 <input type="hidden" name="id" value="${board.id}">
             </form>
-        </c:if>
+            <form
+                    action="${pageContext.request.contextPath}/board/boardRequest"
+                    method="post"
+                    name="boardRequestFrm">
+                <input type="hidden" name="id" value="${board.id}">
+            </form>
     </div>
 
     <!-- 댓글 폼 -->
@@ -79,7 +92,7 @@
                 </div>
                 <div class="flex items-center justify-end px-3 py-2 border-t">
                     <button type="submit"
-                            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-black bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800">
+                            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-black bg-blue-200 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-200">
                         댓글 등록
                     </button>
                 </div>
