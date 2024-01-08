@@ -2,11 +2,9 @@ package com.sh.petking.reservation.model.service;
 
 import com.sh.petking.reservation.model.dao.ReservationDao;
 import com.sh.petking.reservation.model.entity.Reservation;
-<<<<<<< HEAD
-=======
+
 import com.sh.petking.reservation.model.vo.ReservationVo;
 import com.sh.petking.room.model.dao.RoomDao;
->>>>>>> 7492462b87afb1d2f3878ed20940a43340e0b223
 import com.sh.petking.room.model.vo.RoomVo;
 import org.apache.ibatis.session.SqlSession;
 
@@ -27,7 +25,6 @@ public class ReservationService
         return room;
     }
 
-<<<<<<< HEAD
     //첫날,마지막날,그리고 캠핑아이디 값을 담은 맵을 파라메터로 받아 대여가 가능한 객실을 출력해주는 service단 코드
     public List<Reservation> findAbleRoom(Map<String, Object> params) {
 
@@ -36,8 +33,6 @@ public class ReservationService
         session.close();
         return reservation;
 
-
-=======
 
     /**
      * 사용자 아이디로 예약내역 조회하기
@@ -84,6 +79,5 @@ public class ReservationService
         List<ReservationVo> reservations = reservationDao.findByCancelReservUserId(session, param);
         session.close();
         return reservations;
->>>>>>> 7492462b87afb1d2f3878ed20940a43340e0b223
     }
 }
