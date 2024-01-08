@@ -22,8 +22,8 @@
     <div class="h-full px-3 py-4 overflow-y-auto bg-salmon dark:bg-gray-800 text-center text-black rounded-lg border border-gray2">
         <ul class="space-y-2 font-medium">
             <li class="flex justify-center">
-                <a href="${pageContext.request.contextPath}/user/userDetail" class="w-[150px] h-[150px] flex items-center bg-light-pink p-2 rounded-full group">
-                    <img class="flex-1 whitespace-nowrap" src="${pageContext.request.contextPath}/upload/user/${loginUser.renamedProfileName}">
+                <a href="${pageContext.request.contextPath}/user/userDetail" class="w-[150px] h-[150px] overflow-hidden flex items-center border border-white border-4 shadow-lg bg-light-pink rounded-full group">
+                    <img id="sideProfile" class="w-full h-full flex-1 whitespace-nowrap" src="${pageContext.request.contextPath}/upload/user/${loginUser.renamedProfileName}">
                 </a>
             </li>
             <li>
