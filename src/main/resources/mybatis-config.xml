@@ -46,6 +46,7 @@
 
 
         <!-- 정효 -->
+        <mapper resource="mapper/pet/pet-mapper.xml"></mapper>
 
 
 

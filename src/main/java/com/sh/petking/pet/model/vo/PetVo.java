@@ -5,7 +5,19 @@ import com.sh.petking.pet.model.entity.Pet;
 import com.sh.petking.user.model.entity.User;
 
 public class PetVo extends User {
+    private User user;
     private Pet pet;
+
+    public PetVo() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Pet getPet() {
         return pet;
@@ -18,7 +30,8 @@ public class PetVo extends User {
     @Override
     public String toString() {
         return "PetVo{" +
-                "pet=" + pet +
+                "user=" + user +
+                ", pet=" + pet +
                 '}';
     }
 }

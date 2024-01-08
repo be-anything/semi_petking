@@ -19,12 +19,6 @@ public class PetService {
         return pets;
     }
 
-    public int getTotalCount() {
-        SqlSession session = getSqlSession();
-        int totalCount = petDao.getTotalCount(session);
-        session.close();
-        return totalCount;
-    }
     public int insertPet(Pet pet) {
         int result = 0;
         SqlSession session = getSqlSession();
@@ -38,5 +32,42 @@ public class PetService {
             session.close();
         }
         return result;
+    }
+
+    public int updatePet(Pet pet) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = petDao.updatePet(session, pet);
+                session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public int deletePet(String userid) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = petDao.deletePet(session, userid);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public Pet findByPet(String id) {
+        SqlSession session = getSqlSession();
+        Pet pet = petDao.findByPet(session, id);
+        session.close();
+        return pet;
     }
 }

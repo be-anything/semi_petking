@@ -17,11 +17,21 @@ public class PetDao {
         RowBounds rowBounds = new RowBounds(offset, limit);
         return session.selectList("pet.findAllPet", param, rowBounds);
     }
-    public int getTotalCount(SqlSession session) {
-        return session.selectOne("pet.getTotalCount");
-    }
 
     public int insertPet(SqlSession session, Pet pet) {
         return session.insert("pet.insertPet", pet);
     }
+
+    public int updatePet(SqlSession session, Pet pet) {
+        return session.update("pet.updatePet", pet);
+    }
+
+    public int deletePet(SqlSession session, String userid) {
+        return session.delete("pet.deletePet", userid);
+    }
+
+    public Pet findByPet(SqlSession session, String id) {
+        return session.selectOne("pet.findByPet", id);
+    }
+
 }
