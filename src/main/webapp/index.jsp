@@ -24,9 +24,9 @@
         </div>
         <div class="px-4 py-6 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-0">
             <div class="w-3/4 mx-auto px-4 py-4 sm:grid sm:grid-cols-5 sm:gap-4 sm:px-0">
-                <c:forEach items="${tags}" var="tag">
+                <c:forEach items="${tags}" var="tag" varStatus="vs">
                     <div class="options grid w-full gap-6 text-gray-500 border-2 border-gray-200 rounded-lg cursor-pointer inline-flex items-center justify-center w-full p-3">
-                        <input type="checkbox" name="tagId" value="${tag.id}" class="hidden peer tag-btn">
+                        <input type="checkbox" name="tagId${vs.index + 1}" value="${tag.id}" class="hidden peer tag-btn">
                         #${tag.name}
                     </div>
                 </c:forEach>
