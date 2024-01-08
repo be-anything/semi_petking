@@ -20,6 +20,8 @@
         </h1>
     </div>
     <div class="flex-grow border-t border-gray-400"></div>
+
+
     <%
         Date date = new Date();
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
@@ -41,54 +43,40 @@
             </fieldset>
         </form>
     </div>
-    
-<div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
-
     <div class="flex justify-start">
         <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
             객실 리스트
         </h1>
     </div>
     <div class="flex-grow border-t border-gray-400"></div>
-    <table id="roomSearchResult">
-        <thead>
-        </thead>
-        <tbody>
-<%--        <%--%>
-<%--            // 1일 앞 달--%>
-<%--            Calendar preCal = (Calendar)cal.clone();--%>
-<%--            preCal.add(Calendar.DATE, -(week-1));--%>
-<%--            int preDate = preCal.get(Calendar.DATE);--%>
+    <div class="my-5">
+    </div>
 
-<%--            out.print("<tr>");--%>
-<%--            // 1일 앞 부분--%>
-<%--            for(int i=1; i<week; i++) {--%>
-<%--                //out.print("<td> </td>");--%>
-<%--                out.print("<td class='gray'>"+(preDate++)+"</td>");--%>
-<%--            }--%>
+    <div class="container">
+        <div class="left-box">
+            <!-- 좌측 박스 내용 -->
+            <p>좌측 내용</p>
 
-<%--            // 1일부터 말일까지 출력--%>
-<%--            int lastDay = cal.getActualMaximum(Calendar.DATE);--%>
-<%--            String cls;--%>
-<%--            for(int i=1; i<=lastDay; i++) {--%>
-<%--                cls = year==ty && month==tm && i==td ? "today":"";--%>
+            <table id="roomSearchResult">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
 
-<%--                out.print("<td class='"+cls+"'>"+i+"</td>");--%>
-<%--                if(lastDay != i && (++week)%7 == 1) {--%>
-<%--                    out.print("</tr><tr>");--%>
-<%--                }--%>
-<%--            }--%>
+        </div>
+        <div class="right-box">
+            <!-- 우측 박스 내용 -->
+            <p>우측 내용</p>
+            <table id="roomSearchResult1">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-<%--            // 마지막 주 마지막 일자 다음 처리--%>
-<%--            int n = 1;--%>
-<%--            for(int i = (week-1)%7; i<6; i++) {--%>
-<%--                // out.print("<td> </td>");--%>
-<%--                out.print("<td class='gray'>"+(n++)+"</td>");--%>
-<%--            }--%>
-<%--            out.print("</tr>");--%>
-<%--        %>--%>
-        </tbody>
-    </table>
 </div>
 
 

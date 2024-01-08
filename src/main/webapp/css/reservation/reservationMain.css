@@ -6,6 +6,53 @@
 /*    !*width:30%;*!*/
 /*}*/
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: none; /* 셀 테두리 없애기 */
+    border-bottom: 1px solid #ddd; /* 셀 사이의 선 지우기 */
+    padding: 8px; /* 셀 내용과 테두리 사이 간격 설정 */
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+.container{
+    width: 100%;
+    overflow: hidden; /* 자식 요소의 높이를 감지하기 위해 사용 */
+}
+
+/* 좌측 박스 설정 */
+.left-box {
+    float: left;
+    width: 50%;
+    background-color: #e0e0e0;
+}
+
+/* 우측 박스 설정 */
+.right-box {
+    padding-left: 20px;
+    float: right;
+    width: 50%;
+    background-color: #f0f0f0;
+}
+
+/* 둘 다 float를 해제하기 위한 clearfix */
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
+
 table
 {
     border : 1px solid black;

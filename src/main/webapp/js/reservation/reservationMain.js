@@ -1,7 +1,8 @@
 //임시 전역변수
 let today = new Date();
 let date = new Date();
-
+const tbody1 = document.querySelector("#roomSearchResult1 tbody");
+const thead1 =  document.querySelector("#roomSearchResult1 thead");
 function beforem() //이전 달을 today에 값을 저장
 {
     today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
@@ -68,12 +69,6 @@ function clickEvent()
             console.log("td6/"+td5);
             console.log("td7/"+td5);
         });
-
-
-
-
-
-
     // $("#calendarTest tr td").click(function(){
     //     var text = $(this).text();
     //     alert(text+"클릭!!!!!");
@@ -145,6 +140,10 @@ function build()
 
 //
 document.querySelector("#btn-search").addEventListener('click',(e)=>{
+
+    thead1.innerHTML= '';
+    tbody1.innerHTML= '';
+
     console.log("테스트용 - 14번 캠핑장 객실만 조회");
     //const celebId = document.querySelector("#id").value;
     //첫날
@@ -173,7 +172,7 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
         return;
     }
 
-
+    //get방식으로 데이터 요청
     $.ajax({
         url:`${contextPath}/reservation/reservationRoomSearch`,
         data:{
@@ -181,6 +180,7 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
             firstDay:firstDay,
             lastDay:lastDay
         },
+        //위의 결과값을 받았을 경우.........
         success(rooms){
             //응답받은 json 데이터를 파싱(json.parse)후 , js 객체로 반환.
             console.log(rooms);
@@ -208,7 +208,7 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
                 tbody.innerHTML += `
                     <tr>
                         <td><img id="roomImage" class="w-[200px] h-[100px]" src="${contextPath}/upload/room/${roomRenamedImg}"></td>
-                        <td>${id}</td>
+                        <td id="roomId">${id}</td>
                         <td>${roomName}</td>
                         <td>${roomType}</td>
                         <td>${roomDefaultPerson}명</td>
@@ -216,7 +216,6 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
                         <td>${roomDefaultFee}원</td>
                         <td>${roomOverFee}원</td>
                         <td><button id="btnReserve"
-                        onclick="location.href = '${contextPath}/reservation/ReservationProgress?id=${id}'"
                         class="hover:text-white bg-white text-black border border-gray2 hover:bg-green font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2"> 
                         예약</button></td>
                     </tr>`;
@@ -238,6 +237,7 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
 });
 //
 
+//onclick="location.href = '${contextPath}/reservation/ReservationProgress?id=${id}'"
 
 //https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_html&wr_id=240919
 //동적으로 생성된 버튼은 그 자체로 click이벤트가 먹히지 않기 때문에 미리 선언해둔 상위 객체에 바인딩[on]해야 한다고 한다.
@@ -245,11 +245,65 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
 //https://code-study.tistory.com/38 버튼 순서 찾기..
 //https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_html&wr_id=257125&page=600
 $('#roomSearchResult').on('click','#btnReserve',function () {
+
     let num = $('roomSearchResult > tbody > tr').index(this);
     console.log("예약버튼누르기1.." + $(this).parent().parent().index());
     console.log("예약버튼누르기2.." + $(this).parent().parent().html());
 
+    //document.getElementById('btnReserve').id = 'newId';
+    const roomNumber = $(this).parent().parent().find('#roomId').html();
+    console.log("내가 선택한 객실 번호:", roomNumber);
+    const firstDay = document.querySelector("#datepicker1").value;
+    //마지막날
+    const lastDay = document.querySelector("#datepicker2").value;
+    console.log("222222222222222내가 선택한 첫날:", firstDay);
+    console.log("2222222222222222내가 선택한 마지막날:", lastDay);
+
+    thead1.innerHTML= '';
+    tbody1.innerHTML= '';
+    thead1.innerHTML= ` 
+                <tr>
+            <tr>`;
+
+    //id가 btnReserve인 버튼 찾기
+    // id가 "button01"인 버튼에 속성 추가
+    //button01.attr('onClick', '"location.href = \'${contextPath}/reservation/ReservationProgress?id=${id}\'"');
+    //myElement.find('btnReserve').attr('onClick', '"location.href = \'${contextPath}/reservation/ReservationProgress?id=${id}\'"');
+    // 수정된 HTML 문자열을 다시 설정
+
+    // 확인을 위해 콘솔에 출력
+    console.log("수정된 html"+$(this).parent().parent().html());
+
+
+    tbody1.innerHTML= '';
+        tbody1.innerHTML += $(this).parent().parent().html();
+        // $('#data21').html('Updated Data 21');
+        //버튼 btnReserve의 내용 바꾸기
+
+
+
+    $.ajax({
+        url: `${contextPath}/reservation/ReservationProgress`,  // 실제 서버 엔드포인트로 변경
+        method: 'post',
+        data:{
+            roomId:roomNumber,
+            firstDay:firstDay,
+            lastDay:lastDay
+        },
+        success: function(response) {
+            console.log("성공했나????????????????????")
+            window.location.href = `${contextPath}/reservation/ReservationProgress`;
+        },
+        error: function(error) {
+            console.error('Ajax request failed:', error);
+        }
+    });
+
 })
+
+
+
+
 
 
 function changeColor() {
