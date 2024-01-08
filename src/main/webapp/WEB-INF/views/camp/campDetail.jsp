@@ -76,10 +76,10 @@
                                         class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
                                     예약하기
                                 </button>
-                                <%-- 임시 수정폼 --%>
-<%--                                <form name="campUpdateFrm" action="${pageContext.request.contextPath}/camp/campUpdate">--%>
-<%--                                    <input type="hidden" name="id" value="${camp.id}">--%>
-<%--                                </form>--%>
+<%--                                 임시 수정폼 --%>
+                                <form name="campUpdateFrm" action="${pageContext.request.contextPath}/camp/campUpdate">
+                                    <input type="hidden" name="id" value="${camp.id}">
+                                </form>
                             </dd>
                         </div>
                     </dl>
