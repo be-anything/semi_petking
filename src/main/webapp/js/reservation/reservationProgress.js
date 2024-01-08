@@ -25,4 +25,22 @@ function showMeTheMoney()
 //예약버튼을 눌렀을때.
 document.querySelector(".reservationBtn").addEventListener('click', (e) => {
     console.log("예약하기버튼클릭,,,,");
+    //totalFee 아이디를 가진 p태그의 값을 출력해보자.
+    const pTagValue = document.getElementById('totalFee').innerText;
+    console.log("pTagValue,,,,"+pTagValue);
+
+    $.ajax({
+        url: `${contextPath}/reservation/ReservationProgress`,  // 실제 서버 엔드포인트로 변경
+        method: 'post',
+        data:{
+            pTagValue:pTagValue,
+        },
+        success: function(response) {
+            console.log("성공했나????????????????????")
+            window.location.href = `${contextPath}/reservation/ReservationProgress`;
+        },
+        error: function(error) {
+            console.error('Ajax request failed:', error);
+        }
+    });
 });

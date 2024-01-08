@@ -14,9 +14,16 @@ import java.io.IOException;
 public class ReservationCreate extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("ReservationCreate, do get.......................");
+
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("ReservationCreate, do post......................");
-        long totalFee = Long.parseLong(req.getParameter("totalFee"));
-        System.out.println("최종요금 : "+totalFee);
+        long pTagValue = Long.parseLong(req.getParameter("pTagValue"));
+
+        System.out.println("최종요금 : "+pTagValue);
     }
 }

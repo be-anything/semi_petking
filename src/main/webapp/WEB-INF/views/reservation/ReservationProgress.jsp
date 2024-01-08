@@ -112,7 +112,7 @@
             <tr>
             <%-- 셀렉트박스를 조작하지 않는다면 기본금액으로 출력한다.--%>
                 <td>이용 금액 :</td>
-                <td><input id="totalFee" name="totalFee">${room.roomDefaultFee} 원</input></td>
+                <td><p id="totalFee" name="totalFee">${room.roomDefaultFee}</p>원</td>
             </tr>
             <tr>
                 <td>예약자 명:</td>
@@ -134,7 +134,7 @@
         </table>
                 <div class="justify-end">
                     <%-- button->submit --%>
-                    <button type="submit" class="reservationBtn flex w-1/4 justify-center rounded-md bg-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">예약 하기</button>
+                    <button type="button" class="reservationBtn flex w-1/4 justify-center rounded-md bg-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">예약 하기</button>
                     <div>
                     </div>
                 </div>
