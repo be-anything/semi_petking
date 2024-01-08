@@ -43,7 +43,7 @@ public class UserRegisterController extends HttpServlet {
         int result = userService.insertUser(user);
 
         // 회원가입성공 메세지
-        req.getSession().setAttribute("msg", "회원가입완료. 로그인해주세요.");
+        req.getSession().setAttribute("msg", "회원가입이 완료되었습니다. 로그인해주세요.");
 
         // view단
         resp.sendRedirect(req.getContextPath() + "/");

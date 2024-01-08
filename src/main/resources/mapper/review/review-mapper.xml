@@ -293,7 +293,7 @@
         from
             review r
         where
-            user_id = #{userId}
+            camp_id = #{campId}
     </select>
 
 

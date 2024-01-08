@@ -52,10 +52,10 @@ public class PetUpdateController extends HttpServlet {
         // 메세지
         if (petUpdated > 0) {
             // 업데이트 성공 메시지 설정
-            req.getSession().setAttribute("msg", "반려동물 정보수정 성공");
+            req.getSession().setAttribute("msg", "반려동물 정보수정 성공했습니다.");
         } else {
             // 업데이트 실패 메시지 설정
-            req.getSession().setAttribute("error", "반려동물 정보수정 실패");
+            req.getSession().setAttribute("error", "반려동물 정보수정 실패했습니다.");
         }
 
         // 리다이렉트
