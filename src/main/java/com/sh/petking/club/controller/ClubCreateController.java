@@ -105,36 +105,4 @@ public class ClubCreateController extends HttpServlet {
         // 3. redirect 목록페이지
         resp.sendRedirect(req.getContextPath() + "/club/clubList");
     }
-
-    //    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.setCharacterEncoding("utf-8");
-//
-//        String clubName = req.getParameter("clubName");
-//        String userId = req.getParameter("userId");
-//        String clubIntroTitle = req.getParameter("clubIntroTitle");
-//        String clubIntroContent = req.getParameter("clubIntroContent");
-//
-//        Club club = new Club(0L, clubName, clubIntroTitle, clubIntroContent, null, userId);
-//
-//        System.out.println(club);
-//
-//        int result = clubService.insertClub(club);
-//
-//        long clubId = Long.parseLong(req.getParameter("clubId"));
-//        String joinState = req.getParameter("joinState");
-//        String role = req.getParameter("role");
-//
-//        ClubUsers clubUsers = new ClubUsers();
-//        System.out.println(clubUsers);
-//
-//        // 업무로직
-//        int result2 = clubService.insertClubUsers(clubUsers);
-//
-//        // 회원가입성공 메세지
-//        req.getSession().setAttribute("msg", "동아리 생성이 완료되었습니다.");
-//
-//        // view단
-//        resp.sendRedirect(req.getContextPath() + "/club/clubList");
-//    }
 }

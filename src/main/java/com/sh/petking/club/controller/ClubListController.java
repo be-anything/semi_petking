@@ -23,8 +23,9 @@ public class ClubListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Club> club = clubService.findAll();
-        req.setAttribute("clubs", club);
+        List<Club> clubs = clubService.findAll();
+        req.setAttribute("clubs", clubs);
+        System.out.println(clubs);
 
         req.getRequestDispatcher("/WEB-INF/views/club/clubList.jsp").forward(req,resp);
     }

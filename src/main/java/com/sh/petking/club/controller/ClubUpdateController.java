@@ -29,10 +29,10 @@ public class ClubUpdateController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Long id = Long.parseLong(req.getParameter("id"));
+        long id = Long.parseLong(req.getParameter("id"));
         System.out.println(id);
         // 2. 업무로직
-        Club club = clubService.findById(id);
+        ClubVo club = clubService.findById(id);
         req.setAttribute("club", club);
 
         req.getRequestDispatcher("/WEB-INF/views/club/clubUpdate.jsp").forward(req, resp);
@@ -48,7 +48,7 @@ public class ClubUpdateController extends HttpServlet {
         factory.setRepository(repository);
         factory.setSizeThreshold(sizeThreshold);
 
-        Club club = new Club();
+        ClubVo club = new ClubVo();
 
         // ServletFileUpload 실제요청을 핸들링할 객체
         ServletFileUpload servletFileUpload = new ServletFileUpload(factory);

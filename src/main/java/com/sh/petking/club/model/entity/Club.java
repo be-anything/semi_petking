@@ -82,14 +82,14 @@ public class Club {
                 '}';
     }
 
-    public void setValue(String name, String value) {
-        switch (name) {
-            case "id" : setId(Long.parseLong(value)); break;
-            case "clubName" : setClubName(value); break;
-            case "clubIntroTitle" : setClubIntroTitle(value); break;
-            case "userId" : setUserId(value); break;
-            case "clubIntroContent" : setClubIntroContent(value); break;
-            default: throw new RuntimeException("부적절한 name값 : " + name);
-        }
-    }
+//    public void setValue(String name, String value) {
+//        switch (name) {
+//            case "id" : setId(Long.parseLong(value)); break;
+//            case "clubName" : setClubName(value); break;
+//            case "clubIntroTitle" : setClubIntroTitle(value); break;
+//            case "userId" : setUserId(value); break;
+//            case "clubIntroContent" : setClubIntroContent(value); break;
+//            default: throw new RuntimeException("부적절한 name값 : " + name);
+//        }
+//    }
 }

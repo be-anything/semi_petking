@@ -11,11 +11,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<%--<div class="xl:container p-8">--%>
-<%--    <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">--%>
-<%--        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${loginUser.id}님 반가워요🤗</h5>--%>
-<%--    </div>--%>
-<%--</div>--%>
+<div class="xl:container p-8">
+    <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
+        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${loginUser.id}님 반가워요🤗</h5>
+    </div>
+</div>
 <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mt-10 mb-10">
     <div>
         <div class="py-5 px-5">
@@ -58,7 +58,7 @@
                                         action="${pageContext.request.contextPath}/club/clubDelete"
                                         method="post"
                                         name="clubDeleteFrm">
-                                    <input type="hidden" name="clubId" value="${club.id}">
+                                    <input type="hidden" name="id" value="${club.clubName}">
                                 </form>
                             </dd>
                         </div>
@@ -68,5 +68,5 @@
         </div>
     </div>
 </div>
-
+<script src="${pageContext.request.contextPath}/js/club/clubDetail.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

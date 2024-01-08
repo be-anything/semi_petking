@@ -41,12 +41,12 @@
                 <button
                         type="button"
                         onclick="location.href = '${pageContext.request.contextPath}/board/boardUpdate?id=${board.id}';"
-                        class="px-5 py-2.5 mt-4 mr-4 sm:mt-6 text-sm font-medium text-center text-black bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+                        class=" py-2.5 px-4 text-xs font-medium text-indigo-600 hover:bg-indigo-200 ms-30">
                     수정
                 </button>
                 <button type="button"
                         onclick="confirm('정말 삭제하시겠습니까? 😯') && document.boardDeleteFrm.submit()"
-                        class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+                        class=" py-2.5 px-4 text-xs font-medium text-red-600 hover:bg-red-200 ms-30">
                     삭제
                 </button>
                 </c:if>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="flex items-center justify-end px-3 py-2 border-t">
                     <button type="submit"
-                            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-black bg-blue-200 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-200">
+                            class=" py-2.5 px-4 text-xs font-medium text-purple-600 hover:bg-purple-200 ms-30">
                         댓글 등록
                     </button>
                 </div>
@@ -120,7 +120,9 @@
                         <td class="px-6 py-4">
                             <c:if test="${(loginUser.id eq comment.userId || loginUser.role eq Role.A) && loginUser.id != null}">
                                 <div class="flex">
-                                    <a href="javascript:confirm('정말 삭제하시겠습니까? 😲') && document.boardCommentDeleteFrm${comment.id}.submit();" class="font-medium text-red-600 hover:underline ms-3">삭제하기</a>
+                                    <a href="javascript:confirm('정말 삭제하시겠습니까? 😲') && document.boardCommentDeleteFrm${comment.id}.submit();"
+                                        class=" py-2.5 px-4 text-xs font-medium text-red-600 hover:bg-red-200 ms-30">
+                                        삭제하기</a>
                                 </div>
                                 <form name="boardCommentDeleteFrm${comment.id}" action="${pageContext.request.contextPath}/board/boardCommentDelete" method="post">
                                     <input type="hidden" name="id" value="${comment.id}">
