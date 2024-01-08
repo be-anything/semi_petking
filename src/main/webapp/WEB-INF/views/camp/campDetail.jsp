@@ -77,9 +77,9 @@
                                     예약하기
                                 </button>
                                 <%-- 임시 수정폼 --%>
-                                <form name="campUpdateFrm" action="${pageContext.request.contextPath}/camp/campUpdate">
-                                    <input type="hidden" name="id" value="${camp.id}">
-                                </form>
+<%--                                <form name="campUpdateFrm" action="${pageContext.request.contextPath}/camp/campUpdate">--%>
+<%--                                    <input type="hidden" name="id" value="${camp.id}">--%>
+<%--                                </form>--%>
                             </dd>
                         </div>
                     </dl>

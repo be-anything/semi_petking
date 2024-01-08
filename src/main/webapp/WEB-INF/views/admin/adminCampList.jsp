@@ -20,7 +20,6 @@
                 <th scope="col" class="px-8 py-4 whitespace-nowrap">사업자 아이디</th>
                 <th scope="col" class="px-8 py-4 whitespace-nowrap">사업자 이름</th>
                 <th scope="col" class="px-8 py-4 whitespace-nowrap">캠핑장 이름</th>
-                <th scope="col" class="px-8 py-4 whitespace-nowrap">캠핑장 정보</th>
                 <th scope="col" class="px-8 py-4 whitespace-nowrap">캠핑장 전화번호</th>
                 <th scope="col" class="px-8 py-4 whitespace-nowrap">캠핑장 주소</th>
                 <th scope="col" class="px-8 py-4 whitespace-nowrap">사업자번호</th>
@@ -40,7 +39,6 @@
                                 ${camp.campName}
                         </a>
                     </td>
-                    <td class="px-8 py-6 whitespace-nowrap">${camp.campIntro}</td>
                     <td class="px-8 py-6 whitespace-nowrap">${camp.campPhone}</td>
                     <td class="px-8 py-6 whitespace-nowrap">${camp.campAddr}</td>
                     <td class="px-8 py-6 whitespace-nowrap">${camp.businessNumber}</td>

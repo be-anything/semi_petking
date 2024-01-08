@@ -107,7 +107,7 @@ create table point (
     constraints fk_point_user_id foreign key(user_id) references users(id) on delete cascade
 );
 select * from point;
-
+create sequence seq_point_id;
 ----------------------------------------------------------------- wish 영역
 create table wish(
     id number not null,
