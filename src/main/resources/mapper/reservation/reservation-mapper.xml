@@ -31,22 +31,45 @@
 <!--    </select>-->
 
 
-    <select id="findByCampId" resultMap="RoomVoMap2">
-        select
-        r.*,
-        a.id attach_id,
-        a.room_id,
-        a.room_attach_original_name,
-        a.room_attach_renamed_name
-        from
-        room r left join room_attach a
-        on r.id = a.room_id
-        where
-            r.camp_id = #{id}
-        order by
-            r.id desc
 
+<!--    <select id="findByCampId" resultMap="RoomVoMap2">-->
+<!--        select-->
+<!--        r.*,-->
+<!--        a.id attach_id,-->
+<!--        a.room_id,-->
+<!--        a.room_attach_original_name,-->
+<!--        a.room_attach_renamed_name-->
+<!--        from-->
+<!--        room r left join room_attach a-->
+<!--        on r.id = a.room_id-->
+<!--        where-->
+<!--            r.camp_id = #{campId}-->
+<!--        order by-->
+<!--            r.id desc-->
+<!--    </select>-->
+
+
+    <select id="findByCampId" resultMap="RoomVoMap2">
+        <![CDATA[
+        SELECT DISTINCT r.room_id, rt.*
+        FROM reservation r
+        JOIN room rt ON r.room_id = rt.id
+        WHERE r.camp_id = #{campId} AND (
+        (
+        -- 새로운 예약 기간이 다른 예약과 중첩되지 않아야 함
+        r.start_date >= #{lastDay} OR
+        r.end_date <= #{firstDay}
+        )
+        OR
+        (
+        -- 기존 예약이 취소된 경우만 고려
+        r.status = 0
+        )
+        )
+        ]]>
     </select>
+
+
     <!-- RoomVoMap -->
     <resultMap id="RoomVoMap2" type="RoomVo">
         <id column = "id" property="id"/>
@@ -58,6 +81,7 @@
         <result column="room_maximum_person" property="roomMaximumPerson"/>
         <result column="room_default_fee" property="roomDefaultFee"/>
         <result column="room_over_fee" property="roomOverFee"/>
+        <result column="room_renamed_img" property="roomRenamedImg"/>
         <!--
                     여러개인 경우 여러번 실행
                     property:필드명
@@ -71,6 +95,35 @@
             <result column ="room_attach_renamed_name" property="roomAttachRenamedName"/>
         </collection>
     </resultMap>
+
+
+    
+<!-- 예약 내역에서 특정 객실을 찾는 테스트 쿼리 -->
+    <select id="findAbleRoom"  resultType="reservation">
+        <![CDATA[
+    SELECT *
+    FROM reservation
+    WHERE camp_id = #{campId} AND (
+        (start_date >= #{lastDay} OR end_date <= #{firstDay})
+        OR
+        (status = 0)
+    )
+]]>
+    </select>
+<!--    -->
+
+    <!-- 예약 내역에서 특정 객실을 찾는 테스트 쿼리 -->
+<!--    <select id="findAbleRoom"  resultType="reservation">-->
+<!--        <![CDATA[-->
+<!--        SELECT *-->
+<!--        FROM reservation-->
+<!--        WHERE camp_id=#{campId}-->
+<!--        ]]>-->
+<!--    </select>-->
+
+
+
+
 
 
 
