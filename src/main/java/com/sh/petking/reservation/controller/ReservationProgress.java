@@ -40,9 +40,9 @@ public class ReservationProgress extends HttpServlet
         DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate ld1 = LocalDate.parse(firstDay, dateformatter);
         LocalDate ld2 = LocalDate.parse(lastDay, dateformatter);
-        System.out.println("do get 첫날 : "+ld1);
-        System.out.println("do get 마지막날 : "+ld2);
-        System.out.println("do get 예약할 객실 아이디 : "+roomId);
+        System.out.println("ReservationProgress do get 첫날 : "+ld1);
+        System.out.println("ReservationProgress do get 마지막날 : "+ld2);
+        System.out.println("ReservationProgress do get 예약할 객실 아이디 : "+roomId);
 
         //현재 로그인된 상태라면 user값 가지고있는지 체크해보기
         User user = (User) session.getAttribute("loginUser");
@@ -69,8 +69,6 @@ public class ReservationProgress extends HttpServlet
                 req.setAttribute("point", point);
             }
 
-
-
             //xss공격대비 escapehtml처리
             String safeHtml = PetkingUtils.escapeHtml(room.getRoomIntro());
             //개행문자(\n) -> <br>
@@ -79,10 +77,10 @@ public class ReservationProgress extends HttpServlet
 
             req.setAttribute("firstDay", ld1);
             req.setAttribute("lastDay", ld2);
+
             req.setAttribute("roomId", roomId);
             //3.forward
             req.getRequestDispatcher("/WEB-INF/views/reservation/ReservationProgress.jsp").forward(req, resp);
-
 
 
         } catch (Exception e)

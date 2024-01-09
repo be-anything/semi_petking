@@ -3,14 +3,34 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservation">
-
+    <!-- 예약 한 건 추가 ID[시퀀스],캠프아이디,룸아이디,유저아이디,시작날짜,종료날짜,인원수,상태[기본 1]   -->
     <insert id="insertReservation">
         insert into
             reservation
         values (
-            #{id}, #{campId}, #{roomId}, #{userId}, #{startDate} , #{endDate}, #{nop}, #{status}
+        seq_reservation_id.nextval, #{campId}, #{roomId}, #{userId}, #{startDate} , #{endDate}, #{nop}, 1
+        )
+        <selectKey order="AFTER" resultType="_long" keyProperty="id">
+            select
+            seq_reservation_id.currval
+            from
+            dual
+        </selectKey>
+    </insert>
+
+    <!-- 결제 내역 한 건 추가  id[시퀀스],결제금액,사용한포인트,결제날짜[default:sysdate],예약 아이디[fk]  -->
+
+    <insert id="insertReservationPay">
+        insert into
+        reservation_pay
+        values (
+        SEQ_RESERVATION_PAY_ID.nextval, #{reservEx}, #{reservUsePoint}, default, #{reservId}
         )
     </insert>
+
+
+
+
 
     <select id="findAll" resultType="reservation">
         select
@@ -48,28 +68,47 @@
 <!--            r.id desc-->
 <!--    </select>-->
 
+<!-- 0109기존의 객실을 찾는 쿼리. 제대로 동작하지 않음. -->
+<!--    <select id="findByCampId" resultMap="RoomVoMap2">-->
+<!--        <![CDATA[-->
+<!--        SELECT DISTINCT r.room_id, rt.*-->
+<!--        FROM reservation r-->
+<!--        JOIN room rt ON r.room_id = rt.id-->
+<!--        WHERE r.camp_id = #{campId} AND (-->
+<!--        (-->
+<!--        &#45;&#45; 새로운 예약 기간이 다른 예약과 중첩되지 않아야 함-->
+<!--        r.start_date >= #{lastDay} and-->
+<!--        r.end_date <= #{firstDay}-->
+<!--        )-->
+<!--        OR-->
+<!--        (-->
+<!--        &#45;&#45; 기존 예약이 취소된 경우만 고려-->
+<!--        r.status = 0-->
+<!--        )-->
+<!--        )-->
+<!--        ]]>-->
+<!--    </select>-->
+<!-- 0109 내가 선택 날짜와 중복되는 예약을 찾는 쿼리문 -->
 
-    <select id="findByCampId" resultMap="RoomVoMap2">
+    <select id ="findDuplicateReservation" resultType="reservation">
         <![CDATA[
-        SELECT DISTINCT r.room_id, rt.*
-        FROM reservation r
-        JOIN room rt ON r.room_id = rt.id
-        WHERE r.camp_id = #{campId} AND (
-        (
-        -- 새로운 예약 기간이 다른 예약과 중첩되지 않아야 함
-        r.start_date >= #{lastDay} and
-        r.end_date <= #{firstDay}
-        )
-        OR
-        (
-        -- 기존 예약이 취소된 경우만 고려
-        r.status = 0
-        )
-        )
+
         ]]>
+    </select>
+    <select id = "findByRoomCampId" resultType="room">
+        select * from room where camp_id=#{campId}
+
     </select>
 
 
+    <select id="findByCampId" resultMap="RoomVoMap2">
+
+        SELECT DISTINCT r.room_id, rt.*
+        FROM reservation r
+        JOIN room rt ON r.room_id = rt.id
+        WHERE r.camp_id = #{campId}
+
+    </select>
     <!-- RoomVoMap -->
     <resultMap id="RoomVoMap2" type="RoomVo">
         <id column = "id" property="id"/>
