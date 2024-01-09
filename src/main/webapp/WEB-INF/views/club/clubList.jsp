@@ -42,7 +42,7 @@
     <div class="w-full mx-auto mt-8">
     <div class="overflow-x-auto">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-collapse">
-        <thead class="text-xs text-white bg-green">
+        <thead class="text-xs text-amber-900 bg-orange-200">
         <tr>
             <th scope="col" class="px-8 py-4 whitespace-nowrap">
                 가입 번호
