@@ -11,7 +11,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <c:if test="${loginUser != null && loginUser.clubId == null}">
-    클럽 아이디 : ${loginUser.clubId}
 <div class="flex justify-center pt-[300px]">
     <div class="w-fit h-fit mr-1">
         <a href="${pageContext.request.contextPath}/club/clubCreate" class="rounded-lg py-[120px] px-[100px] pt-[180px] bg-gray2 hover:bg-indigo-100 hover:drop-shadow-2xl">
@@ -30,7 +29,7 @@
 <c:if test="${loginUser != null && loginUser.clubId != null}">
 <div class="xl:container p-8">
     <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
-        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">가입 한 동아리 : ${loginUser.clubId}번 동아리</h5>
+        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">가입 한 동아리 : ${loginUser.clubId}번째 추가된 동아리</h5>
     </div>
 </div>
 <div class="py-8 px-60 mx-auto max-w-2xl lg:py-16">

@@ -37,18 +37,18 @@
                                     class="underline underline-offset-3 decoration-8 decoration-green">동아리 글</span></h1>
                             <p class="text-lg font-normal text-gray3 lg:text-xl mt-10">${club.clubIntroContent}</p>
                         </div>
-                        <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1 sm:mt-0 mx-auto">
-                                <div class="flex justify-end">
-                                <button
-                                        type="button"
-                                        onclick="location.href = '${pageContext.request.contextPath}/club/clubUpdate';"
-                                        class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
-                                    수정
-                                </button>
-                                </div>
-                            </dd>
-                        </div>
+<%--                        <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">--%>
+<%--                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1 sm:mt-0 mx-auto">--%>
+<%--                                <div class="flex justify-end">--%>
+<%--                                <button--%>
+<%--                                        type="button"--%>
+<%--                                        onclick="location.href = '${pageContext.request.contextPath}/club/clubUpdate';"--%>
+<%--                                        class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">--%>
+<%--                                    수정--%>
+<%--                                </button>--%>
+<%--                                </div>--%>
+<%--                            </dd>--%>
+<%--                        </div>--%>
                     </dl>
                 </div>
             </div>

@@ -22,13 +22,13 @@
 <div class="flex flex-wrap justify-between items-center m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
     <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
         <li class="tabBtn">
-            <a href="#" aria-current="page" class="inline-block p-4 rounded-t-lg text-white bg-green active px-5">동아리 모집</a>
+            <a href="#" aria-current="page" class="inline-block p-4 rounded-t-lg text-black bg-amber-100 bg-amber-300 active px-5">동아리 모집</a>
         </li>
         <li class="tabBtn">
-            <a href="#" class="inline-block p-4 rounded-t-lg px-5">아-나-바-다</a>
+            <a href="#" class="inline-block p-4 rounded-t-lg text-black bg-amber-100 px-5">아-나-바-다</a>
         </li>
         <li class="tabBtn">
-            <a href="#" class="inline-block p-4 rounded-t-lg px-5">슬.캠.생</a>
+            <a href="#" class="inline-block p-4 rounded-t-lg text-black bg-amber-100 px-5">슬.캠.생</a>
         </li>
     </ul>
 </div>
@@ -46,7 +46,7 @@
                         type="button"
                         onclick="location.href = '${pageContext.request.contextPath}/club/clubBoardCreate';"
                         class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                    글쓰기</button>
+                    모집글 쓰기</button>
             </div>
         </c:if>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -118,7 +118,6 @@
                     글쓰기
                 </button>
             </div>
-        </c:if>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
