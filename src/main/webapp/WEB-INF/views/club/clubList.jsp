@@ -29,7 +29,7 @@
 <c:if test="${loginUser != null && loginUser.clubId != null}">
 <div class="xl:container p-8">
     <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
-        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">가입 한 동아리 : ${loginUser.clubId}번째 추가된 동아리</h5>
+        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">가입 한 동아리 : ${loginUser.clubId}번 동아리</h5>
     </div>
 </div>
 <div class="py-8 px-60 mx-auto max-w-2xl lg:py-16">
