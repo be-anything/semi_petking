@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=378fbb0293da7feaa0ce71d64debff24"></script>
+<div id="campDiv" data-campId=${camp.id}></div>
 
 <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-xl bg-gray1 mt-10 mb-10">
     <div>
@@ -72,10 +73,18 @@
                                 </c:if>
                             </dd>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1 sm:mt-0 mx-auto">
-                                <a href="#" type="button"
+                                <c:if test="${loginUser != null}">
+                                <button type="button" id="btn-campToRoom"
                                         class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
                                     예약하기
-                                </a>
+                                </button>
+                                </c:if>
+                                <c:if test="${loginUser == null}">
+                                    <button type="button"
+                                            class="cursor-not-allowed bg-gray2 text-gray3 border border-gray2 font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
+                                        예약하기
+                                    </button>
+                                </c:if>
                                 <%-- 임시 수정폼 --%>
 <%--                                <form name="campUpdateFrm" action="${pageContext.request.contextPath}/camp/campUpdate">--%>
 <%--                                    <input type="hidden" name="id" value="${camp.id}">--%>

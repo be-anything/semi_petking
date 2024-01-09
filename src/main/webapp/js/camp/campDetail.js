@@ -1,3 +1,26 @@
+document.querySelector("#btn-campToRoom").addEventListener('click', (e) =>{
+    console.log("btn_campToRoom click!");
+    const $div = document.getElementById('campDiv');
+    const campId = $div.getAttribute('data-campId');
+    console.log("campId : "+campId);
+    $.ajax({
+        url: `${contextPath}/reservation/reservationMain`,
+        method : 'get',
+        data : {
+            campId
+        },
+        success(result) {
+            console.log("campDetail - >success");
+            window.location.href = `${contextPath}/reservation/reservationMain?campId=${campId}`;
+        },
+        error()
+        {
+            console.log("campDetail - >error");
+        }
+    });
+
+
+});
 
 
 

@@ -44,8 +44,10 @@ public class RoomListController extends HttpServlet {
         Map<String,Object> param = Map.of("page", page, "limit", limit);
         System.out.println(param);
 
+
         //2.업무로직
         //1)content영역 : 전체 조회 쿼리 + RowBounds | Top-n 분석 쿼리
+        //0109
         List<RoomVo> rooms = roomService.findAll(param);
         //join으로 인한 paging 문제
         //전체조회 쿼리후에 리턴한 List<RoomVo> 를 직접 offset기준으로 limit개만 필터링하기 (데이터가 많거나 많아질 경우는 추천하지 않음)
@@ -64,22 +66,6 @@ public class RoomListController extends HttpServlet {
                             .limit(limit) // 한 페이지당 보여줄 갯수
                             .collect(Collectors.toList());
         }
-
-
-
-
-
-        //test
-        List<String> cats = new ArrayList<>();
-        cats.add("sana") ;
-        cats.add("momo");
-                cats.add("mina");
-                cats.add("jihyo");
-                cats.add("nayeon");
-                cats.add("jeongyeon ");
-
-        System.out.println("===============================");
-        cats.stream().skip(3).forEach(System.out::println);
 
         System.out.println("paging ::: "+newRooms);
         req.setAttribute("rooms",newRooms);
@@ -101,7 +87,7 @@ public class RoomListController extends HttpServlet {
                 rooms.stream()
                 .skip(4) //스킵할 갯수
                 .limit(4) // 보여줄 갯수
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()); //다시 list형태로 되돌림
         return newRooms;
     }
 }
