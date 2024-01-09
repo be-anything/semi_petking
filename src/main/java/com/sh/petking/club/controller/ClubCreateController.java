@@ -123,6 +123,15 @@ public class ClubCreateController extends HttpServlet {
         user = userService.findById(loginUser.getId());
         req.getSession().setAttribute("loginUser", user);
 
+        // 접속자의 clubRole 확인하기
+        user = (User) req.getSession().getAttribute("loginUser");
+        if(user != null){
+            clubUsers = clubService.findByUserId(user.getId());
+            if(clubUsers != null) {
+                req.getSession().setAttribute("loginUserClubRole", clubUsers.getRole());
+            }
+        }
+
         // 3. redirect 목록페이지
         resp.sendRedirect(req.getContextPath() + "/club/clubList?id=" + user.getClubId());
     }

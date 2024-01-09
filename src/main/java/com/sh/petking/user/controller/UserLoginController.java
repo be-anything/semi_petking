@@ -67,7 +67,6 @@ public class UserLoginController extends HttpServlet {
             user = (User) req.getSession().getAttribute("loginUser");
             if(user != null){
                 ClubUsers clubUsers = clubService.findByUserId(user.getId());
-                System.out.println(clubUsers.getRole());
                 if(clubUsers != null) {
                     req.getSession().setAttribute("loginUserClubRole", clubUsers.getRole());
                 }
