@@ -47,17 +47,6 @@
                                     수정
                                 </button>
                                 </div>
-                                <button id="deleteBtn" type="button"
-                                        onclick="confirm('정말 삭제하시겠습니까? 😯') && document.clubDeleteFrm.submit()"
-                                        class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
-                                    삭제
-                                </button>
-                                <form
-                                        action="${pageContext.request.contextPath}/club/clubDelete"
-                                        method="post"
-                                        name="clubDeleteFrm">
-                                    <input type="hidden" name="id" value="${club.clubName}">
-                                </form>
                             </dd>
                         </div>
                     </dl>
