@@ -1,8 +1,8 @@
 //임시 전역변수
 let today = new Date();
 let date = new Date();
-const tbody1 = document.querySelector("#roomSearchResult1 tbody");
-const thead1 =  document.querySelector("#roomSearchResult1 thead");
+const tbody = document.querySelector("#roomSearchResult1 tbody");
+const thead =  document.querySelector("#roomSearchResult1 thead");
 function beforem() //이전 달을 today에 값을 저장
 {
     today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
@@ -78,71 +78,71 @@ function clickEvent()
 }
 function build()
 {
-    console.log("build.....");
-    var nMonth = new Date(today.getFullYear(), today.getMonth(), 1); //현재달의 첫째 날
-    var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); //현재 달의 마지막 날
-    var tbcal = document.getElementById("calendarTest"); // 테이블 달력을 만들 테이블
-    var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
-    yearmonth.innerHTML = today.getFullYear() + "년 "+ (today.getMonth() + 1) + "월"; //년도와 월 출력
-
-    if(today.getMonth()+1==12) //  눌렀을 때 월이 넘어가는 곳
-    {
-        before.innerHTML=(today.getMonth())+"월";
-        next.innerHTML="1월";
-    }
-    else if(today.getMonth()+1==1) //  1월 일 때
-    {
-        before.innerHTML="12월";
-        next.innerHTML=(today.getMonth()+2)+"월";
-    }
-    else //   12월 일 때
-    {
-        before.innerHTML=(today.getMonth())+"월";
-        next.innerHTML=(today.getMonth()+2)+"월";
-    }
-
-// 남은 테이블 줄 삭제
-    while (tbcal.rows.length > 2)
-    {
-        tbcal.deleteRow(tbcal.rows.length - 1);
-    }
-    var row = null;
-    row = tbcal.insertRow();
-    var cnt = 0;
-
-// 1일 시작칸 찾기
-    for (i = 0; i < nMonth.getDay(); i++)
-    {
-        cell = row.insertCell();
-        cnt = cnt + 1;
-    }
-
-// 달력 출력
-    for (i = 1; i <= lastDate.getDate(); i++) // 1일부터 마지막 일까지
-    {
-        cell = row.insertCell();
-        cell.innerHTML = i;
-        cnt = cnt + 1;
-        if (cnt % 7 == 1) {//일요일 계산
-            cell.innerHTML = "<font color=#FF9090>" + i//일요일에 색
-        }
-        if (cnt % 7 == 0) { // 1주일이 7일 이므로 토요일 계산
-            cell.innerHTML = "<font color=#7ED5E4>" + i//토요일에 색
-            row = calendarTest.insertRow();// 줄 추가
-        }
-        if(today.getFullYear()==date.getFullYear()&&today.getMonth()==date.getMonth()&&i==date.getDate())
-        {
-            cell.bgColor = "#BCF1B1"; //오늘날짜배경색
-        }
-    }
+//     console.log("build.....");
+//     var nMonth = new Date(today.getFullYear(), today.getMonth(), 1); //현재달의 첫째 날
+//     var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); //현재 달의 마지막 날
+//     var tbcal = document.getElementById("calendarTest"); // 테이블 달력을 만들 테이블
+//     var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
+//     yearmonth.innerHTML = today.getFullYear() + "년 "+ (today.getMonth() + 1) + "월"; //년도와 월 출력
+//
+//     if(today.getMonth()+1==12) //  눌렀을 때 월이 넘어가는 곳
+//     {
+//         before.innerHTML=(today.getMonth())+"월";
+//         next.innerHTML="1월";
+//     }
+//     else if(today.getMonth()+1==1) //  1월 일 때
+//     {
+//         before.innerHTML="12월";
+//         next.innerHTML=(today.getMonth()+2)+"월";
+//     }
+//     else //   12월 일 때
+//     {
+//         before.innerHTML=(today.getMonth())+"월";
+//         next.innerHTML=(today.getMonth()+2)+"월";
+//     }
+//
+// // 남은 테이블 줄 삭제
+//     while (tbcal.rows.length > 2)
+//     {
+//         tbcal.deleteRow(tbcal.rows.length - 1);
+//     }
+//     var row = null;
+//     row = tbcal.insertRow();
+//     var cnt = 0;
+//
+// // 1일 시작칸 찾기
+//     for (i = 0; i < nMonth.getDay(); i++)
+//     {
+//         cell = row.insertCell();
+//         cnt = cnt + 1;
+//     }
+//
+// // 달력 출력
+//     for (i = 1; i <= lastDate.getDate(); i++) // 1일부터 마지막 일까지
+//     {
+//         cell = row.insertCell();
+//         cell.innerHTML = i;
+//         cnt = cnt + 1;
+//         if (cnt % 7 == 1) {//일요일 계산
+//             cell.innerHTML = "<font color=#FF9090>" + i//일요일에 색
+//         }
+//         if (cnt % 7 == 0) { // 1주일이 7일 이므로 토요일 계산
+//             cell.innerHTML = "<font color=#7ED5E4>" + i//토요일에 색
+//             row = calendarTest.insertRow();// 줄 추가
+//         }
+//         if(today.getFullYear()==date.getFullYear()&&today.getMonth()==date.getMonth()&&i==date.getDate())
+//         {
+//             cell.bgColor = "#BCF1B1"; //오늘날짜배경색
+//         }
+//     }
 }
 
 
 //
 document.querySelector("#btn-search").addEventListener('click',(e)=>{
 
-    thead1.innerHTML= '';
-    tbody1.innerHTML= '';
+    thead.innerHTML= '';
+    tbody.innerHTML= '';
 
     console.log("테스트용 - 14번 캠핑장 객실만 조회");
     //const celebId = document.querySelector("#id").value;
@@ -190,10 +190,10 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
                 alert(`해당하는 객실은 0개입니다.`);
                 return;
             }
-            const tbody = document.querySelector("#roomSearchResult tbody");
-            const thead =  document.querySelector("#roomSearchResult thead");
-            thead.innerHTML= '';
-            tbody.innerHTML= '';
+            // const tbody = document.querySelector("#roomSearchResult tbody");
+            // const thead =  document.querySelector("#roomSearchResult thead");
+            // thead.innerHTML= '';
+            // tbody.innerHTML= '';
 
             thead.innerHTML= ` 
            
@@ -244,9 +244,9 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
 
 //https://code-study.tistory.com/38 버튼 순서 찾기..
 //https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_html&wr_id=257125&page=600
-$('#roomSearchResult').on('click','#btnReserve',function () {
+$('#roomSearchResult1').on('click','#btnReserve',function () {
 
-    let num = $('roomSearchResult > tbody > tr').index(this);
+    let num = $('roomSearchResult1 > tbody > tr').index(this);
     console.log("예약버튼누르기1.." + $(this).parent().parent().index());
     console.log("예약버튼누르기2.." + $(this).parent().parent().html());
 
@@ -259,9 +259,9 @@ $('#roomSearchResult').on('click','#btnReserve',function () {
     console.log("222222222222222내가 선택한 첫날:", firstDay);
     console.log("2222222222222222내가 선택한 마지막날:", lastDay);
 
-    thead1.innerHTML= '';
-    tbody1.innerHTML= '';
-    thead1.innerHTML= ` 
+    thead.innerHTML= '';
+    tbody.innerHTML= '';
+    thead.innerHTML= ` 
                 <tr>
             <tr>`;
 
@@ -275,8 +275,8 @@ $('#roomSearchResult').on('click','#btnReserve',function () {
     console.log("수정된 html"+$(this).parent().parent().html());
 
 
-    tbody1.innerHTML= '';
-        tbody1.innerHTML += $(this).parent().parent().html();
+    tbody.innerHTML= '';
+        tbody.innerHTML += $(this).parent().parent().html();
         // $('#data21').html('Updated Data 21');
         //버튼 btnReserve의 내용 바꾸기
 
