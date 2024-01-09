@@ -175,39 +175,3 @@ document.userRegisterFrm.addEventListener('submit', (e) => {
         return;
     }
 });
-
-function checkEmail() {
-    // 입력된 이메일 값 가져오기
-    var email = document.getElementById('email').value;
-
-    // 이메일 유효성 검사
-    // (이메일 형식이 올바른지 여부를 확인하는 로직은 필요에 따라 추가할 수 있습니다.)
-
-    // 서버로 이메일 중복 확인 요청을 보내는 Ajax 코드
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/checkEmailDuplicate', true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                // 서버로부터의 응답을 처리
-                var response = JSON.parse(xhr.responseText);
-                displayResult(response.isDuplicate);
-            } else {
-                console.error('요청에 문제가 발생했습니다.');
-            }
-        }
-    };
-    xhr.send('email=' + email);
-}
-
-function displayResult(isDuplicate) {
-    var resultDiv = document.getElementById('emailResult');
-    if (isDuplicate) {
-        resultDiv.innerText = '중복된 이메일입니다.';
-        resultDiv.style.color = 'red';
-    } else {
-        resultDiv.innerText = '사용 가능한 이메일입니다.';
-        resultDiv.style.color = 'green';
-    }
-}
