@@ -22,13 +22,13 @@
 <div class="flex flex-wrap justify-between items-center m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
     <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
         <li class="tabBtn">
-            <a href="#" aria-current="page" class="inline-block p-4 rounded-t-lg text-white bg-green active px-5">동아리 모집</a>
+            <a href="#" aria-current="page" class="first-btn inline-block p-4 rounded-t-lg text-black active px-5 bg-amber-100 bg-amber-500">동아리 모집</a>
         </li>
         <li class="tabBtn">
-            <a href="#" class="inline-block p-4 rounded-t-lg px-5">아-나-바-다</a>
+            <a href="#" class="inline-block p-4 rounded-t-lg px-5 bg-amber-100">아-나-바-다</a>
         </li>
         <li class="tabBtn">
-            <a href="#" class="inline-block p-4 rounded-t-lg px-5">슬.캠.생</a>
+            <a href="#" class="inline-block p-4 rounded-t-lg px-5 bg-amber-100">슬.캠.생</a>
         </li>
     </ul>
 </div>
