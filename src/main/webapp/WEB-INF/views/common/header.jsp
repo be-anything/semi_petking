@@ -49,11 +49,13 @@
                     <div class="text-black text-right font-normal mr-7 absolute right-0 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></div>
                     <i class="fa-regular fa-clock ml-10 absolute right-0 text-black hover:text-green hover:font-bold"></i>
                 </c:if>
-                    <i class="fa-regular fa-clock ml-10 absolute right-0 text-black hover:text-green hover:font-bold"></i>
                 <c:if test="${loginUser != null}">
-                    <div class="text-black text-right font-normal mr-20 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userDetail">${loginUser.id}님의 페이지</a></div>
-                    <div class="text-black text-right font-normal mr-3 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogout">로그아웃</a></div>
-                </c:if>
+                    <div class="w-[300px] flex justify-end items-center">
+                    <div class="text-black text-right font-normal hover:font-bold overflow-hidden rounded-full"><img class="w-[50px]" src="${pageContext.request.contextPath}/upload/user/${loginUser.renamedProfileName}"></div>
+                    <div class="text-black text-right pr-8 pl-2 hover:underline"><strong><a href="${pageContext.request.contextPath}/user/userDetail">${loginUser.nickname}</a></strong></div>
+                    <div class="text-black text-sm text-right font-normal hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogout">로그아웃</a></div>
+                    </div>
+                    </c:if>
                 <c:if test="${loginCamp != null}">
                     <div class="text-black text-right font-normal mr-20 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campManagement">${loginCamp.businessName}님의 페이지</a></div>
                     <div class="text-black text-right font-normal mr-3 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campLogout">로그아웃</a></div>
