@@ -35,8 +35,8 @@ public class UserRegisterController extends HttpServlet {
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
 
-        User user = new User(id, null, 0L, RandomNicknameGenerator.createNickname(), name, password, null,
-                    null, email, phone, 0L, Role.U, null);
+        User user = new User(id, null, 0L, RandomNicknameGenerator.createNickname(), name, password, "default.png",
+                    "default.png", email, phone, 0L, Role.U, null);
         System.out.println(user);
 
         // 업무로직
