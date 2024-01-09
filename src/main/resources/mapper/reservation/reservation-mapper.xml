@@ -101,12 +101,23 @@
     </select>
 
 
-    <select id="findByCampId" resultMap="RoomVoMap2">
-
+<!--https://tyson.tistory.com/90 모달
+    예약 체크 하는 sql문..(겹치는 경우인 room_id를 출력_)
         SELECT DISTINCT r.room_id, rt.*
         FROM reservation r
         JOIN room rt ON r.room_id = rt.id
         WHERE r.camp_id = #{campId}
+-->
+    <select id="findByCampId" resultMap="RoomVoMap2">
+        <![CDATA[
+        SELECT *
+        FROM room r
+        left JOIN reservation rv ON r.id = rv.room_id
+        WHERE r.camp_id = #{campId}
+        AND status = 1
+        AND NOT ( #{lastDay} <= start_date OR #{firstDay} >= end_date)
+        ]]>
+
 
     </select>
     <!-- RoomVoMap -->
