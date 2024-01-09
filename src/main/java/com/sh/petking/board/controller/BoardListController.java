@@ -40,11 +40,13 @@ public class BoardListController extends HttpServlet {
         System.out.println(boards);
 
         // 접속자의 clubRole 확인하기
-        User user = (User) req.getSession().getAttribute("loginUser");
-        ClubUsers clubUsers = clubService.findByUserId(user.getId());
-        System.out.println(clubUsers.getRole());
+//        User user = (User) req.getSession().getAttribute("loginUser");
+//        if(user != null){
+//            ClubUsers clubUsers = clubService.findByUserId(user.getId());
+//            System.out.println(clubUsers.getRole());
+//            req.setAttribute("role", clubUsers.getRole());
+//        }
 
-        req.setAttribute("role", clubUsers.getRole());
 
         // b. pagebar영역
         int totalCount = boardService.getTotalCount();
