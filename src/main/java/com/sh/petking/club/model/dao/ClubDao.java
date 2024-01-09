@@ -28,10 +28,14 @@ public class ClubDao {
     }
 
     public int insertClubUsers(SqlSession session, ClubUsers clubUsers) {
-        return session.insert("clubUsers.insertClubUsers", clubUsers);
+        return session.insert("club.insertClubUsers", clubUsers);
     }
 
     public int updateClubViewCount(SqlSession session, long id) {
         return session.update("club.updateClubViewCount", id);
+    }
+
+    public ClubUsers findByUserId(SqlSession session, String userId) {
+        return session.selectOne("club.findByUserId", userId);
     }
 }

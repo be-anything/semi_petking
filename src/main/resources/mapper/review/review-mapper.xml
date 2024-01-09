@@ -285,6 +285,8 @@
             count(*)
         from
             review
+        where
+            camp_id = #{campId}
     </select>
     <select id="findByCampId" resultType="reviewVo">
         select

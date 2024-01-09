@@ -311,7 +311,9 @@
     </select>
     <select id="findAllCampWithTag" resultType="campVo">
         select
-            *
+            cm.*,
+            (select count(*) from review where camp_id = cm.id) review_count,
+            (select count(*) from wish where camp_id = cm.id) wish_count
         from
             (select
                 camp_id id,
@@ -328,7 +330,7 @@
             where
                 camp_state = 1
             group by
-                camp_id, camp_name, camp_intro, camp_phone, camp_addr, reg_date)
+                camp_id, camp_name, camp_intro, camp_phone, camp_addr, reg_date) cm
         <where>
             <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
                 AND ${searchType} like '%' || #{searchKeyword} || '%'

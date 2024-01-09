@@ -72,10 +72,10 @@
                                 </c:if>
                             </dd>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1 sm:mt-0 mx-auto">
-                                <button id="updateBtn" type="button"
+                                <a href="#" type="button"
                                         class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
                                     예약하기
-                                </button>
+                                </a>
                                 <%-- 임시 수정폼 --%>
 <%--                                <form name="campUpdateFrm" action="${pageContext.request.contextPath}/camp/campUpdate">--%>
 <%--                                    <input type="hidden" name="id" value="${camp.id}">--%>
