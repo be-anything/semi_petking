@@ -57,10 +57,10 @@
                 </a>
             </li>
             <li>
-                <form action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm" >
+                <form class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm" >
                     <input type="hidden" name="id" value="${loginUser.id}">
                     <input type="hidden" name="password" value="${loginUser.password}">
-                    <input type="submit" value="회원탈퇴" onclick="return confirm('정말 탈퇴하시겠습니까?')">
+                    <input type="submit" style="cursor:pointer;" class="flex-1 whitespace-nowrap" value="회원탈퇴" onclick="return confirm('정말 탈퇴하시겠습니까?')">
                 </form>
             </li>
         </ul>

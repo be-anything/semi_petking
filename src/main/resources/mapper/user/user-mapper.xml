@@ -19,7 +19,7 @@
         values (
             #{id},
             default,
-            0,
+            null,
             #{nickname} || seq_users_nickname.nextval,
             #{name},
             #{password},
