@@ -69,6 +69,21 @@ public class ClubService {
         return result;
     }
 
+    public int insertClubUsers(ClubUsers clubUsers) {
+        int result = 0;
+        SqlSession session = getSqlSession();
+        try {
+            result = clubDao.insertClubUsers(session, clubUsers);
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
     public int updateClub(ClubVo club) {
         int result = 0;
         SqlSession session = getSqlSession();
@@ -116,20 +131,5 @@ public class ClubService {
             session.close();
         }
         return result;
-    }
-
-    public int insertClubUsers(ClubUsers clubUsers) {
-        int result2 = 0;
-        SqlSession session = getSqlSession();
-        try {
-            result2 = clubDao.insertClubUsers(session, clubUsers);
-            session.commit();
-        } catch (Exception e) {
-            session.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-        return result2;
     }
 }

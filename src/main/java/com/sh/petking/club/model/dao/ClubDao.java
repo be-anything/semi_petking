@@ -19,7 +19,6 @@ public class ClubDao {
     public int insertClub(SqlSession session, Club club) {
         return session.insert("club.insertClub", club);
     }
-
     public int deleteClub(SqlSession session, long id) {
         return session.delete("club.deleteClub", id);
     }
@@ -29,7 +28,7 @@ public class ClubDao {
     }
 
     public int insertClubUsers(SqlSession session, ClubUsers clubUsers) {
-        return session.insert("club.insertClubUsers", clubUsers);
+        return session.insert("clubUsers.insertClubUsers", clubUsers);
     }
 
     public int updateClubViewCount(SqlSession session, long id) {

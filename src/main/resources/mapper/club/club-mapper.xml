@@ -29,8 +29,6 @@
             #{clubIntroTitle},
             #{clubIntroContent}
         )
-        ON DUPLICATE KEY UPDATE
-            #{id}
         <selectKey order="AFTER" resultType="_int" keyProperty="id">
             select
                 seq_club_id.nextval
