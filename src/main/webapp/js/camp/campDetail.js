@@ -1,44 +1,14 @@
-// slider js
-const splide = new Splide( '#main-slider', {
-    width: '80%',
-    pagination: false,
-} );
-
-const thumbnails = document.getElementsByClassName( 'thumbnail' );
-let current;
-
-for ( let i = 0; i < thumbnails.length; i++ ) {
-    initThumbnail( thumbnails[ i ], i );
-}
-
-function initThumbnail( thumbnail, index ) {
-    thumbnail.addEventListener( 'click', function () {
-        splide.go( index );
-    } );
-}
-
-splide.on( 'mounted move', function () {
-    let thumbnail = thumbnails[ splide.index ];
-
-    if ( thumbnail ) {
-        if ( current ) {
-            current.classList.remove( 'is-active' );
-        }
-
-        thumbnail.classList.add( 'is-active' );
-        current = thumbnail;
-    }
-} );
-
-splide.mount();
 
 
-document.querySelector("#updateBtn").addEventListener('click', (e) => {
-    const btn = e.target;
-    console.log(btn);
-    const frm = document.campUpdateFrm;
-    frm.submit();
-})
+
+
+// 임시 수정폼 이벤트
+// document.querySelector("#updateBtn").addEventListener('click', (e) => {
+//     const btn = e.target;
+//     console.log(btn);
+//     const frm = document.campUpdateFrm;
+//     frm.submit();
+// })
 document.querySelector(".wish-btn").addEventListener('click', (e) =>{
     const wish = e.target.nextElementSibling;
     const {campId, userId} = wish.dataset;
@@ -105,3 +75,36 @@ document.querySelector(".wish-btn").addEventListener('click', (e) =>{
     marker.setMap(map);
 })();
 
+// slider js
+const splide = new Splide( '#main-slider', {
+    width: '80%',
+    pagination: false,
+} );
+
+const thumbnails = document.getElementsByClassName( 'thumbnail' );
+let current;
+
+for ( let i = 0; i < thumbnails.length; i++ ) {
+    initThumbnail( thumbnails[ i ], i );
+}
+
+function initThumbnail( thumbnail, index ) {
+    thumbnail.addEventListener( 'click', function () {
+        splide.go( index );
+    } );
+}
+
+splide.on( 'mounted move', function () {
+    let thumbnail = thumbnails[ splide.index ];
+
+    if ( thumbnail ) {
+        if ( current ) {
+            current.classList.remove( 'is-active' );
+        }
+
+        thumbnail.classList.add( 'is-active' );
+        current = thumbnail;
+    }
+} );
+
+splide.mount();

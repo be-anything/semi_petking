@@ -20,7 +20,7 @@ public class CampLoginController extends HttpServlet {
         String referer = req.getHeader("Referer");
         System.out.println("referer = " + referer);
 
-        if(!referer.contains("/camp/campLogin") || !referer.contains("user/userLogin")){
+        if(!referer.contains("/camp/campLogin") && !referer.contains("user/userLogin")){
             req.getSession().setAttribute("next", referer);
         }
 
@@ -40,6 +40,7 @@ public class CampLoginController extends HttpServlet {
         HttpSession session = req.getSession();
         if(camp != null && businessPassword.equals(camp.getBusinessPassword())){
             session.setAttribute("loginCamp", camp);
+            session.setAttribute("msg", "사업자 로그인을 성공하였습니다.");
             String locaion = req.getContextPath() + "/";
             String next = (String) session.getAttribute("next");
             if(next != null){

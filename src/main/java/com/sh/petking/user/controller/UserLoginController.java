@@ -28,7 +28,7 @@ public class UserLoginController extends HttpServlet {
         String referer = req.getHeader("Referer");
         System.out.println("referer = " + referer); // 저장된정보 확인
 
-        if (!referer.contains("/user.userlogin"))
+        if (!referer.contains("/camp/campLogin") && !referer.contains("user/userLogin"))
             req.getSession().setAttribute("next", referer);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/user/userLogin.jsp");
