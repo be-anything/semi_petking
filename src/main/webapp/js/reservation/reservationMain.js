@@ -1,7 +1,8 @@
 //임시 전역변수
 let today = new Date();
 let date = new Date();
-
+const tbody = document.querySelector("#roomSearchResult1 tbody");
+const thead =  document.querySelector("#roomSearchResult1 thead");
 function beforem() //이전 달을 today에 값을 저장
 {
     today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
@@ -68,12 +69,6 @@ function clickEvent()
             console.log("td6/"+td5);
             console.log("td7/"+td5);
         });
-
-
-
-
-
-
     // $("#calendarTest tr td").click(function(){
     //     var text = $(this).text();
     //     alert(text+"클릭!!!!!");
@@ -83,68 +78,72 @@ function clickEvent()
 }
 function build()
 {
-    console.log("build.....");
-    var nMonth = new Date(today.getFullYear(), today.getMonth(), 1); //현재달의 첫째 날
-    var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); //현재 달의 마지막 날
-    var tbcal = document.getElementById("calendarTest"); // 테이블 달력을 만들 테이블
-    var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
-    yearmonth.innerHTML = today.getFullYear() + "년 "+ (today.getMonth() + 1) + "월"; //년도와 월 출력
-
-    if(today.getMonth()+1==12) //  눌렀을 때 월이 넘어가는 곳
-    {
-        before.innerHTML=(today.getMonth())+"월";
-        next.innerHTML="1월";
-    }
-    else if(today.getMonth()+1==1) //  1월 일 때
-    {
-        before.innerHTML="12월";
-        next.innerHTML=(today.getMonth()+2)+"월";
-    }
-    else //   12월 일 때
-    {
-        before.innerHTML=(today.getMonth())+"월";
-        next.innerHTML=(today.getMonth()+2)+"월";
-    }
-
-// 남은 테이블 줄 삭제
-    while (tbcal.rows.length > 2)
-    {
-        tbcal.deleteRow(tbcal.rows.length - 1);
-    }
-    var row = null;
-    row = tbcal.insertRow();
-    var cnt = 0;
-
-// 1일 시작칸 찾기
-    for (i = 0; i < nMonth.getDay(); i++)
-    {
-        cell = row.insertCell();
-        cnt = cnt + 1;
-    }
-
-// 달력 출력
-    for (i = 1; i <= lastDate.getDate(); i++) // 1일부터 마지막 일까지
-    {
-        cell = row.insertCell();
-        cell.innerHTML = i;
-        cnt = cnt + 1;
-        if (cnt % 7 == 1) {//일요일 계산
-            cell.innerHTML = "<font color=#FF9090>" + i//일요일에 색
-        }
-        if (cnt % 7 == 0) { // 1주일이 7일 이므로 토요일 계산
-            cell.innerHTML = "<font color=#7ED5E4>" + i//토요일에 색
-            row = calendarTest.insertRow();// 줄 추가
-        }
-        if(today.getFullYear()==date.getFullYear()&&today.getMonth()==date.getMonth()&&i==date.getDate())
-        {
-            cell.bgColor = "#BCF1B1"; //오늘날짜배경색
-        }
-    }
+//     console.log("build.....");
+//     var nMonth = new Date(today.getFullYear(), today.getMonth(), 1); //현재달의 첫째 날
+//     var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0); //현재 달의 마지막 날
+//     var tbcal = document.getElementById("calendarTest"); // 테이블 달력을 만들 테이블
+//     var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
+//     yearmonth.innerHTML = today.getFullYear() + "년 "+ (today.getMonth() + 1) + "월"; //년도와 월 출력
+//
+//     if(today.getMonth()+1==12) //  눌렀을 때 월이 넘어가는 곳
+//     {
+//         before.innerHTML=(today.getMonth())+"월";
+//         next.innerHTML="1월";
+//     }
+//     else if(today.getMonth()+1==1) //  1월 일 때
+//     {
+//         before.innerHTML="12월";
+//         next.innerHTML=(today.getMonth()+2)+"월";
+//     }
+//     else //   12월 일 때
+//     {
+//         before.innerHTML=(today.getMonth())+"월";
+//         next.innerHTML=(today.getMonth()+2)+"월";
+//     }
+//
+// // 남은 테이블 줄 삭제
+//     while (tbcal.rows.length > 2)
+//     {
+//         tbcal.deleteRow(tbcal.rows.length - 1);
+//     }
+//     var row = null;
+//     row = tbcal.insertRow();
+//     var cnt = 0;
+//
+// // 1일 시작칸 찾기
+//     for (i = 0; i < nMonth.getDay(); i++)
+//     {
+//         cell = row.insertCell();
+//         cnt = cnt + 1;
+//     }
+//
+// // 달력 출력
+//     for (i = 1; i <= lastDate.getDate(); i++) // 1일부터 마지막 일까지
+//     {
+//         cell = row.insertCell();
+//         cell.innerHTML = i;
+//         cnt = cnt + 1;
+//         if (cnt % 7 == 1) {//일요일 계산
+//             cell.innerHTML = "<font color=#FF9090>" + i//일요일에 색
+//         }
+//         if (cnt % 7 == 0) { // 1주일이 7일 이므로 토요일 계산
+//             cell.innerHTML = "<font color=#7ED5E4>" + i//토요일에 색
+//             row = calendarTest.insertRow();// 줄 추가
+//         }
+//         if(today.getFullYear()==date.getFullYear()&&today.getMonth()==date.getMonth()&&i==date.getDate())
+//         {
+//             cell.bgColor = "#BCF1B1"; //오늘날짜배경색
+//         }
+//     }
 }
 
 
 //
 document.querySelector("#btn-search").addEventListener('click',(e)=>{
+
+    thead.innerHTML= '';
+    tbody.innerHTML= '';
+
     console.log("테스트용 - 14번 캠핑장 객실만 조회");
     //const celebId = document.querySelector("#id").value;
     //첫날
@@ -173,7 +172,7 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
         return;
     }
 
-
+    //get방식으로 데이터 요청
     $.ajax({
         url:`${contextPath}/reservation/reservationRoomSearch`,
         data:{
@@ -181,6 +180,7 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
             firstDay:firstDay,
             lastDay:lastDay
         },
+        //위의 결과값을 받았을 경우.........
         success(rooms){
             //응답받은 json 데이터를 파싱(json.parse)후 , js 객체로 반환.
             console.log(rooms);
@@ -190,10 +190,10 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
                 alert(`해당하는 객실은 0개입니다.`);
                 return;
             }
-            const tbody = document.querySelector("#roomSearchResult tbody");
-            const thead =  document.querySelector("#roomSearchResult thead");
-            thead.innerHTML= '';
-            tbody.innerHTML= '';
+            // const tbody = document.querySelector("#roomSearchResult tbody");
+            // const thead =  document.querySelector("#roomSearchResult thead");
+            // thead.innerHTML= '';
+            // tbody.innerHTML= '';
 
             thead.innerHTML= ` 
            
@@ -208,7 +208,7 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
                 tbody.innerHTML += `
                     <tr>
                         <td><img id="roomImage" class="w-[200px] h-[100px]" src="${contextPath}/upload/room/${roomRenamedImg}"></td>
-                        <td>${id}</td>
+                        <td id="roomId">${id}</td>
                         <td>${roomName}</td>
                         <td>${roomType}</td>
                         <td>${roomDefaultPerson}명</td>
@@ -216,7 +216,6 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
                         <td>${roomDefaultFee}원</td>
                         <td>${roomOverFee}원</td>
                         <td><button id="btnReserve"
-                        onclick="location.href = '${contextPath}/reservation/ReservationProgress?id=${id}'"
                         class="hover:text-white bg-white text-black border border-gray2 hover:bg-green font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2"> 
                         예약</button></td>
                     </tr>`;
@@ -238,18 +237,73 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
 });
 //
 
+//onclick="location.href = '${contextPath}/reservation/ReservationProgress?id=${id}'"
 
 //https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_html&wr_id=240919
 //동적으로 생성된 버튼은 그 자체로 click이벤트가 먹히지 않기 때문에 미리 선언해둔 상위 객체에 바인딩[on]해야 한다고 한다.
 
 //https://code-study.tistory.com/38 버튼 순서 찾기..
 //https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_html&wr_id=257125&page=600
-$('#roomSearchResult').on('click','#btnReserve',function () {
-    let num = $('roomSearchResult > tbody > tr').index(this);
+$('#roomSearchResult1').on('click','#btnReserve',function () {
+
+    let num = $('roomSearchResult1 > tbody > tr').index(this);
     console.log("예약버튼누르기1.." + $(this).parent().parent().index());
     console.log("예약버튼누르기2.." + $(this).parent().parent().html());
 
+    //document.getElementById('btnReserve').id = 'newId';
+    const roomNumber = $(this).parent().parent().find('#roomId').html();
+    console.log("내가 선택한 객실 번호:", roomNumber);
+    const firstDay = document.querySelector("#datepicker1").value;
+    //마지막날
+    const lastDay = document.querySelector("#datepicker2").value;
+    console.log("222222222222222내가 선택한 첫날:", firstDay);
+    console.log("2222222222222222내가 선택한 마지막날:", lastDay);
+
+    thead.innerHTML= '';
+    tbody.innerHTML= '';
+    thead.innerHTML= ` 
+                <tr>
+            <tr>`;
+
+    //id가 btnReserve인 버튼 찾기
+    // id가 "button01"인 버튼에 속성 추가
+    //button01.attr('onClick', '"location.href = \'${contextPath}/reservation/ReservationProgress?id=${id}\'"');
+    //myElement.find('btnReserve').attr('onClick', '"location.href = \'${contextPath}/reservation/ReservationProgress?id=${id}\'"');
+    // 수정된 HTML 문자열을 다시 설정
+
+    // 확인을 위해 콘솔에 출력
+    console.log("수정된 html"+$(this).parent().parent().html());
+
+
+    tbody.innerHTML= '';
+        tbody.innerHTML += $(this).parent().parent().html();
+        // $('#data21').html('Updated Data 21');
+        //버튼 btnReserve의 내용 바꾸기
+
+
+
+    $.ajax({
+        url: `${contextPath}/reservation/ReservationProgress`,  // 실제 서버 엔드포인트로 변경
+        method: 'post',
+        data:{
+            roomId:roomNumber,
+            firstDay:firstDay,
+            lastDay:lastDay
+        },
+        success: function(response) {
+            console.log("성공했나????????????????????")
+            window.location.href = `${contextPath}/reservation/ReservationProgress`;
+        },
+        error: function(error) {
+            console.error('Ajax request failed:', error);
+        }
+    });
+
 })
+
+
+
+
 
 
 function changeColor() {

@@ -20,23 +20,21 @@
     <div>
         <div class="py-5 px-5">
             <div class="px-4 sm:px-0">
-                <h3 class="text-2xl font-semibold leading-7 text-black">${club.clubName}</h3>
-                <p class="mt-1 max-w-2xl text-md leading-6 text-gray-500">동아리 이름</p>
+                <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900"><span
+                        class="underline underline-offset-3 decoration-8 decoration-green">동아리 명</span></h1>
+                <h2 class="text-2xl font-semibold leading-7 text-black">[ ${club.clubName} ]</h2>
             </div>
             <div class="flex justify-end">
                 <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-10 sm:px-0 items-center">
                     <dl class="divide-y divide-gray-100">
-                        <div class="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
-                            <dt class="text-sm font-medium leading-6 text-gray-900"></dt>
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">${club.clubIntroTitle}</dd>
-                        </div>
-                        <div class="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
-                            <dt class="text-sm font-medium leading-6 text-gray-900">내용</dt>
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">${club.clubIntroContent}</dd>
+                        <div class="px-4 sm:px-0">
+                            <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900"><span
+                                    class="underline underline-offset-3 decoration-8 decoration-green">소개 제목</span></h1>
+                            <h3 class="text-2xl font-semibold leading-7 text-black">< ${club.clubIntroTitle} ></h3>
                         </div>
                         <div class="h-[300px] font-medium leading-6 text-gray-900 mt-20 my-4 text-center">
                             <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900"><span
-                                    class="underline underline-offset-3 decoration-8 decoration-green">동아리 소개</span></h1>
+                                    class="underline underline-offset-3 decoration-8 decoration-green">동아리 글</span></h1>
                             <p class="text-lg font-normal text-gray3 lg:text-xl mt-10">${club.clubIntroContent}</p>
                         </div>
                         <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">

@@ -1,12 +1,8 @@
 package com.sh.petking.club.controller;
 
-import com.sh.petking.club.model.entity.Club;
-import com.sh.petking.club.model.entity.ClubUsers;
-import com.sh.petking.club.model.service.ClubService;
-import com.sh.petking.club.model.vo.ClubVo;
-import com.sh.petking.common.Role;
-import com.sh.petking.user.model.entity.User;
-import com.sh.petking.user.model.service.UserService;
+import com.sh.petking.board.model.entity.BoardAttach;
+import com.sh.petking.board.model.service.BoardService;
+import com.sh.petking.board.model.vo.BoardVo;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -18,46 +14,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import static java.lang.System.out;
 
-@WebServlet("/club/clubCreate")
-public class ClubCreateController extends HttpServlet {
-
-    private ClubService clubService = new ClubService();
-    private UserService userService = new UserService();
+@WebServlet("/club/clubBoardCreate")
+public class ClubBoardCreateController extends HttpServlet {
+    private BoardService boardService = new BoardService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String clubName = req.getParameter("clubName");
-//        String userId = req.getParameter("userId");
-//        String clubIntroTitle = req.getParameter("clubIntroTitle");
-//        String clubIntroContent = req.getParameter("clubIntroContent");
-//        long id = Long.parseLong(req.getParameter("id"));
-//
-//        Club club = new Club(id, clubName, clubIntroTitle, clubIntroContent, null, userId);
-//
-//        System.out.println(club);
+        String boardType = req.getParameter("boardType");
+        out.print("카테고리: " + boardType);
 
-        req.getRequestDispatcher("/WEB-INF/views/club/clubCreate.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/board/boardCreate.jsp").forward(req, resp);
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String boardType = req.getParameter("boardType");
+
         // 1. 사용자입력값처리 및 파일업로드
-        File repository = new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\club");
+        File repository = new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\board");
         int sizeThreshold = 10 * 1024 * 1024; // 10mb (1mb = 1024kb, 1kb = 1024b)
 
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(repository);
         factory.setSizeThreshold(sizeThreshold);
 
-        User loginUser = (User) (req.getSession().getAttribute("loginUser"));
-        ClubVo club = new ClubVo();
+        BoardVo board = new BoardVo();
 
         // ServletFileUpload 실제요청을 핸들링할 객체
         ServletFileUpload servletFileUpload = new ServletFileUpload(factory);
@@ -68,11 +53,11 @@ public class ClubCreateController extends HttpServlet {
             for (FileItem item : fileItemList) {
                 String name = item.getFieldName(); // input[name]
                 if(item.isFormField()) {
-                    // 일반 텍스트필드 : Club객체에 설정
+                    // 일반 텍스트필드 : Board객체에 설정
                     String value = item.getString("utf-8");
                     out.println(name + " = " + value);
-                    // Club객체에 설정자 로직 구현
-                    club.setValue(name, value);
+                    // Board객체에 설정자 로직 구현
+                    board.setValue(name, value);
                 }
                 else {
                     // 파일 : 서버컴퓨터에 저장, 파일정보를 Attachment객체로 만들어서 db에 저장
@@ -92,6 +77,12 @@ public class ClubCreateController extends HttpServlet {
                         // 서버컴퓨터 파일 저장
                         File upFile = new File(repository, renamedName);
                         item.write(upFile); // throw Exception
+
+                        // Attachment 객체생성
+                        BoardAttach attach = new BoardAttach();
+//                        attach.setOriginalName(originalName);
+//                        attach.setRenamedName(renamedName);
+                        board.addAttachment(attach);
                     }
                 }
             }
@@ -99,31 +90,14 @@ public class ClubCreateController extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        out.println("Controller : club 정보" + club); // club객체, attach객체들
+        out.println(board); // board객체, attach객체들
 
         // 2. 업무로직
-        // - club 테이블 인서트
-        // - users 테이블 업데이트
-        // - club_user 인서트
-        ClubUsers clubUsers = new ClubUsers(club.getId(), loginUser.getId(), 1, null, Role.A);
-        out.println("Controller : clubUsers의 정보 : " + clubUsers);
-        User user = userService.findById(loginUser.getId());
-        out.println("Controller : clubUsers의 정보 : " + user);
-        user.setClubId(club.getId());
-
-        Map<String, Object> param = new HashMap<>();
-        param.put("club", club);
-        param.put("clubUsers", clubUsers);
-        param.put("user", user);
-
-        int result = clubService.insertClub(param);
-
-        // 업데이트된 clubId를 반영해서 loginUser 업데이트 처리
+        int result = boardService.insertBoard(board);
         req.getSession().setAttribute("msg", "게시글을 성공적으로 등록했습니다. 😉");
-        user = userService.findById(loginUser.getId());
-        req.getSession().setAttribute("loginUser", user);
+        req.setAttribute("board", board);
 
         // 3. redirect 목록페이지
-        resp.sendRedirect(req.getContextPath() + "/club/clubList?id=" + user.getClubId());
+        resp.sendRedirect(req.getContextPath() + "/board/boardList");
     }
 }

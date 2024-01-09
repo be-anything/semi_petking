@@ -1,6 +1,5 @@
 package com.sh.petking.user.model.dao;
 
-import com.sh.petking.camp.model.vo.CampVo;
 import com.sh.petking.pet.model.entity.Pet;
 import com.sh.petking.user.model.entity.Point;
 import com.sh.petking.user.model.entity.User;
@@ -93,5 +92,13 @@ public class UserDao extends HttpServlet {
     public int updateUserProfile(SqlSession session, User user) {
         return session.update("user.updateUserProfile", user);
 
+    }
+
+    public int updateUserClubId(SqlSession session, User user) {
+        return session.update("user.updateUserClubId", user);
+    }
+
+    public UserVo findUserWithClubById(SqlSession session, String id) {
+        return session.selectOne("user.findUserWithClubById", id);
     }
 }

@@ -16,4 +16,9 @@
         from
             del_users
     </select>
+
+    <insert id="insertDelUser" parameterType="DelUser">
+        INSERT INTO del_users (id, user_id, name, role, del_date, del_reason, reg_date)
+        VALUES (seq_del_users_id.nextval, #{userId}, #{name}, #{role}, default, ' ', #{regDate})
+    </insert>
 </mapper>

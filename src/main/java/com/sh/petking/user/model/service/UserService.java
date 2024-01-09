@@ -1,7 +1,5 @@
 package com.sh.petking.user.model.service;
 
-import com.sh.petking.camp.model.vo.CampVo;
-import com.sh.petking.pet.model.entity.Pet;
 import com.sh.petking.user.model.dao.UserDao;
 import com.sh.petking.user.model.entity.Point;
 import com.sh.petking.user.model.entity.User;
@@ -155,6 +153,7 @@ public class UserService {
         return points;
     }
 
+
     public int updateUserProfile(User user) {
         int result = 0;
         SqlSession session = getSqlSession();
@@ -168,5 +167,12 @@ public class UserService {
             session.close();
         }
         return result;
+    }
+
+    public UserVo findUserWithClubById(String id) {
+        SqlSession session = getSqlSession();
+        UserVo user = userDao.findUserWithClubById(session, id);
+        session.close();
+        return user;
     }
 }

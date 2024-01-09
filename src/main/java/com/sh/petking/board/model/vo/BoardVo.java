@@ -1,6 +1,7 @@
 package com.sh.petking.board.model.vo;
 
 import com.sh.petking.board.model.entity.*;
+import com.sh.petking.club.model.entity.Club;
 import com.sh.petking.user.model.entity.User;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,16 @@ public class BoardVo extends Board {
     private List<Long> delFiles = new ArrayList<>();
     private List<BoardComment> comments;
     private int commentCount;
+
+    private Club club;
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
 
     public User getUser() {
         return user;
