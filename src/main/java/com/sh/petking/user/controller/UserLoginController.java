@@ -1,5 +1,7 @@
 package com.sh.petking.user.controller;
 
+import com.sh.petking.club.model.entity.ClubUsers;
+import com.sh.petking.club.model.service.ClubService;
 import com.sh.petking.common.PetkingUtils;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.service.UserService;
@@ -17,6 +19,7 @@ import java.io.IOException;
 @WebServlet("/user/userLogin")
 public class UserLoginController extends HttpServlet {
     private UserService userService = new UserService();
+    private ClubService clubService = new ClubService();
 
     // 로그인 폼 페이지
     @Override
@@ -59,6 +62,17 @@ public class UserLoginController extends HttpServlet {
             session.setAttribute("msg", "로그인을 성공하였습니다.");
             String location = req.getContextPath() + "/";
             String next = (String) req.getSession().getAttribute("next");
+
+            // 접속자의 clubRole 확인하기
+            user = (User) req.getSession().getAttribute("loginUser");
+            if(user != null){
+                ClubUsers clubUsers = clubService.findByUserId(user.getId());
+                System.out.println(clubUsers.getRole());
+                if(clubUsers != null) {
+                    req.getSession().setAttribute("loginUserClubRole", clubUsers.getRole());
+                }
+            }
+
             if (next != null) {
                 location = next;
                 req.getSession().removeAttribute("next");

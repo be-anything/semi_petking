@@ -40,7 +40,7 @@
                 동아리 가입은 빠르면 빠를수록 좋다 🐶
             </h1>
         </div>
-        <c:if test="${loginUser != null && role == 'A'}">
+        <c:if test="${loginUser != null && loginUserClubRole == 'A'}">
             <div class="flex justify-end">
                 <button
                         type="button"
