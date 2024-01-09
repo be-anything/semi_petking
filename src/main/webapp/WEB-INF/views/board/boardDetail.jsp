@@ -50,11 +50,11 @@
                     삭제
                 </button>
                 </c:if>
-                <c:if test="${loginUser.clubId eq null && board.boardType == 'C'}">
+                <c:if test="${loginUser.clubId eq null && board.boardType == 'C' && loginUser != null}">
                     <button type="button"
-                            onclick="confirm('동아리 가입신청을 하시겠습니까? 😎') && document.clubRequestFrm.submit()"
+                            onclick="confirm('동아리를 가입 하시겠습니까? 😎') && document.clubRequestFrm.submit()"
                             class=" py-2.5 px-4 text-xs font-medium text-sky-600 hover:bg-blue-200 ms-30">
-                        가입 신청
+                        가입 하기
                     </button>
                 </c:if>
             </div>

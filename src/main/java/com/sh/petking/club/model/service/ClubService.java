@@ -26,6 +26,13 @@ public class ClubService {
         return clubs; //결과값을 리턴
     }
 
+    public List<ClubUsers> findAllClubUsers() {
+        SqlSession session = getSqlSession();
+        List<ClubUsers> clubUsers = clubDao.findAllClubUsers(session);
+        session.close();
+        return clubUsers; //결과값을 리턴
+    }
+
     public ClubVo findById(long id){
         SqlSession session = getSqlSession();
         ClubVo club = clubDao.findById(session, id);
