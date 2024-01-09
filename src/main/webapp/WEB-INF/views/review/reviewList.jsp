@@ -10,7 +10,7 @@
         <c:forEach items="${reviews}" var="review">
         <div class="w-[45%] h-fit p-5 shadow-md rounded-lg m-4">
             <div class="mb-4">
-                ${review.campName} ${review.userId}님의
+                ${review.campName} ${review.nickname}님의
                 캠핑로그
             </div>
             <div class="transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
