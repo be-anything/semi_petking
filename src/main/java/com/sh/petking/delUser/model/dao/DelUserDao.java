@@ -3,6 +3,7 @@ package com.sh.petking.delUser.model.dao;
 import com.sh.petking.delUser.model.entity.DelUser;
 import com.sh.petking.delUser.model.service.DelUserService;
 import com.sh.petking.review.model.entity.Review;
+import com.sh.petking.user.model.entity.User;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
@@ -25,4 +26,12 @@ public class DelUserDao {
     public int getTotalCount(SqlSession session) {
         return session.selectOne("delUser.getTotalCount");
     }
+
+    public int insertDelUser(SqlSession session, DelUser delUser) {
+        return session.insert("delUser.insertDelUser", delUser);
+    }
+
+//    public int insertDelUser(SqlSession session, User loginUser) {
+//        return session.insert("delUser.insertDelUser", loginUser);
+//    }
 }
