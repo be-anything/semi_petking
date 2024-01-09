@@ -52,7 +52,7 @@
             </h1>
         </div>
         <div class="flex-grow border-t border-gray-400"></div>
-        <table id="roomSearchResult">
+        <table id="roomSearchResult1">
             <thead>
             </thead>
             <tbody>
