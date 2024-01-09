@@ -42,17 +42,19 @@
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/review/reviewList">캠핑로그</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/room/roomList">객실목록(임시)</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/reservation/reservationMain">예약하기(임시)</a></div>
-                <c:if test="${loginUser.role eq 'A' }">
-                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userList">홈페이지관리</a></div>
-                </c:if>
+
                 <c:if test="${loginUser == null && loginCamp == null}">
                     <div class="text-black text-right font-normal mr-7 absolute right-0 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></div>
                     <i class="fa-regular fa-clock ml-10 absolute right-0 text-black hover:text-green hover:font-bold"></i>
                 </c:if>
                 <c:if test="${loginUser != null}">
                     <div class="w-[300px] flex justify-end items-center">
+                        <c:if test="${loginUser.role eq 'U'}">
                     <div class="text-black text-right font-normal hover:font-bold overflow-hidden rounded-full"><img class="w-[50px]" src="${pageContext.request.contextPath}/upload/user/${loginUser.renamedProfileName}"></div>
-                    <div class="text-black text-right pr-8 pl-2 hover:underline"><strong><a href="${pageContext.request.contextPath}/user/userDetail">${loginUser.nickname}</a></strong></div>
+                    <div class="text-black text-right pr-8 pl-2 hover:underline"><strong><a href="${pageContext.request.contextPath}/user/userDetail">${loginUser.nickname}</a></strong></div></c:if>
+                        <c:if test="${loginUser.role eq 'A' }">
+                            <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userList">홈페이지관리</a></div>
+                        </c:if>
                     <div class="text-black text-sm text-right font-normal hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogout">로그아웃</a></div>
                     </div>
                     </c:if>
