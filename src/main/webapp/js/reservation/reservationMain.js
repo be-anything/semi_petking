@@ -1,8 +1,8 @@
 //임시 전역변수
 let today = new Date();
 let date = new Date();
-const tbody = document.querySelector("#roomSearchResult1 tbody");
-const thead =  document.querySelector("#roomSearchResult1 thead");
+const tbody = document.querySelector("#roomSearchResult tbody");
+const thead =  document.querySelector("#roomSearchResult thead");
 function beforem() //이전 달을 today에 값을 저장
 {
     today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
@@ -204,19 +204,22 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
 
             rooms.forEach(({id,roomName,roomIntro,roomType,roomDefaultPerson,roomMaximumPerson,roomDefaultFee,roomOverFee,roomRenamedImg})=>
             {
-
                 tbody.innerHTML += `
                     <tr>
                         <td><img id="roomImage" class="w-[200px] h-[100px]" src="${contextPath}/upload/room/${roomRenamedImg}"></td>
-                        <td id="roomId">${id}</td>
+                        <td id="roomId" hidden>${id}</td>
                         <td>${roomName}</td>
-                        <td>${roomType}</td>
-                        <td>${roomDefaultPerson}명</td>
-                        <td>${roomMaximumPerson}명</td>
-                        <td>${roomDefaultFee}원</td>
-                        <td>${roomOverFee}원</td>
+                        <td>${roomType == 1 ? '오토캠핑' :
+                              roomType == 2 ? '글램핑' :
+                              roomType == 3 ? '카라반' :
+                              roomType == 4 ? '룸' : 'Invalid Type'}
+                        </td>
+                        <td>기본 ${roomDefaultPerson}명</td>
+                        <td>최대 ${roomMaximumPerson}명</td>
+                        <td>기본 ${roomDefaultFee}원</td>
+                        <td>초과 인당 ${roomOverFee}원</td>
                         <td><button id="btnReserve"
-                        class="hover:text-white bg-white text-black border border-gray2 hover:bg-green font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2"> 
+                        class="hover:text-white bg-white text-black border border-gray2 hover:bg-green font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
                         예약</button></td>
                     </tr>`;
             });
@@ -244,9 +247,9 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
 
 //https://code-study.tistory.com/38 버튼 순서 찾기..
 //https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_html&wr_id=257125&page=600
-$('#roomSearchResult1').on('click','#btnReserve',function () {
+$('#roomSearchResult').on('click','#btnReserve',function () {
 
-    let num = $('roomSearchResult1 > tbody > tr').index(this);
+    let num = $('roomSearchResult > tbody > tr').index(this);
     console.log("예약버튼누르기1.." + $(this).parent().parent().index());
     console.log("예약버튼누르기2.." + $(this).parent().parent().html());
 
@@ -259,12 +262,16 @@ $('#roomSearchResult1').on('click','#btnReserve',function () {
     console.log("222222222222222내가 선택한 첫날:", firstDay);
     console.log("2222222222222222내가 선택한 마지막날:", lastDay);
 
-    thead.innerHTML= '';
-    tbody.innerHTML= '';
-    thead.innerHTML= ` 
-                <tr>
-            <tr>`;
-
+    if(firstDay.length<1 || lastDay.length<1 )
+    {
+        alert(`날짜를 선택해주세요.`);
+        return;
+    }
+    // thead.innerHTML= '';
+    // tbody.innerHTML= '';
+    // thead.innerHTML= `
+    //             <tr>
+    //         <tr>`;
     //id가 btnReserve인 버튼 찾기
     // id가 "button01"인 버튼에 속성 추가
     //button01.attr('onClick', '"location.href = \'${contextPath}/reservation/ReservationProgress?id=${id}\'"');
@@ -272,11 +279,11 @@ $('#roomSearchResult1').on('click','#btnReserve',function () {
     // 수정된 HTML 문자열을 다시 설정
 
     // 확인을 위해 콘솔에 출력
-    console.log("수정된 html"+$(this).parent().parent().html());
-
-
-    tbody.innerHTML= '';
-        tbody.innerHTML += $(this).parent().parent().html();
+    // console.log("수정된 html"+$(this).parent().parent().html());
+    //
+    //
+    // tbody.innerHTML= '';
+    //     tbody.innerHTML += $(this).parent().parent().html();
         // $('#data21').html('Updated Data 21');
         //버튼 btnReserve의 내용 바꾸기
 
@@ -351,7 +358,7 @@ function clickTd2(){
 //https://jqueryui.com/datepicker/
 $(function() {
     //input을 datepicker로 선언
-    $("#datepicker1,#datepicker2").datepicker({
+    $("#datepicker1").datepicker({
         dateFormat: 'yy-mm-dd' //달력 날짜 형태 년/월/일로 변경
         ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
         ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
@@ -366,9 +373,41 @@ $(function() {
         ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
         ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
         ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
-        ,minDate: 0 //"-5Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+        ,minDate: new Date(),
+          onSelect: function(dateStr)
+        {
+            $("#datepicker2").val(dateStr);
+            $("#datepicker2").datepicker("option",{ minDate: new Date(dateStr)})
+        }
+
         ,maxDate: "+2M" //2달 후 까지 막아둠 //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
     });
+    //초기값을 오늘 날짜로 지정한다.
+    $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+});
+
+$(function() {
+    //input을 datepicker로 선언
+    $("#datepicker2").datepicker({
+        dateFormat: 'yy-mm-dd' //달력 날짜 형태 년/월/일로 변경
+        ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+        ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
+        ,changeYear: true //option값 년 선택 가능
+        ,changeMonth: true //option값  월 선택 가능
+        ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+        //,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+        //,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
+        //,buttonText: "선택" //버튼 호버 텍스트
+        ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+        ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
+        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
+        ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
+        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
+        //,minDate: 0
+        ,maxDate: "+2M" //2달 후 까지 막아둠 //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+    });
+
+    //const firstDay = document.querySelector("#datepicker1").value;
     //초기값을 오늘 날짜로 지정한다.
     $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
 });

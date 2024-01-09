@@ -65,22 +65,6 @@ public class RoomListController extends HttpServlet {
                             .collect(Collectors.toList());
         }
 
-
-
-
-
-        //test
-        List<String> cats = new ArrayList<>();
-        cats.add("sana") ;
-        cats.add("momo");
-                cats.add("mina");
-                cats.add("jihyo");
-                cats.add("nayeon");
-                cats.add("jeongyeon ");
-
-        System.out.println("===============================");
-        cats.stream().skip(3).forEach(System.out::println);
-
         System.out.println("paging ::: "+newRooms);
         req.setAttribute("rooms",newRooms);
 
@@ -101,7 +85,7 @@ public class RoomListController extends HttpServlet {
                 rooms.stream()
                 .skip(4) //스킵할 갯수
                 .limit(4) // 보여줄 갯수
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()); //다시 list형태로 되돌림
         return newRooms;
     }
 }

@@ -19,6 +19,12 @@
 <div id="myElement2" data-my-value2="<c:out value='${room.roomMaximumPerson}' />"></div>
 <div id="myElement3" data-my-value3="<c:out value='${room.roomDefaultFee}' />"></div>
 <div id="myElement4" data-my-value4="<c:out value='${room.roomOverFee}' />"></div>
+
+
+<p id="campId" name="campId" hidden>${room.campId}</p>
+<p id="roomId" name="roomId" hidden>${room.id}</p>
+<p id="userId" name="userId" hidden>${loginUser.id}</p>
+
 <div class="container mx-auto my-6">
     <div class="flex justify-start">
         <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
@@ -30,6 +36,7 @@
 
         <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-xl">
             🏠객실 정보
+
         </h1>
         <table name="roomInfoTable" style="border: 1px solid; width: 70%;">
             <colgroup>
@@ -70,7 +77,8 @@
             </tr>
             <tr>
                 <td>숙박 기간 :</td>
-                <td>${firstDay} 부터 ${lastDay} 까지</td>
+                <td><span id="firstDay" name="firstDay" >${firstDay}</span> 부터
+                    <span id="lastDay" name="lastDay" >${lastDay}</span> 까지</td>
             </tr>
 
             </tbody>
@@ -82,7 +90,7 @@
             <%--  첨부 사진이 여러개 있다면 첫번째 사진만 긁어와서 출력함 ${room.roomAttachs[0].roomAttachRenamedName}
             -> room.roomRenamedImg 대표사진으로 수정--%>
             <%--    0108 혜진 객실 정보 간단하게 테이블로 보여주기--%>
-                <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-xl">
+                <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-xl y-20">
                     👨‍👩‍👧‍👦예약 정보
                 </h1>
 
@@ -110,11 +118,6 @@
                 </td>
             </tr>
             <tr>
-            <%-- 셀렉트박스를 조작하지 않는다면 기본금액으로 출력한다.--%>
-                <td>이용 금액 :</td>
-                <td><p id="totalFee" name="totalFee">${room.roomDefaultFee}</p>원</td>
-            </tr>
-            <tr>
                 <td>예약자 명:</td>
                 <td>${loginUser.name}</td>
             </tr>
@@ -127,8 +130,15 @@
                 <td>${loginUser.email}</td>
             </tr>
             <tr>
+                <%-- 셀렉트박스를 조작하지 않는다면 기본금액으로 출력한다.--%>
+                <td>이용 금액 :</td>
+                <td><span id="totalFee" name="totalFee">${room.roomDefaultFee}</span>원</td>
+            </tr>
+            <tr>
                 <td>사용가능한 포인트:</td>
-                <td>${loginUser.resultPoint} <input id="usePoint" name="usePoint" placeholder="사용하실 포인트를 입력해주세요."></td>
+                <td><span id="userPoint" name="userPoint">${loginUser.resultPoint}</span>
+                    <input type="number" id="usePoint"  value="0" name="usePoint" placeholder="사용하실 포인트를 입력해주세요.">
+                    <button type="button" id="btn_usePoint">사용</button></td>
             </tr>
             </tbody>
         </table>

@@ -86,7 +86,6 @@
                                 <option value="3">카라반</option>
                                 <option value="4">룸</option>
                             </select>
-
                         </div>
 
                         <div class="px-4 py-4 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-0">
