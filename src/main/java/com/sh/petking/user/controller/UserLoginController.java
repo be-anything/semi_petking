@@ -40,18 +40,18 @@ public class UserLoginController extends HttpServlet {
         // 사용자 입력값 가져오기
         String id = req.getParameter("id");
         String pw = PetkingUtils.getEncryptedPassword(req.getParameter("password"), id);
-        System.out.println(id + pw);
+//        System.out.println(id + pw);
 
         // 업무 로직
         User user = userService.findById(id);
-        System.out.println(user);
+//        System.out.println(user);
 
         // 세션생성 / 가져오기
         HttpSession session = req.getSession();
         if (user != null && pw.equals(user.getPassword())) {
             // 로그인 성공
             session.setAttribute("loginUser", user);
-            session.setAttribute("msg", "로그인성공");
+            session.setAttribute("msg", "로그인을 성공하였습니다.");
             String location = req.getContextPath() + "/";
             String next = (String) req.getSession().getAttribute("next");
             if (next != null) {

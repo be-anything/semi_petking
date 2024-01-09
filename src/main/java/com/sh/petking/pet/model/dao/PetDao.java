@@ -23,7 +23,7 @@ public class PetDao {
     }
 
     public int updatePet(SqlSession session, Pet pet) {
-        System.out.println("dao update" + pet);
+        System.out.println("dao update = " + pet);
         return session.update("pet.updatePet", pet);
     }
 

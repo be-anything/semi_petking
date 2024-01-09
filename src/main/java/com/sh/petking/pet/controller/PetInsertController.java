@@ -33,7 +33,7 @@ public class PetInsertController extends HttpServlet {
 
         // 업무로직
         int result = petService.insertPet(pet);
-        req.getSession().setAttribute("msg", "반려동물정보입력완료");
+        req.getSession().setAttribute("msg", "반려동물정보를 입력완료했습니다");
 
         // view단
         resp.sendRedirect(req.getContextPath() + "/user/userDetail");
