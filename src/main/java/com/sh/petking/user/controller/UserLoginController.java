@@ -3,6 +3,7 @@ package com.sh.petking.user.controller;
 import com.sh.petking.common.PetkingUtils;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.service.UserService;
+import com.sh.petking.user.model.vo.UserVo;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,6 +45,10 @@ public class UserLoginController extends HttpServlet {
 
         // 업무 로직
         User user = userService.findById(id);
+//        UserVo user = userService.findUserWithClubById(id);
+//        System.out.println(user);
+//        System.out.println(user.getPassword());
+
 //        System.out.println(user);
 
         // 세션생성 / 가져오기

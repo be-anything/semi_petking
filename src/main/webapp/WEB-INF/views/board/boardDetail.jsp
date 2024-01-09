@@ -50,9 +50,9 @@
                     삭제
                 </button>
                 </c:if>
-                <c:if test="${loginUser.clubId eq '0' && board.boardType == 'C'}">
+                <c:if test="${loginUser.clubId eq null && board.boardType == 'C'}">
                     <button type="button"
-                            onclick="confirm('동아리 가입신청을 하시겠습니까? 😎') && document.boardRequestFrm.submit()"
+                            onclick="confirm('동아리 가입신청을 하시겠습니까? 😎') && document.clubRequestFrm.submit()"
                             class=" py-2.5 px-4 text-xs font-medium text-sky-600 hover:bg-blue-200 ms-30">
                         가입 신청
                     </button>
@@ -65,9 +65,9 @@
                 <input type="hidden" name="id" value="${board.id}">
             </form>
             <form
-                    action="${pageContext.request.contextPath}/board/boardRequest"
+                    action="${pageContext.request.contextPath}/club/clubRequest"
                     method="post"
-                    name="boardRequestFrm">
+                    name="clubRequestFrm">
                 <input type="hidden" name="id" value="${board.id}">
             </form>
     </div>
@@ -89,6 +89,7 @@
                               onclick="'${loginUser.id}' || alert('로그인후 댓글을 작성하세요');"
                               class="resize-none w-full px-0 text-sm text-gray-900 bg-white border-0"
                               placeholder="댓글을 작성하세요" required></textarea>
+
                 </div>
                 <div class="flex items-center justify-end px-3 py-2 border-t">
                     <button type="submit"

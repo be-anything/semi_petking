@@ -23,6 +23,7 @@
                     </c:if>
                 </a>
             </div>
+
             <div class="flex justify-between items-center">
             <div class="block mb-2 text-md font-medium text-gray-900 dark:text-white mt-4">${review.reviewTitle}</div>
             <div class="rounded-md bg-white mb-2 mt-4 text-xs font-medium text-black block text-md font-medium">조회수 : ${review.viewCount}</div>
