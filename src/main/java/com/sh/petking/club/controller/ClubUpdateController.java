@@ -28,6 +28,8 @@ public class ClubUpdateController extends HttpServlet {
 
     private ClubService clubService = new ClubService();
 
+    private UserService userService = new UserService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -95,9 +97,14 @@ public class ClubUpdateController extends HttpServlet {
 
         // 2. 업무로직
         int result = clubService.updateClub(club);
+        User user = (User) (req.getSession().getAttribute("loginUser"));
+
+        user = userService.findById(user.getId());
+        req.getSession().setAttribute("loginUser", user);
+
         req.getSession().setAttribute("msg", "동아리 소개글을 성공적으로 수정했습니다.😁");
 
         // 3. redirect
-        resp.sendRedirect(req.getContextPath() + "/club/clubDetail?id=" + club.getId());
+        resp.sendRedirect(req.getContextPath() + "/club/clubDetail?id=" + user.getClubId());
     }
 }

@@ -1,11 +1,13 @@
 package com.sh.petking.club.model.dao;
 
+import com.sh.petking.board.model.vo.BoardVo;
 import com.sh.petking.club.model.entity.Club;
 import com.sh.petking.club.model.entity.ClubUsers;
 import com.sh.petking.club.model.vo.ClubVo;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 public class ClubDao {
 
@@ -37,5 +39,9 @@ public class ClubDao {
 
     public ClubUsers findByUserId(SqlSession session, String userId) {
         return session.selectOne("club.findByUserId", userId);
+    }
+
+    public List<ClubUsers> findAllClubUsers(SqlSession session) {
+        return session.selectList("club.findAllClubUsers");
     }
 }

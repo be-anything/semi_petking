@@ -2,6 +2,7 @@ package com.sh.petking.reservation.model.dao;
 
 
 import com.sh.petking.reservation.model.entity.Reservation;
+import com.sh.petking.reservation.model.entity.ReservationPay;
 import com.sh.petking.room.model.entity.Room;
 import com.sh.petking.reservation.model.vo.ReservationVo;
 import com.sh.petking.room.model.vo.RoomVo;
@@ -18,6 +19,11 @@ public class ReservationDao
     {
         return session.insert("reservation.insertReservation",reservation);
     }
+    //결제 내역 하나 추가
+    public int insertReservationPay(SqlSession session, ReservationPay reservationPay) {
+        return session.insert("reservation.insertReservationPay",reservationPay);
+    }
+
 
     //모든 예약 내역 조회
     public List<Reservation> findAll(SqlSession session)
@@ -35,6 +41,12 @@ public class ReservationDao
     {
         System.out.println("ReservationDao - 캠핑장 객실리스트 출력");
         return session.selectList("reservation.findByCampId",params);
+    }
+
+    public List<Room> findByRoomCampId(SqlSession session, long campId)
+    {
+        System.out.println("ReservationDao - 캠핑장 객실리스트 출력");
+        return session.selectList("reservation.findByRoomCampId",campId);
     }
 
     public List<Reservation> findAbleRoom(SqlSession session, Map<String, Object> params) {
@@ -76,4 +88,6 @@ public class ReservationDao
         RowBounds rowBounds = new RowBounds(offset, limit);
         return session.selectList("reservation.findByCancelReservUserId", param, rowBounds);
     }
+
+
 }

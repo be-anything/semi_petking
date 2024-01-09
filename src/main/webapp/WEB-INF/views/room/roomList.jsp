@@ -53,9 +53,12 @@
                         <a href="${pageContext.request.contextPath}/room/roomDetail?id=${room.id}"
                            class="hover:underline">${fn:escapeXml(room.roomName)}</a>
                             <%--  1221 해당 게시글에 달린 댓글 갯수 보여주기 select count(*) from board_comment where board_id=97; --%>
-
                     </td>
-                    <td class="px-6 py-4">${room.roomType}</td>
+                    <td class="px-6 py-4">
+                            ${room.roomType == 1 ? '오토캠핑' :
+                                    room.roomType == 2 ? '글램핑' :
+                                            room.roomType == 3 ? '카라반' :
+                                                    room.roomType == 4 ? '룸' : 'Invalid Type'}</td>
                     <td class="px-6 py-4">${room.roomIntro}</td>
                     <td class="px-6 py-4">${room.roomDefaultPerson}</td>
                     <td class="px-6 py-4">${room.roomMaximumPerson}</td>
@@ -70,7 +73,7 @@
                                 onClick="confirm('${room.id} 번 객실을 삭제하시겠습니까?') &&
                                         document.roomDeleteFrm${room.id}.submit();"
                                 class="px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-red-700 rounded-lg focus:ring-4 focus:ring-primary-200">
-                            ${vs.index}번째 삭제
+                            삭제
                         </button>
                         </div>
                     </td>
