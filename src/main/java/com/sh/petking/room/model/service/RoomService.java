@@ -128,6 +128,12 @@ public class RoomService
         session.close();
         return room;
     }
+    public List<RoomVo> findRoomListByCampId(long id) {
+        SqlSession session = getSqlSession();
+        List<RoomVo> rooms = roomDao.findRoomListByCampId(session,id);
+        session.close();
+        return rooms;
+    }
 
     //0103 객실 수정 service 단 코드
     public int updateRoom(RoomVo room) {

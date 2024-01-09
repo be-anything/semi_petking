@@ -73,4 +73,8 @@ public class RoomDao
         System.out.println("daofindByCampId......캠핑장 아이디 : "+id);
         return session.selectOne("room.findByCampId",id);
     }
+
+    public List<RoomVo> findRoomListByCampId(SqlSession session, long id) {
+        return session.selectList("room.findRoomListByCampId", id);
+    }
 }

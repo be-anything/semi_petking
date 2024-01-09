@@ -168,4 +168,11 @@ public class UserService {
         }
         return result;
     }
+
+    public UserVo findUserWithClubById(String id) {
+        SqlSession session = getSqlSession();
+        UserVo user = userDao.findUserWithClubById(session, id);
+        session.close();
+        return user;
+    }
 }

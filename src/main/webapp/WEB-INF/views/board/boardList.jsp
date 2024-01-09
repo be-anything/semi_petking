@@ -18,6 +18,7 @@
         display: block;
     }
 </style>
+<div class="flex justify-between flex-wrap items-center mx-auto max-w-6xl rounded-lg mb-10 mt-10">
 <div class="flex flex-wrap justify-between items-center m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
     <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
         <li class="tabBtn">
@@ -32,19 +33,19 @@
     </ul>
 </div>
 
-<div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
+<div class="flex w-full justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
     <div class="container mx-auto my-6">
         <div class="flex justify-start">
             <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                 동아리 가입은 빠르면 빠를수록 좋다 🐶
             </h1>
         </div>
-        <c:if test="${loginUser != null}">
+        <c:if test="${loginUser != null && role == 'A'}">
             <div class="flex justify-end">
                 <button
                         type="button"
-                        onclick="location.href = '${pageContext.request.contextPath}/board/boardCreate';"
-                        class=" py-2.5 px-4 text-xs font-medium text-sky-600 hover:bg-blue-200 ms-30">
+                        onclick="location.href = '${pageContext.request.contextPath}/club/clubBoardCreate';"
+                        class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                     글쓰기</button>
             </div>
         </c:if>
@@ -54,10 +55,9 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">번호</th>
                     <th scope="col" class="px-6 py-3">속성</th>
-                    <th scope="col" class="px-6 py-3">제목</th>
+                    <th scope="col" class="px-6 py-3 w-[500px]">제목</th>
                     <th scope="col" class="px-6 py-3">작성자</th>
                     <th scope="col" class="px-6 py-3">작성일</th>
-                    <th scope="col" class="px-6 py-3">첨부파일</th>
                     <th scope="col" class="px-6 py-3">조회수</th>
                 </tr>
                 </thead>
@@ -84,11 +84,6 @@
                                 <fmt:parseDate value="${board.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
                                 <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
                             </td>
-                            <td class="px-6 py-4">
-                                <c:if test="${boardVo.attachCount gt 0}">
-                                    <img class="w-[16px]" src="../images/file.png" alt="">
-                                </c:if>
-                            </td>
                             <td class="px-6 py-4">${board.viewCount}</td>
                         </tr>
                     </c:if>
@@ -107,7 +102,7 @@
     </div>
 </div>
 
-<div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
+<div class="flex w-full justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
     <div class="container mx-auto my-6">
         <div class="flex justify-start">
             <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
@@ -119,7 +114,7 @@
                 <button
                         type="button"
                         onclick="location.href = '${pageContext.request.contextPath}/board/boardCreate';"
-                        class=" py-2.5 px-4 text-xs font-medium text-sky-600 hover:bg-blue-200 ms-30">
+                        class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                     글쓰기
                 </button>
             </div>
@@ -130,10 +125,9 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">번호</th>
                     <th scope="col" class="px-6 py-3">속성</th>
-                    <th scope="col" class="px-6 py-3">제목</th>
+                    <th scope="col" class="px-6 py-3 w-[500px]">제목</th>
                     <th scope="col" class="px-6 py-3">작성자</th>
                     <th scope="col" class="px-6 py-3">작성일</th>
-                    <th scope="col" class="px-6 py-3">첨부파일</th>
                     <th scope="col" class="px-6 py-3">조회수</th>
                 </tr>
                 </thead>
@@ -160,11 +154,6 @@
                             <fmt:parseDate value="${board.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
                             <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
                         </td>
-                        <td class="px-6 py-4">
-                                <%--                        <c:if test="${board.attachCount gt 0}">--%>
-                            <img class="w-[16px]" src="../images/file.png" alt="">
-                                <%--                        </c:if>--%>
-                        </td>
                         <td class="px-6 py-4">${board.viewCount}</td>
                     </tr>
                 </c:if>
@@ -183,7 +172,7 @@
     </div>
 </div>
 
-<div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
+<div class="flex w-full justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms">
     <div class="container mx-auto my-6">
         <div class="flex justify-start">
             <h1 class="m-4 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
@@ -195,7 +184,7 @@
                 <button
                         type="button"
                         onclick="location.href = '${pageContext.request.contextPath}/board/boardCreate';"
-                        class=" py-2.5 px-4 text-xs font-medium text-sky-600 hover:bg-blue-200 ms-30">
+                        class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                     글쓰기
                 </button>
             </div>
@@ -206,10 +195,9 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">번호</th>
                     <th scope="col" class="px-6 py-3">속성</th>
-                    <th scope="col" class="px-6 py-3">제목</th>
+                    <th scope="col" class="px-6 py-3 w-[500px]">제목</th>
                     <th scope="col" class="px-6 py-3">작성자</th>
                     <th scope="col" class="px-6 py-3">작성일</th>
-                    <th scope="col" class="px-6 py-3">첨부파일</th>
                     <th scope="col" class="px-6 py-3">조회수</th>
                 </tr>
                 </thead>
@@ -235,11 +223,6 @@
                                 <fmt:parseDate value="${board.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
                                 <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
                             </td>
-                            <td class="px-6 py-4">
-                                    <%--                        <c:if test="${board.attachCount gt 0}">--%>
-                                <img class="w-[16px]" src="../images/file.png" alt="">
-                                    <%--                        </c:if>--%>
-                            </td>
                             <td class="px-6 py-4">${board.viewCount}</td>
                         </tr>
                     </c:if>
@@ -257,6 +240,6 @@
         </nav>
     </div>
 </div>
-
+</div>
 <script src="${pageContext.request.contextPath}/js/board/boardList.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

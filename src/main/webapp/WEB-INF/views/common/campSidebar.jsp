@@ -36,7 +36,7 @@
                         <a href="${pageContext.request.contextPath}/camp/campUpdate?id=${loginCamp.id}" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">내 캠핑장 정보</a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">내 캠핑존 정보</a>
+                        <a href="${pageContext.request.contextPath}/camp/campRoomList?id=${loginCamp.id}" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">내 캠핑존 정보</a>
                     </li>
                 </ul>
             </li>
