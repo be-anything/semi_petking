@@ -34,8 +34,9 @@ public class ClubCreateController extends HttpServlet {
         String userId = req.getParameter("userId");
         String clubIntroTitle = req.getParameter("clubIntroTitle");
         String clubIntroContent = req.getParameter("clubIntroContent");
+        long id = Long.parseLong(req.getParameter("id"));
 
-        Club club = new Club(0L, clubName, clubIntroTitle, clubIntroContent, null, userId);
+        Club club = new Club(id, clubName, clubIntroTitle, clubIntroContent, null, userId);
 
         System.out.println(club);
 
@@ -87,12 +88,6 @@ public class ClubCreateController extends HttpServlet {
                         // 서버컴퓨터 파일 저장
                         File upFile = new File(repository, renamedName);
                         item.write(upFile); // throw Exception
-
-                        // Attachment 객체생성
-//                        BoardAttach attach = new BoardAttach();
-//                        attach.setOriginalName(originalName);
-//                        attach.setRenamedName(renamedName);
-//                        board.addAttachment(attach);
                     }
                 }
             }
