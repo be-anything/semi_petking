@@ -10,6 +10,12 @@
         from
             club
     </select>
+    <select id="findAllClubUsers" resultType="clubUsers">
+        select
+            *
+        from
+            club_users
+    </select>
 <!--    <select id="findById" resultType="clubVo">-->
     <select id="findById" resultType="clubVo">
         select
