@@ -26,6 +26,7 @@
     <resultMap id="reviewVoMap" type="reviewVo">
         <id column="id" property="id"/>
         <result column="user_id" property="userId"/>
+        <result column="nickname" property="nickname"/>
         <result column="review_tag" property="reviewTag"/>
         <result column="review_title" property="reviewTitle"/>
         <result column="review_content" property="reviewContent"/>
@@ -242,6 +243,7 @@
         select
             r.*,
             c.id camp_id,
+            (select nickname from users where id = r.user_id) nickname,
             c.camp_name camp_name,
             img.renamed_name renamed_name
         from

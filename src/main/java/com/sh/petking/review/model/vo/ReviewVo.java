@@ -12,6 +12,16 @@ import java.util.List;
 public class ReviewVo extends Review {
     private Camp camp;
     private String campName;
+    private String nickname;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     private int commentCount;
     List<AttachmentVo> attachments = new ArrayList<>();
     List<ReviewComment> reviewComments = new ArrayList<>();
