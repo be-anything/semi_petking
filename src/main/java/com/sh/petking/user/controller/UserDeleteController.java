@@ -1,5 +1,7 @@
 package com.sh.petking.user.controller;
 
+import com.sh.petking.delUser.model.entity.DelUser;
+import com.sh.petking.delUser.model.service.DelUserService;
 import com.sh.petking.user.model.entity.User;
 import com.sh.petking.user.model.service.UserService;
 
@@ -10,33 +12,63 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
 
 @WebServlet("/user/userDelete")
 public class UserDeleteController extends HttpServlet {
     private UserService userService = new UserService();
+    private DelUserService delUserService = new DelUserService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.getRequestDispatcher("/WEB-INF/views/user/userDetail.jsp").forward(req, resp);
-        // 사용자 입력값 처리
         HttpSession session = req.getSession();
         User loginUser = (User) session.getAttribute("loginUser");
+        System.out.println("탈퇴할 회원: " + loginUser);
         String id = loginUser.getId();
-        System.out.println(id);
 
-        // 업무로직
         int result = userService.deleteUser(id);
 
-        // 세션해제 후 새로 생성해 msg저장
-//        session.invalidate();
+        if (result > 0) {
+            DelUser delUser = new DelUser();
+            delUser.setUserId(loginUser.getId());
+            delUser.setName(loginUser.getName());
+            delUser.setRole(loginUser.getRole());
+            delUser.setRegDate(LocalDate.from(loginUser.getRegDate()));
 
-//        session = req.getSession();
-        session.setAttribute("msg", "회원 탈퇴를 완료했습니다.");
-        session.invalidate();
+            int delResult = delUserService.insertDelUser(delUser);
+            System.out.println("삭제된 회원: " + delResult);
 
-        session = req.getSession();
-
-        // 리다이렉트
-        resp.sendRedirect(req.getContextPath() + "/");
+            session.invalidate();
+            session = req.getSession();
+            session.setAttribute("msg", "회원 탈퇴를 완료했습니다.");
+            resp.sendRedirect(req.getContextPath() + "/");
+        } else {
+            // 회원 탈퇴 실패 시의 처리
+            session.setAttribute("msg", "회원 탈퇴에 실패했습니다.");
+            resp.sendRedirect(req.getContextPath() + "/");
+        }
     }
 }
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        HttpSession session = req.getSession();
+//        User loginUser = (User) session.getAttribute("loginUser");
+//        System.out.println("탈퇴할회원 : " + loginUser);
+//        String id = loginUser.getId();
+//
+//        int result = userService.deleteUser(id);
+//
+//        if (result > 0) {
+//            int delUser = delUserService.insertDelUser(DelUser);
+//            System.out.println("삭제된회원 : " +delUser);
+//            session.invalidate();
+//            session = req.getSession();
+//            session.setAttribute("msg", "회원 탈퇴를 완료했습니다.");
+//            resp.sendRedirect(req.getContextPath() + "/");
+//        } else {
+//            // 회원 탈퇴 실패 시의 처리
+//            session.setAttribute("msg", "회원 탈퇴에 실패했습니다.");
+//            resp.sendRedirect(req.getContextPath() + "/");
+//        }
+//    }
+//}

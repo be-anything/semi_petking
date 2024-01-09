@@ -115,6 +115,8 @@
         </div>
     </div>
 </div>
+
+<script src="${pageContext.request.contextPath}/js/pet/petDetail.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/userProfileUpdate.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
