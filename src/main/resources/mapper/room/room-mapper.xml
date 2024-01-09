@@ -195,7 +195,14 @@
 
 
 
-
+    <select id="findRoomListByCampId" resultType="roomVo">
+        select
+            *
+        from
+            room
+        where
+            camp_id = #{id}
+    </select>
 
 
 </mapper>

@@ -116,11 +116,7 @@
     </div>
 </div>
 
-<<<<<<< HEAD
 <script src="${pageContext.request.contextPath}/js/pet/petDetail.js"></script>
-=======
-</div>
 <script src="${pageContext.request.contextPath}/js/user/userProfileUpdate.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
->>>>>>> origin/jindamgom

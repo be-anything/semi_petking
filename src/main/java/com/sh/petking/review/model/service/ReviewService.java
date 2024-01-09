@@ -134,11 +134,24 @@ public class ReviewService {
         return totalCount;
     }
 
-    public ReviewVo findByIdWithAttach(Long id) {
+    public ReviewVo findByIdWithAttach(Long id, boolean hasRead) {
         SqlSession session = getSqlSession();
-        ReviewVo review = reviewDao.findByIdWithAttach(session, id);
-        System.out.println(review);
-        session.close();
+        ReviewVo review = new ReviewVo();
+        int result = 0;
+        try {
+            if(!hasRead){
+                result = reviewDao.updateReviewReadCount(session, id);
+            }
+            review = reviewDao.findByIdWithAttach(session, id);
+            List<ReviewVo> reviewVos = reviewDao.findVoByReviewId(session, id);
+            review.setReviewContent(review.getReviewContent());
+            session.commit();
+        } catch (Exception e){
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
         return review;
     }
 
@@ -251,4 +264,5 @@ public class ReviewService {
         session.close();
         return reviews;
     }
+
 }

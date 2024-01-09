@@ -5,6 +5,8 @@ import com.sh.petking.board.model.vo.BoardVo;
 import com.sh.petking.club.model.entity.Club;
 import com.sh.petking.club.model.service.ClubService;
 import com.sh.petking.club.model.vo.ClubVo;
+import com.sh.petking.user.model.entity.User;
+import com.sh.petking.user.model.service.UserService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -26,6 +28,8 @@ public class ClubUpdateController extends HttpServlet {
 
     private ClubService clubService = new ClubService();
 
+    private UserService userService = new UserService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -34,6 +38,7 @@ public class ClubUpdateController extends HttpServlet {
         // 2. 업무로직
         ClubVo club = clubService.findById(id);
         req.setAttribute("club", club);
+        System.out.println(club);
 
         req.getRequestDispatcher("/WEB-INF/views/club/clubUpdate.jsp").forward(req, resp);
     }
@@ -92,8 +97,14 @@ public class ClubUpdateController extends HttpServlet {
 
         // 2. 업무로직
         int result = clubService.updateClub(club);
+        User user = (User) (req.getSession().getAttribute("loginUser"));
+
+        user = userService.findById(user.getId());
+        req.getSession().setAttribute("loginUser", user);
+
         req.getSession().setAttribute("msg", "동아리 소개글을 성공적으로 수정했습니다.😁");
+
         // 3. redirect
-        resp.sendRedirect(req.getContextPath() + "/club/clubDetail?id=" + club.getId());
+        resp.sendRedirect(req.getContextPath() + "/club/clubDetail?id=" + user.getClubId());
     }
 }

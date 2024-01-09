@@ -3,6 +3,10 @@ package com.sh.petking.board.model.service;
 import com.sh.petking.board.model.dao.BoardDao;
 import com.sh.petking.board.model.entity.*;
 import com.sh.petking.board.model.vo.BoardVo;
+import com.sh.petking.club.model.dao.ClubDao;
+import com.sh.petking.club.model.entity.Club;
+import com.sh.petking.user.model.dao.UserDao;
+import com.sh.petking.user.model.entity.User;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -13,6 +17,8 @@ import static com.sh.petking.common.SqlSessionTemplate.getSqlSession;
 public class BoardService {
 
     private BoardDao boardDao = new BoardDao();
+    private ClubDao clubDao = new ClubDao();
+    private UserDao userDao = new UserDao();
     public List<Board> findAll() {
         SqlSession session = getSqlSession();
         List<Board> boards = boardDao.findAll(session);
@@ -65,6 +71,13 @@ public class BoardService {
                     attach.setBoardId(board.getId());
                     result = boardDao.insertAttachment(session, attach);
                 }
+            }
+
+            if(board.getBoardType().equals(BoardType.C)){
+                // club일때만 club정보 가져오기
+                User user = userDao.findById(session, board.getUserId());
+                Club club = clubDao.findById(session, user.getClubId());
+                board.setClub(club);
             }
             session.commit();
         }

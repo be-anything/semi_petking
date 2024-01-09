@@ -93,4 +93,12 @@ public class UserDao extends HttpServlet {
         return session.update("user.updateUserProfile", user);
 
     }
+
+    public int updateUserClubId(SqlSession session, User user) {
+        return session.update("user.updateUserClubId", user);
+    }
+
+    public UserVo findUserWithClubById(SqlSession session, String id) {
+        return session.selectOne("user.findUserWithClubById", id);
+    }
 }

@@ -12,19 +12,50 @@
         where
             id = #{id}
     </select>
-
+    <select id="findUserWithClubById" resultMap="userWithClubVoMap">
+        select
+            u.id,
+            cu.role club_role
+        from
+            users u left join club_users cu
+                on u.id = cu.user_id
+        where
+            id = #{id}
+    </select>
+    <resultMap id="userWithClubVoMap" type="userVo">
+        <id column="id" property="id"/>
+        <result column="grade_id" property="gradeId"/>
+        <result column="club_id" property="clubId"/>
+        <result column="nickname" property="nickname"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="originProfileName" property="originProfileName"/>
+        <result column="renamedProfileName" property="renamedProfileName"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="result_point" property="resultPoint"/>
+        <result column="role" property="role"/>
+        <result column="reg_date" property="regDate"/>
+        <association property="userGrade" javaType="userGrade">
+            <id column="grade_id2" property="id"/>
+            <result column="grade_name" property="name"/>
+        </association>
+        <association property="clubUsers" javaType="clubUsers">
+            <result column="club_role" property="role"/>
+        </association>
+    </resultMap>
     <insert id="insertUser">
         insert into
             users
         values (
             #{id},
             default,
-            0,
+            null,
             #{nickname} || seq_users_nickname.nextval,
             #{name},
             #{password},
-            null,
-            null,
+            #{originProfileName},
+            #{renamedProfileName},
             #{email},
             #{phone},
             default,
@@ -92,6 +123,14 @@
         set
             nickname = #{nickname},
             phone = #{phone}
+        where
+            id = #{id}
+    </update>
+    <update id="updateUserClubId">
+        update
+            users
+        set
+            club_id = #{clubId}
         where
             id = #{id}
     </update>

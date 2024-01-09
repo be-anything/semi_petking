@@ -10,6 +10,12 @@
         from
             club
     </select>
+    <select id="findAllClubUsers" resultType="clubUsers">
+        select
+            *
+        from
+            club_users
+    </select>
 <!--    <select id="findById" resultType="clubVo">-->
     <select id="findById" resultType="clubVo">
         select
@@ -29,11 +35,9 @@
             #{clubIntroTitle},
             #{clubIntroContent}
         )
-        ON DUPLICATE KEY UPDATE
-            #{id}
         <selectKey order="AFTER" resultType="_int" keyProperty="id">
             select
-                seq_club_id.nextval
+                seq_club_id.currval
             from
                 dual
         </selectKey>
@@ -44,16 +48,10 @@
         values(
             #{clubId},
             #{userId},
+            #{joinState},
             default,
-            default,
-            default
+            #{role}
         )
-        <selectKey order="AFTER" resultType="_int" keyProperty="id">
-            select
-                seq_club_id.nextval
-            from
-                dual
-        </selectKey>
     </insert>
     <update id="updateClub">
         update
@@ -70,4 +68,12 @@
         where
             id = #{id}
     </delete>
+    <select id="findByUserId" resultType="clubUsers">
+        select
+            *
+        from
+            club_users
+        where
+            user_id = #{userId}
+    </select>
 </mapper>
