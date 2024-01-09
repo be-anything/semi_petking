@@ -14,13 +14,13 @@
     }
     .upload {
         width: 200px;
-        height: 200px;
+        height: 50px;
         background-color: antiquewhite;
     }
     .image-preview {
         width: 200px;
         height: 200px;
-        background-color: aquamarine;
+        background-color: transparent;
         display: flex;
         gap: 10px;
     }
@@ -53,7 +53,8 @@
 <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10">
     <form name="roomCreateFrm" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="0">
-        <input type="hidden" name="campId" value="26">
+        <%--   <input type="hidden" name="campId" value="26">  아래의 히든 인풋 태그에 받아온 campId값을 대입하시면 됩니다. 현재는 7번으로 고정   --%>
+        <input type="hidden" name="campId" value="7">
         <div class="px-5">
             <div class="">
                 <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-10 sm:px-0 items-start">

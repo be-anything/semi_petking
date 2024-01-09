@@ -52,6 +52,9 @@
     <div class="flex-grow border-t border-gray-400"></div>
 </div>
     <div class="flex justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mb-10 forms active">
+        <c:if test="${roomCount==0}">
+            <span class="text-xl">존재하는 객실이 0개 입니다.</span>
+        </c:if>
         <table id="roomSearchResult">
             <thead>
             </thead>

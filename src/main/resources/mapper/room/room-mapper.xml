@@ -44,7 +44,9 @@
 
     <!-- 객실 정보에 첨부사진도 추가 조인쿼리로 변경해봄.
          room 테이블과 room_attach 테이블을 조인한다.
-         이슈: 쿼리는 정상 작동하는데 불러올 때 값을 set하지못함. -->
+         이슈: 쿼리는 정상 작동하는데 불러올 때 값을 set하지못함. [해결]
+         0109 헤더에있던 임시->캠핑장 예약 눌러야 이동하도록 수정. where = #{campId} 조건절 추가.
+         -->
     <select id="findAll" resultMap="RoomVoMap1">
         select
             r.*,
@@ -55,6 +57,7 @@
         from
             room r left join room_attach a
             on r.id = a.room_id
+<!--        where = #{campId}-->
         order by
             r.id
     </select>

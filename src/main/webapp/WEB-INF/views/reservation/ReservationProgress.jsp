@@ -134,12 +134,12 @@
                 <td>이용 금액 :</td>
                 <td><span id="totalFee" name="totalFee">${room.roomDefaultFee}</span>원</td>
             </tr>
-            <tr>
-                <td>사용가능한 포인트:</td>
-                <td><span id="userPoint" name="userPoint">${loginUser.resultPoint}</span>
-                    <input type="number" id="usePoint"  value="0" name="usePoint" placeholder="사용하실 포인트를 입력해주세요.">
-                    <button type="button" id="btn_usePoint">사용</button></td>
-            </tr>
+<%--            <tr>--%>
+<%--                <td>사용가능한 포인트:</td>--%>
+<%--                <td><span id="userPoint" name="userPoint">${loginUser.resultPoint}</span>--%>
+<%--                    <input type="number" id="usePoint"  value="0" name="usePoint" placeholder="사용하실 포인트를 입력해주세요.">--%>
+<%--                    <button type="button" id="btn_usePoint">사용</button></td>--%>
+<%--            </tr>--%>
             </tbody>
         </table>
                 <div class="justify-end">

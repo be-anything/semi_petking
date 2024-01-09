@@ -44,8 +44,10 @@ public class RoomListController extends HttpServlet {
         Map<String,Object> param = Map.of("page", page, "limit", limit);
         System.out.println(param);
 
+
         //2.업무로직
         //1)content영역 : 전체 조회 쿼리 + RowBounds | Top-n 분석 쿼리
+        //0109
         List<RoomVo> rooms = roomService.findAll(param);
         //join으로 인한 paging 문제
         //전체조회 쿼리후에 리턴한 List<RoomVo> 를 직접 offset기준으로 limit개만 필터링하기 (데이터가 많거나 많아질 경우는 추천하지 않음)
