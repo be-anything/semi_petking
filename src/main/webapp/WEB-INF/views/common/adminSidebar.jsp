@@ -17,7 +17,7 @@
     </svg>
 </button>
 
-    <aside class="fixed ml-0 z-10 w-56 h-2/3" aria-label="Sidebar">
+    <aside class="fixed ml-14 z-10 w-56 h-2/3" aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 text-black rounded-lg border border-gray2">
         <ul class="space-y-2 font-medium">
             <li class="mt-1">
@@ -71,9 +71,6 @@
                 <ul id="dropdown-example3" class="hidden py-2 space-y-2">
                     <li>
                         <a href="${pageContext.request.contextPath}/admin/reviewList" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">리뷰 관리</a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">포인트 관리</a>
                     </li>
                 </ul>
             </li>

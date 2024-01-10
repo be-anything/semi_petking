@@ -19,7 +19,7 @@
         display: block;
     }
 </style>
-<div class="container mx-auto mt-10">
+<div class="container w-3/4 mx-auto mt-10">
     <div class="flex justify-between items-center mb-10">
         <ul class="flex text-sm font-medium text-gray-500 border-b border-gray-200">
             <li class="tabBtn">
