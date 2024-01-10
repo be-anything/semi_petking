@@ -322,6 +322,7 @@
                 camp_phone,
                 camp_addr,
                 reg_date,
+                camp_renamed_img,
                 LISTAGG(tag_id, ',') WITHIN GROUP (ORDER BY tag_id) AS tags,
                 LISTAGG(name, ',') WITHIN GROUP (ORDER BY tag_id) AS tagNames
             from
@@ -330,7 +331,7 @@
             where
                 camp_state = 1
             group by
-                camp_id, camp_name, camp_intro, camp_phone, camp_addr, reg_date) cm
+                camp_id, camp_name, camp_intro, camp_phone, camp_addr, reg_date, camp_renamed_img) cm
         <where>
             <if test="searchType != null and searchType != '' and searchKeyword != null and searchKeyword != ''">
                 AND ${searchType} like '%' || #{searchKeyword} || '%'

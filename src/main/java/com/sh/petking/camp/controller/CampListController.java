@@ -55,10 +55,10 @@ public class CampListController extends HttpServlet {
         List<String> tagNames = new ArrayList<>();
         for(int i = 1; i < tags.size(); i++){
             String tagName = req.getParameter("tagName");
-            System.out.println("1. 입력받은 tagName" + tagName);
+//            System.out.println("1. 입력받은 tagName" + tagName);
             if(tagName != null){
                 // 입력된 태그 찾기
-                System.out.println("2. 입력받은 tagName 저장");
+//                System.out.println("2. 입력받은 tagName 저장");
                 tagNames.add(tagName);
                 param.put("tagName", tagName);
             }
@@ -70,7 +70,7 @@ public class CampListController extends HttpServlet {
         // 페이지바
         int totalCount = campService.getTotalCampWithTagCount(param);
         req.setAttribute("totalCount", totalCount);
-        System.out.println("4. tagNames param조건에 해당하는 갯수 구하기" + totalCount);
+//        System.out.println("4. tagNames param조건에 해당하는 갯수 구하기" + totalCount);
         String url = req.getRequestURI();
 
         // 검색어 입력시의 주소 처리
@@ -90,7 +90,7 @@ public class CampListController extends HttpServlet {
 
         // 태그 처리
         for(CampVo camp : camps) {
-            System.out.println("캠핑장 태그랑 정보" + camp);
+//            System.out.println("캠핑장 태그랑 정보" + camp);
             if(camp.getTagNames() != null){
                 camp.setTagNameList(Arrays.asList(camp.getTagNames().split(",")));
             }
@@ -100,12 +100,12 @@ public class CampListController extends HttpServlet {
 
         // wishList - 사용자 id로 찾기
         User loginUser = (User) req.getSession().getAttribute("loginUser");
-        System.out.println(loginUser);
+//        System.out.println(loginUser);
         if(loginUser != null) {
             List<Wish> wishes = wishService._findByUserId(loginUser.getId());
             for (Wish wish: wishes) {
                 for(CampVo camp: camps){
-                    System.out.println(camp.getId());
+//                    System.out.println(camp.getId());
                     if(camp.getId() == wish.getCampId()){
                         camp.setWish(true);
                         break;
