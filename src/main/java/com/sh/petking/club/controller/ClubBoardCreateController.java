@@ -80,8 +80,6 @@ public class ClubBoardCreateController extends HttpServlet {
 
                         // Attachment 객체생성
                         BoardAttach attach = new BoardAttach();
-//                        attach.setOriginalName(originalName);
-//                        attach.setRenamedName(renamedName);
                         board.addAttachment(attach);
                     }
                 }
@@ -94,7 +92,7 @@ public class ClubBoardCreateController extends HttpServlet {
 
         // 2. 업무로직
         int result = boardService.insertBoard(board);
-        req.getSession().setAttribute("msg", "게시글을 성공적으로 등록했습니다. 😉");
+        req.getSession().setAttribute("msg", "동아리가 성공적으로 등록했습니다. 😉");
         req.setAttribute("board", board);
 
         // 3. redirect 목록페이지

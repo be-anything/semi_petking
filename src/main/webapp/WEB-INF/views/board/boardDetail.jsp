@@ -13,18 +13,9 @@
 
 <div class="xl:container p-8">
     <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
-<%--        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${fn:escapeXml(board.boardTitle)}</h5>--%>
         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${board.boardTitle}</h5>
-<%--        <p class="mb-3 font-normal text-gray-500">${board.user.name} (${board.userId})</p>--%>
         <p class="mb-3 font-normal text-gray-500">${board.userId}</p>
         <p class="mb-3 font-normal text-gray-700">${board.boardContent}</p>
-        <c:forEach items="${boardVo.attachments}" var="attach">
-            <a href="${pageContext.request.contextPath}/upload/board/${boardAttach.renamedname}"
-               download="${boardAttach.originalName}" class="flex items-center text-blue-600 hover:underline">
-                <img src="../images/file.png" class="w-[16px] mr-1">
-                    ${boardAttach.originalName}
-            </a>
-        </c:forEach>
         <div class="text-sm mt-2 font-medium text-gray-400">
             조회수 <span>${board.viewCount}</span>
         </div>
@@ -89,7 +80,6 @@
                               onclick="'${loginUser.id}' || alert('로그인후 댓글을 작성하세요');"
                               class="resize-none w-full px-0 text-sm text-gray-900 bg-white border-0"
                               placeholder="댓글을 작성하세요" required></textarea>
-
                 </div>
                 <div class="flex items-center justify-end px-3 py-2 border-t">
                     <button type="submit"
