@@ -33,7 +33,7 @@
 <div class="3xl:container">
 <div class="bg-salmon">
     <div class="flex justify-between items-center mx-auto max-w-6xl relative">
-        <header>
+        <header class="flex w-full justify-between">
             <nav class="flex flex-row pt-7 pb-7 items-center">
                 <div class="text-[#000] text-2xl font-bold mr-20"><a href="${pageContext.request.contextPath}">펫킹.</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campList">캠핑장 찾기</a></div>
@@ -45,24 +45,24 @@
 
                 <c:if test="${loginUser == null && loginCamp == null}">
                     <div class="text-black text-right font-normal mr-7 absolute right-0 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogin">로그인</a></div>
-                    <i class="fa-regular fa-clock ml-10 absolute right-0 text-black hover:text-green hover:font-bold"></i>
                 </c:if>
-                <c:if test="${loginUser != null}">
-                    <div class="w-[300px] flex justify-end items-center">
-                        <c:if test="${loginUser.role eq 'U'}">
-                    <div class="text-black text-right font-normal hover:font-bold overflow-hidden rounded-full"><img class="w-[50px]" src="${pageContext.request.contextPath}/upload/user/${loginUser.renamedProfileName}"></div>
-                    <div class="text-black text-right pr-8 pl-2 hover:underline"><strong><a href="${pageContext.request.contextPath}/user/userDetail">${loginUser.nickname}</a></strong></div></c:if>
-                        <c:if test="${loginUser.role eq 'A' }">
-                            <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userList">홈페이지관리</a></div>
-                        </c:if>
-                    <div class="text-black text-sm text-right font-normal hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogout">로그아웃</a></div>
-                    </div>
-                    </c:if>
+
                 <c:if test="${loginCamp != null}">
                     <div class="text-black text-right font-normal mr-20 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campUpdate?id=${loginCamp.id}">${loginCamp.businessName}님의 페이지</a></div>
                     <div class="text-black text-right font-normal mr-3 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campLogout">로그아웃</a></div>
                 </c:if>
             </nav>
+            <c:if test="${loginUser != null}">
+                <div class="w-fit flex justify-end items-center">
+                    <c:if test="${loginUser.role eq 'U'}">
+                        <div class="text-black text-right font-normal hover:font-bold overflow-hidden rounded-full"><img class="w-[50px]" src="${pageContext.request.contextPath}/upload/user/${loginUser.renamedProfileName}"></div>
+                        <div class="text-black text-right pr-8 pl-2 hover:underline"><strong><a href="${pageContext.request.contextPath}/user/userDetail">${loginUser.nickname}</a></strong></div></c:if>
+                    <c:if test="${loginUser.role eq 'A' }">
+                        <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/user/userList">홈페이지관리</a></div>
+                    </c:if>
+                    <div class="text-black text-sm text-right font-normal hover:font-bold"><a href="${pageContext.request.contextPath}/user/userLogout">로그아웃</a></div>
+                </div>
+            </c:if>
         </header>
     </div>
 </div>

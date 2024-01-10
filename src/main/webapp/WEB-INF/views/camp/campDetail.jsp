@@ -115,7 +115,6 @@
                     <div id="main-slider" class="splide mx-auto">
                         <div class="splide__track">
                             <ul class="splide__list">
-
                                     <c:forEach items="${camp.campAttaches}" var="attach" varStatus="vs">
                                         <li class="splide__slide"><img class="w-full"
                                                                        src="${pageContext.request.contextPath}/upload/camp/${attach.campAttachRenamedName}"

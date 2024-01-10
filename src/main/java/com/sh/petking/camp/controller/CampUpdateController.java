@@ -5,6 +5,7 @@ import com.sh.petking.camp.model.entity.CampTag;
 import com.sh.petking.camp.model.entity._CampService;
 import com.sh.petking.camp.model.service.CampService;
 import com.sh.petking.camp.model.vo.CampVo;
+import com.sh.petking.common.PetkingUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -29,6 +30,9 @@ public class CampUpdateController extends HttpServlet {
         // 1. 사용자 입력값 처리
         Long id = Long.parseLong(req.getParameter("id"));
         CampVo camp = campService.findById(id);
+
+        String safeHtml = PetkingUtils.escapeHtml(camp.getCampIntro());
+        camp.setCampIntro(PetkingUtils.convertLineFeedToBr(safeHtml));
 
         // 2. 업무로직
         req.setAttribute("camp", camp);
@@ -55,7 +59,7 @@ public class CampUpdateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 0. 셋팅
-        File repository = new File("C:\\Users\\cksgm\\Dropbox\\workspaces_ming\\web_server_workspace\\semi_petking\\target\\semi_petking\\upload\\camp");
+        File repository = new File("C:\\Users\\min_j\\Dropbox\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\camp");
         int sizeThreshold = 10 * 1024 * 1024;
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(repository);

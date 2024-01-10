@@ -21,7 +21,6 @@ public class BoardDao {
         int page = (int) param.get("page");
         int limit = (int) param.get("limit");
         int offset = (page - 1) * limit;
-//        return session.selectList("board.findAll", null, new RowBounds(1, 10));
         return session.selectList("board.findAll", null);
     }
 
