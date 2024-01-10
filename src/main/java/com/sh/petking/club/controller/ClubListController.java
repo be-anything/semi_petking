@@ -7,6 +7,8 @@ import com.sh.petking.club.model.service.ClubService;
 import com.sh.petking.club.model.vo.ClubVo;
 import com.sh.petking.common.PetkingUtils;
 import com.sh.petking.user.model.entity.User;
+import com.sh.petking.user.model.service.UserService;
+import com.sh.petking.user.model.vo.UserVo;
 import com.sh.petking.wish.model.entity.Wish;
 
 import javax.servlet.ServletException;
@@ -23,16 +25,7 @@ import java.util.Map;
 public class ClubListController extends HttpServlet {
 
     private ClubService clubService = new ClubService();
-
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//
-//        List<Club> clubs = clubService.findAll();
-//        req.setAttribute("clubs", clubs);
-//        System.out.println(clubs);
-//
-//        req.getRequestDispatcher("/WEB-INF/views/club/clubList.jsp").forward(req,resp);
-//    }
+    private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,6 +41,9 @@ public class ClubListController extends HttpServlet {
         List<ClubUsers> clubUsers = clubService.findAllClubUsers();
         req.setAttribute("clubUsers", clubUsers);
         System.out.println(clubUsers);
+
+        List<User> users = userService.findAll();
+        req.setAttribute("users", users);
 
         req.getRequestDispatcher("/WEB-INF/views/club/clubList.jsp").forward(req, resp);
     }

@@ -2,7 +2,7 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                "salmon" : "#FFEBD8",
+                "salmon" : "#FEEBB6",
                 "light-pink" : "#FFC5C5",
                 "pink" : "#FF9E9E",
                 "green" : "#89B9AD",
