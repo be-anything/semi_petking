@@ -14,7 +14,6 @@ public class ClubDao {
     public List<Club> findAll(SqlSession session) {
         return session.selectList("club.findAll");
     }
-
     public ClubVo findById(SqlSession session, long id) {
         return session.selectOne("club.findById", id);
     }

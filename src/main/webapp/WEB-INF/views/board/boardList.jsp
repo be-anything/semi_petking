@@ -25,7 +25,6 @@
                 <a href="#" aria-current="page" class="first-btn inline-block p-4 rounded-t-lg text-amber-900 active px-5 bg-amber-100 bg-orange-200">동아리 모집</a>
             </li>
             <li class="tabBtn">
-<%--                text-amber-900 bg-orange-200--%>
                 <a href="#" class="inline-block p-4 rounded-t-lg px-5 bg-amber-100">아-나-바-다</a>
             </li>
             <li class="tabBtn">
@@ -66,43 +65,35 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${boards}" var="board" varStatus="vs">
-                        <c:if test="${board.boardType eq 'C'}">
+                    <c:forEach items="${boards}" var="boardVo" varStatus="vs">
+                        <c:if test="${boardVo.boardType eq 'C'}">
                             <tr class="odd:bg-white even:bg-orange-50 border-b ">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${board.id}</th>
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${boardVo.id}</th>
                                 <td class="px-6 py-4">
-                                    <p>${board.boardType == 'C' ? '모집 글' : board.boardType == 'F' ? '자유게시판' : '아나바다'}
+                                    <p>${boardVo.boardType == 'C' ? '모집 글' : boardVo.boardType == 'F' ? '자유게시판' : '아나바다'}
                                     </p>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="${pageContext.request.contextPath}/board/boardDetail?id=${board.id}" class="hover:underline">${fn:escapeXml(board.boardTitle)}</a>
-                                    <c:if test="${board.commentCount ge 10}"> <!-- greater than equals 이상 -->
-                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">${board.commentCount}</span>
+                                    <a href="${pageContext.request.contextPath}/board/boardDetail?id=${boardVo.id}" class="hover:underline">${fn:escapeXml(boardVo.boardTitle)}</a>
+                                    <c:if test="${boardVo.commentCount ge 10}"> <!-- greater than equals 이상 -->
+                                        <span class="inline-flex items-center rounded-md bg-amber-100 px-2 py-1 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-600/10">${boardVo.commentCount}</span>
                                     </c:if>
-                                    <c:if test="${board.commentCount gt 0 && board.commentCount lt 10}"> <!-- 초과 미만 -->
-                                        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/10">${board.commentCount}</span>
+                                    <c:if test="${boardVo.commentCount gt 0 && boardVo.commentCount lt 10}"> <!-- 초과 미만 -->
+                                        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/10">${boardVo.commentCount}</span>
                                     </c:if>
                                 </td>
-                                <td class="px-6 py-4">${board.userId}</td>
+                                <td class="px-6 py-4">${boardVo.userId}</td>
                                 <td class="px-6 py-4">
-                                    <fmt:parseDate value="${board.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
+                                    <fmt:parseDate value="${boardVo.regDate}" pattern="yyyy-MM-dd'T'HH:mm" var="regDate"/>
                                     <fmt:formatDate value="${regDate}" pattern="yy/MM/dd"/>
                                 </td>
-                                <td class="px-6 py-4">${board.viewCount}</td>
+                                <td class="px-6 py-4">${boardVo.viewCount}</td>
                             </tr>
                         </c:if>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
-        </div>
-        <div class="flex justify-center mt-6">
-            <nav aria-label="Page navigation example">
-                <ul class="my-8 flex items-center -space-x-px h-8 text-sm">
-                    <%-- 생성한 pagebar --%>
-                    <%--                ${pagebar}--%>
-                </ul>
-            </nav>
         </div>
     </div>
 
@@ -149,10 +140,10 @@
                                 <td class="px-6 py-4">
                                     <a href="${pageContext.request.contextPath}/board/boardDetail?id=${board.id}" class="hover:underline">${fn:escapeXml(board.boardTitle)}</a>
                                     <c:if test="${board.commentCount ge 10}"> <!-- greater than equals 이상 -->
-                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">${board.commentCount}</span>
+                                        <span class="inline-flex items-center rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/10">${board.commentCount}</span>
                                     </c:if>
                                     <c:if test="${board.commentCount gt 0 && board.commentCount lt 10}"> <!-- 초과 미만 -->
-                                        <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/10">${board.commentCount}</span>
+                                        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/10">${board.commentCount}</span>
                                     </c:if>
                                 </td>
                                 <td class="px-6 py-4">${board.userId}</td>
@@ -167,14 +158,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-        <div class="flex justify-center mt-6">
-            <nav aria-label="Page navigation example">
-                <ul class="my-8 flex items-center -space-x-px h-8 text-sm">
-                    <%-- 생성한 pagebar --%>
-                    <%--                ${pagebar}--%>
-                </ul>
-            </nav>
         </div>
     </div>
 
@@ -221,7 +204,7 @@
                                 <td class="px-6 py-4">
                                     <a href="${pageContext.request.contextPath}/board/boardDetail?id=${board.id}" class="hover:underline">${fn:escapeXml(board.boardTitle)}</a>
                                     <c:if test="${board.commentCount ge 10}"> <!-- greater than equals 이상 -->
-                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">${board.commentCount}</span>
+                                        <span class="inline-flex items-center rounded-md bg-purple-100 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/10">${board.commentCount}</span>
                                     </c:if>
                                     <c:if test="${board.commentCount gt 0 && board.commentCount lt 10}"> <!-- 초과 미만 -->
                                         <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/10">${board.commentCount}</span>
@@ -239,14 +222,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-        <div class="flex justify-center mt-6">
-            <nav aria-label="Page navigation example">
-                <ul class="my-8 flex items-center -space-x-px h-8 text-sm">
-                    <%-- 생성한 pagebar --%>
-                    <%--                ${pagebar}--%>
-                </ul>
-            </nav>
         </div>
     </div>
 </div>

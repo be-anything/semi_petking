@@ -21,7 +21,9 @@
                     <option value="" disabled selected>선택</option>
                     <option value="Q" ${board.boardType eq BoardType.Q ? 'selected' : ''}>아-나-바-다</option>
                     <option value="F" ${board.boardType eq BoardType.F ? 'selected' : ''}>슬.캠.생</option>
+                    <c:if test="${loginUser != null && loginUserClubRole == 'A'}">
                     <option value="C" ${board.boardType eq BoardType.C ? 'selected' : ''}>동아리 모집</option>
+                    </c:if>
                 </select>
             </div>
             <div class="sm:col-span-2">
@@ -31,10 +33,6 @@
             <div class="sm:col-span-2">
                 <label for="userId" class="block mb-2 text-sm font-medium text-gray-900">작성자</label>
                 <input type="text" name="userId" id="userId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value="${loginUser.id}" required readonly>
-            </div>
-            <div class="sm:col-span-2">
-                <label class="block mb-2 text-sm font-medium text-gray-900" for="upFile">첨부파일</label>
-                <input type="file" id="upFile" name="upFile" multiple class="block p-2.5 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
             </div>
             <div class="sm:col-span-2">
                 <label for="content" class="block mb-2 text-sm font-medium text-gray-900">내용</label>

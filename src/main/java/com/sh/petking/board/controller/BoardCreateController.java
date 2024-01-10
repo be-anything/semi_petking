@@ -81,8 +81,6 @@ public class BoardCreateController extends HttpServlet {
 
                         // Attachment 객체생성
                         BoardAttach attach = new BoardAttach();
-//                        attach.setOriginalName(originalName);
-//                        attach.setRenamedName(renamedName);
                         board.addAttachment(attach);
                     }
                 }

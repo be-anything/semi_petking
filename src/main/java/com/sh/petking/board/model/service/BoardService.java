@@ -33,7 +33,6 @@ public class BoardService {
         return board;
     }
 
-
     public BoardVo findById(long id, boolean hasRead) {
         SqlSession session = getSqlSession();
         BoardVo board = null;

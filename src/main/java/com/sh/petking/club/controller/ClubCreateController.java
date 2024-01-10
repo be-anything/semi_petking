@@ -33,16 +33,6 @@ public class ClubCreateController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String clubName = req.getParameter("clubName");
-//        String userId = req.getParameter("userId");
-//        String clubIntroTitle = req.getParameter("clubIntroTitle");
-//        String clubIntroContent = req.getParameter("clubIntroContent");
-//        long id = Long.parseLong(req.getParameter("id"));
-//
-//        Club club = new Club(id, clubName, clubIntroTitle, clubIntroContent, null, userId);
-//
-//        System.out.println(club);
-
         req.getRequestDispatcher("/WEB-INF/views/club/clubCreate.jsp").forward(req, resp);
     }
 
