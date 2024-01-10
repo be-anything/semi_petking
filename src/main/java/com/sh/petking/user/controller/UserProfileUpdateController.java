@@ -25,7 +25,7 @@ public class UserProfileUpdateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 0. 셋팅
-        File repository = new File("C:\\Users\\min_j\\Dropbox\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\user");
+        File repository = new File("C:\\Users\\cksgm\\Dropbox\\workspaces_ming\\web_server_workspace\\semi_petking\\target\\semi_petking\\upload\\user");
         int sizeThreshold = 10 * 1024 * 1024;
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(repository);
