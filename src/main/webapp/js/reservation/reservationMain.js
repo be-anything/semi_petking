@@ -141,9 +141,6 @@ function build()
 //
 document.querySelector("#btn-search").addEventListener('click',(e)=>{
 
-    thead.innerHTML= '';
-    tbody.innerHTML= '';
-
     console.log("테스트용 - 14번 캠핑장 객실만 조회");
     //const celebId = document.querySelector("#id").value;
     //첫날
@@ -161,8 +158,12 @@ document.querySelector("#btn-search").addEventListener('click',(e)=>{
     if(firstDay.length<1 || lastDay.length<1 )
     {
         alert(`날짜를 선택해주세요.`);
+        console.log('날짜를 제대로 선택 안했을 경우 alert을 띄워준다.');
         return;
     }
+    console.log('==위에는 날짜가 텅 비었을 경우?');
+    // thead.innerHTML= '';
+    // tbody.innerHTML= '';
     //혹은 lastDay가 firstDay와 같거나 작아서도(과거) 안된다. 무조건 1박이상이라 가정.
     var date1 = new Date($("#datepicker1").datepicker("getDate"));
     var date2 = new Date($("#datepicker2").datepicker("getDate"));

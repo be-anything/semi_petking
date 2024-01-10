@@ -50,16 +50,19 @@
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                 반려동물 정보
             </h1>
-            <div>
-                <p><b>${loginUser.id}</b>님의 반려동물 정보입니다</p>
-                <p>반려동물 이름 : ${pet.petName}</p>
-                <p>반려동물 나이 : ${pet.petAge}</p>
-                <p>성별 : ${pet.petGender}</p>
-                <p>중성화여부 : ${pet.neutered}</p>
-            </div>
+            <c:if test="${not empty pet}">
+                <div>
+                    <p><b>${loginUser.id}</b>님의 반려동물 정보입니다</p>
+                    <p>반려동물 이름 : ${pet.petName}</p>
+                    <p>반려동물 나이 : ${pet.petAge}</p>
+                    <p>성별 : ${pet.petGender}</p>
+                    <p>중성화여부 : ${pet.neutered}</p>
+                </div>
+            </c:if>
 
             <%-- 정보가 없으면 추가하기 --%>
             <c:if test="${empty pet}">
+                <p class="text-green text-sm"><b>반려동물 정보를 입력 후 추가하기 버튼을 눌러주세요😊</b></p>
                 <form name="InsertPetForm" action="${pageContext.request.contextPath}/pet/petInsert" method="post">
                     <div>
                         <label for="petName" class="block mb-2 text-sm font-medium text-gray-900">반려동물 이름</label>
@@ -71,8 +74,8 @@
                     </div>
                     <div>
                         <fieldset>
-                            <legend class="mb-3 text-sm">반려동물 성별</legend>
-                            <div class="inline-flex items-center mr-4">
+                            <legend class="mt-5">반려동물 성별</legend>
+                            <div class="inline-flex items-center mr-8">
                                 <input id="pet-gender-option-1" type="radio" name="petGender" value="M" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
                                 <label for="pet-gender-option-1" class="block ms-2 text-sm font-medium text-gray-900">남</label>
                             </div>
@@ -84,10 +87,10 @@
                     </div>
                     <div>
                         <fieldset>
-                            <legend class="mb-3 text-sm">반려동물 중성화여부</legend>
-                            <div class="inline-flex items-center mr-4">
+                            <legend class="mt-5">반려동물 중성화여부</legend>
+                            <div class="inline-flex items-center mr-8">
                                 <input id="pet-neutered-option-1" type="radio" name="neutered" value="Y" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
-                                <label for="pet-neutered-option-1" class="block ms-2 text-sm font-medium text-gray-900">O</label>
+                                <label for="pet-neutered-option-1" class="block ms-2 text-sm font-medium text-gray-900">O       </label>
                             </div>
                             <div class="inline-flex items-center mr-4">
                                 <input id="pet-neutered-option-2" type="radio" name="neutered" value="N" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">

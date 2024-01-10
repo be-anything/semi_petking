@@ -5,7 +5,7 @@ console.log("roomCreate.js.....");
 function getImageFiles(e) {
     const uploadFiles = [];
     const files = e.currentTarget.files;
-    const imagePreview = document.querySelector('.image-preview');
+    const imagePreview = document.querySelector('.upload');
     const docFrag = new DocumentFragment();
 
     if ([...files].length >= 6) {
