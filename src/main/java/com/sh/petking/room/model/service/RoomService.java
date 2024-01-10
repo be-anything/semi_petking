@@ -1,5 +1,6 @@
 package com.sh.petking.room.model.service;
 
+import com.sh.petking.reservation.model.entity.Reservation;
 import com.sh.petking.room.model.dao.RoomDao;
 import com.sh.petking.room.model.dto.RoomDto;
 import com.sh.petking.room.model.entity.Room;
@@ -106,10 +107,10 @@ public class RoomService
 
         return room;
     }
-    public int getTotalCount()
+    public int getTotalCount(long campId)
     {
         SqlSession session = getSqlSession();
-        int totalCount = roomDao.getToTalCount(session);
+        int totalCount = roomDao.getToTalCount(session,campId);
         session.close();
         return totalCount;
     }
@@ -167,5 +168,14 @@ public class RoomService
             session.close();
         }
         return result;
+    }
+
+    //객실 삭제 시 예약내역이 있는 room인 경우 에러가 발생한다.
+    public List<Reservation> deleteRoomBeforeCheck(long id)
+    {
+        SqlSession session = getSqlSession();
+        List<Reservation> reservation = roomDao.deleteRoomBeforeCheck(session,id);
+        session.close();
+        return reservation; //결과값을 리턴
     }
 }

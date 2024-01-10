@@ -48,7 +48,9 @@ public class RoomUpdateController extends HttpServlet
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("객실 수정 do post...");
         RoomVo room = new RoomVo();
-        File repository = new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\room");
+        //                new File("C:\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\room");
+        //new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\room");
+        File repository = new File("C:\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\room");
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(repository);
         factory.setSizeThreshold(10 * 1024 * 1024); // 10mb
@@ -91,8 +93,11 @@ public class RoomUpdateController extends HttpServlet
 
         req.getSession().setAttribute("msg", "객실정보를 성공적으로 수정했습니다.😁");
         // 3. redirect
-        //수정에 성공하였다면 원하는 페이지로 이동
-        resp.sendRedirect(req.getContextPath() + "/room/roomDetail?id=" + room.getId());
+        //수정에 성공하였다면 룸 상세페이지가 아닌 /camp/campRoomList?id=4로 이동해야 한다..
+        // 기존
+        // resp.sendRedirect(req.getContextPath() + "/room/roomDetail?id=" + room.getId());
+        //신규
+        resp.sendRedirect(req.getContextPath() + "/camp/campRoomList?id=" + room.getCampId());
 
     }
 }

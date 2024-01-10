@@ -16,8 +16,10 @@
         </h1>
     </div>
     <div class="flex justify-end">
+
+        <%-- 0109 : 캠핑장 아이디 받아와야. --%>
         <button type="button"
-                onClick="location.href='${pageContext.request.contextPath}/room/roomCreate';"
+                onClick="location.href='${pageContext.request.contextPath}/room/roomCreate?camp_id=${roomCampId}';"
                 class="w-fit h-fit text-white bg-gradient-to-r from-rose-200 via-rose-300 to-rose-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">객실 추가</button>
     </div>
     </div>
@@ -38,6 +40,7 @@
             <tbody>
             <c:forEach items="${rooms}" var="room" varStatus="vs">
                 <div class="odd:bg-white even:bg-gray-50 border-b ">
+
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${room.id}</th>
                     <c:if test="${empty room.roomRenamedImg}">
                     <td class="px-6 py-4"><img class="w-[300px] h-[200px]" src="../images/room/room_default_img.jpg" alt=""></td>
@@ -89,14 +92,15 @@
 </div>
 
 
-<%--<div class="flex justify-center mt-6">--%>
-<%--    <nav aria-label="Page navigation example">--%>
-<%--        <ul class="flex items-center -space-x-px h-8 text-sm">--%>
-<%--            ${pagebar}--%>
-<%--        </ul>--%>
-<%--    </nav>--%>
-<%--</div>--%>
 </div>
+</div>
+
+<div class="flex justify-center mt-6">
+    <nav aria-label="Page navigation example">
+        <ul class="flex items-center -space-x-px h-8 text-sm">
+            ${pagebar}
+        </ul>
+    </nav>
 </div>
 <script src="${pageContext.request.contextPath}/js/room/roomList.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

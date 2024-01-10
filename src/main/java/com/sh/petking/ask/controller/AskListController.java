@@ -16,7 +16,6 @@ import java.util.Map;
 
 @WebServlet("/ask/askList")
 public class AskListController extends HttpServlet {
-
     AskService askService = new AskService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

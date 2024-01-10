@@ -111,12 +111,23 @@
     <select id="findByCampId" resultMap="RoomVoMap2">
         <![CDATA[
         SELECT *
+        FROM room
+        WHERE camp_id= #{campId} and id NOT IN (
+        SELECT r.id
         FROM room r
         left JOIN reservation rv ON r.id = rv.room_id
-        WHERE r.camp_id = #{campId}
+        WHERE r.camp_id = 7
         AND status = 1
-        AND NOT ( #{lastDay} <= start_date OR #{firstDay} >= end_date)
-        ]]>
+        AND NOT ( #{lastDay} <= start_date OR #{firstDay} >= end_date))
+         ]]>
+<!--        <![CDATA[-->
+<!--        SELECT *-->
+<!--        FROM room r-->
+<!--        left JOIN reservation rv ON r.id = rv.room_id-->
+<!--        WHERE r.camp_id = #{campId}-->
+<!--        AND status = 1-->
+<!--        AND NOT ( #{lastDay} <= start_date OR #{firstDay} >= end_date)-->
+<!--        ]]>-->
 
 
     </select>

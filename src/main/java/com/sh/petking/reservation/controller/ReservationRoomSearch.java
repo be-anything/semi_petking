@@ -33,7 +33,7 @@ public class ReservationRoomSearch extends HttpServlet
     private ReservationService reservationService = new ReservationService();
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1.사용자 입력 값 처리
-        System.out.println("ReservationRoomSearch do get!");
+        System.out.println("===================ReservationRoomSearch do get!===========================");
 
         String firstDay = req.getParameter("firstDay");
         String lastDay = req.getParameter("lastDay");

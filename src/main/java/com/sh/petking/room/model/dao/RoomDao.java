@@ -1,5 +1,6 @@
 package com.sh.petking.room.model.dao;
 
+import com.sh.petking.reservation.model.entity.Reservation;
 import com.sh.petking.room.model.dto.RoomDto;
 import com.sh.petking.room.model.entity.Room;
 import com.sh.petking.room.model.entity.RoomAttach;
@@ -32,13 +33,16 @@ public class RoomDao
         //RowBounds rowBounds = new RowBounds(offset,limit);
         return session.selectList("room.findAll",param);
     }
-    public int getToTalCount(SqlSession session)
+    
+    //getTotalCount 쿼리문 수정
+    public int getToTalCount(SqlSession session,long campId)
     {
-        return session.selectOne("room.getTotalCount");
+        return session.selectOne("room.getTotalCount",campId);
     }
 
     public int deleteRoom(SqlSession session, RoomVo room)
     {
+        System.out.println("deleteRoom DAO - room: "+room);
         return session.delete("room.deleteRoom",room);
     }
 
@@ -74,7 +78,16 @@ public class RoomDao
         return session.selectOne("room.findByCampId",id);
     }
 
+    
+    //객실 리스트 -> 헤더에서 사업자관리로 넘기면서 임시로 처리한 것 페이지바 없음
     public List<RoomVo> findRoomListByCampId(SqlSession session, long id) {
+        System.out.println("객실 리스트 -> 헤더에서 사업자관리로 넘기면서 임시로 처리한 것 페이지바 없음");
         return session.selectList("room.findRoomListByCampId", id);
+    }
+
+    //내가 삭제하려고 하는 객실이 오늘날짜 이후로 숙박기간이 종료되는것이라면 삭제 해선 안된다.
+    //그런 예약 내역이 있는지 미리 조회하는 select 쿼리를 작성.
+    public List<Reservation> deleteRoomBeforeCheck(SqlSession session, long id) {
+        return session.selectList("room.deleteRoomBeforeCheck", id);
     }
 }
