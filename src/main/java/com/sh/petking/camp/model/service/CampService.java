@@ -116,22 +116,18 @@ public class CampService {
             // 태그 전체 삭제
             if (campWithTags != null && campWithTags.size() > 0) {
                 result = campDao.deleteCampTag(session, campId);
-//                System.out.println("삭제된 태그 수 " + result);
                 // 태그 다시 삽입
                 for (int i = 0; i < campWithTags.size(); i++) {
                     result = campDao.insertCampWithTag(session, campWithTags.get(i));
-//                    System.out.println("태그 반복문: " + i);
                 }
             }
 
             if (campWithServices != null && campWithServices.size() > 0) {
                 // 서비스 전체 삭제
                 result = campDao.deleteCampService(session, campId);
-//                System.out.println("삭제된 서비스 수 " + result);
                 // 서비스 다시 삽입
                 for (int i = 0; i < campWithServices.size(); i++) {
                     result = campDao.insertCampWithService(session, campWithServices.get(i));
-//                    System.out.println("서비스 반복문: " + i);
                 }
             }
 
