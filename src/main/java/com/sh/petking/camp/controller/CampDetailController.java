@@ -31,6 +31,9 @@ public class CampDetailController extends HttpServlet {
         Long id = Long.parseLong(req.getParameter("id"));
         CampVo camp = campService.findById(id);
         // 2. 업무로직
+        String safeHtml = PetkingUtils.escapeHtml(camp.getCampIntro());
+        camp.setCampIntro(PetkingUtils.convertLineFeedToBr(safeHtml));
+
         req.setAttribute("camp", camp);
 
         User loginUser = (User) req.getSession().getAttribute("loginUser");
