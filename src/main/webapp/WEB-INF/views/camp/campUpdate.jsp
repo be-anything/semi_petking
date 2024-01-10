@@ -67,9 +67,9 @@
                             <label for="campIntro" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">캠핑장
                                 소개</label>
                             <%-- textarea로 수정 필요..... --%>
-                            <input type="text" id="campIntro" name="campIntro"
-                                   value="${camp.campIntro}"
-                                   class="block w-full p-4 h-[200px] text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <textarea id="campIntro" name="campIntro"
+                                   value=""
+                                      class="block w-full p-4 h-[200px] text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">${camp.campIntro}</textarea>
                         </div>
                         <div class="px-4 py-4 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-0">
                             <label for="campAddr" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">캠핑장
@@ -214,7 +214,7 @@
 <%--<jsp:include page="/WEB-INF/views/common/footer.jsp"/>--%>
 
 </main>
-<div class="bg-salmon bottom-nav mt-72">
+<div class="bg-salmon bottom-nav mt-[700px]">
     <div class="flex justify-between items-center mx-auto max-w-screen-xl relative">
         <footer>
             <nav class="flex flex-row pt-8 pb-8 items-center">
