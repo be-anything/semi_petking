@@ -86,7 +86,7 @@ document.userRegisterFrm.addEventListener('submit', (e) => {
     const name = frm.name;
     const email = frm.email;
     const idValid = frm.idValid;
-    const emailValid = frm.emailValid;
+    // const emailValid = frm.emailValid;
     // console.log(idValid);
 
     // 아이디 - 영문자/숫자 4글자 이상
@@ -169,9 +169,9 @@ document.userRegisterFrm.addEventListener('submit', (e) => {
     }
 
     // 이메일 중복 검사
-    if (emailValid.value !== "1") {
-        alert('이미 사용중인 이메일입니다.');
-        e.preventDefault();
-        return;
-    }
+    // if (emailValid.value !== "1") {
+    //     alert('이미 사용중인 이메일입니다.');
+    //     e.preventDefault();
+    //     return;
+    // }
 });

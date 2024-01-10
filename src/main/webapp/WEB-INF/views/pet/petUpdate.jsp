@@ -26,7 +26,7 @@
         <div>
             <fieldset>
                 <legend class="mb-3 text-sm">반려동물 성별</legend>
-                <div class="inline-flex items-center mr-4">
+                <div class="inline-flex items-center mr-8">
                     <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" id="pet-newGender-option-1" type="radio" name="newGender" value="M">
                     <label for="pet-newGender-option-1" class="block ms-2 text-sm font-medium text-gray-900">남</label>
                 </div>
@@ -38,7 +38,7 @@
         </div>
         <fieldset>
             <legend class="mb-3 text-sm">반려동물 중성화여부</legend>
-            <div class="inline-flex items-center mr-4">
+            <div class="inline-flex items-center mr-8">
                 <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" id="pet-newNeutered-option-1"  type="radio" name="newNeutered" value="Y">
                 <label for="pet-newNeutered-option-1" class="block ms-2 text-sm font-medium text-gray-900">O</label>
             </div>
