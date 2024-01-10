@@ -35,7 +35,6 @@
         <form action="roomSearchForm">
             <fieldset>
                 <input type="text" id="datepicker1" name="datepicker1" autocomplete="off" ><input type="text" id="datepicker2" name="datepicker2" autocomplete="off">
-                캠프id:<input type="number" id="campId" name="campId">
                 <button id="btn-search" type="button"
                         class="hover:text-white bg-white text-black border border-gray2 hover:bg-black font-medium rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">
                     조회
@@ -60,6 +59,8 @@
             </thead>
             <tbody>
             <c:forEach items="${rooms}" var="room" varStatus="vs">
+                    <%-- 캠프id히든으로 숨김, form전송용,--%>
+                <input type="number" id="campId" name="campId" value="${room.campId}" hidden>
                 <tr>
 <%--                    ${room.roomRenamedImg}--%>
                     <td><img id="roomImage" class="w-[200px] h-[100px]" src="${pageContext.request.contextPath}/upload/room/${room.roomRenamedImg}" ></td>
