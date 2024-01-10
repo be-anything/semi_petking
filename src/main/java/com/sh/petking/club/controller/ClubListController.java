@@ -27,16 +27,6 @@ public class ClubListController extends HttpServlet {
     private ClubService clubService = new ClubService();
     private UserService userService = new UserService();
 
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//
-//        List<Club> clubs = clubService.findAll();
-//        req.setAttribute("clubs", clubs);
-//        System.out.println(clubs);
-//
-//        req.getRequestDispatcher("/WEB-INF/views/club/clubList.jsp").forward(req,resp);
-//    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 사용자입력값 가져오기

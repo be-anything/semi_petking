@@ -27,7 +27,6 @@ import static java.lang.System.out;
 public class ClubUpdateController extends HttpServlet {
 
     private ClubService clubService = new ClubService();
-
     private UserService userService = new UserService();
 
     @Override

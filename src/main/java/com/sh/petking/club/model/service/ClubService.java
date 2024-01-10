@@ -51,8 +51,6 @@ public class ClubService {
 
             // 조회
             club = clubDao.findById(session, id);
-//            List<ClubComment> comments = boardDao.findCommentByBoardId(session, id);
-//            board.setComments(comments);
 
             session.commit();
         } catch (Exception e) {
@@ -69,14 +67,6 @@ public class ClubService {
         SqlSession session = getSqlSession();
         try {
             result = clubDao.insertClub(session, club);
-
-
-
-
-
-
-
-
             session.commit();
         } catch (Exception e) {
             session.rollback();
@@ -108,22 +98,6 @@ public class ClubService {
         try {
             // club테이블 수정
             result = clubDao.updateClub(session, club);
-
-//            // attachment테이블 삭제
-//            List<Long> delFiles = club.getDelFiles();
-//            if (!delFiles.isEmpty()) {
-//                for (Long id : delFiles) {
-//                    result = clubDao.deleteAttachment(session, id);
-//                }
-//            }
-//            // attachment테이블 등록
-//            List<ClubAttach> attachments = club.getAttachments();
-//            if (!attachments.isEmpty()) {
-//                for (ClubAttach attach : attachments) {
-//                    attach.setClubId(club.getId()); // fk 등록
-//                    result = clubDao.insertAttachment(session, attach);
-//                }
-//            }
             session.commit();
         } catch (Exception e) {
             session.rollback();
@@ -165,16 +139,11 @@ public class ClubService {
                 club.getId();
                 System.out.println("club아이디 가져와지나요" + club.getId());
                 // role 확인용
-                
-                
                 clubUsers.setClubId(club.getId());
                 user.setClubId(club.getId());
                 result = clubDao.insertClubUsers(session, clubUsers);
                 result = userDao.updateUserClubId(session, user);
             }
-            
-
-
             session.commit();
         } catch (Exception e) {
             session.rollback();

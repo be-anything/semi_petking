@@ -12,12 +12,12 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="xl:container p-8">
     <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r to-orange-200 from-orange-400">${club.clubName}</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r to-orange-200 from-orange-400">${club.clubName} 동아리</span>
     </h1>
 </div>
 <div class="xl:container p-8">
     <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
-        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">${loginUser.id}님 저희 동아리에 오신걸 환영합니다 🤗</h5>
+        <h3 class="mb-2 text-2xl font-semibold tracking-tight text-orange-500">${loginUser.name}님 저희 동아리에 오신걸 환영합니다 🤗</h3>
     </div>
 </div>
 <div class="flex flex-wrap justify-between items-center mx-auto max-w-6xl rounded-lg bg-gray1 mt-10 mb-10">
