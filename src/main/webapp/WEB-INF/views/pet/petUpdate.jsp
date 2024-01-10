@@ -12,7 +12,7 @@
 
 <%-- 정보수정하기 --%>
 <c:if test="${not empty pet}">
-    <p class="text-base text-green"><b>정보 수정을 원하시면 아래에 작성 후 수정버튼을 눌러주세요😊</b></p>
+    <p class="text-base text-green"><b>정보 수정을 원하시면 작성 후 수정버튼을 눌러주세요😊</b></p>
     <form name="petUpdateFrm" action="${pageContext.request.contextPath}/pet/petUpdate" method="post">
         <input type="hidden" name="userId" value="${pet.userId}">
         <div>

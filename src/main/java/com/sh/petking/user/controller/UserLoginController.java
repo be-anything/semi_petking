@@ -28,7 +28,7 @@ public class UserLoginController extends HttpServlet {
         String referer = req.getHeader("Referer");
         System.out.println("referer = " + referer); // 저장된정보 확인
 
-        if (!referer.contains("/user.userlogin"))
+        if (!referer.contains("/camp/campLogin") && !referer.contains("user/userLogin"))
             req.getSession().setAttribute("next", referer);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/user/userLogin.jsp");
@@ -38,8 +38,6 @@ public class UserLoginController extends HttpServlet {
     // 로그인 처리
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 사용자 입력값 인코딩 처리
-//        req.setCharacterEncoding("utf-8");
 
         // 사용자 입력값 가져오기
         String id = req.getParameter("id");
@@ -48,18 +46,13 @@ public class UserLoginController extends HttpServlet {
 
         // 업무 로직
         User user = userService.findById(id);
-//        UserVo user = userService.findUserWithClubById(id);
-//        System.out.println(user);
-//        System.out.println(user.getPassword());
-
-//        System.out.println(user);
 
         // 세션생성 / 가져오기
         HttpSession session = req.getSession();
         if (user != null && pw.equals(user.getPassword())) {
             // 로그인 성공
             session.setAttribute("loginUser", user);
-            session.setAttribute("msg", "로그인을 성공하였습니다.");
+            session.setAttribute("msg", "로그인 성공했습니다.");
             String location = req.getContextPath() + "/";
             String next = (String) req.getSession().getAttribute("next");
 

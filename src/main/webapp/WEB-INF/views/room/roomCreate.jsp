@@ -13,13 +13,13 @@
         height: 200px;
     }
     .upload {
-        width: 200px;
-        height: 50px;
-        background-color: antiquewhite;
+        width: 400px;
+        height: 300px;
+        background-color: lightgray;
     }
     .image-preview {
-        width: 200px;
-        height: 200px;
+        width: 500px;
+        height: 400px;
         background-color: transparent;
         display: flex;
         gap: 10px;
@@ -66,7 +66,7 @@
                         <div class="px-4 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-0">
                             <input id="roomImg" name="roomImg" type="file" class="real-upload" accept="image/*"  multiple>
                             <div class="upload">
-                                <p>upload</p>
+                                <p>대표사진</p>
                             </div>
                             <ul class="image-preview"></ul>
                         </div>
@@ -126,13 +126,13 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
-                            등록
-                        </button>
-
                     </dl>
                 </div>
             </div>
+            <button type="submit"
+                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200">
+                등록
+            </button>
         </div>
     </form>
 </div>

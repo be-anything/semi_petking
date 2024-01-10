@@ -39,13 +39,13 @@ public class ReservationDao
 
     public List<RoomVo> findByCampId(SqlSession session, Map<String, Object> params)
     {
-        System.out.println("ReservationDao - 캠핑장 객실리스트 출력");
+        System.out.println("ReservationDao - findByCampId 캠핑장 객실리스트 출력");
         return session.selectList("reservation.findByCampId",params);
     }
 
     public List<Room> findByRoomCampId(SqlSession session, long campId)
     {
-        System.out.println("ReservationDao - 캠핑장 객실리스트 출력");
+        System.out.println("ReservationDao - findByRoomCampId 캠핑장 객실리스트 출력, 해당캠핑장의 모든 객실을 출력합니다.");
         return session.selectList("reservation.findByRoomCampId",campId);
     }
 

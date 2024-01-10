@@ -59,7 +59,7 @@
                     </div>
                     </c:if>
                 <c:if test="${loginCamp != null}">
-                    <div class="text-black text-right font-normal mr-20 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campManagement">${loginCamp.businessName}님의 페이지</a></div>
+                    <div class="text-black text-right font-normal mr-20 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campUpdate?id=${loginCamp.id}">${loginCamp.businessName}님의 페이지</a></div>
                     <div class="text-black text-right font-normal mr-3 absolute right-2 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campLogout">로그아웃</a></div>
                 </c:if>
             </nav>

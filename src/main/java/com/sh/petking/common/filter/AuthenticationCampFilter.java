@@ -1,5 +1,6 @@
 package com.sh.petking.common.filter;
 
+import com.sh.petking.camp.model.entity.Camp;
 import com.sh.petking.user.model.entity.User;
 
 import javax.servlet.FilterChain;
@@ -12,27 +13,25 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {
-        "/user/userDetail",
-        "/user/userUpdate",
-        "/user/userDelete",
-        "/user/userPasswordUpdate",
-        "/user/userAskDetail",
-        "/user/userAskList",
-        "/user/userGrade",
-        "/user/userProfileUpdate",
-        "/user/reviewCreate",
-        "/user/userReviewDelete",
-        "/user/userReviewList",
+        "/camp/campAskDetail",
+        "/camp/campAskList",
+        "/camp/campAttachDelete",
+        "/camp/campDelete",
+        "/camp/campDetailUpdate",
+        "/camp/campManagement",
+        "/camp/campReviewList",
+        "/camp/campUpdate",
+        "/camp/campUpdate",
 })
-public class AuthenticationFilter extends HttpFilter {
+public class AuthenticationCampFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain) throws IOException, ServletException {
         // 인증여부 검사
         HttpSession session = req.getSession();
-        User loginUser = (User) req.getSession().getAttribute("loginUser");
-        if (loginUser == null) {
-            session.setAttribute("msg", "로그인 후 사용가능합니다.");
+        Camp loginCamp = (Camp) req.getSession().getAttribute("loginCamp");
+        if (loginCamp == null) {
+            session.setAttribute("msg", "사업자 로그인 후 사용가능합니다.");
             resp.sendRedirect(req.getContextPath() + "/");
             return;
         }

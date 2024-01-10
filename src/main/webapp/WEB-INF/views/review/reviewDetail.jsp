@@ -10,7 +10,7 @@
         <c:if test="${review.attachments.size() != 0}">
             <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-${review.attachments.size()} h-[350px] lg:gap-x-4 lg:px-8">
                 <c:forEach items="${review.attachments}" var="attach">
-                    <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                    <div id="img-modal-div" data-modal-target="img-modal" data-modal-toggle="img-modal" class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
                         <img src="${pageContext.request.contextPath}/upload/review/${attach.renamedName}" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
                     </div>
                 </c:forEach>
@@ -145,6 +145,19 @@
                     </div>
                 </form>
             </c:if>
+        </div>
+    </div>
+</div>
+
+
+<!-- Main modal -->
+<div id="img-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-hidden overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-3xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                <img src="${pageContext.request.contextPath}/upload/review/${attach.renamedName}" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
+            </div>
         </div>
     </div>
 </div>
