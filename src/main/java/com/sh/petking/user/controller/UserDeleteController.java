@@ -28,6 +28,7 @@ public class UserDeleteController extends HttpServlet {
 
         int result = userService.deleteUser(id);
 
+        // 회원탈퇴성공하면 del_Users Table에 추가
         if (result > 0) {
             DelUser delUser = new DelUser();
             delUser.setUserId(loginUser.getId());
@@ -49,26 +50,3 @@ public class UserDeleteController extends HttpServlet {
         }
     }
 }
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        HttpSession session = req.getSession();
-//        User loginUser = (User) session.getAttribute("loginUser");
-//        System.out.println("탈퇴할회원 : " + loginUser);
-//        String id = loginUser.getId();
-//
-//        int result = userService.deleteUser(id);
-//
-//        if (result > 0) {
-//            int delUser = delUserService.insertDelUser(DelUser);
-//            System.out.println("삭제된회원 : " +delUser);
-//            session.invalidate();
-//            session = req.getSession();
-//            session.setAttribute("msg", "회원 탈퇴를 완료했습니다.");
-//            resp.sendRedirect(req.getContextPath() + "/");
-//        } else {
-//            // 회원 탈퇴 실패 시의 처리
-//            session.setAttribute("msg", "회원 탈퇴에 실패했습니다.");
-//            resp.sendRedirect(req.getContextPath() + "/");
-//        }
-//    }
-//}
