@@ -116,7 +116,7 @@
         SELECT r.id
         FROM room r
         left JOIN reservation rv ON r.id = rv.room_id
-        WHERE r.camp_id = 7
+        WHERE r.camp_id = #{campId}
         AND status = 1
         AND NOT ( #{lastDay} <= start_date OR #{firstDay} >= end_date))
          ]]>
