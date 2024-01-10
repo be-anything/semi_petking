@@ -38,7 +38,9 @@
                 <div class="text-[#000] text-2xl font-bold mr-20"><a href="${pageContext.request.contextPath}">펫킹.</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/camp/campList">캠핑장 찾기</a></div>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/board/boardList">커뮤니티</a></div>
-                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/club/clubList">동아리</a></div>
+                <c:if test="${loginCamp == null}">
+                    <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/club/clubList">동아리</a></div>
+                </c:if>
                 <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/review/reviewList">캠핑로그</a></div>
 <%--                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/room/roomList">객실목록(임시)</a></div>--%>
 <%--                <div class="text-black text-base font-normal mr-10 hover:font-bold"><a href="${pageContext.request.contextPath}/reservation/reservationMain">예약하기(임시)</a></div>--%>

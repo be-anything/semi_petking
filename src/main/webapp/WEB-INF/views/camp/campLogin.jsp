@@ -5,9 +5,9 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <div class="sm:mx-auto mt-12 sm:w-full sm:max-w-sm bg-salmon/30 p-4 rounded-lg">
         <div class="border-b-2 border-green flex justify-center mb-10">
-            <h1 class="block mb-2 mt-5 text-xl font-medium text-black dark:text-white">캠핑장 사장님 로그인</h1>
+            <h1 class="block mb-2 mt-5 text-xl font-medium text-black dark:text-white ">캠핑장 사장님 로그인</h1>
         </div>
         <form name="userLoginFrm" action="${pageContext.request.contextPath}/camp/campLogin" class="space-y-6" method="post">
             <div>
@@ -38,7 +38,7 @@
             </p>
 
             <div class="flex flex-col">
-                <button type="submit" class="flex w-full justify-center rounded-md bg-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">로그인</button>
+                <button type="submit" class="flex w-full justify-center rounded-md bg-green px-3 py-1.5 text-sm font-semibold leading-6 text-white hover:text-black shadow-sm hover:bg-salmon focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">로그인</button>
                 <a href="${pageContext.request.contextPath}/user/userLogin" class="text-center text-sm text-green hover:text-blue hover:underline mt-5">사용자 회원로그인은 여기를 눌러주세요</a>
             </div>
         </form>
