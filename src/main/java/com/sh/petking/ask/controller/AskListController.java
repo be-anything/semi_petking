@@ -48,7 +48,7 @@ public class AskListController extends HttpServlet {
         System.out.println("ASk : "+ask);
         req.setAttribute("asks",ask);
 
-        req.getRequestDispatcher("/WEB-INF/views/user/campAskList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/views/user/userAskList.jsp").forward(req,resp);
     }
 
     @Override

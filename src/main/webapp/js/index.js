@@ -44,18 +44,23 @@ document.addEventListener('DOMContentLoaded', function () {
 document.querySelectorAll(".options").forEach((option) => {
     option.addEventListener('click', (e) => {
         const selected = e.target;
-        selected.classList.toggle("bg-green");
-        selected.classList.toggle("text-white");
-        selected.classList.toggle("selected");
+        console.log(e.target);
 
         const input = selected.children[0];
-        console.dir(input.checked);
-        if(selected.classList.contains("selected")){
-            input.checked = true;
-        }
-        else {
-            input.checked = false;
-        }
+        const otherTags = selected.children;
+        document.querySelectorAll(".options").forEach((btn) => {
+            btn.classList.remove("bg-green");
+            btn.classList.remove("text-white");
+            btn.classList.remove("selected");
+            btn.children[0].checked = false;
+
+            if(btn === selected){
+                selected.classList.add("bg-green");
+                selected.classList.add("text-white");
+                selected.classList.add("selected");
+                input.checked = true;
+            }
+        });
     });
 });
 
