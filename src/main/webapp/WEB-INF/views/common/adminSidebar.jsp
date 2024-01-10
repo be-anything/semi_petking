@@ -17,7 +17,7 @@
     </svg>
 </button>
 
-    <aside class="fixed ml-0 z-10 w-56 h-2/3" aria-label="Sidebar">
+    <aside class="fixed ml-14 z-10 w-56 h-2/3" aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 text-black rounded-lg border border-gray2">
         <ul class="space-y-2 font-medium">
             <li class="mt-1">
