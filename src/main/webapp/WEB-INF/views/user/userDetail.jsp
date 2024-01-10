@@ -21,27 +21,27 @@
             <form name="userUpdateFrm" action="${pageContext.request.contextPath}/user/userUpdate" method="post" class="space-y-4 md:space-y-6">
                 <div id="photo-container" class="w-full flex flex-col items-center"></div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">아이디</label>
+                    <label for="id" class="block mb-2 text-sm font-medium text-gray-900">아이디</label>
                     <input type="text" name="id" id="id" value="${loginUser.id}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" readonly>
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">이름</label>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">이름</label>
                     <input type="text" name="name" id="name" value="${loginUser.name}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" readonly>
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">회원등급</label>
+                    <label for="gradeId" class="block mb-2 text-sm text-gray">회원등급</label>
                     <input type="text" name="gradeId" id="gradeId" value="${loginUser.gradeId}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" readonly>
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">이메일</label>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray">이메일</label>
                     <input type="text" name="email" id="email" value="${loginUser.email}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" readonly>
                 </div>
                 <div>
-                    <label for="nickname" class="block mb-2 text-sm font-medium text-gray-900">닉네임</label>
+                    <label for="nickname" class="text-green block mb-2 text-sm font-medium text-gray-900">닉네임</label>
                     <input type="text" name="nickname" id="nickname" value="${loginUser.nickname}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
                 </div>
                 <div>
-                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">전화번호</label>
+                    <label for="phone" class="text-green block mb-2 text-sm font-medium text-gray-900">전화번호</label>
                     <input type="text" name="phone" id="phone" value="${loginUser.phone}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="(-) 없이 입력하세요.">
                 </div>
                 <button type="button" onclick="location.href = '${pageContext.request.contextPath}/user/userPasswordUpdate';" class="text-white w-full bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">비밀번호 변경하기</button>

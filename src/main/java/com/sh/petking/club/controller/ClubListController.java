@@ -2,6 +2,7 @@ package com.sh.petking.club.controller;
 
 import com.sh.petking.board.model.vo.BoardVo;
 import com.sh.petking.club.model.entity.Club;
+import com.sh.petking.club.model.entity.ClubUsers;
 import com.sh.petking.club.model.service.ClubService;
 import com.sh.petking.club.model.vo.ClubVo;
 import com.sh.petking.common.PetkingUtils;
@@ -43,6 +44,10 @@ public class ClubListController extends HttpServlet {
         List<Club> clubs = clubService.findAll();
         req.setAttribute("clubs", clubs);
         System.out.println(clubs);
+
+        List<ClubUsers> clubUsers = clubService.findAllClubUsers();
+        req.setAttribute("clubUsers", clubUsers);
+        System.out.println(clubUsers);
 
         req.getRequestDispatcher("/WEB-INF/views/club/clubList.jsp").forward(req, resp);
     }

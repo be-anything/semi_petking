@@ -56,11 +56,13 @@
                     <span class="flex-1 whitespace-nowrap">문의 내역</span>
                 </a>
             </li>
+            <br>
             <li>
                 <form class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm" >
                     <input type="hidden" name="id" value="${loginUser.id}">
                     <input type="hidden" name="password" value="${loginUser.password}">
-                    <input type="submit" style="cursor:pointer;" class="flex-1 whitespace-nowrap" value="회원탈퇴" onclick="return confirm('정말 탈퇴하시겠습니까?')">
+                    <input type="submit" style="cursor:pointer;" class="text-sm flex-1 whitespace-nowrap"
+                           value="회원탈퇴" onclick="return confirm('정말 탈퇴하시겠습니까? \n\n\n이용내역과 포인트내역은 탈퇴 후 복구 할 수 없습니다.\n또한, 사업자 회원은 탈퇴 후 1달 이내 재가입이 불가합니다..\n')">
                 </form>
             </li>
         </ul>
