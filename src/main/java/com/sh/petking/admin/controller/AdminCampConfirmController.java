@@ -33,7 +33,7 @@ public class AdminCampConfirmController extends HttpServlet {
         String campMsg = req.getParameter("campMsg");
         Camp camp = campService.findById(id);
         camp.setCampState(campState);
-        int result = campService.updateCamp(camp);
+        int result = campService.updateCampState(camp);
         req.getSession().setAttribute("msg", "승인이 완료되었습니다.☺️");
         String url = "/admin/registList?id=" + id;
         if(campState == -1){

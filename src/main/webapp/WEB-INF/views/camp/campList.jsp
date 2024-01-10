@@ -54,7 +54,6 @@
                 <span class="inline-flex items-center rounded-full bg-pink px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-gray-500/10">찜 ${camp.wishCount}</span>
                 <div class="w- text-black font-semibold text-2xl mt-5 flex items-center place-content-between relative">
                         <span id="campBtn" data-id="${camp.id}" class="hover:underline cursor-pointer">${camp.campName}</span>
-
                     <%--<i class="fa-solid fa-heart text-right"></i>--%>
                     <%-- ajax wish insert/delete -> loginUser 기능 완성되면 data-user-id 하드코딩 부분 수정 필요 --%>
                     <c:if test="${loginUser != null}">

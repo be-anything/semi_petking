@@ -18,8 +18,6 @@ document.querySelector("#btn-campToRoom").addEventListener('click', (e) =>{
             console.log("campDetail - >error");
         }
     });
-
-
 });
 
 
