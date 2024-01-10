@@ -1,4 +1,4 @@
-// 페이지 로드시
+// 페이지 로드시 저장된아이디 불러오기
 const saveId = localStorage.getItem('saveId');
 if(saveId) {
     document.querySelector("#id").value = saveId;

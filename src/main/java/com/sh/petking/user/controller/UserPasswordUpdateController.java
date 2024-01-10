@@ -44,10 +44,10 @@ public class UserPasswordUpdateController extends HttpServlet {
             // 업무로직
             loginUser.setPassword(newPassword);
             int result = userService.userPasswordUpdate(loginUser);
-            msg = "비밀번호 변경 완료";
+            msg = "비밀번호 변경이 완료됐습니다.";
             location += "/user/userDetail";
         } else {
-            msg = "비밀번호가 일치하지 않습니다. 다시 확인해주세요";
+            msg = "두 비밀번호가 일치하지 않습니다. 다시 확인해주세요";
             location += "/user/userPasswordUpdate";
         }
 

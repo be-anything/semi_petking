@@ -76,11 +76,11 @@
                         <fieldset>
                             <legend class="mt-5">반려동물 성별</legend>
                             <div class="inline-flex items-center mr-8">
-                                <input id="pet-gender-option-1" type="radio" name="petGender" value="M" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
+                                <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" id="pet-gender-option-1" type="radio" name="petGender" value="M">
                                 <label for="pet-gender-option-1" class="block ms-2 text-sm font-medium text-gray-900">남</label>
                             </div>
                             <div class="inline-flex items-center mr-4">
-                                <input id="pet-gender-option-2" type="radio" name="petGender" value="F" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
+                                <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" id="pet-gender-option-2" type="radio" name="petGender" value="F">
                                 <label for="pet-gender-option-2" class="block ms-2 text-sm font-medium text-gray-900">여</label>
                             </div>
                         </fieldset>
