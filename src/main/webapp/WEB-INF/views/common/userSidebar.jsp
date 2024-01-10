@@ -20,45 +20,45 @@
 
 <aside class="z-40 w-64 h-[600px] absolute top-0" aria-label="Sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto bg-salmon dark:bg-gray-800 text-center text-black rounded-lg border border-gray2">
-        <ul class="space-y-2 font-medium">
+        <ul class="space-y-4 font-medium">
             <li class="flex justify-center">
                 <a href="${pageContext.request.contextPath}/user/userDetail" class="w-[150px] h-[150px] overflow-hidden flex items-center border border-white border-4 shadow-lg bg-light-pink rounded-full group">
                     <img id="sideProfile" class="w-full h-full flex-1 whitespace-nowrap" src="${pageContext.request.contextPath}/upload/user/${loginUser.renamedProfileName}">
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/user/userGrade?id=${loginUser.id}" class="flex items-center text-center text-black bg-light-pink p-2 hover:bg-white rounded-full group">
+                <a href="${pageContext.request.contextPath}/user/userGrade?id=${loginUser.id}" class="flex items-center text-center text-black bg-light-pink p-2 hover:bg-pink hover:text-white rounded-full group">
                     <span class="flex-1 whitespace-nowrap">보유 포인트 ${pointSum}점</span>
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/user/userDetail" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="${pageContext.request.contextPath}/user/userDetail" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray1 dark:hover:bg-gray-700 group">
                     <span class="flex-1 whitespace-nowrap">내 정보보기</span>
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/user/userWishList" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="${pageContext.request.contextPath}/user/userWishList" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray1 dark:hover:bg-gray-700 group">
                     <span class="flex-1 whitespace-nowrap">찜 목록</span>
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/user/userReservation" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="${pageContext.request.contextPath}/user/userReservation" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray1 dark:hover:bg-gray-700 group">
                     <span class="flex-1 whitespace-nowrap">예약 내역</span>
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/user/userReviewList?userId=${loginUser.id}" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="${pageContext.request.contextPath}/user/userReviewList?userId=${loginUser.id}" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray1 dark:hover:bg-gray-700 group">
                     <span class="flex-1 whitespace-nowrap">리뷰 내역</span>
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/user/userAskList?userId=${loginUser.id}" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="${pageContext.request.contextPath}/user/userAskList?userId=${loginUser.id}" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray1 dark:hover:bg-gray-700 group">
                     <span class="flex-1 whitespace-nowrap">문의 내역</span>
                 </a>
             </li>
             <br>
             <li>
-                <form class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm" >
+                <form class="flex items-center p-2 rounded-lg text-sm dark:text-white hover:font-bold hover:underline hover:text-red group" action="${pageContext.request.contextPath}/user/userDelete" method="post" name="userDeleteFrm" >
                     <input type="hidden" name="id" value="${loginUser.id}">
                     <input type="hidden" name="password" value="${loginUser.password}">
                     <input type="submit" style="cursor:pointer;" class="text-sm flex-1 whitespace-nowrap"

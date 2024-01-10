@@ -104,7 +104,7 @@
                 <div class="mb-5">
                     <div class="font-medium leading-6 text-gray-900 my-4 text-center">
                         <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900"><span
-                                class="underline underline-offset-3 decoration-8 decoration-green">캠핑장 부가서비스</span></h1>
+                                class="underline underline-offset-3 decoration-8 decoration-green">캠핑장 전경</span></h1>
                     </div>
                     <c:if test="${camp.campAttaches.size() == 0}">
                         <li class="splide__slide">

@@ -5,14 +5,11 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <jsp:include page="/WEB-INF/views/common/userSidebar.jsp"/>
 
-<div class="w-3/4">
+<div class="w-3/4 ml-auto mr-10">
     <div class="container mx-auto my-6 w-fit">
         <h1 class="text-2xl text-center font-bold text-gray-900 md:text-3xl">
             ${userVo.name} 님의 등급은 ${userVo.userGrade.name} 입니다. 🐶
         </h1>
-        <p class="text-center mt-2">
-            다음 등급까지 000포인트 남았습니다.
-        </p>
     </div>
     <div>
         <div class="w-1/2 mx-auto">
@@ -24,6 +21,7 @@
     </div>
     <div class="container mx-auto mt-8">
         <div class="overflow-x-auto">
+            <c:if test="${points.size() != 0}">
             <table class="w-full text-sm text-left text-gray-500 border-collapse">
                 <thead class="text-xs text-white bg-green">
                 <tr>
@@ -35,20 +33,29 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${points}" var="point" varStatus="vs">
-                    <tr class="bg-white border-b">
-                        <td class="px-6 py-4 font-medium text-gray-900">${vs.index + 1}</td>
-                        <td class="px-6 py-4">${point.userId}</td>
-                        <td class="px-6 py-4">${point.point}</td>
-                        <td class="px-6 py-4 break-all">${point.pointLog}</td>
-                        <td class="px-6 py-4">
-                            <fmt:parseDate value="${point.regDate}" pattern="yyyy-MM-dd" var="regDate" />
-                            <fmt:formatDate value="${regDate}" pattern="yy/MM/dd" />
-                        </td>
-                    </tr>
-                </c:forEach>
+                    <c:forEach items="${points}" var="point" varStatus="vs">
+                        <tr class="bg-white border-b">
+                            <td class="px-6 py-4 font-medium text-gray-900">${vs.index + 1}</td>
+                            <td class="px-6 py-4">${point.userId}</td>
+                            <td class="px-6 py-4">${point.point}</td>
+                            <td class="px-6 py-4 break-all">${point.pointLog}</td>
+                            <td class="px-6 py-4">
+                                <fmt:parseDate value="${point.regDate}" pattern="yyyy-MM-dd" var="regDate" />
+                                <fmt:formatDate value="${regDate}" pattern="yy/MM/dd" />
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
+            </c:if>
+            <c:if test="${points.size() == 0}">
+                <div class="flex justify-center flex-col items-center">
+                    <div class="">
+                        <i class="fa-solid fa-piggy-bank text-gray3 text-9xl p-12"></i>
+                    </div>
+                    <p class="mb-36 text-3xl"> 포인트 적립내역이 없습니다.</p>
+                </div>
+            </c:if>
         </div>
     </div>
 </div>
