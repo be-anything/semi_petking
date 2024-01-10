@@ -47,6 +47,8 @@ public class AskCreateContoller extends HttpServlet {
 
         //3.게시판 목록페이지로 redirect
         //3.게시판 목록페이지로 redirect -> 해당 유저의 문의글만 보이도록 이동
+
+        System.out.println("문의 내용 작성 후  - 성공알려주는 alert ");
         resp.sendRedirect(req.getContextPath()+"/ask/askList?userId=" + userId);
 
     }

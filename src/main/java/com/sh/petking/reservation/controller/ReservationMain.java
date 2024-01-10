@@ -40,8 +40,6 @@ public class ReservationMain extends HttpServlet
         {
             req.setAttribute("roomCount",room.size());
         }
-
-
         req.getRequestDispatcher("/WEB-INF/views/reservation/reservationMain.jsp").forward(req, resp);
     }
 }

@@ -94,6 +94,7 @@
             ask
         where
             user_id = #{userId}
+        order by ask_reg_date desc
     </select>
     <select id="getTotalUserAsk" resultType="_int">
         select
