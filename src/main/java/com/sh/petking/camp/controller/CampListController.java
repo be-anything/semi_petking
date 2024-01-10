@@ -76,10 +76,14 @@ public class CampListController extends HttpServlet {
         // 검색어 입력시의 주소 처리
         if(searchType != null && searchKeyword != null){
             url += "?search-type=" + searchType + "&search-keyword=" + searchKeyword;
-            url += "&tagName=" + param.get("tagName");
+            if(param.get("tagName") != null){
+                url += "&tagName=" + param.get("tagName");
+            }
         }
         else {
-            url += "?tagName=" + param.get("tagName");
+            if(param.get("tagName") != null){
+                url += "?tagName=" + param.get("tagName");
+            }
         }
         String pagebar = PetkingUtils.getPagebar(page, limit, totalCount, url);
         req.setAttribute("pagebar", pagebar);

@@ -1,3 +1,11 @@
+document.querySelector("#img-modal-div").addEventListener('click', (e) => {
+    console.log(e.target)
+    const img = document.querySelector("#img-modal img");
+    console.log(img);
+    img.src = e.target.src;
+});
+
+
 // // 댓글 삭제 ajax
 // document.commentDeleteFrm.addEventListener('submit', (e) => {
 //     e.preventDefault();
