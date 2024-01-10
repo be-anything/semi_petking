@@ -16,7 +16,6 @@ import java.util.Map;
 
 @WebServlet("/ask/askList")
 public class AskListController extends HttpServlet {
-
     AskService askService = new AskService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,7 +47,7 @@ public class AskListController extends HttpServlet {
         System.out.println("ASk : "+ask);
         req.setAttribute("asks",ask);
 
-        req.getRequestDispatcher("/WEB-INF/views/user/campAskList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/views/user/userAskList.jsp").forward(req,resp);
     }
 
     @Override

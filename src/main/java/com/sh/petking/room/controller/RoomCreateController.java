@@ -34,6 +34,10 @@ public class RoomCreateController extends HttpServlet
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("RoomCreateController do get");
+        long campId = Long.parseLong(req.getParameter("camp_id"));
+        System.out.println("RoomCreateController campId: "+campId);
+        req.setAttribute("campId",campId);
         req.getRequestDispatcher("/WEB-INF/views/room/roomCreate.jsp").forward(req,resp);
     }
 
@@ -56,6 +60,7 @@ public class RoomCreateController extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
+        System.out.println("RoomCreateController do post");
         //1.사용자 입력값 처리 및 파일 업로드
         //"C:\\Users\\min_j\\Dropbox\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\camp"
         File repository = new File("C:\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\room");
@@ -132,6 +137,8 @@ public class RoomCreateController extends HttpServlet
         req.getSession().setAttribute("msg","새로운 객실을 성공적으로 등록하였습니다");
 
         //3.게시판 목록페이지로 redirect
-        resp.sendRedirect(req.getContextPath()+"/room/roomList");
+        // resp.sendRedirect(req.getContextPath()+"/room/roomList");
+        //기존의 room경로가 아닌 캠핑장 경로로
+        resp.sendRedirect(req.getContextPath() + "/camp/campRoomList?id=" + room.getCampId());
     }
 }
