@@ -7,14 +7,14 @@ document.petUpdateFrm.onsubmit = (e) => {
 
     // 반려동물 이름 - 1글자 이상
     if (!/^[가-힣A-Za-z]{1,}$/.test(newPetName)) {
-        alert('이름은 1글자 이상 작성해주세요.(한글 & 영대/소문자)');
+        alert('이름은 1글자 이상 작성해주세요.(한글 & 영대/소문자');
         e.preventDefault();
         return false;
     }
 
     // 반려동물 나이 - 숫자만 입력
     if (!/^\d{1,2}$/.test(newPetAge)) {
-        alert('숫자로 입력해주세요.(최대 두 자리)');
+        alert('숫자로 입력해주세요 (최대 두 자리).');
         e.preventDefault();
         return false;
     }

@@ -21,7 +21,7 @@ document.userPasswordUpdateFrm.onsubmit = (e) => {
         return false;
     }
     if (newPassword.value !== newPasswordConfirmation.value) {
-        alert("두 비밀번호가 일치하지 않습니다.");
+        alert("변경할 두 비밀번호가 일치하지 않습니다.");
         return false;
     }
 };
