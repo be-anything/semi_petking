@@ -102,5 +102,6 @@
         </ul>
     </nav>
 </div>
+
 <script src="${pageContext.request.contextPath}/js/room/roomList.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
