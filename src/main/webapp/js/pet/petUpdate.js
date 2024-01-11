@@ -12,7 +12,7 @@ document.petUpdateFrm.onsubmit = (e) => {
         return false;
     }
 
-    // 반려동물 나이 - 숫자만 입력z
+    // 반려동물 나이 - 숫자만 입력
     if (!/^\d{1,2}$/.test(newPetAge)) {
         alert('숫자로 입력해주세요 (최대 두 자리).');
         e.preventDefault();

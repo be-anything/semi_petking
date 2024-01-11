@@ -47,7 +47,7 @@ public class UserPasswordUpdateController extends HttpServlet {
             msg = "비밀번호 변경이 완료됐습니다.";
             location += "/user/userDetail";
         } else {
-            msg = "두 비밀번호가 일치하지 않습니다. 다시 확인해주세요";
+            msg = "현재 비밀번호를 다시 확인해주세요";
             location += "/user/userPasswordUpdate";
         }
 
