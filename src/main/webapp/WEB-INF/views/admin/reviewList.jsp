@@ -11,7 +11,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <jsp:include page="/WEB-INF/views/common/adminSidebar.jsp"/>
-<div class="w-full mx-auto mt-8">
+<div class="w-3/4 mx-auto mt-8">
     <div class="overflow-x-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-collapse">
             <thead class="text-xs text-white bg-green">
@@ -37,6 +37,7 @@
             <th scope="col" class="px-8 py-4">
                 작성시간
             </th>
+            <th></th>
         </tr>
         </thead>
         <tbody>

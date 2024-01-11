@@ -111,10 +111,6 @@ document.querySelectorAll(".delbtn").forEach((btn, _index) =>{
                 },
                 method: 'post',
                 success(response){
-                    // reset.style.backgroundImage = '';
-                    // delBtn.classList.add('hidden');
-                    // ajax reload
-                    // location.reload();
                     resetInput.innerHTML = '';
                     resetInput.innerHTML = `<label for="campImg${index}"
                                            style="background-size: cover; background-position: center"
@@ -172,10 +168,9 @@ document.querySelector("#updateDetailBtn").addEventListener('click', (e) => {
     const frm = document.campDetailUpdateFrm;
     const frmData = new FormData(frm);
 
-    for (var pair of frmData.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]);
-    }
-
+    // for (var pair of frmData.entries()) {
+    //     console.log(pair[0]+ ', ' + pair[1]);
+    // }
     $.ajax({
         url : `${contextPath}/camp/campDetailUpdate`,
         method: 'post',
