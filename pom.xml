@@ -102,7 +102,14 @@
   </dependencies>
   <build>
     <finalName>semi_petking</finalName>
-
+    <!-- war를 생성하게 위한 플러그인 추가 -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.2</version>
+      </plugin>
+    </plugins>
   </build>
 
 
