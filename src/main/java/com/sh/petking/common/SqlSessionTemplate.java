@@ -18,7 +18,7 @@ public class SqlSessionTemplate {
     private static SqlSessionFactory factory;
 
     static {
-        String resource = "mybatis-config.xml"; // src/main/resources/mybatis-config.xml
+        String resource = "configs/mybatis-config.xml"; // src/main/resources/mybatis-config.xml
 
         try(InputStream is = Resources.getResourceAsStream(resource)) {
             SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
