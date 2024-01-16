@@ -60,7 +60,7 @@ public class ReviewUpdateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 사용자 입력값 처리 및 파일 업로드
-        File repository = new File("C:\\Users\\cksgm\\Dropbox\\workspaces_ming\\web_server_workspace\\semi_petking\\target\\semi_petking\\upload\\review");
+        File repository = new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\review");
         int sizeThreshold = 10 * 1024 * 1024; // 10mb 10 * 1kb * 1kb (1mb = 1024kb, 1kb = 1024b)
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(repository);

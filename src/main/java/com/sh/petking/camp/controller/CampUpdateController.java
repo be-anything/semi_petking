@@ -59,7 +59,7 @@ public class CampUpdateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 0. 셋팅
-        File repository = new File("C:\\Users\\min_j\\Dropbox\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\camp");
+        File repository = new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\camp");
         int sizeThreshold = 10 * 1024 * 1024;
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(repository);
