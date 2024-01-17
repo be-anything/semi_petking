@@ -7,7 +7,7 @@
 <div class="h-[600px] w-full bg-gray1" style="background-image: url('${pageContext.request.contextPath}/images/common/index_bg.jpg'); background-size: cover; background-position: center">
     <div class="pt-80 ">
         <%--검색하기--%>
-        <form name="campSearchFrm" action="${pageContext.request.contextPath}/camp/campList" method="get" class="pt-4 bg-[#000000]/90 mt-24">
+        <form name="campSearchFrm" action="${pageContext.request.contextPath}/camp/campList" method="get" class="pt-4 bg-gray3/90 mt-24">
         <div class="mx-auto max-w-6xl w-fit">
             <div class="flex">
                 <select id="search-type" name="search-type" class="text-black border border-pink rounded-lg px-5 bg-light-pink">
