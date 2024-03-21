@@ -50,7 +50,7 @@ public class RoomUpdateController extends HttpServlet
         RoomVo room = new RoomVo();
         //                new File("C:\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\room");
         //new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\room");
-        File repository = new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\room");
+        File repository = new File("/var/webapps/upload/");
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(repository);
         factory.setSizeThreshold(10 * 1024 * 1024); // 10mb

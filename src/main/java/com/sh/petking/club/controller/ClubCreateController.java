@@ -39,7 +39,7 @@ public class ClubCreateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 사용자입력값처리 및 파일업로드
-        File repository = new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\club");
+        File repository = new File("/var/webapps/upload/");
         int sizeThreshold = 10 * 1024 * 1024; // 10mb (1mb = 1024kb, 1kb = 1024b)
 
         DiskFileItemFactory factory = new DiskFileItemFactory();

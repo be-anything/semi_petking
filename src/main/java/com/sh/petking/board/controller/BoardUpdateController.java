@@ -37,7 +37,7 @@ public class BoardUpdateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // DiskFileItemFactory - ServletFileUpload
-        File repository = new File("C:\\Workspaces\\semi_petking\\src\\main\\webapp\\upload\\board");
+        File repository = new File("/var/webapps/upload/");
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setRepository(repository);
         factory.setSizeThreshold(10 * 1024 * 1024); // 10mb
