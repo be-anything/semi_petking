@@ -63,7 +63,7 @@ public class RoomCreateController extends HttpServlet
         System.out.println("RoomCreateController do post");
         //1.사용자 입력값 처리 및 파일 업로드
         //"C:\\Users\\min_j\\Dropbox\\Workspaces\\semi_petking\\target\\semi_petking\\upload\\camp"
-        File repository = new File("/var/webapps/upload/");
+        File repository = new File("/var/webapps/upload");
         int sizeThreshold = 10 * 1024 * 1024; //10MB
 
         DiskFileItemFactory factory = new DiskFileItemFactory();

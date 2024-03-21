@@ -35,7 +35,7 @@ public class ClubBoardCreateController extends HttpServlet {
         String boardType = req.getParameter("boardType");
 
         // 1. 사용자입력값처리 및 파일업로드
-        File repository = new File("/var/webapps/upload/");
+        File repository = new File("/var/webapps/upload");
         int sizeThreshold = 10 * 1024 * 1024; // 10mb (1mb = 1024kb, 1kb = 1024b)
 
         DiskFileItemFactory factory = new DiskFileItemFactory();
