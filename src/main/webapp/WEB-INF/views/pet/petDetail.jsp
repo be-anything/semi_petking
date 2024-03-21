@@ -24,7 +24,7 @@
             <div class="flex items-center justify-center w-full">
                 <input type="hidden" name="id" value="${loginUser.id}">
                 <label for="profileImg"
-                       style="background-size: cover; background-position: center; background-image: url('https://bucket-minjeong2024.s3.ap-northeast-2.amazonaws.com/2056cee4-1e53-4cf0-8089-6f8826cbfd82.jpg')"
+                       style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/upload/user/${loginUser.renamedProfileName}')"
                        class="flex flex-col rounded-full items-center justify-center w-full h-60 border-2 border-gray-300 border-dashed cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                     <div class="flex flex-col bg-gray1 px-4 hover:bg-gray2 rounded-full items-center justify-center pt-5 pb-6">
                         <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
